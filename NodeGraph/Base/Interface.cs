@@ -4,13 +4,13 @@ namespace GG.NodeGraph;
 /// Read only interface of the graph.
 /// </summary>
 /// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public interface IReadOnlyGraph<TNode> where TNode : struct, Node
+public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     IReadOnlyDictionary<uint, TNode> Nodes {get;}
     IReadOnlyDictionary<uint, Edge> Edges {get;}
 }
 
-public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, Node
+public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     void SetNode(TNode Vertex);
     void SetNode(IEnumerable<TNode> Nodes);

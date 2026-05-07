@@ -1,6 +1,10 @@
 namespace GG.NodeGraph.Plugin;
 
-public class ModificationAggregator<TNode> where TNode : struct, Node
+/// <summary>
+/// Stores modifications.
+/// </summary>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+public class ModificationAggregator<TNode> where TNode : struct, INode
 {
     public Dictionary<uint, TNode?> Nodes = new();
     public Dictionary<uint, Edge?> Edges = new();
@@ -10,7 +14,7 @@ public class ModificationAggregator<TNode> where TNode : struct, Node
 /// Stores possible modification on a graph.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNode : struct, Node
+public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNode : struct, INode
 {
     internal Graph<TNode> baseGraph;
     public ModificationLog(IReadOnlyGraph<TNode> baseGraph)
@@ -74,7 +78,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
     public Edge? RetrieveInitialEdge(uint ID) => baseGraph.Edges[ID];
 }
 
-public interface IReadOnlyModificationLog<TNode> where TNode : struct, Node
+public interface IReadOnlyModificationLog<TNode> where TNode : struct, INode
 {
     IReadOnlyDictionary<uint, TNode?> RONodes {get;}
     IReadOnlyDictionary<uint, Edge?> ROEdges {get;}

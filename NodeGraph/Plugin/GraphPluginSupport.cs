@@ -2,17 +2,12 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 namespace GG.NodeGraph.Plugin;
 
-//Don't let perfect be the enemy of the good.
-//TODO: refactor this giant class
-
 /// <summary>
 /// Add plugin support for the base graph.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
+public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, INode
 {
-    readonly IGraph<TNode> BaseGraph;
-
     /// <param name="baseGraph">Base graph to extend from. Modifying the base graph directly is not recommended and should
     /// only be done through this graph as changes may not be reflected through the plugins.</param>
     /// <param name="modificationsOnBaseGraph">Determine if the base graph does its own modification on its graph when modifying it.
@@ -21,46 +16,75 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
     public GraphExtendable(IGraph<TNode> baseGraph, bool modificationsOnBaseGraph)
     {
         BaseGraph = baseGraph;
-        plugins.CollectionChanged += CollectionChanged;
-        Plugins = plugins;
+        Plugins = new();
+        Modification = new(BaseGraph, Plugins.plugins);
     }
+
+    readonly IGraph<TNode> BaseGraph;
+    public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
+    public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
+    public uint GenerateID() => BaseGraph.GenerateID();
+
+
+    //---Plugin stuff---
+    private PluginHandler<TNode> Plugins;
+    internal void AddPlugin(GraphPlugin<TNode> Plugin, int Index) => Plugins.AddPlugin(Plugin, Index);
 
     /// <summary>
     /// Plugins connected to this graph. The order of plugins here is used when updating plugins of events. Plugins may be connected through their constructors. 
     /// </summary>
-    public readonly IReadOnlyList<GraphPlugin<TNode>> Plugins;
-    internal ObservableCollection<GraphPlugin<TNode>> plugins = new();
+    public IReadOnlyList<GraphPlugin<TNode>> GetPlugins() => Plugins.plugins;
+    public void RearrangePlugin(int oldIndex, int newIndex) => Plugins.plugins.Move(oldIndex, newIndex);
+    public bool DisconnectPlugin(GraphPlugin<TNode> plugin) => Plugins.plugins.Remove(plugin);
 
-    public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
-    public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
 
-    public void RearrangePlugin(int oldIndex, int newIndex) => plugins.Move(oldIndex, newIndex);
-    public bool DisconnectPlugin(GraphPlugin<TNode> plugin) => plugins.Remove(plugin);
-
-    bool IsModificationsOnHold = false;
-    ModificationAggregator<TNode> ModificationsOnHold = new();
-
+    //---Modification stuff---
+    private ModificationHandler<TNode> Modification;
     /// <summary>
-    /// Hold any incoming modifications on a graph. Used for single processing of modifications in bulk which could save on performance.
+    /// Hold any incoming modifications on a graph. Used for aggregating modifications for single processing in bulk which could save on performance.
     /// Use ReleaseModifications() to apply incoming modifications. 
     /// </summary>
-    public void HoldModifications() => IsModificationsOnHold = true;
+    public void HoldModifications() => Modification.HoldModifications();
 
     /// <summary>
     /// Applies pending modifications on a graph. Use HoldModifications() to hold incoming modifications on the graph.
-    /// Used for single processing of modifications in bulk which could save on performance.
+    /// Used for aggregating modifications for single processing in bulk which could save on performance.
     /// </summary>
-    public void ReleaseModifications()
+    public void ReleaseModifications() => Modification.ReleaseModifications();
+
+    /// <summary>
+    /// Check if modifications are on hold. False on default. 
+    /// </summary>
+    public bool ModificationOnHold() => Modification.ModificationOnHold();
+    public void AggregatedModifications(ModificationAggregator<TNode> Modifications) => Modification.AggregatedModification(Modifications);
+    public void SetNode(TNode Vertex) => Modification.SetNode(Vertex);
+    public void SetNode(IEnumerable<TNode> Nodes) => Modification.SetMultipleNodes(Nodes);
+    public bool RemoveNode(uint ID) => Modification.RemoveNode(ID);
+    public void RemoveNode(IEnumerable<uint> IDs) => Modification.RemoveMultipleNodes(IDs);
+    public void SetEdge(Edge Edge) => Modification.SetEdge(Edge);
+    public void SetEdge(IEnumerable<Edge> Edges) => Modification.SetMultipleEdges(Edges);
+    public bool RemoveEdge(uint ID) => Modification.RemoveEdge(ID);
+    public void RemoveEdge(IEnumerable<uint> IDs) => Modification.RemoveMultipleEdges(IDs);
+}
+
+internal class PluginHandler<TNode> where TNode : struct, INode
+{
+    internal ObservableCollection<GraphPlugin<TNode>> plugins = new();
+    public PluginHandler()
     {
-        IsModificationsOnHold = false;
-        ModificationLog<TNode> Modifications = new(BaseGraph, ModificationsOnHold);
-        ModificationInitiate(Modifications);
-        ModificationsOnHold = new();
+        plugins.CollectionChanged += CollectionChanged;
     }
 
-    public bool ModificationOnHold() => IsModificationsOnHold;
+    internal void AddPlugin(GraphPlugin<TNode> Plugin, int Index)
+    {
+        if(Index == -1)
+        {
+            plugins.Add(Plugin);
+            return;
+        }
+        plugins.Insert(Index, Plugin);
+    }
 
-    //Update plugins when it's added or removed.
     private void CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         if(e.NewItems != null)
@@ -78,22 +102,47 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             }
         }
     }
+}
+
+internal class ModificationHandler<TNode> where TNode : struct, INode
+{
+    public ModificationHandler(IGraph<TNode> baseGraph, ObservableCollection<GraphPlugin<TNode>> plugins)
+    {
+        BaseGraph = baseGraph;
+        this.plugins = plugins;
+    }
+    readonly IGraph<TNode> BaseGraph;
+    internal ObservableCollection<GraphPlugin<TNode>> plugins = new();
+
+    bool IsModificationsOnHold = false;
+    
+    ModificationAggregator<TNode> ModificationsOnHold = new();
+
+    public void HoldModifications() => IsModificationsOnHold = true;
+
+    public void ReleaseModifications()
+    {
+        IsModificationsOnHold = false;
+        ModificationLog<TNode> Modifications = new(BaseGraph, ModificationsOnHold);
+        ModificationInitiate(Modifications);
+        ModificationsOnHold = new();
+    }
+
+    public bool ModificationOnHold() => IsModificationsOnHold;
 
     public void SetNode(TNode Node)
     {
         if (IsModificationsOnHold)
         {
             ModificationsOnHold.Nodes[Node.ID] = Node;
+            return;
         }
-        else
-        {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            Modification.Nodes[Node.ID] = Node;
-            ModificationInitiate(Modification);
-        }
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        Modification.Nodes[Node.ID] = Node;
+        ModificationInitiate(Modification);
     }
 
-    public void SetNode(IEnumerable<TNode> Vertices)
+    public void SetMultipleNodes(IEnumerable<TNode> Vertices)
     {
         if (IsModificationsOnHold)
         {
@@ -101,16 +150,14 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             {
                 ModificationsOnHold.Nodes[Node.ID] = Node;
             }
+            return;
         }
-        else
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        foreach(TNode Node in Vertices)
         {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            foreach(TNode Node in Vertices)
-            {
-                Modification.Nodes[Node.ID] = Node;
-            }
-            ModificationInitiate(Modification);
+            Modification.Nodes[Node.ID] = Node;
         }
+        ModificationInitiate(Modification);
     }
 
     public bool RemoveNode(uint ID)
@@ -120,16 +167,13 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             ModificationsOnHold.Nodes[ID] = null;
             return true;
         }
-        else
-        {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            Modification.Nodes[ID] = null;
-            ModificationInitiate(Modification);
-            return true;
-        }
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        Modification.Nodes[ID] = null;
+        ModificationInitiate(Modification);
+        return true;
     }
 
-    public void RemoveNode(IEnumerable<uint> IDs)
+    public void RemoveMultipleNodes(IEnumerable<uint> IDs)
     {
         if(IsModificationsOnHold)
         {
@@ -137,16 +181,14 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             {
                 ModificationsOnHold.Nodes[ID] = null;
             }
+            return;
         }
-        else
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        foreach(uint ID in IDs)
         {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            foreach(uint ID in IDs)
-            {
-                Modification.Nodes[ID] = null;
-            }
-            ModificationInitiate(Modification);
+            Modification.Nodes[ID] = null;
         }
+        ModificationInitiate(Modification);
     }
 
     public void SetEdge(Edge Edge)
@@ -154,16 +196,14 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
         if (IsModificationsOnHold)
         {
             ModificationsOnHold.Edges[Edge.ID] = Edge;
+            return;
         }
-        else
-        {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            Modification.Edges[Edge.ID] = Edge;
-            ModificationInitiate(Modification);
-        }
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        Modification.Edges[Edge.ID] = Edge;
+        ModificationInitiate(Modification);
     }
 
-    public void SetEdge(IEnumerable<Edge> Edges)
+    public void SetMultipleEdges(IEnumerable<Edge> Edges)
     {
         if (IsModificationsOnHold)
         {
@@ -171,16 +211,14 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             {
                 ModificationsOnHold.Edges[Edge.ID] = Edge;
             }
+            return;
         }
-        else
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        foreach(Edge Edge in Edges)
         {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            foreach(Edge Edge in Edges)
-            {
-                Modification.Edges[Edge.ID] = Edge;
-            }
-            ModificationInitiate(Modification);
+            Modification.Edges[Edge.ID] = Edge;
         }
+        ModificationInitiate(Modification);
     }
 
     public bool RemoveEdge(uint ID)
@@ -190,16 +228,13 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             ModificationsOnHold.Edges[ID] = null;
             return true;
         }
-        else
-        {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            Modification.Edges[ID] = null;
-            ModificationInitiate(Modification);
-            return true;
-        }
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        Modification.Edges[ID] = null;
+        ModificationInitiate(Modification);
+        return true;
     }
 
-    public void RemoveEdge(IEnumerable<uint> IDs)
+    public void RemoveMultipleEdges(IEnumerable<uint> IDs)
     {
         if (IsModificationsOnHold)
         {
@@ -207,27 +242,27 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             {
                 ModificationsOnHold.Edges[ID] = null;
             }
+            return;
         }
-        else
+        ModificationLog<TNode> Modification = new(BaseGraph);
+        foreach(uint ID in IDs)
         {
-            ModificationLog<TNode> Modification = new(BaseGraph);
-            foreach(uint ID in IDs)
-            {
-                Modification.Edges[ID] = null;
-            }
-            ModificationInitiate(Modification);
-            BaseGraph.RemoveEdge(IDs);
+            Modification.Edges[ID] = null;
         }
+        ModificationInitiate(Modification);
     }
 
-    internal void ModificationInitiatePlugin(ModificationAggregator<TNode> Modification)
+    public void AggregatedModification(ModificationAggregator<TNode> Modification)
     {
         if (IsModificationsOnHold)
         {
             ModificationsOnHold.Nodes.Union(Modification.Nodes);
             ModificationsOnHold.Edges.Union(Modification.Edges);
+            return;
         }
+        ModificationInitiate(new(BaseGraph, Modification));
     }
+
     void ModificationInitiate(ModificationLog<TNode> Modification)
     {
         //Notify all connected plugins before initiating a modification
@@ -282,5 +317,4 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, Node
             plugin.OnModificationFinished(Modification);
         }
     }
-    public uint GenerateID() => BaseGraph.GenerateID();
 }

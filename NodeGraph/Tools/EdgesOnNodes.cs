@@ -6,7 +6,7 @@ namespace GG.NodeGraph.Tools;
 /// A graph plugin that records connected edges on a node.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class EdgesOnNodes<TNode> : GraphPlugin<TNode> where TNode : struct, Node
+public class EdgesOnNodes<TNode> : GraphPlugin<TNode> where TNode : struct, INode
 {
     Dictionary<uint, HashSet<uint>> edgesOnNode = new();
     public IReadOnlyDictionary <uint, HashSet<uint>> EdgesOnNode;

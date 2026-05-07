@@ -4,7 +4,7 @@ namespace GG.NodeGraph;
 /// Base class for graphs.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph .</typeparam>
-public class Graph<TNode> : IGraph<TNode> where TNode : struct, Node
+public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
     /// Start an empty graph.
@@ -119,6 +119,7 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, Node
         }
     }
 
+    //This should work under normal scenario unless accessed 2^32 times which is kinda extreme tbh
     uint currID = 0;
     public uint GenerateID() => currID++;
 }
