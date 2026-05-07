@@ -1,29 +1,26 @@
 namespace GG.NodeGraph;
 
-public interface IGraph<TNode> where TNode : Node
+/// <summary>
+/// Read only interface of the graph.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+public interface IReadOnlyGraph<TNode> where TNode : struct, Node
 {
-    TNode Node(uint ID);
-    bool NodeContainsID(uint ID);
-    IEnumerable<TNode> GetNodes();
-    void SetNode(TNode Vertex);
-    void SetNodes(IEnumerable<TNode> Vertices);
-    bool RemoveNode(uint ID);
-
-    Edge Edge(uint ID);
-    bool EdgeContainsID(uint ID);
-    IEnumerable<Edge> GetEdges();
-    void SetEdge(Edge Edge);
-    void SetEdges(IEnumerable<Edge> Edge);
-    bool RemoveEdge(uint ID);
+    IReadOnlyDictionary<uint, TNode> Nodes {get;}
+    IReadOnlyDictionary<uint, Edge> Edges {get;}
 }
 
-public interface IReadOnlyGraph<TNode> where TNode : Node
+public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, Node
 {
-    TNode Node(uint ID);
-    bool NodeContainsID(uint ID);
-    IEnumerable<TNode> GetNodes();
+    void SetNode(TNode Vertex);
+    void SetNode(IEnumerable<TNode> Nodes);
+    bool RemoveNode(uint ID);
+    void RemoveNode(IEnumerable<uint> IDs);
 
-    Edge Edge(uint ID);
-    bool EdgeContainsID(uint ID);
-    IEnumerable<Edge> GetEdges();
+    void SetEdge(Edge Edge);
+    void SetEdge(IEnumerable<Edge> Edges);
+    bool RemoveEdge(uint ID);
+    void RemoveEdge(IEnumerable<uint> IDs);
+
+    uint GenerateID();
 }
