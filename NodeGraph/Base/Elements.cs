@@ -6,16 +6,24 @@ namespace GG.NodeGraph;
 /// </summary>
 public readonly struct Edge
 {
-    public Edge(uint ID, uint VertexID1, uint VertexID2)
+    public Edge(uint ID, uint NodeID1, uint NodeID2)
     {
         this.ID = ID;
-        this.VertexID1 = VertexID1;
-        this.VertexID2 = VertexID2;
+        this.NodeID1 = NodeID1;
+        this.NodeID2 = NodeID2;
     }
 
     public readonly uint ID;
-    public readonly uint VertexID1;
-    public readonly uint VertexID2;
+
+    /// <summary>
+    /// ID of the first to to connect to.
+    /// </summary>
+    public readonly uint NodeID1;
+
+    /// <summary>
+    /// ID of the second node to connect to.
+    /// </summary>
+    public readonly uint NodeID2;
 }
 
 /// <summary>

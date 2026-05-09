@@ -1,3 +1,5 @@
+using GG.NodeGraph.Plugin;
+
 namespace GG.NodeGraph;
 
 /// <summary>
@@ -10,17 +12,42 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
     IReadOnlyDictionary<uint, Edge> Edges {get;}
 }
 
+public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
+{
+    EventHandler<ModificationLog<TNode>> GraphModified {get; set;}
+}
+
 public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
-    void SetNode(TNode Vertex);
-    void SetNode(IEnumerable<TNode> Nodes);
+    /// <summary>
+    /// Add or modify a node with their corresponding ID.
+    /// </summary>
+    void UpsertNode(TNode Node);
+
+    /// <summary>
+    /// Remove a node in the graph using their correspinding IDs.
+    /// </summary>
     bool RemoveNode(uint ID);
-    void RemoveNode(IEnumerable<uint> IDs);
 
-    void SetEdge(Edge Edge);
-    void SetEdge(IEnumerable<Edge> Edges);
+    /// <summary>
+    /// Add or modify an edge with its corresponding ID.
+    /// </summary>
+    void UpsertEdge(Edge edge);
+
+    /// <summary>
+    /// Remove an edge in the graph using its corresponding ID.
+    /// </summary>
     bool RemoveEdge(uint ID);
-    void RemoveEdge(IEnumerable<uint> IDs);
 
-    uint GenerateID();
+    /// <summary>
+    /// Perform multiple operations at once.
+    /// </summary>
+    void ApplyBatchedModifications(BatchedModifications<TNode> modifications);
+
+    /// <summary>
+    /// Generate unique IDs for the elements of the graph.
+    /// </summary>
+    uint GenerateID(out uint ID);
 }
+
+public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode {}

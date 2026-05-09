@@ -4,7 +4,7 @@ namespace GG.NodeGraph.Plugin;
 /// Stores modifications.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ModificationAggregator<TNode> where TNode : struct, INode
+public class BatchedModifications<TNode> where TNode : struct, INode
 {
     public Dictionary<uint, TNode?> Nodes = new();
     public Dictionary<uint, Edge?> Edges = new();
@@ -14,7 +14,7 @@ public class ModificationAggregator<TNode> where TNode : struct, INode
 /// Stores possible modification on a graph.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNode : struct, INode
+public class ModificationLog<TNode> : BatchedModifications<TNode>, IReadOnlyModificationLog<TNode> where TNode : struct, INode
 {
     internal Graph<TNode> baseGraph;
     public ModificationLog(IReadOnlyGraph<TNode> baseGraph)
@@ -24,7 +24,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         ROEdges = Edges;
     }
 
-    public ModificationLog(IReadOnlyGraph<TNode> baseGraph, ModificationAggregator<TNode> baseModifications)
+    public ModificationLog(IReadOnlyGraph<TNode> baseGraph, BatchedModifications<TNode> baseModifications)
     {
         this.baseGraph = new(baseGraph);
         Nodes = new(baseModifications.Nodes);
@@ -32,9 +32,6 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         Edges = new(baseModifications.Edges);
         ROEdges = Edges;
     }
-
-    public Dictionary<uint, TNode?> Nodes = new();
-    public Dictionary<uint, Edge?> Edges = new();
 
     public IReadOnlyDictionary<uint, TNode?> RONodes {get;}
     public IReadOnlyDictionary<uint, Edge?> ROEdges {get;}

@@ -43,7 +43,7 @@ public abstract class GraphPlugin<TNode> where TNode : struct, INode
     /// Called when the modification is finished and applied.
     /// </summary>
     /// <param name="Log">Stores the modification on the graph. Do note that it cannot be changed since the modifications are applied.</param>
-    protected internal virtual void OnModificationFinished(IReadOnlyModificationLog<TNode> Log){}
+    protected internal virtual void OnModificationApplied(IReadOnlyModificationLog<TNode> Log){}
 
     /// <summary>
     /// Disconnect the plugin from the graph. It cannot be reversed.
@@ -65,5 +65,5 @@ public abstract class GraphPlugin<TNode> where TNode : struct, INode
     /// <summary>
     /// Modify the graph.
     /// </summary>
-    protected void Modify(ModificationAggregator<TNode> Modification) => CurrentGraph.AggregatedModifications(Modification);
+    protected void Modify(BatchedModifications<TNode> Modification) => CurrentGraph.AggregatedModifications(Modification);
 }
