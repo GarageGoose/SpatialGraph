@@ -22,6 +22,7 @@ public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> whe
         {
             edgesOnNode.Add(Node.ID, new());
         }
+        base.UpsertNode(Node);
         GraphModified?.Invoke(this, log);
     }
 
@@ -43,10 +44,11 @@ public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> whe
             log.EdgeUpsert(edge);
             if (Edges.ContainsKey(edge.ID))
             {
-                InternalRemoveEdge(edge);
+                InternalRemoveEdge(edges[edge.ID]);
             }
             edgesOnNode[edge.NodeID1].Add(edge.ID);
             edgesOnNode[edge.NodeID2].Add(edge.ID);
+            base.UpsertEdge(edge);
             GraphModified?.Invoke(this, log);
         }
     }
@@ -98,9 +100,10 @@ public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> whe
         foreach(TNode node in nodeMods.Upsert)
         {
             log.NodeUpsert(node);
+            bool graphContainsNodeWithSameID = Nodes.ContainsKey(node.ID);
             nodes[node.ID] = node;
 
-            if (!Nodes.ContainsKey(node.ID))
+            if (!graphContainsNodeWithSameID) 
             {
                 edgesOnNode.Add(node.ID, new());
             }
@@ -137,6 +140,7 @@ public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> whe
             }
         }
 
+        base.ApplyBatchedModifications(modifications);
         GraphModified?.Invoke(this, log);
     }
 }

@@ -23,6 +23,7 @@ public class ManagedGraph<TNode> : Graph<TNode> where TNode : struct, INode
         {
             edgesOnNode.Add(Node.ID, new());
         }
+        base.UpsertNode(Node);
     }
 
     public override bool RemoveNode(uint ID)
@@ -49,6 +50,7 @@ public class ManagedGraph<TNode> : Graph<TNode> where TNode : struct, INode
             }
             edgesOnNode[edge.NodeID1].Add(edge.ID);
             edgesOnNode[edge.NodeID2].Add(edge.ID);
+            base.UpsertEdge(edge);
         }
     }
 
@@ -73,7 +75,7 @@ public class ManagedGraph<TNode> : Graph<TNode> where TNode : struct, INode
     {
         ElementModificationsByType<TNode> nodeMods = modifications.SortedNodeModifications();
         ElementModificationsByType<Edge> edgeMods = modifications.SortedEdgeModifications();
-        
+
         foreach(TNode node in nodeMods.Upsert)
         {
             UpsertNode(node);
