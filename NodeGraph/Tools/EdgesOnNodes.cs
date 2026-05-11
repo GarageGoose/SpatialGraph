@@ -2,25 +2,26 @@ using GG.NodeGraph.Plugin;
 
 namespace GG.NodeGraph.Tools;
 
+/*
 /// <summary>
 /// A graph plugin that records connected edges on a node.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph. wow ok</typeparam>
-public class EdgesOnNodes<TNode> : GraphPlugin<TNode> where TNode : struct, INode
+public class EdgesOnNodes<TNode> where TNode : struct, INode
 {
+    IReadOnlyTrackedGraph<TNode> baseGraph;
     Dictionary<uint, HashSet<uint>> edgesOnNode = new();
     public IReadOnlyDictionary <uint, HashSet<uint>> EdgesOnNode => edgesOnNode;
-    public EdgesOnNodes(GraphExtendable<TNode> graphToConnect, int pluginIndex = -1) : base(graphToConnect, pluginIndex) {}
-
-    protected internal override void OnInitialize()
+    public EdgesOnNodes(IReadOnlyTrackedGraph<TNode> baseGraph)
     {
-        foreach(Edge edge in Graph.Edges.Values)
+        this.baseGraph = baseGraph;
+        foreach(Edge edge in baseGraph.Edges.Values)
         {
             AddEdgeOnNode(edge);
         }
     }
 
-    protected internal override void OnModificationApplied(IReadOnlyModificationLog<TNode> Log)
+    void OnModificationApplied(IReadOnlyModificationLog<TNode> Log)
     {
         foreach(uint edgeKey in Log.ROEdges.Keys)
         {
@@ -82,4 +83,4 @@ public class EdgesOnNodes<TNode> : GraphPlugin<TNode> where TNode : struct, INod
             edgesOnNode.Remove(edge.NodeID2);
         }
     }
-}
+}*/

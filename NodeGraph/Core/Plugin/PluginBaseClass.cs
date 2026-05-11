@@ -8,15 +8,10 @@ public abstract class GraphPlugin<TNode> where TNode : struct, INode
 {
     public GraphPlugin(GraphExtendable<TNode> graphToConnect, int pluginIndex = -1)
     {
-        Graph = graphToConnect;
-        GraphPlugins = graphToConnect.GetPlugins();
-        CurrentGraph = graphToConnect;
+        BaseGraph = graphToConnect;
         graphToConnect.AddPlugin(this, pluginIndex);
     }
-
-    protected IReadOnlyGraph<TNode> Graph {get; private set;}
-    protected IReadOnlyList<GraphPlugin<TNode>> GraphPlugins {get; private set;}
-    private GraphExtendable<TNode> CurrentGraph;
+    protected GraphExtendable<TNode> BaseGraph;
 
     /// <summary>
     /// Called when the plugin is disconnected from the graph. Do note that it cannot be reconnected again.
@@ -44,26 +39,4 @@ public abstract class GraphPlugin<TNode> where TNode : struct, INode
     /// </summary>
     /// <param name="Log">Stores the modification on the graph. Do note that it cannot be changed since the modifications are applied.</param>
     protected internal virtual void OnModificationApplied(IReadOnlyModificationLog<TNode> Log){}
-
-    /// <summary>
-    /// Disconnect the plugin from the graph. It cannot be reversed.
-    /// </summary>
-    protected void Disconnect() => CurrentGraph.DisconnectPlugin(this);
-
-    /// <summary>
-    /// Disconnect a plugin from the graph. It cannot be reversed.
-    /// </summary>
-    protected void Disconnect(GraphPlugin<TNode> plugin) => CurrentGraph.DisconnectPlugin(plugin);
-
-    /// <summary>
-    /// Rearrange the order by which the plugins are called.
-    /// </summary>
-    /// <param name="oldIndex">Index of the target plugin.</param>
-    /// <param name="newIndex">Desired index of the target pluign.</param>
-    protected void RearrangePlugin(int oldIndex, int newIndex) => CurrentGraph.RearrangePlugin(oldIndex, newIndex);
-
-    /// <summary>
-    /// Modify the graph.
-    /// </summary>
-    protected void Modify(BatchedModifications<TNode> Modification) => CurrentGraph.AggregatedModifications(Modification);
 }

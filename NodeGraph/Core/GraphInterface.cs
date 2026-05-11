@@ -10,11 +10,16 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     IReadOnlyDictionary<uint, TNode> Nodes {get;}
     IReadOnlyDictionary<uint, Edge> Edges {get;}
+
+    /// <summary>
+    /// Generate unique IDs for the elements of the graph.
+    /// </summary>
+    uint GenerateID(out uint ID);
 }
 
 public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
-    EventHandler<ModificationLog<TNode>> GraphModified {get; set;}
+    event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;
 }
 
 public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
@@ -43,11 +48,6 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     /// Perform multiple operations at once.
     /// </summary>
     void ApplyBatchedModifications(BatchedModifications<TNode> modifications);
-
-    /// <summary>
-    /// Generate unique IDs for the elements of the graph.
-    /// </summary>
-    uint GenerateID(out uint ID);
 }
 
 public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode {}

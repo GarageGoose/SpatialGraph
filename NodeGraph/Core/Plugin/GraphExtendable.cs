@@ -1,6 +1,5 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 namespace GG.NodeGraph.Plugin;
 
 /// <summary>
@@ -9,12 +8,8 @@ namespace GG.NodeGraph.Plugin;
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, INode
 {
-    /// <param name="baseGraph">Base graph to extend from. Modifying the base graph directly is not recommended and should
-    /// only be done through this graph as changes may not be reflected through the plugins.</param>
-    /// <param name="modificationsOnBaseGraph">Determine if the base graph does its own modification on its graph when modifying it.
-    /// This applies additional checks on the base graph after modifying it to make sure that it is recorded.
-    /// Do note that it may be expensive depeding on the size of the graph.</param>
-    public GraphExtendable(ITrackedGraph<TNode> baseGraph, bool modificationsOnBaseGraph)
+    /// <param name="baseGraph">Base graph to extend from.</param>
+    public GraphExtendable(ITrackedGraph<TNode> baseGraph)
     {
         BaseGraph = baseGraph;
         Plugins = new(baseGraph);
@@ -161,7 +156,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
             return;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
-        Modification.Nodes[Node.ID] = Node;
+        Modification.NodeUpsert(Node);
         ModificationInitiate(Modification);
     }
 
@@ -173,7 +168,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
             return true;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
-        Modification.Nodes[ID] = null;
+        Modification.NodeRemoval(ID);
         ModificationInitiate(Modification);
         return true;
     }
@@ -186,7 +181,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
             return;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
-        Modification.Edges[Edge.ID] = Edge;
+        Modification.EdgeUpsert(Edge);
         ModificationInitiate(Modification);
     }
 
@@ -198,7 +193,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
             return true;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
-        Modification.Edges[ID] = null;
+        Modification.EdgeRemoval(ID);
         ModificationInitiate(Modification);
         return true;
     }
@@ -224,6 +219,6 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
         plugins.InvokeOnModification(Modification);
         
         //Apply the modifications to the base graph
-        BaseGraph.ApplyBatchedModifications(Modification);
+        BaseGraph.ApplyBatchedModifications(Modification.GetBatchedModifications());
     }
 }

@@ -1,9 +1,7 @@
-using GG.NodeGraph.Plugin;
-
 namespace GG.NodeGraph;
 
 /// <summary>
-/// Base class for graphs, can be built upon. Do note that this has no builtin checks and measures (like deleting connected edges to a deleted node) to prevent dangling references. Consider using ManagedGraph instead if required.
+/// Base class for graphs, can be built upon.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
@@ -70,25 +68,29 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <param name="IDs">IDs of the edges to remove.</param>
     public virtual bool RemoveEdge(uint ID) => edges.Remove(ID);
 
-    public void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
+    public virtual void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
     {
-        foreach(KeyValuePair<uint, TNode?> node in modifications.Nodes)
+        ElementModificationsByType<TNode> nodeMods = modifications.SortedNodeModifications();
+        ElementModificationsByType<Edge> edgeMods = modifications.SortedEdgeModifications();
+
+        foreach(TNode node in nodeMods.Upsert)
         {
-            if(node.Value == null)
-            {
-                nodes.Remove(node.Key);
-                return;
-            }
-            nodes[node.Key] = (TNode)node.Value;
+            nodes[node.ID] = node;
         }
-        foreach(KeyValuePair<uint, Edge?> edge in modifications.Edges)
+        
+        foreach(Edge edge in edgeMods.Upsert)
         {
-            if(edge.Value == null)
-            {
-                edges.Remove(edge.Key);
-                return;
-            }
-            edges[edge.Key] = (Edge)edge.Value;
+            edges[edge.ID] = edge;
+        }
+
+        foreach(uint nodeID in nodeMods.Removal)
+        {
+            nodes.Remove(nodeID);
+        }
+
+        foreach(uint edgeID in edgeMods.Removal)
+        {
+            edges.Remove(edgeID);
         }
     }
 
@@ -106,24 +108,4 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
         ID = currID;
         return currID;
     }
-}
-
-//WIP!!
-/// <summary>
-/// Graph with builtin checks and measures (like deleting connected edges to a deleted node) to prevent dangling references. Also tracks edges connected on nodes.
-/// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ManagedGraph<TNode> : Graph<TNode> where TNode : struct, INode
-{
-    public ManagedGraph() : base() {}
-
-    public ManagedGraph(IReadOnlyGraph<TNode> graph) : base(graph) {}
-
-    public ManagedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges) {}
-
-    Dictionary<uint, HashSet<uint>> edgesOnNode = new();
-
-    public IReadOnlyDictionary <uint, HashSet<uint>> EdgesOnNode => edgesOnNode;
-
-
 }
