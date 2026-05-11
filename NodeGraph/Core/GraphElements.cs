@@ -16,7 +16,7 @@ public readonly struct Edge
     public readonly uint ID;
 
     /// <summary>
-    /// ID of the first to to connect to.
+    /// ID of the first node to connect to.
     /// </summary>
     public readonly uint NodeID1;
 
@@ -79,3 +79,21 @@ public readonly struct Node3D : INode
     private readonly Vector3 loc;
     public Vector3 Loc => loc;
 }
+
+public enum ElementType
+{
+    Node, Edge
+}
+
+public readonly record struct ElementID(ElementType Type, uint ID);
+
+public readonly struct GraphPath
+{
+    public GraphPath(List<ElementID> path)
+    {
+        Path = path;
+    }
+
+    public readonly IReadOnlyList<ElementID> Path;
+}
+
