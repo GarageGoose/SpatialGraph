@@ -25,6 +25,23 @@ public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNod
 }
 
 /// <summary>
+/// Read only interface of a graph that keeps records of connected edges on nodes.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TEdgeStorage">A readonly collection on where to store multiple edges connected on a common node.</typeparam>
+public interface IReadOnlyGraphNodeRelations<TNode, TEdgeStorage> : IReadOnlyGraph<TNode> where TNode : struct, INode where TEdgeStorage : ICollection<uint>
+{
+    IReadOnlyDictionary<uint, TEdgeStorage> EdgesOnNode {get;}
+}
+
+/// <summary>
+/// Read only interface of a graph that keeps records of connected edges on nodes and returns modification logs when it is modified.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TEdgeStorage">A collection on where to store multiple edges connected on a common node.</typeparam>
+public interface IReadOnlyTrackedGraphNodeRelations<TNode, TEdgeStorage> : IReadOnlyGraphNodeRelations<TNode, TEdgeStorage>, IReadOnlyTrackedGraph<TNode> where TNode : struct, INode where TEdgeStorage : ICollection<uint> {}
+
+/// <summary>
 /// Base interface for all graphs.
 /// </summary>
 /// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
@@ -61,3 +78,17 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
 /// </summary>
 /// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode {}
+
+/// <summary>
+/// Graph that keeps records of connected edges on nodes.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TEdgeStorage">A collection on where to store multiple edges connected on a common node.</typeparam>
+public interface IGraphNodeRelations<TNode, TEdgeStorage> : IGraph<TNode>, IReadOnlyGraphNodeRelations<TNode, TEdgeStorage> where TNode : struct, INode where TEdgeStorage : ICollection<uint> {}
+
+/// <summary>
+/// Graph that keeps records of connected edges on nodes and returns modification logs when it is modified.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TEdgeStorage">A collection on where to store multiple edges connected on a common node.</typeparam>
+public interface ITrackedGraphNodeRelations<TNode, TEdgeStorage> : IGraphNodeRelations<TNode, TEdgeStorage>, ITrackedGraph<TNode> where TNode : struct, INode where TEdgeStorage : ICollection<uint>{}

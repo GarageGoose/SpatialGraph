@@ -1,21 +1,29 @@
 namespace GG.NodeGraph;
 
-//WIP!!
 /// <summary>
 /// Graph with builtin checks and measures (like deleting connected edges to a deleted node) to prevent dangling references. Also tracks edges connected on nodes.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ManagedGraph<TNode> : Graph<TNode> where TNode : struct, INode
+public class ManagedGraph<TNode> : Graph<TNode>, IGraphNodeRelations<TNode, HashSet<uint>> where TNode : struct, INode
 {
-    public ManagedGraph() : base() {}
+    public ManagedGraph() : base()
+    {
+        EdgesOnNode = edgesOnNode;
+    }
 
-    public ManagedGraph(IReadOnlyGraph<TNode> graph) : base(graph) {}
+    public ManagedGraph(IReadOnlyGraph<TNode> graph) : base(graph)
+    {
+        EdgesOnNode = edgesOnNode;
+    }
 
-    public ManagedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges) {}
+    public ManagedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
+    {
+        EdgesOnNode = edgesOnNode;
+    }
 
     Dictionary<uint, HashSet<uint>> edgesOnNode = new();
 
-    public IReadOnlyDictionary <uint, HashSet<uint>> EdgesOnNode => edgesOnNode;
+    public IReadOnlyDictionary <uint, HashSet<uint>> EdgesOnNode {get;}
 
     public override void UpsertNode(TNode Node)
     {
