@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-namespace GG.NodeGraph.Plugin;
+namespace GG.NodeGraph;
 
 /// <summary>
 /// Adds plugin support for the base graph.

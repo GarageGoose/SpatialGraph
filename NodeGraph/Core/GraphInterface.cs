@@ -1,5 +1,3 @@
-using GG.NodeGraph.Plugin;
-
 namespace GG.NodeGraph;
 
 /// <summary>
@@ -17,11 +15,19 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
     uint GenerateID(out uint ID);
 }
 
+/// <summary>
+/// Read only interface of a tracked graph. Tracked graphs returns modification logs when it is modified.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;
 }
 
+/// <summary>
+/// Base interface for all graphs.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
@@ -50,4 +56,8 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     void ApplyBatchedModifications(BatchedModifications<TNode> modifications);
 }
 
+/// <summary>
+/// Base interface for all tracked graphs. Tracked graphs returns modification logs when it is modified.
+/// </summary>
+/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode {}

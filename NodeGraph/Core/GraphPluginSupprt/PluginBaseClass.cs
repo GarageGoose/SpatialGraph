@@ -1,4 +1,4 @@
-namespace GG.NodeGraph.Plugin;
+namespace GG.NodeGraph;
 
 /// <summary>
 /// Base class for all plugins.
