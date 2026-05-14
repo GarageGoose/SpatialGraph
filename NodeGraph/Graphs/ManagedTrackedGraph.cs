@@ -1,6 +1,6 @@
 namespace GG.NodeGraph;
 
-public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNode : struct, INode
+public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraphNodeRelations<TNode> where TNode : struct, INode
 {
     public event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;
 
@@ -143,4 +143,6 @@ public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> whe
         base.ApplyBatchedModifications(modifications);
         GraphModified?.Invoke(this, log);
     }
+
+    public IReadOnlySet<uint> GetEdgesOnNode(uint nodeID) => edgesOnNode[nodeID];
 }
