@@ -34,7 +34,7 @@ public static class BFS<TNode> where TNode : struct, INode
             foreach(uint connectingEdgeID in baseGraph.GetEdgesOnNode(currNodeID))
             {
                 connectingNodeID = ConnectingNodeFromEdge(currNodeID, baseGraph.Edges[connectingEdgeID]);
-                if (!visitedNodeIDs.Contains(connectingNodeID))
+                if (visitedNodeIDs.Add(connectingNodeID))
                 {
                     nodeFromNode.Add(connectingNodeID, currNodeID);
                     nodeFromEdge.Add(connectingNodeID, connectingEdgeID);
@@ -56,8 +56,6 @@ public static class BFS<TNode> where TNode : struct, INode
 
                         return new(graphPath);
                     }
-
-                    visitedNodeIDs.Add(connectingNodeID);
                     nodeQueue.Enqueue(connectingNodeID);
                 }
             }
@@ -87,13 +85,12 @@ public static class BFS<TNode> where TNode : struct, INode
             foreach(uint connectingEdgeID in baseGraph.GetEdgesOnNode(currNodeID))
             {
                 connectingNodeID = ConnectingNodeFromEdge(currNodeID, baseGraph.Edges[connectingEdgeID]);
-                if (!visitedNodeIDs.Contains(connectingNodeID))
+                if (visitedNodeIDs.Add(connectingNodeID))
                 {
                     if(connectingNodeID == nodeID2)
                     {
                         return true;
                     }
-                    visitedNodeIDs.Add(connectingNodeID);
                     nodeQueue.Enqueue(connectingNodeID);
                 }
             }
@@ -126,9 +123,8 @@ public static class BFS<TNode> where TNode : struct, INode
             foreach(uint connectingEdgeID in baseGraph.GetEdgesOnNode(currNodeID))
             {
                 connectingNodeID = ConnectingNodeFromEdge(currNodeID, baseGraph.Edges[connectingEdgeID]);
-                if (!visitedNodeIDs.Contains(connectingNodeID))
+                if (visitedNodeIDs.Add(connectingNodeID))
                 {
-                    visitedNodeIDs.Add(connectingNodeID);
                     nodeQueue.Enqueue(connectingNodeID);
 
                     outputGraph.UpsertNode(baseGraph.Nodes[connectingNodeID]);
