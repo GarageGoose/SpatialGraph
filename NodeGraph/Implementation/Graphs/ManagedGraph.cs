@@ -94,6 +94,8 @@ public class ManagedGraph<TNode> : Graph<TNode>, IReadOnlyGraphWithMetadata<TNod
         }
     }
 
+    public bool Supports<TMetadata>() => typeof(TMetadata) == typeof(ConnectedNodes) || typeof(TMetadata) == typeof(ConnectedEdges) ? true : false;
+
     public bool Has<TMetadata>(ElementType typeOfElement, uint NodeID)
     {
         return edgesOnNode.ContainsKey(NodeID);

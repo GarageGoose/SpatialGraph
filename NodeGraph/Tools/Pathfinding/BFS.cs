@@ -14,6 +14,11 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <returns></returns>
     public static List<ElementID>? Pathfind(uint nodeIDStart, uint nodeIDTarget, IReadOnlyGraphWithMetadata<TNode> baseGraph)
     {
+        if (!baseGraph.Supports<ConnectedEdges>())
+        {
+            return null;
+        }
+
         HashSet<uint> visitedNodeIDs = [nodeIDStart];
 
         Queue<uint> nodeQueue = new();
@@ -71,6 +76,11 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="baseGraph">Graph which the nodes are stored in. Should be with node relations.</param>
     public static bool NodeConnection(uint nodeID1, uint nodeID2, IReadOnlyGraphWithMetadata<TNode> baseGraph)
     {
+        if (!baseGraph.Supports<ConnectedEdges>())
+        {
+            return false;
+        }
+
         HashSet<uint> visitedNodeIDs = [nodeID1];
 
         Queue<uint> nodeQueue = new();
@@ -108,6 +118,11 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="limitNodes">Limit nodes when floodfilling.</param>
     public static void Floodfill<TGraph>(IReadOnlyGraphWithMetadata<TNode> baseGraph, TGraph outputGraph, uint nodeIDStart, uint limitNodes = 0) where TGraph : IGraph<TNode>
     {
+        if (!baseGraph.Supports<ConnectedEdges>())
+        {
+            return;
+        }
+        
         HashSet<uint> visitedNodeIDs = [nodeIDStart];
         outputGraph.UpsertNode(baseGraph.Nodes[nodeIDStart]);
 

@@ -1,6 +1,6 @@
 namespace GG.NodeGraph;
 
-public class ManagedTrackedGraph<TNode> : Graph<TNode>, IGraphWithMetadata<TNode> where TNode : struct, INode
+public class ManagedTrackedGraph<TNode> : Graph<TNode>, ITrackedGraphWithMetadata<TNode> where TNode : struct, INode
 {
     public event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;
 
@@ -141,6 +141,8 @@ public class ManagedTrackedGraph<TNode> : Graph<TNode>, IGraphWithMetadata<TNode
         base.ApplyBatchedModifications(modifications);
         GraphModified?.Invoke(this, log);
     }
+
+    public bool Supports<TMetadata>() => typeof(TMetadata) == typeof(ConnectedNodes) || typeof(TMetadata) == typeof(ConnectedEdges) ? true : false;
 
     public bool Has<TMetadata>(ElementType typeOfElement, uint NodeID)
     {

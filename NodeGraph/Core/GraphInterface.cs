@@ -21,6 +21,7 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface IReadOnlyGraphWithMetadata<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
+    bool Supports<TMetadata>();
     bool Has<TMetadata>(ElementType typeOfElement, uint NodeID);
     TMetadata Get<TMetadata>(ElementType typeOfElement, uint NodeID);
     bool TryGet<TMetadata>(ElementType typeOfElement, uint NodeID, out TMetadata? Data);
