@@ -3,7 +3,7 @@ namespace GG.NodeGraph;
 /// <summary>
 /// Read only interface of the graph.
 /// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     IReadOnlyDictionary<uint, TNode> Nodes {get;}
@@ -16,35 +16,35 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 }
 
 /// <summary>
+/// Support for element metadatas.
+/// </summary>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+public interface IReadOnlyGraphWithMetadata<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
+{
+    bool Has<TMetadata>(ElementType typeOfElement, uint NodeID);
+    TMetadata Get<TMetadata>(ElementType typeOfElement, uint NodeID);
+    bool TryGet<TMetadata>(ElementType typeOfElement, uint NodeID, out TMetadata? Data);
+}
+
+/// <summary>
 /// Read only interface of a tracked graph. Tracked graphs returns modification logs when it is modified.
 /// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;
 }
 
 /// <summary>
-/// Read only interface of a graph that keeps records of connected edges on nodes.
+/// Read only interface of a tracked graph with metadatas. Tracked graphs returns modification logs when it is modified.
 /// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-/// <typeparam name="TEdgeStorage">A readonly collection on where to store multiple edges connected on a common node.</typeparam>
-public interface IReadOnlyGraphNodeRelations<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
-{
-    IReadOnlySet<uint> GetEdgesOnNode(uint nodeID);
-}
-
-/// <summary>
-/// Read only interface of a graph that keeps records of connected edges on nodes and returns modification logs when it is modified.
-/// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-/// <typeparam name="TEdgeStorage">A collection on where to store multiple edges connected on a common node.</typeparam>
-public interface IReadOnlyTrackedGraphNodeRelations<TNode> : IReadOnlyGraphNodeRelations<TNode>, IReadOnlyTrackedGraph<TNode> where TNode : struct, INode {}
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+public interface IReadOnlyTrackedGraphWithMetadata<TNode> : IReadOnlyGraphWithMetadata<TNode>, IReadOnlyTrackedGraph<TNode> where TNode : struct, INode;
 
 /// <summary>
 /// Base interface for all graphs.
 /// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
@@ -74,21 +74,19 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
 }
 
 /// <summary>
+/// Base interface for all graphs with element metadatas.
+/// </summary>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+public interface IGraphWithMetadata<TNode> : IGraph<TNode>, IReadOnlyGraphWithMetadata<TNode> where TNode : struct, INode;
+
+/// <summary>
 /// Base interface for all tracked graphs. Tracked graphs returns modification logs when it is modified.
 /// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode {}
 
 /// <summary>
-/// Graph that keeps records of connected edges on nodes.
+/// Base interface for all tracked graphs with element metadatas. Tracked graphs returns modification logs when it is modified.
 /// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-/// <typeparam name="TEdgeStorage">A collection on where to store multiple edges connected on a common node.</typeparam>
-public interface IGraphNodeRelations<TNode> : IGraph<TNode>, IReadOnlyGraphNodeRelations<TNode> where TNode : struct, INode {}
-
-/// <summary>
-/// Graph that keeps records of connected edges on nodes and returns modification logs when it is modified.
-/// </summary>
-/// <typeparam name="TNode">Vertices to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-/// <typeparam name="TEdgeStorage">A collection on where to store multiple edges connected on a common node.</typeparam>
-public interface ITrackedGraphNodeRelations<TNode> : IGraphNodeRelations<TNode>, ITrackedGraph<TNode> where TNode : struct, INode {}
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+public interface ITrackedGraphWithMetadata<TNode> : ITrackedGraph<TNode>, IReadOnlyGraphWithMetadata<TNode> where TNode : struct, INode;

@@ -12,7 +12,7 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="nodeIDTarget">ID of the target node to pathfind.</param>
     /// <param name="baseGraph">Graph which the nodes are stored in. Should be with node relations.</param>
     /// <returns></returns>
-    public static GraphPath? Pathfind(uint nodeIDStart, uint nodeIDTarget, IReadOnlyGraphNodeRelations<TNode> baseGraph)
+    public static List<ElementID>? Pathfind(uint nodeIDStart, uint nodeIDTarget, IReadOnlyGraphWithMetadata<TNode> baseGraph)
     {
         HashSet<uint> visitedNodeIDs = [nodeIDStart];
 
@@ -31,9 +31,9 @@ public static class BFS<TNode> where TNode : struct, INode
         {
             uint currNodeID = nodeQueue.Dequeue();
 
-            foreach(uint connectingEdgeID in baseGraph.GetEdgesOnNode(currNodeID))
+            foreach(uint connectingEdgeID in baseGraph.Get<ConnectedEdges>(ElementType.Node, currNodeID).EdgeIDs)
             {
-                connectingNodeID = ConnectingNodeFromEdge(currNodeID, baseGraph.Edges[connectingEdgeID]);
+                connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                 if (visitedNodeIDs.Add(connectingNodeID))
                 {
                     nodeFromNode.Add(connectingNodeID, currNodeID);
@@ -69,7 +69,7 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="nodeID1">ID of the first node.</param>
     /// <param name="nodeID2">ID of the second node.</param>
     /// <param name="baseGraph">Graph which the nodes are stored in. Should be with node relations.</param>
-    public static bool NodeConnection(uint nodeID1, uint nodeID2, IReadOnlyGraphNodeRelations<TNode> baseGraph)
+    public static bool NodeConnection(uint nodeID1, uint nodeID2, IReadOnlyGraphWithMetadata<TNode> baseGraph)
     {
         HashSet<uint> visitedNodeIDs = [nodeID1];
 
@@ -82,9 +82,9 @@ public static class BFS<TNode> where TNode : struct, INode
         {
             uint currNodeID = nodeQueue.Dequeue();
 
-            foreach(uint connectingEdgeID in baseGraph.GetEdgesOnNode(currNodeID))
+            foreach(uint connectingEdgeID in baseGraph.Get<ConnectedEdges>(ElementType.Node, currNodeID).EdgeIDs)
             {
-                connectingNodeID = ConnectingNodeFromEdge(currNodeID, baseGraph.Edges[connectingEdgeID]);
+                connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                 if (visitedNodeIDs.Add(connectingNodeID))
                 {
                     if(connectingNodeID == nodeID2)
@@ -106,7 +106,7 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="outputGraph">Graph to return the result.</param>
     /// <param name="nodeIDStart">Starting node to floodfill.</param>
     /// <param name="limitNodes">Limit nodes when floodfilling.</param>
-    public static void Floodfill<TGraph>(IReadOnlyGraphNodeRelations<TNode> baseGraph, TGraph outputGraph, uint nodeIDStart, uint limitNodes = 0) where TGraph : IGraph<TNode>
+    public static void Floodfill<TGraph>(IReadOnlyGraphWithMetadata<TNode> baseGraph, TGraph outputGraph, uint nodeIDStart, uint limitNodes = 0) where TGraph : IGraph<TNode>
     {
         HashSet<uint> visitedNodeIDs = [nodeIDStart];
         outputGraph.UpsertNode(baseGraph.Nodes[nodeIDStart]);
@@ -120,9 +120,9 @@ public static class BFS<TNode> where TNode : struct, INode
         {
             uint currNodeID = nodeQueue.Dequeue();
 
-            foreach(uint connectingEdgeID in baseGraph.GetEdgesOnNode(currNodeID))
+            foreach(uint connectingEdgeID in baseGraph.Get<ConnectedEdges>(ElementType.Node, currNodeID).EdgeIDs)
             {
-                connectingNodeID = ConnectingNodeFromEdge(currNodeID, baseGraph.Edges[connectingEdgeID]);
+                connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                 if (visitedNodeIDs.Add(connectingNodeID))
                 {
                     nodeQueue.Enqueue(connectingNodeID);
@@ -133,6 +133,4 @@ public static class BFS<TNode> where TNode : struct, INode
             }
         }
     }
-
-    private static uint ConnectingNodeFromEdge(uint currNodeID, Edge edgeID) => edgeID.NodeID1 == currNodeID ? edgeID.NodeID2 : edgeID.NodeID1;
 }

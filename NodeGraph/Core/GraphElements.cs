@@ -2,98 +2,66 @@ using System.Numerics;
 namespace GG.NodeGraph;
 
 /// <summary>
-/// A line segment from 2 nodes.
+/// Base interface for all elements.
 /// </summary>
-public readonly struct Edge
-{
-    public Edge(uint ID, uint NodeID1, uint NodeID2)
-    {
-        this.ID = ID;
-        this.NodeID1 = NodeID1;
-        this.NodeID2 = NodeID2;
-    }
-
-    public readonly uint ID;
-
-    /// <summary>
-    /// ID of the first node to connect to.
-    /// </summary>
-    public readonly uint NodeID1;
-
-    /// <summary>
-    /// ID of the second node to connect to.
-    /// </summary>
-    public readonly uint NodeID2;
-}
-
-/// <summary>
-/// Base interface for nodes.
-/// </summary>
-public interface INode
+public interface IElement
 {
     uint ID {get;}
 }
 
 /// <summary>
+/// Base interface for all nodes.
+/// </summary>
+public interface INode : IElement;
+
+/// <summary>
+/// A line segment from 2 nodes.
+/// </summary>
+public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2)
+{
+    /// <summary>
+    /// Get the other connecting node from node.
+    /// </summary>
+    public uint GetConnectingNode(uint fromNodeID)
+    {
+        if(NodeID1 == fromNodeID)
+        {
+            return NodeID2;
+        }
+        else if (NodeID2 == fromNodeID)
+        {
+            return NodeID1;
+        }
+        throw new Exception(); //Setup later
+    }
+}
+
+/// <summary>
 /// Node without spatial data. Used for non spatial graphs.
 /// </summary>
-public readonly struct Node : INode
-{
-    public Node(uint ID)
-    {
-        this.ID = ID;
-    }
-    public uint ID {get;}
-}
+public readonly record struct Node(uint ID) : INode;
 
 /// <summary>
 /// Node with coordinate in 2 dimensions. Used for 2D graphs.
 /// </summary>
-public readonly struct Node2D : INode
-{
-    public Node2D(uint ID, Vector2 Loc)
-    {
-        this.ID = ID;
-        loc = Loc;
-    }
-    public uint ID {get;}
-
-    //Prevent mutation
-    private readonly Vector2 loc;
-    public Vector2 Loc => loc;
-}
+public readonly record struct Node2D(uint ID, Vector2 Loc) : INode;
 
 /// <summary>
 /// Node with coordinate in 3 dimensions. Used for 3D graphs.
 /// </summary>
-public readonly struct Node3D : INode
-{
-    public Node3D(uint ID, Vector3 Loc)
-    {
-        this.ID = ID;
-        loc = Loc;
-    }
-    public uint ID {get;}
+public readonly record struct Node3D(uint ID, Vector3 Loc) : INode;
 
-    //Prevent mutation
-    private readonly Vector3 loc;
-    public Vector3 Loc => loc;
-}
-
+/// <summary>
+/// Enum for classifying elements.
+/// </summary>
 public enum ElementType
 {
-    Node, Edge
+    Node, Edge, None
 }
 
+/// <summary>
+/// Generic element identifier.
+/// </summary>
+/// <param name="Type">Type of element, either Node or Edge.</param>
+/// <param name="ID">ID of the element.</param>
 public readonly record struct ElementID(ElementType Type, uint ID);
-
-public readonly struct GraphPath
-{
-    public GraphPath(List<ElementID> path)
-    {
-        Path = path;
-    }
-
-    public readonly IReadOnlyList<ElementID> Path;
-}
-

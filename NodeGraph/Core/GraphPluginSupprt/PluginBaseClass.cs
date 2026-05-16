@@ -17,6 +17,7 @@ public abstract class GraphPlugin<TNode> where TNode : struct, INode
     /// Called when the plugin is disconnected from the graph. Do note that it cannot be reconnected again.
     /// </summary>
     protected internal virtual void OnDisconnection(){}
+    
 
     /// <summary>
     /// Called when the plugin is successfully connected to the graph.

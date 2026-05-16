@@ -1,6 +1,6 @@
 namespace GG.NodeGraph.Tools;
 
-public static class GraphOP<TNode> where TNode : struct, INode
+public static class GraphOp<TNode> where TNode : struct, INode
 {
     public static void CopyElementsToGraph(IGraph<TNode> copyFromGraph, IEnumerable<ElementID> elementsToCopy, IGraph<TNode> pasteToGraph)
     {

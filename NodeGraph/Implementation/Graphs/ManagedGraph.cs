@@ -4,7 +4,7 @@ namespace GG.NodeGraph;
 /// Graph with builtin checks and measures (like deleting connected edges to a deleted node) to prevent dangling references. Also tracks edges connected on nodes.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ManagedGraph<TNode> : Graph<TNode>, IGraphNodeRelations<TNode> where TNode : struct, INode
+public class ManagedGraph<TNode> : Graph<TNode>, IReadOnlyGraphWithMetadata<TNode> where TNode : struct, INode
 {
     public ManagedGraph() : base() {}
 
@@ -13,8 +13,6 @@ public class ManagedGraph<TNode> : Graph<TNode>, IGraphNodeRelations<TNode> wher
     public ManagedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges) {}
 
     Dictionary<uint, HashSet<uint>> edgesOnNode = new();
-
-    public IReadOnlyDictionary <uint, HashSet<uint>> EdgesOnNode => edgesOnNode;
 
     public override void UpsertNode(TNode Node)
     {
@@ -96,5 +94,63 @@ public class ManagedGraph<TNode> : Graph<TNode>, IGraphNodeRelations<TNode> wher
         }
     }
 
-    public IReadOnlySet<uint> GetEdgesOnNode(uint nodeID) => edgesOnNode[nodeID];
+    public bool Has<TMetadata>(ElementType typeOfElement, uint NodeID)
+    {
+        return edgesOnNode.ContainsKey(NodeID);
+    }
+
+    public TMetadata Get<TMetadata>(ElementType typeOfElement, uint NodeID)
+    {
+        if(typeof(TMetadata) == typeof(ConnectedNodes))
+        {
+            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
+            {
+                HashSet<uint> nodeIDs = new();
+                foreach(uint edgeID in connectingEdgeIDs)
+                {
+                    nodeIDs.Add(Edges[edgeID].GetConnectingNode(NodeID));
+                }
+                return (TMetadata)(object)new ConnectedNodes(nodeIDs);
+            }
+            throw new KeyNotFoundException();
+        }
+        if(typeof(TMetadata) == typeof(ConnectedEdges))
+        {
+            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
+            {
+                return (TMetadata)(object)new ConnectedEdges(connectingEdgeIDs);
+            }
+            throw new KeyNotFoundException();
+        }
+        throw new NotSupportedException("Metadata not supported"); //Improve msg in the future
+    }
+
+    public bool TryGet<TMetadata>(ElementType typeOfElement, uint NodeID, out TMetadata? Data)
+    {
+        if(typeof(TMetadata) == typeof(ConnectedNodes))
+        {
+            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
+            {
+                HashSet<uint> nodeIDs = new();
+                foreach(uint edgeID in connectingEdgeIDs)
+                {
+                    nodeIDs.Add(Edges[edgeID].GetConnectingNode(NodeID));
+                }
+                Data = (TMetadata)(object)new ConnectedNodes(nodeIDs);
+            }
+            Data = default;
+            return false;
+        }
+        if(typeof(TMetadata) == typeof(ConnectedEdges))
+        {
+            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
+            {
+                Data = (TMetadata)(object)new ConnectedEdges(connectingEdgeIDs);
+            }
+            Data = default;
+            return false;
+        }
+        Data = default;
+        return false;
+    }
 }
