@@ -11,15 +11,15 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <param name="baseGraph">Base graph to extend from.</param>
     public GraphExtendable(ITrackedGraph<TNode> baseGraph)
     {
-        BaseGraph = baseGraph;
+        this.baseGraph = baseGraph;
         Plugins = new(baseGraph);
-        Modification = new(BaseGraph, Plugins);
+        Modification = new(this.baseGraph, Plugins);
     }
 
-    readonly ITrackedGraph<TNode> BaseGraph;
-    public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
-    public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
-    public uint GenerateID(out uint ID) => BaseGraph.GenerateID(out ID);
+    readonly ITrackedGraph<TNode> baseGraph;
+    public IReadOnlyDictionary<uint, TNode> Nodes => baseGraph.Nodes;
+    public IReadOnlyDictionary<uint, Edge> Edges => baseGraph.Edges;
+    public uint GenerateID() => baseGraph.GenerateID();
 
 
     //---Plugin stuff---

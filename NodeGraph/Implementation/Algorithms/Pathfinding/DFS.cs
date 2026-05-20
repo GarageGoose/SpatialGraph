@@ -1,9 +1,11 @@
-namespace GG.NodeGraph.Tools;
+using GG.NodeGraph.Implementation;
+
+namespace GG.NodeGraph.Implementation;
 /// <summary>
-/// Breadth-First Search
+/// Depth-First Search
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
-public static class BFS<TNode> where TNode : struct, INode
+public static class DFS<TNode> where TNode : struct, INode
 {
     /// <summary>
     /// Find shortest unweighted path from node to node.
@@ -12,17 +14,11 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="nodeIDTarget">ID of the target node to pathfind.</param>
     /// <param name="baseGraph">Graph which the nodes are stored in. Should be with node relations.</param>
     /// <returns></returns>
-    public static List<ElementID>? Pathfind(uint nodeIDStart, uint nodeIDTarget, IReadOnlyGraphWithMetadata<TNode> baseGraph)
+    public static List<ElementID>? Pathfind(uint nodeIDStart, uint nodeIDTarget, NodeAdjacency<TNode> baseGraph)
     {
-        if (!baseGraph.Supports<ConnectedEdges>())
-        {
-            return null;
-        }
-
         HashSet<uint> visitedNodeIDs = [nodeIDStart];
 
-        Queue<uint> nodeQueue = new();
-        nodeQueue.Enqueue(nodeIDStart);
+        List<uint> nodeQueue = [nodeIDStart];
 
         //Track which edge got to the node (k: node, v: edge)
         Dictionary<uint, uint> nodeFromEdge = new();
@@ -34,11 +30,12 @@ public static class BFS<TNode> where TNode : struct, INode
         uint connectingNodeID = 0;
         while(nodeQueue.Count > 0)
         {
-            uint currNodeID = nodeQueue.Dequeue();
+            uint currNodeID = nodeQueue[nodeQueue.Count - 1];
+            nodeQueue.RemoveAt(nodeQueue.Count - 1);
 
-            foreach(uint connectingEdgeID in baseGraph.Get<ConnectedEdges>(ElementType.Node, currNodeID).EdgeIDs)
+            foreach(uint connectingEdgeID in baseGraph.ConnectedEdges(currNodeID))
             {
-                connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
+                connectingNodeID = baseGraph.BaseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                 if (visitedNodeIDs.Add(connectingNodeID))
                 {
                     nodeFromNode.Add(connectingNodeID, currNodeID);
@@ -61,7 +58,7 @@ public static class BFS<TNode> where TNode : struct, INode
 
                         return new(graphPath);
                     }
-                    nodeQueue.Enqueue(connectingNodeID);
+                    nodeQueue.Add(connectingNodeID);
                 }
             }
         }
@@ -74,34 +71,28 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="nodeID1">ID of the first node.</param>
     /// <param name="nodeID2">ID of the second node.</param>
     /// <param name="baseGraph">Graph which the nodes are stored in. Should be with node relations.</param>
-    public static bool NodeConnection(uint nodeID1, uint nodeID2, IReadOnlyGraphWithMetadata<TNode> baseGraph)
+    public static bool NodeConnection(uint nodeID1, uint nodeID2, NodeAdjacency<TNode> baseGraph)
     {
-        if (!baseGraph.Supports<ConnectedEdges>())
-        {
-            return false;
-        }
-
         HashSet<uint> visitedNodeIDs = [nodeID1];
 
-        Queue<uint> nodeQueue = new();
-        nodeQueue.Enqueue(nodeID1);
+        List<uint> nodeQueue = [nodeID1];
 
         //Declare variables here to avoid expensive gc
         uint connectingNodeID = 0;
         while(nodeQueue.Count > 0)
         {
-            uint currNodeID = nodeQueue.Dequeue();
+            uint currNodeID = nodeQueue[nodeQueue.Count - 1];
+            nodeQueue.RemoveAt(nodeQueue.Count - 1);
 
-            foreach(uint connectingEdgeID in baseGraph.Get<ConnectedEdges>(ElementType.Node, currNodeID).EdgeIDs)
+            foreach(uint connectingEdgeID in baseGraph.ConnectedEdges(currNodeID))
             {
-                connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
+                connectingNodeID = baseGraph.BaseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                 if (visitedNodeIDs.Add(connectingNodeID))
                 {
                     if(connectingNodeID == nodeID2)
                     {
                         return true;
                     }
-                    nodeQueue.Enqueue(connectingNodeID);
                 }
             }
         }
@@ -116,34 +107,28 @@ public static class BFS<TNode> where TNode : struct, INode
     /// <param name="outputGraph">Graph to return the result.</param>
     /// <param name="nodeIDStart">Starting node to floodfill.</param>
     /// <param name="limitNodes">Limit nodes when floodfilling.</param>
-    public static void Floodfill<TGraph>(IReadOnlyGraphWithMetadata<TNode> baseGraph, TGraph outputGraph, uint nodeIDStart, uint limitNodes = 0) where TGraph : IGraph<TNode>
+    public static void Floodfill<TGraph>(NodeAdjacency<TNode> baseGraph, TGraph outputGraph, uint nodeIDStart, uint limitNodes = 0) where TGraph : IGraph<TNode>
     {
-        if (!baseGraph.Supports<ConnectedEdges>())
-        {
-            return;
-        }
-        
         HashSet<uint> visitedNodeIDs = [nodeIDStart];
-        outputGraph.UpsertNode(baseGraph.Nodes[nodeIDStart]);
+        outputGraph.UpsertNode(baseGraph.BaseGraph.Nodes[nodeIDStart]);
 
-        Queue<uint> nodeQueue = new();
-        nodeQueue.Enqueue(nodeIDStart);
+        List<uint> nodeQueue = [nodeIDStart];
 
         //Declare variables here to avoid expensive gc
         uint connectingNodeID = 0;
         while(nodeQueue.Count > 0)
         {
-            uint currNodeID = nodeQueue.Dequeue();
+            uint currNodeID = nodeQueue[nodeQueue.Count - 1];
+            nodeQueue.RemoveAt(nodeQueue.Count - 1);
 
-            foreach(uint connectingEdgeID in baseGraph.Get<ConnectedEdges>(ElementType.Node, currNodeID).EdgeIDs)
+            foreach(uint connectingEdgeID in baseGraph.ConnectedEdges(currNodeID))
             {
-                connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
+                connectingNodeID = baseGraph.BaseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                 if (visitedNodeIDs.Add(connectingNodeID))
                 {
-                    nodeQueue.Enqueue(connectingNodeID);
-
-                    outputGraph.UpsertNode(baseGraph.Nodes[connectingNodeID]);
-                    outputGraph.UpsertEdge(baseGraph.Edges[connectingEdgeID]);
+                    nodeQueue.Add(connectingNodeID);
+                    outputGraph.UpsertNode(baseGraph.BaseGraph.Nodes[connectingNodeID]);
+                    outputGraph.UpsertEdge(baseGraph.BaseGraph.Edges[connectingEdgeID]);
                 }
             }
         }

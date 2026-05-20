@@ -4,11 +4,23 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
 {
     public event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;
 
+    public TrackedGraph() : base()
+    {
+    }
+
+    public TrackedGraph(IReadOnlyGraph<TNode> graph) : base(graph)
+    {
+    }
+
+    public TrackedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
+    {
+    }
+
     public override void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
     {
         ModificationLog<TNode> log = new(this);
-        ElementModificationsByType<TNode> nodeMods = modifications.SortedNodeModifications();
-        ElementModificationsByType<Edge> edgeMods = modifications.SortedEdgeModifications();
+        ElementModificationsByType<TNode> nodeMods = modifications.SegregateNodeModifications();
+        ElementModificationsByType<Edge> edgeMods = modifications.SegregateEdgeModifications();
 
         foreach(TNode node in nodeMods.Upsert)
         {

@@ -9,14 +9,14 @@ public class BatchedModifications<TNode> where TNode : struct, INode
     public readonly Dictionary<uint, TNode?> Nodes = new();
     public readonly Dictionary<uint, Edge?> Edges = new();
 
-    public HashSet<uint> NodesForUpsert()
+    public HashSet<TNode> NodesForUpsert()
     {
-        HashSet<uint> nodes = new();
+        HashSet<TNode> nodes = new();
         foreach(TNode? node in Nodes.Values)
         {
             if(node != null)
             {
-                nodes.Add(node.Value.ID);
+                nodes.Add(node.Value);
             }
         }
         return nodes;
@@ -35,14 +35,14 @@ public class BatchedModifications<TNode> where TNode : struct, INode
         return nodes;
     }
 
-    public HashSet<uint> EdgesForUpsert()
+    public HashSet<Edge> EdgesForUpsert()
     {
-        HashSet<uint> edges = new();
+        HashSet<Edge> edges = new();
         foreach(Edge? edge in Edges.Values)
         {
             if(edge != null)
             {
-                edges.Add(edge.Value.ID);
+                edges.Add(edge.Value);
             }
         }
         return edges;
@@ -61,7 +61,7 @@ public class BatchedModifications<TNode> where TNode : struct, INode
         return edges;
     }
 
-    public ElementModificationsByType<Edge> SortedEdgeModifications()
+    public ElementModificationsByType<Edge> SegregateEdgeModifications()
     {
         HashSet<Edge> upserts = new();
         HashSet<uint> removals = new();
@@ -79,7 +79,7 @@ public class BatchedModifications<TNode> where TNode : struct, INode
         return modifications;
     }
 
-    public ElementModificationsByType<TNode> SortedNodeModifications()
+    public ElementModificationsByType<TNode> SegregateNodeModifications()
     {
         HashSet<TNode> upserts = new();
         HashSet<uint> removals = new();

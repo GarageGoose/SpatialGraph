@@ -1,15 +1,13 @@
-namespace GG.NodeGraph.Tools;
+namespace GG.NodeGraph.Implementation;
 
 /// <summary>
 /// Records history of a graph from accumulated ModificationLogs.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class GraphHistory<TNode> where TNode : struct, INode
+public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, INode
 {
     //Mod step is a single iteration of a modification of the base graph
     public int ModStep => modHistory.Count - 1;
-
-    private IReadOnlyTrackedGraph<TNode> baseGraph;
 
     private List<IReadOnlyModificationLog<TNode>> modHistory = new();
     public IReadOnlyList<IReadOnlyModificationLog<TNode>> ModHistory => modHistory;
@@ -18,11 +16,8 @@ public class GraphHistory<TNode> where TNode : struct, INode
     public IReadOnlyList<GraphSnapshot<TNode>> GraphSnapshot => graphSnapshot;
     private Dictionary<int, GraphSnapshot<TNode>> snapshotDict = new();
 
-    public GraphHistory(IReadOnlyTrackedGraph<TNode> baseGraph)
+    public GraphHistory(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
     {
-        this.baseGraph = baseGraph;
-        baseGraph.GraphModified += BaseGraphModified;
-
         GraphSnapshot<TNode> snapshot = new(0, new(baseGraph));
         graphSnapshot.Add(snapshot);
         snapshotDict.Add(0, snapshot);
@@ -84,7 +79,7 @@ public class GraphHistory<TNode> where TNode : struct, INode
         return new();
     }
 
-    void BaseGraphModified(object? sender, IReadOnlyModificationLog<TNode> modLog) => modHistory.Add(modLog);
+    protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> modLog) => modHistory.Add(modLog);
 }
 
 public readonly record struct GraphSnapshot<TNode>(int ModStep, Graph<TNode> Snapshot) where TNode : struct, INode;

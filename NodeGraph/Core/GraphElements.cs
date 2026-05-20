@@ -56,7 +56,7 @@ public readonly record struct Node3D(uint ID, Vector3 Loc) : INode;
 /// </summary>
 public enum ElementType
 {
-    Node, Edge, None
+    Node, Edge
 }
 
 /// <summary>

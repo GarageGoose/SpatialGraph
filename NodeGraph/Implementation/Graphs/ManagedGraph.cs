@@ -1,158 +1,77 @@
+using GG.NodeGraph.Implementation;
+
 namespace GG.NodeGraph;
 
 /// <summary>
 /// Graph with builtin checks and measures (like deleting connected edges to a deleted node) to prevent dangling references. Also tracks edges connected on nodes.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ManagedGraph<TNode> : Graph<TNode>, IReadOnlyGraphWithMetadata<TNode> where TNode : struct, INode
+public class ManagedGraph<TNode> : TrackedGraph<TNode> where TNode : struct, INode
 {
-    public ManagedGraph() : base() {}
+    public readonly NodeAdjacency<TNode> NodeAdjacency;
 
-    public ManagedGraph(IReadOnlyGraph<TNode> graph) : base(graph) {}
-
-    public ManagedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges) {}
-
-    Dictionary<uint, HashSet<uint>> edgesOnNode = new();
-
-    public override void UpsertNode(TNode Node)
+    public ManagedGraph() : base()
     {
-        if (!Nodes.ContainsKey(Node.ID))
-        {
-            edgesOnNode.Add(Node.ID, new());
-        }
-        base.UpsertNode(Node);
+        NodeAdjacency = new(this);
     }
 
-    public override bool RemoveNode(uint ID)
+    public ManagedGraph(IReadOnlyGraph<TNode> graph) : base(graph)
     {
-        if (base.RemoveNode(ID))
-        {
-            foreach(uint edgeID in edgesOnNode[ID])
-            {
-                base.RemoveEdge(edgeID);
-            }
-            edgesOnNode.Remove(ID);
-            return true;
-        }
-        return false;
+        NodeAdjacency = new(this);
     }
 
-    public override void UpsertEdge(Edge edge)
+    public ManagedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
     {
-        if(Nodes.ContainsKey(edge.NodeID1) && Nodes.ContainsKey(edge.NodeID2))
-        {
-            if (Edges.ContainsKey(edge.ID))
-            {
-                InternalRemoveEdge(edge);
-            }
-            edgesOnNode[edge.NodeID1].Add(edge.ID);
-            edgesOnNode[edge.NodeID2].Add(edge.ID);
-            base.UpsertEdge(edge);
-        }
-    }
-
-    public override bool RemoveEdge(uint ID)
-    {
-        Edge edge = Edges[ID];
-        if (base.RemoveEdge(ID))
-        {
-            InternalRemoveEdge(edge);
-            return true;
-        }
-        return false;
-    }
-
-    void InternalRemoveEdge(Edge edge)
-    {
-        edgesOnNode[edge.NodeID1].Remove(edge.ID);
-        edgesOnNode[edge.NodeID2].Remove(edge.ID);
+        NodeAdjacency = new(this);
     }
 
     public override void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
     {
-        ElementModificationsByType<TNode> nodeMods = modifications.SortedNodeModifications();
-        ElementModificationsByType<Edge> edgeMods = modifications.SortedEdgeModifications();
-
-        foreach(TNode node in nodeMods.Upsert)
+        foreach(uint nodeID in modifications.NodesForRemoval())
         {
-            UpsertNode(node);
-        }
-
-        foreach(Edge edge in edgeMods.Upsert)
-        {
-            UpsertEdge(edge);
-        }
-
-        foreach(uint nodeID in nodeMods.Removal)
-        {
-            RemoveNode(nodeID);
-        }
-
-        foreach(uint edgeID in edgeMods.Removal)
-        {
-            RemoveEdge(edgeID);
-        }
-    }
-
-    public bool Supports<TMetadata>() => typeof(TMetadata) == typeof(ConnectedNodes) || typeof(TMetadata) == typeof(ConnectedEdges) ? true : false;
-
-    public bool Has<TMetadata>(ElementType typeOfElement, uint NodeID)
-    {
-        return edgesOnNode.ContainsKey(NodeID);
-    }
-
-    public TMetadata Get<TMetadata>(ElementType typeOfElement, uint NodeID)
-    {
-        if(typeof(TMetadata) == typeof(ConnectedNodes))
-        {
-            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
+            foreach(uint edgeID in NodeAdjacency.ConnectedEdges(nodeID))
             {
-                HashSet<uint> nodeIDs = new();
-                foreach(uint edgeID in connectingEdgeIDs)
+                if (!modifications.Edges.ContainsKey(edgeID))
                 {
-                    nodeIDs.Add(Edges[edgeID].GetConnectingNode(NodeID));
+                    modifications.Edges[edgeID] = null;
                 }
-                return (TMetadata)(object)new ConnectedNodes(nodeIDs);
             }
-            throw new KeyNotFoundException();
         }
-        if(typeof(TMetadata) == typeof(ConnectedEdges))
+
+        foreach(Edge edge in modifications.EdgesForUpsert())
         {
-            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
+            bool edgeNode1Valid = Nodes.ContainsKey(edge.NodeID1) || (modifications.Nodes.TryGetValue(edge.NodeID1, out TNode? node1) && node1 != null);
+            bool edgeNode2Valid = Nodes.ContainsKey(edge.NodeID2) || (modifications.Nodes.TryGetValue(edge.NodeID2, out TNode? node2) && node2 != null);
+            if(!edgeNode1Valid && !edgeNode2Valid)
             {
-                return (TMetadata)(object)new ConnectedEdges(connectingEdgeIDs);
+                throw new Exception(); //New edge invalid
             }
-            throw new KeyNotFoundException();
         }
-        throw new NotSupportedException("Metadata not supported"); //Improve msg in the future
+        base.ApplyBatchedModifications(modifications);
     }
 
-    public bool TryGet<TMetadata>(ElementType typeOfElement, uint NodeID, out TMetadata? Data)
+    public override void UpsertEdge(Edge edge)
     {
-        if(typeof(TMetadata) == typeof(ConnectedNodes))
+        if(!Nodes.ContainsKey(edge.NodeID1) || !Nodes.ContainsKey(edge.NodeID2))
         {
-            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
-            {
-                HashSet<uint> nodeIDs = new();
-                foreach(uint edgeID in connectingEdgeIDs)
-                {
-                    nodeIDs.Add(Edges[edgeID].GetConnectingNode(NodeID));
-                }
-                Data = (TMetadata)(object)new ConnectedNodes(nodeIDs);
-            }
-            Data = default;
+            throw new Exception(); //New edge invalid
+        }
+        base.UpsertEdge(edge);
+    }
+
+    public override bool RemoveNode(uint ID)
+    {
+        if (!Nodes.ContainsKey(ID))
+        {
             return false;
         }
-        if(typeof(TMetadata) == typeof(ConnectedEdges))
+        BatchedModifications<TNode> mods = new();
+        mods.Nodes[ID] = null;
+        foreach(uint edgeID in NodeAdjacency.ConnectedEdges(ID))
         {
-            if(edgesOnNode.TryGetValue(NodeID, out HashSet<uint>? connectingEdgeIDs))
-            {
-                Data = (TMetadata)(object)new ConnectedEdges(connectingEdgeIDs);
-            }
-            Data = default;
-            return false;
+            mods.Edges[edgeID] = null;
         }
-        Data = default;
-        return false;
+        base.ApplyBatchedModifications(mods);
+        return true;
     }
 }

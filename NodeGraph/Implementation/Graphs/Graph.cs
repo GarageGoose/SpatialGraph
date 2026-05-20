@@ -70,8 +70,8 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
 
     public virtual void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
     {
-        ElementModificationsByType<TNode> nodeMods = modifications.SortedNodeModifications();
-        ElementModificationsByType<Edge> edgeMods = modifications.SortedEdgeModifications();
+        ElementModificationsByType<TNode> nodeMods = modifications.SegregateNodeModifications();
+        ElementModificationsByType<Edge> edgeMods = modifications.SegregateEdgeModifications();
 
         foreach(TNode node in nodeMods.Upsert)
         {
@@ -98,14 +98,13 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <summary>
     /// Generate IDs without duplication. Do note that it should be used with this graph only and not for other graphs as duplicates may occur.
     /// </summary>
-    public virtual uint GenerateID(out uint ID)
+    public virtual uint GenerateID()
     {
         currID++;
         while(Nodes.ContainsKey(currID) || Edges.ContainsKey(currID))
         {
             currID++;
         }
-        ID = currID;
         return currID;
     }
 }

@@ -1,4 +1,4 @@
-namespace GG.NodeGraph.Tools;
+namespace GG.NodeGraph.Implementation;
 
 public static class GraphOp<TNode> where TNode : struct, INode
 {

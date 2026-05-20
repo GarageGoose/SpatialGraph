@@ -1,0 +1,2 @@
+namespace GG.NodeGraph.Implementation;
+
