@@ -1,5 +1,3 @@
-using GG.NodeGraph.Implementation;
-
 namespace GG.NodeGraph.Implementation;
 /// <summary>
 /// Depth-First Search
@@ -56,7 +54,7 @@ public static class DFS<TNode> where TNode : struct, INode
 
                         graphPath.Reverse();
 
-                        return new(graphPath);
+                        return graphPath;
                     }
                     nodeQueue.Add(connectingNodeID);
                 }

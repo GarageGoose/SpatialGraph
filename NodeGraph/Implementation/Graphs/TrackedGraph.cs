@@ -1,5 +1,9 @@
 namespace GG.NodeGraph;
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TNode"></typeparam>
 public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNode : struct, INode
 {
     public event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;

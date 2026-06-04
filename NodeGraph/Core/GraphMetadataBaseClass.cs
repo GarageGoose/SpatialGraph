@@ -1,5 +1,9 @@
 namespace GG.NodeGraph;
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TNode"></typeparam>
 public abstract class GraphMetadata<TNode> where TNode : struct, INode
 {
     public IReadOnlyTrackedGraph<TNode> BaseGraph {get; private set;}

@@ -37,11 +37,6 @@ public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2)
 }
 
 /// <summary>
-/// Node without spatial data. Used for non spatial graphs.
-/// </summary>
-public readonly record struct Node(uint ID) : INode;
-
-/// <summary>
 /// Node with coordinate in 2 dimensions. Used for 2D graphs.
 /// </summary>
 public readonly record struct Node2D(uint ID, Vector2 Loc) : INode;

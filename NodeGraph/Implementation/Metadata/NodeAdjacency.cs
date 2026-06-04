@@ -1,5 +1,4 @@
 using GG.NodeGraph;
-
 namespace GG.NodeGraph.Implementation;
 
 /// <summary>

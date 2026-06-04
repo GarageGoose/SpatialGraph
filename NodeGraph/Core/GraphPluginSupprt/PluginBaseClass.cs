@@ -18,7 +18,6 @@ public abstract class GraphPlugin<TNode> where TNode : struct, INode
     /// </summary>
     protected internal virtual void OnDisconnection(){}
     
-
     /// <summary>
     /// Called when the plugin is successfully connected to the graph.
     /// </summary>
