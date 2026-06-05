@@ -1,7 +1,7 @@
 namespace GG.NodeGraph;
 
 /// <summary>
-/// 
+/// Base class for storing additional metadata in a graph.
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
 public abstract class GraphMetadata<TNode> where TNode : struct, INode

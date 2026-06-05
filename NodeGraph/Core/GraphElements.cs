@@ -17,23 +17,14 @@ public interface INode : IElement;
 /// <summary>
 /// A line segment from 2 nodes.
 /// </summary>
-public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2)
+public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2);
+
+/// <summary>
+/// An enum for identifying if a node is the 1st or 2nd node in an edge (or even if its in an edge at all).
+/// </summary>
+public enum NodeEdgeAssignment
 {
-    /// <summary>
-    /// Get the other connecting node from node.
-    /// </summary>
-    public uint GetConnectingNode(uint fromNodeID)
-    {
-        if(NodeID1 == fromNodeID)
-        {
-            return NodeID2;
-        }
-        else if (NodeID2 == fromNodeID)
-        {
-            return NodeID1;
-        }
-        throw new Exception(); //Setup later
-    }
+    Node1, Node2, None
 }
 
 /// <summary>

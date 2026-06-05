@@ -1,6 +1,6 @@
 namespace GG.NodeGraph.Implementation;
 /// <summary>
-/// Depth-First Search
+/// Depth-First Search.
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
 public static class DFS<TNode> where TNode : struct, INode

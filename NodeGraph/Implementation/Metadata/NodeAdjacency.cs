@@ -2,7 +2,7 @@ using GG.NodeGraph;
 namespace GG.NodeGraph.Implementation;
 
 /// <summary>
-/// 
+/// Records adjecent nodes or edges from a node in a graph.
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
 public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, INode

@@ -1,9 +1,9 @@
 namespace GG.NodeGraph;
 
 /// <summary>
-/// 
+/// Graph which tracked changes within it.
 /// </summary>
-/// <typeparam name="TNode"></typeparam>
+/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNode : struct, INode
 {
     public event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;

@@ -1,6 +1,6 @@
 namespace GG.NodeGraph.Implementation;
 /// <summary>
-/// Breadth-First Search
+/// Breadth-First Search.
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
 public static class BFS<TNode> where TNode : struct, INode
