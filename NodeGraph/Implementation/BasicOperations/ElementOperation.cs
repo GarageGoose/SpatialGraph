@@ -33,7 +33,7 @@ public static class ElemOp
     }
 
     /// <summary>
-    /// Get the other connecting node from node.
+    /// Get the other connecting node from node in an edge
     /// </summary>
     public static uint GetConnectingNode(this Edge edge, uint sourceNodeID)
     {
@@ -46,5 +46,10 @@ public static class ElemOp
             return edge.NodeID1;
         }
         throw new Exception(); //Setup later
+    }
+
+    public static uint GetEdgeLength(this IGraph<Node2D> baseGraph, uint edgeID)
+    {
+        
     }
 }

@@ -164,6 +164,13 @@ public static class GraphOp2D
                 edge = baseGraph.Edges[edgeID];
                 uint newNodeID1 = collapsedNodes.Contains(edge.NodeID1) ? collapsedNodeID : edge.NodeID1;
                 uint newNodeID2 = collapsedNodes.Contains(edge.NodeID1) ? collapsedNodeID : edge.NodeID2;
+
+                //Check if the new edge now connects to the same collapsed node, do not readd if so.
+                if(newNodeID1 == newNodeID2)
+                {
+                    continue;
+                }
+                
                 mods.Edges.Add(edge.ID, edge.UpdateNodeIDs(newNodeID1, newNodeID2));
             }
         }
