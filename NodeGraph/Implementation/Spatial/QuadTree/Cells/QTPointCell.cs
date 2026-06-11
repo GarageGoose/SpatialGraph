@@ -110,17 +110,17 @@ internal class QuadTreeNodeCell
 
     private bool CircleRectCol(Vector2 circleLoc, float circleRadius, Vector2 rectTopLeft, Vector2 rectBottomRight)
     {
-        //Get either left or right edge of the triangle whichever is the closest to the circle.
+        //Get either left or right edge of the rectangle whichever is the closest to the circle.
         float testX = circleLoc.X < rectTopLeft.X ? rectTopLeft.X : circleLoc.X > rectBottomRight.X ? rectBottomRight.X : circleLoc.X;
 
-        //Get either left or right edge of the triangle whichever is the closest to the circle.
+        //Get either left or right edge of the rectangle whichever is the closest to the circle.
         float testY = circleLoc.Y < rectTopLeft.Y ? rectTopLeft.Y : circleLoc.Y > rectBottomRight.Y ? rectBottomRight.Y : circleLoc.Y;
 
         float distX = circleLoc.X - testX;
         float distY = circleLoc.Y - testY;
-        float dist = MathF.Sqrt((distX * distX) + (distY * distY));
 
-        return dist <= circleRadius;
+        float dist = (distX * distX) + (distY * distY);
+        return dist <= circleRadius * 2;
     }
 }
 
