@@ -2,14 +2,14 @@ using System.Numerics;
 
 namespace GG.NodeGraph.Implementation;
 
-public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNodeID) where TNode : struct, INode;
+public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNodeID, uint? EdgeUsedForTraversal) where TNode : struct, INode;
 public readonly record struct GraphTraversal<TNode>(IEnumerable<TraversalInfo<TNode>> Traverse, NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, uint? TagretNodeID) where TNode : struct, INode;
 
 public static class Pathfinding
 {
-    public static GraphTraversal<TNode> BreadthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart) where TNode : struct, INode
+    public static GraphTraversal<TNode> BreadthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart, uint? targetNodeID = null) where TNode : struct, INode
     {
-        return new(traverse(), baseGraph, nodeIDStart, null);
+        return new(traverse(), baseGraph, nodeIDStart, targetNodeID);
         
         IEnumerable<TraversalInfo<TNode>> traverse()
         {
@@ -18,6 +18,10 @@ public static class Pathfinding
 
             //For tracking where a node was discovered from (k: current node, v: node where it's discovered)
             Dictionary<uint, uint?> nodeDiscovery = new()
+            {
+                { nodeIDStart, null }
+            };
+            Dictionary<uint, uint?> EdgeDiscovery = new()
             {
                 { nodeIDStart, null }
             };
@@ -30,22 +34,24 @@ public static class Pathfinding
                 uint currNodeID = nodesToSearch.Dequeue();
 
                 //Find new nodes from current node
-                foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
+                foreach (uint connectingEdgeID in baseGraph.ConnectedEdges(currNodeID))
                 {
+                    uint connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                     if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
                     {
                         nodesToSearch.Enqueue(connectingNodeID);
                         nodeDiscovery.Add(connectingNodeID, currNodeID);
+                        EdgeDiscovery.Add(connectingNodeID, connectingEdgeID);
                     }
                 }
 
-                yield return new(currNodeID, nodeDiscovery[currNodeID]);
+                yield return new(currNodeID, nodeDiscovery[currNodeID], EdgeDiscovery[currNodeID]);
             }
         }
     }
-    public static GraphTraversal<TNode> DepthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart) where TNode : struct, INode
+    public static GraphTraversal<TNode> DepthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart, uint? targetNodeID = null) where TNode : struct, INode
     {
-        return new(traverse(), baseGraph, nodeIDStart, null);
+        return new(traverse(), baseGraph, nodeIDStart, targetNodeID);
         
         IEnumerable<TraversalInfo<TNode>> traverse()
         {
@@ -57,6 +63,10 @@ public static class Pathfinding
             {
             { nodeIDStart, null }
             };
+            Dictionary<uint, uint?> EdgeDiscovery = new()
+            {
+                { nodeIDStart, null }
+            };
 
             List<uint> nodesToSearch = [nodeIDStart];
 
@@ -66,23 +76,25 @@ public static class Pathfinding
                 nodesToSearch.RemoveAt(nodesToSearch.Count - 1);
 
                 //Find new nodes from current node
-                foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
+                foreach (uint connectingEdgeID in baseGraph.ConnectedEdges(currNodeID))
                 {
+                    uint connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
                     if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
                     {
                         nodesToSearch.Add(connectingNodeID);
                         nodeDiscovery.Add(connectingNodeID, currNodeID);
+                        EdgeDiscovery.Add(connectingNodeID, connectingEdgeID);
                     }
                 }
 
-                yield return new(currNodeID, nodeDiscovery[currNodeID]);
+                yield return new(currNodeID, nodeDiscovery[currNodeID], EdgeDiscovery[currNodeID]);
             }
         }
     }
 
-    public static GraphTraversal<TNode> WeightedTraversal<TNode, TScore>(this NodeAdjacency<TNode> baseGraph, Func<NodeAdjacency<TNode>, uint, TScore> nodeScore, uint nodeIDStart) where TNode : struct, INode where TScore : INumber<TScore>
+    public static GraphTraversal<TNode> WeightedTraversal<TNode, TScore>(this NodeAdjacency<TNode> baseGraph, Func<NodeAdjacency<TNode>, uint, TScore> nodeScore, uint nodeIDStart, uint? targetNodeID = null) where TNode : struct, INode where TScore : INumber<TScore>
     {
-        return new(traverse(), baseGraph, nodeIDStart, null);
+        return new(traverse(), baseGraph, nodeIDStart, targetNodeID);
 
         IEnumerable<TraversalInfo<TNode>> traverse()
         {
@@ -100,6 +112,10 @@ public static class Pathfinding
             {
                 { nodeIDStart, null }
             };
+            Dictionary<uint, uint?> EdgeDiscovery = new()
+            {
+                { nodeIDStart, null }
+            };
 
             while (nodesToSearch.Count > 0)
             {
@@ -108,12 +124,15 @@ public static class Pathfinding
                 nodesToSearch.GetValueAtIndex(0).Remove(currNodeID);
 
                 //Find new nodes from current node
-                foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
+                foreach (uint connectingEdgeID in baseGraph.ConnectedEdges(currNodeID))
                 {
+                    uint connectingNodeID = baseGraph.Edges[connectingEdgeID].GetConnectingNode(currNodeID);
+
                     if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
                     {
                         TScore score = nodeScore(baseGraph, connectingNodeID);
                         nodeDiscovery.Add(connectingNodeID, currNodeID);
+                        EdgeDiscovery.Add(connectingNodeID, connectingEdgeID);
 
                         if(nodesToSearch.TryGetValue(score, out HashSet<uint>? nodeIDsAtScore))
                         {
@@ -124,7 +143,7 @@ public static class Pathfinding
                     }
                 }
 
-                yield return new(currNodeID, nodeDiscovery[currNodeID]);
+                yield return new(currNodeID, nodeDiscovery[currNodeID], EdgeDiscovery[currNodeID]);
             }
         }
     }
