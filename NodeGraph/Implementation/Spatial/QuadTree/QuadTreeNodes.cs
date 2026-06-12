@@ -1,9 +1,15 @@
+using System.Numerics;
+
 namespace GG.NodeGraph.Implementation;
 
 public class QuadTreeNodes : GraphMetadata<Node2D>
 {
+    QuadTreeNodeCell parentCell;
 
-    public QuadTreeNodes(IReadOnlyTrackedGraph<Node2D> baseGraph, float InitSize) : base(baseGraph){}
+    public QuadTreeNodes(IReadOnlyTrackedGraph<Node2D> baseGraph, Vector2 origin, float width = 100f, float height = 100f, uint nodeCapacity = 1) : base(baseGraph)
+    {
+        parentCell = new(nodeCapacity, origin, width, height);
+    }
 
     protected override void OnInitialize()
     {
@@ -12,11 +18,40 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
 
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<Node2D> e)
     {
-        base.OnGraphUpdate(sender, e);
+        foreach(ElementModificationLog<Node2D> node in e.NodeMods)
+        {
+            switch (node.ModType)
+            {
+                case ModificationType.Add:
+                    if(checkIfWithinBounds(node.NewElement!.Value.Loc))
+                    {
+                        parentCell.AddPoint(node.NewElement.Value);
+                    }
+                    else
+                    {
+                        
+                    }
+                break;
+
+                case ModificationType.Modify:
+                break;
+
+                case ModificationType.Remove:
+                break;
+            }
+        }
     }
 
-    public uint GenerateID()
+    bool checkIfWithinBounds(Vector2 loc) => loc.X < parentCell.BottomRightCorner.X && loc.X > parentCell.TopLeftCorner.X && loc.Y < parentCell.TopLeftCorner.Y && loc.Y > parentCell.BottomRightCorner.Y;
+    void growCellToBounds(Vector2 loc)
     {
-        throw new NotImplementedException();
+        if(parentCell.Center.X < loc.X)
+        {
+            
+        }
+        else
+        {
+            
+        }
     }
 }

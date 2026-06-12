@@ -4,22 +4,34 @@ namespace GG.NodeGraph.Implementation;
 
 public static class PathfindingOps
 {
-    public static bool IsNodeConnected<TNode>(this IEnumerable<TNode> traversal, uint sourceNodeID, uint targetNodeID) where TNode : struct, INode
+    public static bool IsNodeConnected<TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode
     {
-        bool sourceFound = false;
-        bool targetFound = false;
+        //WIP
+    }
 
-        foreach(TNode nodeID in traversal)
-        {
-            sourceFound = sourceFound || nodeID.ID == sourceNodeID;
-            targetFound = targetFound || nodeID.ID == targetNodeID;
+    public static TCollection<TNode> PathfindNodes<TCollection, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode
+    {
+        //WIP
+    }
+    public static TCollection<TNode> PathfindEdges<TCollection, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode
+    {
+        //WIP
+    }
+    public static TGraph<TNode> Pathfind<TGraph, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode where TGraph : IGraph<TNode>
+    {
+        //WIP
+    }
 
-            if(sourceFound && targetFound)
-            {
-                return true;
-            }
-        }
-
-        return false;
+    public static TCollection<TNode> FloodfillNodes<TCollection, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode
+    {
+        //WIP
+    }
+    public static TCollection<TNode> FloodfillEdges<TCollection, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode
+    {
+        //WIP
+    }
+    public static TGraph<TNode> Floodfill<TGraph, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode where TGraph : IGraph<TNode>
+    {
+        //WIP
     }
 }

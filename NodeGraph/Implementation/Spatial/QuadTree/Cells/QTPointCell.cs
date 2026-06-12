@@ -3,16 +3,18 @@ namespace GG.NodeGraph.Implementation;
 
 internal class QuadTreeNodeCell
 {
+    //Children
     public QuadTreeNodeCell? NorthWest;
     public QuadTreeNodeCell? NorthEast;
     public QuadTreeNodeCell? SouthEast;
     public QuadTreeNodeCell? SouthWest;
 
-
+    //Cell properties
     public bool Subdivided {get; private set;} = false;
     public readonly uint NodeCapacity;
     public HashSet<Node2D> Nodes = new();
 
+    //Size and bounds
     public readonly Vector2 TopLeftCorner;
     public readonly Vector2 Center;
     public readonly Vector2 BottomRightCorner;

@@ -2,89 +2,130 @@ using System.Numerics;
 
 namespace GG.NodeGraph.Implementation;
 
+public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNodeID) where TNode : struct, INode;
+public readonly record struct GraphTraversal<TNode>(IEnumerable<TraversalInfo<TNode>> Traverse, NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, uint? TagretNodeID) where TNode : struct, INode;
+
 public static class Pathfinding
 {
-    public static IEnumerable<TNode> BFSTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart) where TNode : struct, INode
+    public static GraphTraversal<TNode> BreadthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart) where TNode : struct, INode
     {
-        //For avoiding revisiting nodes
-        HashSet<uint> visitedNodeIDs = [nodeIDStart];
-
-        Queue<uint> nodesToSearch = new();
-        nodesToSearch.Enqueue(nodeIDStart);
-
-        while (nodesToSearch.Count > 0)
+        return new(traverse(), baseGraph, nodeIDStart, null);
+        
+        IEnumerable<TraversalInfo<TNode>> traverse()
         {
-            uint currNodeID = nodesToSearch.Dequeue();
+            //For avoiding revisiting nodes
+            HashSet<uint> visitedNodeIDs = [nodeIDStart];
 
-            //Find new nodes from current node
-            foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
+            //For tracking where a node was discovered from (k: current node, v: node where it's discovered)
+            Dictionary<uint, uint?> nodeDiscovery = new()
             {
-                if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
-                {
-                    nodesToSearch.Enqueue(connectingNodeID);
-                }
-            }
+                { nodeIDStart, null }
+            };
 
-            yield return baseGraph.BaseGraph.Nodes[currNodeID];
-        }
-    }
+            Queue<uint> nodesToSearch = new();
+            nodesToSearch.Enqueue(nodeIDStart);
 
-    public static IEnumerable<TNode> DFSTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart) where TNode : struct, INode
-    {
-        //For avoiding revisiting nodes
-        HashSet<uint> visitedNodeIDs = [nodeIDStart];
-
-        List<uint> nodesToSearch = [nodeIDStart];
-
-        while (nodesToSearch.Count > 0)
-        {
-            uint currNodeID = nodesToSearch[nodesToSearch.Count - 1];
-            nodesToSearch.RemoveAt(nodesToSearch.Count - 1);
-
-            //Find new nodes from current node
-            foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
+            while (nodesToSearch.Count > 0)
             {
-                if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
+                uint currNodeID = nodesToSearch.Dequeue();
+
+                //Find new nodes from current node
+                foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
                 {
-                    nodesToSearch.Add(connectingNodeID);
-                }
-            }
-
-            yield return baseGraph.BaseGraph.Nodes[currNodeID];
-        }
-    }
-
-    public static IEnumerable<TNode> WeightedTraversal<TNode, TScore>(this NodeAdjacency<TNode> baseGraph, Func<NodeAdjacency<TNode>, uint, TScore> nodeScore, uint nodeIDStart) where TNode : struct, INode where TScore : INumber<TScore>
-    {
-        //For avoiding revisiting nodes
-        HashSet<uint> visitedNodeIDs = [nodeIDStart];
-
-        SortedList<TScore, HashSet<uint>> nodesToSearch = new()
-        {
-            { nodeScore(baseGraph, nodeIDStart), [nodeIDStart] }
-        };
-
-        while (nodesToSearch.Count > 0)
-        {
-            uint currNodeID = nodesToSearch.GetValueAtIndex(0).First();
-            nodesToSearch.GetValueAtIndex(0).Remove(currNodeID);
-
-            //Find new nodes from current node
-            foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
-            {
-                if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
-                {
-                    TScore score = nodeScore(baseGraph, connectingNodeID);
-                    if(nodesToSearch.TryGetValue(score, out HashSet<uint>? nodeIDsAtScore))
+                    if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
                     {
-                        nodeIDsAtScore.Add(connectingNodeID);
-                        continue;
+                        nodesToSearch.Enqueue(connectingNodeID);
+                        nodeDiscovery.Add(connectingNodeID, currNodeID);
                     }
-                    nodesToSearch.Add(score, [connectingNodeID]);
                 }
-            }
 
-            yield return baseGraph.BaseGraph.Nodes[currNodeID];
+                yield return new(currNodeID, nodeDiscovery[currNodeID]);
+            }
+        }
+    }
+    public static GraphTraversal<TNode> DepthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart) where TNode : struct, INode
+    {
+        return new(traverse(), baseGraph, nodeIDStart, null);
+        
+        IEnumerable<TraversalInfo<TNode>> traverse()
+        {
+            //For avoiding revisiting nodes
+            HashSet<uint> visitedNodeIDs = [nodeIDStart];
+
+            //For tracking where a node was discovered from (k: current node, v: node where it's discovered)
+            Dictionary<uint, uint?> nodeDiscovery = new()
+            {
+            { nodeIDStart, null }
+            };
+
+            List<uint> nodesToSearch = [nodeIDStart];
+
+            while (nodesToSearch.Count > 0)
+            {
+                uint currNodeID = nodesToSearch[nodesToSearch.Count - 1];
+                nodesToSearch.RemoveAt(nodesToSearch.Count - 1);
+
+                //Find new nodes from current node
+                foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
+                {
+                    if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
+                    {
+                        nodesToSearch.Add(connectingNodeID);
+                        nodeDiscovery.Add(connectingNodeID, currNodeID);
+                    }
+                }
+
+                yield return new(currNodeID, nodeDiscovery[currNodeID]);
+            }
+        }
+    }
+
+    public static GraphTraversal<TNode> WeightedTraversal<TNode, TScore>(this NodeAdjacency<TNode> baseGraph, Func<NodeAdjacency<TNode>, uint, TScore> nodeScore, uint nodeIDStart) where TNode : struct, INode where TScore : INumber<TScore>
+    {
+        return new(traverse(), baseGraph, nodeIDStart, null);
+
+        IEnumerable<TraversalInfo<TNode>> traverse()
+        {
+            //For avoiding revisiting nodes
+            HashSet<uint> visitedNodeIDs = [nodeIDStart];
+
+            //SortedList was used with a HashSet instead of a SortedSet to allow for multiple nodes of a sasme score.
+            SortedList<TScore, HashSet<uint>> nodesToSearch = new()
+            {
+                { nodeScore(baseGraph, nodeIDStart), [nodeIDStart] }
+            };
+
+            //For tracking where a node was discovered from (k: current node, v: node where it's discovered)
+            Dictionary<uint, uint?> nodeDiscovery = new()
+            {
+                { nodeIDStart, null }
+            };
+
+            while (nodesToSearch.Count > 0)
+            {
+                //Get node with the highest score
+                uint currNodeID = nodesToSearch.GetValueAtIndex(0).Max();
+                nodesToSearch.GetValueAtIndex(0).Remove(currNodeID);
+
+                //Find new nodes from current node
+                foreach (uint connectingNodeID in baseGraph.ConnectedNodes(currNodeID))
+                {
+                    if (visitedNodeIDs.Add(connectingNodeID)) //if connectingNodeID isn't visited yet...
+                    {
+                        TScore score = nodeScore(baseGraph, connectingNodeID);
+                        nodeDiscovery.Add(connectingNodeID, currNodeID);
+
+                        if(nodesToSearch.TryGetValue(score, out HashSet<uint>? nodeIDsAtScore))
+                        {
+                            nodeIDsAtScore.Add(connectingNodeID);
+                            continue;
+                        }
+                        nodesToSearch.Add(score, [connectingNodeID]);
+                    }
+                }
+
+                yield return new(currNodeID, nodeDiscovery[currNodeID]);
+            }
         }
     }
 }
