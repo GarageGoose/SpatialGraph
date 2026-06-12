@@ -1,5 +1,5 @@
 using System.Numerics;
-namespace GG.SpatialGraph.Implementation;
+namespace GG.SpatialGraph.Spatial;
 
 internal class QuadTreeNodeCell
 {

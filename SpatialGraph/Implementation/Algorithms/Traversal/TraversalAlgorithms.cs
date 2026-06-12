@@ -1,6 +1,7 @@
 using System.Numerics;
+using GG.SpatialGraph.Metadata;
 
-namespace GG.SpatialGraph.Implementation;
+namespace GG.SpatialGraph.Traversal;
 
 public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNodeID, uint? EdgeUsedForTraversal) where TNode : struct, INode;
 public readonly record struct GraphTraversal<TNode>(IEnumerable<TraversalInfo<TNode>> Traverse, NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, uint? TagretNodeID) where TNode : struct, INode;

@@ -1,6 +1,4 @@
-using System.Numerics;
-
-namespace GG.SpatialGraph.Implementation;
+namespace GG.SpatialGraph.Traversal;
 
 public static class PathfindingOps
 {

@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph;
+namespace GG.SpatialGraph.Metadata;
 
 /// <summary>
 /// Base class for storing additional metadata in a graph.

@@ -1,6 +1,6 @@
 using System.Numerics;
-
-namespace GG.SpatialGraph.Implementation;
+using GG.SpatialGraph.Metadata;
+namespace GG.SpatialGraph;
 
 public static class GraphOp2D
 {

@@ -1,5 +1,4 @@
-using GG.SpatialGraph;
-namespace GG.SpatialGraph.Implementation;
+namespace GG.SpatialGraph.Metadata;
 
 /// <summary>
 /// Records adjecent nodes or edges from a node in a graph.

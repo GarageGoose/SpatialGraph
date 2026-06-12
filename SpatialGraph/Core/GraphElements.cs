@@ -51,5 +51,3 @@ public enum ElementType
 /// <param name="Type">Type of element, either Node or Edge.</param>
 /// <param name="ID">ID of the element.</param>
 public readonly record struct ElementID(ElementType Type, uint ID);
-
-public readonly record struct NodeEdgePair<TNode>(TNode Node, Edge Edge) where TNode : struct, INode;

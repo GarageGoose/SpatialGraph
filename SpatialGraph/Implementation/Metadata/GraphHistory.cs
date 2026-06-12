@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph.Implementation;
+namespace GG.SpatialGraph.Metadata;
 
 /// <summary>
 /// Records history of a graph from accumulated ModificationLogs.

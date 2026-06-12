@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace GG.SpatialGraph.Implementation;
+namespace GG.SpatialGraph.Spatial;
 
 public class QuadTreeNodes : GraphMetadata<Node2D>
 {

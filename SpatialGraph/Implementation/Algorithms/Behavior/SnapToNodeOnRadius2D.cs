@@ -1,1 +1,1 @@
-namespace GG.SpatialGraph.Implementation;
+namespace GG.SpatialGraph.Behavior;
