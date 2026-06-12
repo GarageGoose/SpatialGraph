@@ -17,7 +17,7 @@ public interface INode : IElement;
 /// <summary>
 /// A line segment from 2 nodes.
 /// </summary>
-public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2);
+public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2) : IElement;
 
 /// <summary>
 /// An enum for identifying if a node is the 1st or 2nd node in an edge (or even if its in an edge at all).

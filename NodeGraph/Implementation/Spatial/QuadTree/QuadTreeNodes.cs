@@ -18,7 +18,7 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
 
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<Node2D> e)
     {
-        foreach(ElementModificationLog<Node2D> node in e.NodeMods)
+        foreach (ElementModificationLog<Node2D> node in e.NodeMods.Values)
         {
             switch (node.ModType)
             {

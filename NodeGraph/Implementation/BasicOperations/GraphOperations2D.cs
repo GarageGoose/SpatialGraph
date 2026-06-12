@@ -187,11 +187,6 @@ public static class GraphOp2D
 
     /*
     WIP
-    public static void SplitNode(this IGraph<Node2D> baseGraph, uint edgeID, Node2D[] newNodes)
-    {
-        
-    }
-
     public static Node2D SplitEdge(this IGraph<Node2D> baseGraph, uint edgeID, float splitPos = 0.5f)
     {
         
