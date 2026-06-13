@@ -1,4 +1,4 @@
-using GG.SpatialGraph.Implementation;
+using GG.SpatialGraph.Metadata;
 
 namespace GG.SpatialGraph;
 

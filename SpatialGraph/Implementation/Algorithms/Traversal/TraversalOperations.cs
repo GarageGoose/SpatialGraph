@@ -96,17 +96,126 @@ public static class PathfindingOps
         }
         return false;
     }
-/*
-    public static TCollection<TNode> FloodfillNodes<TCollection, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode
+
+    public static List<uint> FloodfillNodes<TNode>(this GraphTraversal<TNode> graphTraversal, uint? limitNodes = null) where TNode : struct, INode
     {
-        //WIP
+        List<uint> nodeIDs = new();
+
+        if(limitNodes == null)
+        {
+            foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse)
+            {
+                nodeIDs.Add(traversal.NodeID);
+            }
+            return nodeIDs;
+        }
+
+        foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse.Take((int)limitNodes))
+        {
+            nodeIDs.Add(traversal.NodeID);
+        }
+        return nodeIDs;
     }
-    public static TCollection<TNode> FloodfillEdges<TCollection, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode
+
+    public static List<uint> FloodfillEdgesOnTraversal<TNode>(this GraphTraversal<TNode> graphTraversal, uint? limitEdges = null) where TNode : struct, INode
     {
-        //WIP
+        List<uint> EdgeIDs = new();
+
+        if(limitEdges == null)
+        {
+            foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse.Skip(1))
+            {
+                EdgeIDs.Add((uint)traversal.EdgeUsedForTraversal!);
+            }
+            return EdgeIDs;
+        }
+
+        foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse.Skip(1).Take((int)limitEdges))
+        {
+            EdgeIDs.Add(traversal.NodeID);
+        }
+        return EdgeIDs;
     }
-    public static TGraph<TNode> Floodfill<TGraph, TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode where TGraph : IGraph<TNode>
+
+    public static List<uint> FloodfillEdgesFull<TNode>(this GraphTraversal<TNode> graphTraversal, uint? limitEdges = null) where TNode : struct, INode
     {
-        //WIP
-    }*/
+        HashSet<uint> nodeIDs = new();
+
+        foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse)
+        {
+            nodeIDs.Add(traversal.NodeID);
+        }
+
+        List<uint> edgeIDs = new();
+        if(limitEdges == null)
+        {
+            foreach(uint nodeID in nodeIDs)
+            {
+                foreach(uint edgeID in graphTraversal.BaseGraph.ConnectedEdges(nodeID))
+                {
+                    Edge edge = graphTraversal.BaseGraph.Edges[edgeID];
+                    if(nodeIDs.Contains(edge.NodeID1) && nodeIDs.Contains(edge.NodeID2))
+                    {
+                        edgeIDs.Add(edgeID);
+                    }
+                }
+            }
+            return edgeIDs;
+        }
+
+        foreach(uint nodeID in nodeIDs)
+        {
+            foreach(uint edgeID in graphTraversal.BaseGraph.ConnectedEdges(nodeID))
+            {
+                Edge edge = graphTraversal.BaseGraph.Edges[edgeID];
+                if(nodeIDs.Contains(edge.NodeID1) && nodeIDs.Contains(edge.NodeID2))
+                {
+                    edgeIDs.Add(edgeID);
+                }
+                if(edgeIDs.Count == limitEdges)
+                {
+                    return edgeIDs;
+                }
+            }
+        }
+        return edgeIDs;
+    }
+
+    public static void FloodfillOnTraversal<TGraph, TNode>(this GraphTraversal<TNode> graphTraversal, out List<uint> nodeIDs, out List<uint> edgeIDs) where TNode : struct, INode
+    {
+        edgeIDs = new();
+        foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse.Skip(1))
+        {
+            edgeIDs.Add((uint)traversal.EdgeUsedForTraversal!);
+        }
+
+        nodeIDs = new();
+        foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse)
+        {
+            nodeIDs.Add(traversal.NodeID);
+        }
+    }
+    public static void FloodfillFull<TGraph, TNode>(this GraphTraversal<TNode> graphTraversal, out List<uint> nodeIDs, out List<uint> edgeIDs) where TNode : struct, INode
+    {
+        HashSet<uint> nodeIDHash = new();
+        nodeIDs = new();
+        foreach(TraversalInfo<TNode> traversal in graphTraversal.Traverse)
+        {
+            nodeIDs.Add(traversal.NodeID);
+            nodeIDHash.Add(traversal.NodeID);
+        }
+
+        edgeIDs = new();
+        foreach(uint nodeID in nodeIDs)
+        {
+            foreach(uint edgeID in graphTraversal.BaseGraph.ConnectedEdges(nodeID))
+            {
+                Edge edge = graphTraversal.BaseGraph.Edges[edgeID];
+                if(nodeIDs.Contains(edge.NodeID1) && nodeIDs.Contains(edge.NodeID2))
+                {
+                    edgeIDs.Add(edgeID);
+                }
+            }
+        }
+    }
 }
