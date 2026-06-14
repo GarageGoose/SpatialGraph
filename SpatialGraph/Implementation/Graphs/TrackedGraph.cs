@@ -20,25 +20,23 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
     {
     }
 
-    public override void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
+    public override void ApplyBatchedModifications(BatchedModifications<TNode> mods)
     {
         ModificationLog<TNode> log = new(this);
-        ElementModificationsByType<TNode> nodeMods = modifications.SegregateNodeModifications();
-        ElementModificationsByType<Edge> edgeMods = modifications.SegregateEdgeModifications();
 
-        foreach(TNode node in nodeMods.Upsert)
+        foreach(TNode node in mods.NodesForUpsert.Values)
         {
             log.NodeUpsert(node);
             nodes[node.ID] = node;
         }
         
-        foreach(Edge edge in edgeMods.Upsert)
+        foreach(Edge edge in mods.EdgesForUpsert.Values)
         {
             log.EdgeUpsert(edge);
             edges[edge.ID] = edge;
         }
 
-        foreach(uint nodeID in nodeMods.Removal)
+        foreach(uint nodeID in mods.NodesForRemoval)
         {
             log.NodeRemoval(nodeID);
             if (!nodes.Remove(nodeID))
@@ -47,7 +45,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
             }
         }
 
-        foreach(uint edgeID in edgeMods.Removal)
+        foreach(uint edgeID in mods.EdgesForRemoval)
         {
             log.EdgeRemoval(edgeID);
             if (!edges.Remove(edgeID))

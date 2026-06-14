@@ -152,7 +152,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
     {
         if (IsModificationsOnHold)
         {
-            ModificationsOnHold.Nodes[Node.ID] = Node;
+            ModificationsOnHold.UpsertNode(Node);
             return;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
@@ -164,7 +164,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
     {
         if (IsModificationsOnHold)
         {
-            ModificationsOnHold.Nodes[ID] = null;
+            ModificationsOnHold.RemoveNode(ID);
             return true;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
@@ -177,7 +177,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
     {
         if (IsModificationsOnHold)
         {
-            ModificationsOnHold.Edges[Edge.ID] = Edge;
+            ModificationsOnHold.UpsertEdge(Edge);
             return;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
@@ -189,7 +189,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
     {
         if (IsModificationsOnHold)
         {
-            ModificationsOnHold.Edges[ID] = null;
+            ModificationsOnHold.RemoveEdge(ID);
             return true;
         }
         ModificationLog<TNode> Modification = new(BaseGraph);
@@ -202,8 +202,7 @@ internal class ModificationHandler<TNode> where TNode : struct, INode
     {
         if (IsModificationsOnHold)
         {
-            ModificationsOnHold.Nodes.Union(Modification.Nodes);
-            ModificationsOnHold.Edges.Union(Modification.Edges);
+            ModificationsOnHold.Union(Modification);
             return;
         }
         ModificationInitiate(new(BaseGraph, Modification));

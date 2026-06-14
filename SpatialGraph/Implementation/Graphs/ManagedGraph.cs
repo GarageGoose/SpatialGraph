@@ -27,21 +27,19 @@ public class ManagedGraph<TNode> : TrackedGraph<TNode> where TNode : struct, INo
 
     public override void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
     {
-        foreach(uint nodeID in modifications.NodesForRemoval())
+        //Remove nodes connected to nodes that is being removed
+        foreach(uint nodeID in modifications.NodesForRemoval)
         {
             foreach(uint edgeID in NodeAdjacency.ConnectedEdges(nodeID))
             {
-                if (!modifications.Edges.ContainsKey(edgeID))
-                {
-                    modifications.Edges[edgeID] = null;
-                }
+                modifications.RemoveEdge(edgeID);
             }
         }
 
-        foreach(Edge edge in modifications.EdgesForUpsert())
+        foreach(Edge edge in modifications.EdgesForUpsert.Values)
         {
-            bool edgeNode1Valid = Nodes.ContainsKey(edge.NodeID1) || (modifications.Nodes.TryGetValue(edge.NodeID1, out TNode? node1) && node1 != null);
-            bool edgeNode2Valid = Nodes.ContainsKey(edge.NodeID2) || (modifications.Nodes.TryGetValue(edge.NodeID2, out TNode? node2) && node2 != null);
+            bool edgeNode1Valid = Nodes.ContainsKey(edge.NodeID1) || modifications.NodesForUpsert.ContainsKey(edge.NodeID1);
+            bool edgeNode2Valid = Nodes.ContainsKey(edge.NodeID2) || modifications.NodesForUpsert.ContainsKey(edge.NodeID2);
             if(!edgeNode1Valid && !edgeNode2Valid)
             {
                 throw new Exception(); //New edge invalid
@@ -66,10 +64,10 @@ public class ManagedGraph<TNode> : TrackedGraph<TNode> where TNode : struct, INo
             return false;
         }
         BatchedModifications<TNode> mods = new();
-        mods.Nodes[ID] = null;
+        mods.RemoveNode(ID);
         foreach(uint edgeID in NodeAdjacency.ConnectedEdges(ID))
         {
-            mods.Edges[edgeID] = null;
+            mods.RemoveEdge(edgeID);
         }
         base.ApplyBatchedModifications(mods);
         return true;

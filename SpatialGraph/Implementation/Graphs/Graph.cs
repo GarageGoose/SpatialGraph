@@ -68,27 +68,24 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <param name="IDs">IDs of the edges to remove.</param>
     public virtual bool RemoveEdge(uint ID) => edges.Remove(ID);
 
-    public virtual void ApplyBatchedModifications(BatchedModifications<TNode> modifications)
+    public virtual void ApplyBatchedModifications(BatchedModifications<TNode> mods)
     {
-        ElementModificationsByType<TNode> nodeMods = modifications.SegregateNodeModifications();
-        ElementModificationsByType<Edge> edgeMods = modifications.SegregateEdgeModifications();
-
-        foreach(TNode node in nodeMods.Upsert)
+        foreach(TNode node in mods.NodesForUpsert.Values)
         {
             nodes[node.ID] = node;
         }
         
-        foreach(Edge edge in edgeMods.Upsert)
+        foreach(Edge edge in mods.EdgesForUpsert.Values)
         {
             edges[edge.ID] = edge;
         }
 
-        foreach(uint nodeID in nodeMods.Removal)
+        foreach(uint nodeID in mods.NodesForRemoval)
         {
             nodes.Remove(nodeID);
         }
 
-        foreach(uint edgeID in edgeMods.Removal)
+        foreach(uint edgeID in mods.EdgesForRemoval)
         {
             edges.Remove(edgeID);
         }

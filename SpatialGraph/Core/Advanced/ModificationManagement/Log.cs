@@ -31,24 +31,24 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
 
     public void BatchedModifications(BatchedModifications<TNode> batchedMods)
     {
-        foreach(KeyValuePair<uint, TNode?> node in batchedMods.Nodes)
+        foreach(TNode node in batchedMods.NodesForUpsert.Values)
         {
-            if(node.Value == null)
-            {
-                NodeRemoval(node.Key);
-                continue;
-            }
-            NodeUpsert((TNode)node.Value);
+            NodeUpsert(node);
         }
 
-        foreach(KeyValuePair<uint, Edge?> edge in batchedMods.Edges)
+        foreach(uint nodeID in batchedMods.NodesForRemoval)
         {
-            if(edge.Value == null)
-            {
-                EdgeRemoval(edge.Key);
-                continue;
-            }
-            EdgeUpsert((Edge)edge.Value);
+            NodeRemoval(nodeID);
+        }
+
+        foreach(Edge edge in batchedMods.EdgesForUpsert.Values)
+        {
+            EdgeUpsert(edge);
+        }
+
+        foreach(uint edgeID in batchedMods.EdgesForRemoval)
+        {
+            NodeRemoval(edgeID);
         }
     }
 
@@ -93,16 +93,26 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
 
     public BatchedModifications<TNode> GetBatchedModifications()
     {
-        BatchedModifications<TNode> batchedModifications = new();
+        BatchedModifications<TNode> batchedMods = new();
         foreach(KeyValuePair<uint, ElementModificationLog<TNode>> node in nodeMods)
         {
-            batchedModifications.Nodes.Add(node.Key, node.Value.NewElement);
+            if(node.Value.NewElement == null)
+            {
+                batchedMods.RemoveNode(node.Key);
+                continue;
+            }
+            batchedMods.UpsertNode((TNode)node.Value.NewElement);
         }
         foreach(KeyValuePair<uint, ElementModificationLog<Edge>> edge in edgeMods)
         {
-            batchedModifications.Edges.Add(edge.Key, edge.Value.NewElement);
+            if(edge.Value.NewElement == null)
+            {
+                batchedMods.RemoveEdge(edge.Key);
+                continue;
+            }
+            batchedMods.UpsertEdge((Edge)edge.Value.NewElement);
         }
-        return batchedModifications;
+        return batchedMods;
     }
 }
 

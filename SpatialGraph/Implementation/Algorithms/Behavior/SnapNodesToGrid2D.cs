@@ -1,1 +1,2 @@
 namespace GG.SpatialGraph.Behavior;
+

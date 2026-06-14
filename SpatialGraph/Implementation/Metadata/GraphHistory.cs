@@ -43,6 +43,8 @@ public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, IN
 
             Graph<TNode> newSnapshot = new(graphSnapshot[BaseSnapshotIndex].Snapshot);
             BatchedModifications<TNode> modsAfterSnapshot = new();
+            HashSet<uint> isNodeRecorded = new();
+            HashSet<uint> isEdgeRecorded = new();
 
             //Grabs the newest modification from each node and edges from the initial mod step of the base snapshot to the required mod step.
             //Iterate modifications from the required mod step back to the mod step just after the base snapshot
@@ -52,18 +54,30 @@ public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, IN
                 {
                     //Check if the current node is already recorded, if not, record it.
                     //Since we are iterating from the newest mod log to the oldest, this should ensure that only the latest modification is recorded.
-                    if (!modsAfterSnapshot.Nodes.ContainsKey(nodeMod.Key))
+                    if (!isNodeRecorded.Contains(nodeMod.Key))
                     {
-                        modsAfterSnapshot.Nodes[nodeMod.Key] = nodeMod.Value.NewElement;
+                        isNodeRecorded.Add(nodeMod.Key);
+                        if(nodeMod.Value.NewElement == null)
+                        {
+                            modsAfterSnapshot.RemoveNode(nodeMod.Key);
+                            continue;
+                        }
+                        modsAfterSnapshot.UpsertNode((TNode)nodeMod.Value.NewElement);
                     }
                 }
 
                 //Repeat for edges
                 foreach(KeyValuePair<uint, ElementModificationLog<Edge>> edgeMod in modHistory[i].EdgeMods)
                 {
-                    if (!modsAfterSnapshot.Edges.ContainsKey(edgeMod.Key))
+                    if (!isEdgeRecorded.Contains(edgeMod.Key))
                     {
-                        modsAfterSnapshot.Edges[edgeMod.Key] = edgeMod.Value.NewElement;
+                        isEdgeRecorded.Add(edgeMod.Key);
+                        if(edgeMod.Value.NewElement == null)
+                        {
+                            modsAfterSnapshot.RemoveEdge(edgeMod.Key);
+                            continue;
+                        }
+                        modsAfterSnapshot.UpsertEdge((Edge)edgeMod.Value.NewElement);
                     }
                 }
             }

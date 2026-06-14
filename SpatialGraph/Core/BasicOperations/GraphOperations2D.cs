@@ -20,10 +20,10 @@ public static class GraphOp2D
             {
                 if(element.Type == ElementType.Node)
                 {
-                    mods.Nodes.Add(element.ID, copyFrom.Nodes[element.ID]);
+                    mods.UpsertNode(copyFrom.Nodes[element.ID]);
                     continue;
                 }
-                mods.Edges.Add(element.ID, copyFrom.Edges[element.ID]);
+                mods.UpsertEdge(copyFrom.Edges[element.ID]);
             }
         }
         else
@@ -48,7 +48,7 @@ public static class GraphOp2D
             {
                 uint newID = pasteTo.GenerateID();
                 oldToNewNodeID.Add(node.ID, newID);
-                mods.Nodes.Add(newID, node.UpdateID(newID));
+                mods.UpsertNode(node.UpdateID(newID));
             }
 
             //change the edge node references to the new node ids.
@@ -57,7 +57,7 @@ public static class GraphOp2D
                 uint newEdgeID = pasteTo.GenerateID();
                 uint nodeID1 = oldToNewNodeID.ContainsKey(edge.NodeID1) ? oldToNewNodeID[edge.NodeID1] : edge.NodeID1;
                 uint nodeID2 = oldToNewNodeID.ContainsKey(edge.NodeID2) ? oldToNewNodeID[edge.NodeID2] : edge.NodeID2;
-                mods.Edges.Add(newEdgeID, edge.UpdateNodeIDs(nodeID1, nodeID2));
+                mods.UpsertEdge(edge.UpdateNodeIDs(nodeID1, nodeID2));
             }
         }
 
@@ -77,11 +77,11 @@ public static class GraphOp2D
         {
             foreach(Node2D node in copyFrom.Nodes.Values)
             {
-                mods.Nodes.Add(node.ID, node);
+                mods.UpsertNode(node);
             }
             foreach(Edge edge in copyFrom.Edges.Values)
             {
-                mods.Edges.Add(edge.ID, edge);
+                mods.UpsertEdge(edge);
             }
         }
         else
@@ -91,14 +91,14 @@ public static class GraphOp2D
             {
                 uint newID = pasteTo.GenerateID();
                 oldToNewNodeID.Add(node.ID, newID);
-                mods.Nodes.Add(newID, node.UpdateID(newID));
+                mods.UpsertNode(node.UpdateID(newID));
             }
             foreach(Edge edge in copyFrom.Edges.Values)
             {
                 uint newEdgeID = pasteTo.GenerateID();
                 uint nodeID1 = oldToNewNodeID.ContainsKey(edge.NodeID1) ? oldToNewNodeID[edge.NodeID1] : edge.NodeID1;
                 uint nodeID2 = oldToNewNodeID.ContainsKey(edge.NodeID2) ? oldToNewNodeID[edge.NodeID2] : edge.NodeID2;
-                mods.Edges.Add(newEdgeID, edge.UpdateNodeIDs(nodeID1, nodeID2));
+                mods.UpsertEdge(edge.UpdateNodeIDs(nodeID1, nodeID2));
             }
         }
         pasteTo.ApplyBatchedModifications(mods);
@@ -118,9 +118,9 @@ public static class GraphOp2D
         Edge newEdge = new(baseGraph.GenerateID(), newNode.ID, edgeToInsert.NodeID2);
         edgeToInsert = edgeToInsert.UpdateNodeID2(newNode.ID);
 
-        mods.Nodes.Add(newNode.ID, newNode);
-        mods.Edges.Add(edgeToInsert.ID, edgeToInsert);
-        mods.Edges.Add(newEdge.ID, newEdge);
+        mods.UpsertNode(newNode);
+        mods.UpsertEdge(edgeToInsert);
+        mods.UpsertEdge(newEdge);
 
         baseGraph.ApplyBatchedModifications(mods);
     }
@@ -149,7 +149,7 @@ public static class GraphOp2D
         //Make the first node the new collapsed node
         uint collapsedNodeID = nodeIDsToCollapse[0];
         Node2D collapsedNode = new(collapsedNodeID, AverageCoord);
-        mods.Nodes.Add(collapsedNodeID, collapsedNode);
+        mods.UpsertNode(collapsedNode);
 
         //Record collapsed node to a hashset
         HashSet<uint> collapsedNodes = nodeIDsToCollapse.ToHashSet();
@@ -171,14 +171,14 @@ public static class GraphOp2D
                     continue;
                 }
                 
-                mods.Edges.Add(edge.ID, edge.UpdateNodeIDs(newNodeID1, newNodeID2));
+                mods.UpsertEdge(edge.UpdateNodeIDs(newNodeID1, newNodeID2));
             }
         }
 
         //Remove the collapsed nodes
         foreach(uint nodeID in collapsedNodes)
         {
-            mods.Nodes.Add(nodeID, null);
+            mods.RemoveNode(nodeID);
         }
 
         //Apply changes

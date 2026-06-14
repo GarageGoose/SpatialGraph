@@ -1,5 +1,5 @@
 using System.Numerics;
-
+using GG.SpatialGraph.Metadata;
 namespace GG.SpatialGraph.Spatial;
 
 public class QuadTreeNodes : GraphMetadata<Node2D>

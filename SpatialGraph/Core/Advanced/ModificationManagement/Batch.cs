@@ -6,96 +6,81 @@ namespace GG.SpatialGraph;
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public class BatchedModifications<TNode> where TNode : struct, INode
 {
-    public readonly Dictionary<uint, TNode?> Nodes = new();
-    public readonly Dictionary<uint, Edge?> Edges = new();
+    Dictionary<uint, TNode> nodesForUpsert = new();
+    public IReadOnlyDictionary<uint, TNode> NodesForUpsert => nodesForUpsert;
 
-    public HashSet<TNode> NodesForUpsert()
+    HashSet<uint> nodesForRemoval = new();
+    public IReadOnlySet<uint> NodesForRemoval => nodesForRemoval;
+
+    Dictionary<uint, Edge> edgesForUpsert = new();
+    public IReadOnlyDictionary<uint, Edge> EdgesForUpsert => edgesForUpsert;
+
+    HashSet<uint> edgesForRemoval = new();
+    public IReadOnlySet<uint> EdgesForRemoval => edgesForRemoval;
+
+    public void UpsertNode(TNode node)
     {
-        HashSet<TNode> nodes = new();
-        foreach(TNode? node in Nodes.Values)
-        {
-            if(node != null)
-            {
-                nodes.Add(node.Value);
-            }
-        }
-        return nodes;
+        nodesForUpsert.Add(node.ID, node);
+        nodesForRemoval.Remove(node.ID);
+    }
+    public void RemoveNode(uint nodeID)
+    {
+        nodesForUpsert.Remove(nodeID);
+        nodesForRemoval.Add(nodeID);
     }
 
-    public HashSet<uint> NodesForRemoval()
+    public void RemoveNodeMod(uint nodeID)
     {
-        HashSet<uint> nodes = new();
-        foreach(KeyValuePair<uint, TNode?> node in Nodes)
-        {
-            if(node.Value == null)
-            {
-                nodes.Add(node.Key);
-            }
-        }
-        return nodes;
+        nodesForUpsert.Remove(nodeID);
+        nodesForRemoval.Remove(nodeID);
     }
 
-    public HashSet<Edge> EdgesForUpsert()
+    public void UpsertEdge(Edge edge)
     {
-        HashSet<Edge> edges = new();
-        foreach(Edge? edge in Edges.Values)
-        {
-            if(edge != null)
-            {
-                edges.Add(edge.Value);
-            }
-        }
-        return edges;
+        edgesForUpsert.Add(edge.ID, edge);
+        edgesForRemoval.Remove(edge.ID);
+    }
+    public void RemoveEdge(uint edgeID)
+    {
+        edgesForUpsert.Remove(edgeID);
+        edgesForRemoval.Add(edgeID);
+    }
+    public void RemoveEdgeMod(uint edgeID)
+    {
+        edgesForUpsert.Remove(edgeID);
+        edgesForRemoval.Remove(edgeID);
+    }
+    
+
+    public BatchedModifications()
+    {
+        edgesForUpsert = new();
+        nodesForUpsert = new();
+        nodesForRemoval = new();
+        edgesForRemoval = new();
     }
 
-    public HashSet<uint> EdgesForRemoval()
+    public BatchedModifications(BatchedModifications<TNode> batchedMods)
     {
-        HashSet<uint> edges = new();
-        foreach(KeyValuePair<uint, Edge?> edge in Edges)
-        {
-            if(edge.Value == null)
-            {
-                edges.Add(edge.Key);
-            }
-        }
-        return edges;
+        edgesForUpsert = batchedMods.edgesForUpsert;
+        nodesForUpsert = batchedMods.nodesForUpsert;
+        nodesForRemoval = batchedMods.nodesForRemoval;
+        edgesForRemoval = batchedMods.edgesForRemoval;
     }
 
-    public ElementModificationsByType<Edge> SegregateEdgeModifications()
+    public void Union(BatchedModifications<TNode> batchedMods)
     {
-        HashSet<Edge> upserts = new();
-        HashSet<uint> removals = new();
-        ElementModificationsByType<Edge> modifications = new(upserts, removals);
-
-        foreach(KeyValuePair<uint, Edge?> edge in Edges)
-        {
-            if(edge.Value == null)
-            {
-                removals.Add(edge.Key);
-                continue;
-            }else
-            upserts.Add((Edge)edge.Value);
-        }
-        return modifications;
+        nodesForUpsert.Union(batchedMods.nodesForUpsert);
+        nodesForRemoval.UnionWith(batchedMods.nodesForRemoval);
+        edgesForUpsert.Union(batchedMods.edgesForUpsert);
+        edgesForRemoval.UnionWith(batchedMods.edgesForRemoval);
     }
 
-    public ElementModificationsByType<TNode> SegregateNodeModifications()
+    public void Intersect(BatchedModifications<TNode> batchedMods)
     {
-        HashSet<TNode> upserts = new();
-        HashSet<uint> removals = new();
-        ElementModificationsByType<TNode> modifications = new(upserts, removals);
-
-        foreach(KeyValuePair<uint, TNode?> node in Nodes)
-        {
-            if(node.Value == null)
-            {
-                removals.Add(node.Key);
-                continue;
-            }
-            upserts.Add((TNode)node.Value);
-        }
-        return modifications;
+        nodesForUpsert.Intersect(batchedMods.nodesForUpsert);
+        nodesForRemoval.IntersectWith(batchedMods.nodesForRemoval);
+        edgesForUpsert.Intersect(batchedMods.edgesForUpsert);
+        edgesForRemoval.IntersectWith(batchedMods.edgesForRemoval);
     }
 }
-
-public readonly record struct ElementModificationsByType<TElement>(IReadOnlySet<TElement> Upsert, IReadOnlySet<uint> Removal) where TElement : struct;
