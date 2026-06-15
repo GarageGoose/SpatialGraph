@@ -4,7 +4,7 @@ namespace GG.SpatialGraph.Spatial;
 
 public class QuadTreeNodes : GraphMetadata<Node2D>
 {
-    QuadTreeNodeCell parentCell;
+    QuadTreeCell<Node2D> parentCell;
 
     public QuadTreeNodes(IReadOnlyTrackedGraph<Node2D> baseGraph, Vector2 origin, float width = 100f, float height = 100f, uint nodeCapacity = 1) : base(baseGraph)
     {
@@ -25,12 +25,9 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
                 case ModificationType.Add:
                     if(checkIfWithinBounds(node.NewElement!.Value.Loc))
                     {
-                        parentCell.AddPoint(node.NewElement.Value);
+                        growCellToBounds(node.NewElement!.Value.Loc);
                     }
-                    else
-                    {
-                        
-                    }
+                    parentCell.AddElement(node.NewElement!.Value);
                 break;
 
                 case ModificationType.Modify:
@@ -43,15 +40,99 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
     }
 
     bool checkIfWithinBounds(Vector2 loc) => loc.X < parentCell.BottomRightCorner.X && loc.X > parentCell.TopLeftCorner.X && loc.Y < parentCell.TopLeftCorner.Y && loc.Y > parentCell.BottomRightCorner.Y;
-    void growCellToBounds(Vector2 loc)
+    void CheckAndGrowCellToBounds(Vector2 loc)
     {
-        if(parentCell.Center.X < loc.X)
+        QuadTreeCell<Node2D> newParent;
+
+        bool newCellToTheLeftOfTheParent = loc.X < parentCell.TopLeftCorner.X;
+        bool newCellToTheRightOfTheParent = loc.X > parentCell.BottomRightCorner.X;
+        bool newCellAboveParent = loc.Y > parentCell.TopLeftCorner.Y;
+        bool newCellBelowParent = loc.Y < parentCell.BottomRightCorner.Y;
+
+        if(!newCellAboveParent && !newCellBelowParent && !newCellToTheLeftOfTheParent && !newCellToTheLeftOfTheParent && !newCellToTheRightOfTheParent)
         {
-            
+            return;
+        }
+
+        Vector2 newCellPos = parentCell.TopLeftCorner;
+        newCellPos.X += newCellToTheLeftOfTheParent ? - parentCell.Width : newCellToTheRightOfTheParent ? parentCell.Width : 0f;
+        newCellPos.Y += newCellAboveParent ? parentCell.Height : newCellBelowParent ? - parentCell.Height : 0f;
+
+        Vector2 newParentCellPos = new(MathF.Min(newCellPos.X, parentCell.TopLeftCorner.X), MathF.Max(newCellPos.Y, parentCell.TopLeftCorner.Y));
+
+        newParent = new(parentCell.ElementCapacity, newParentCellPos, parentCell.Width * 2, parentCell.Height * 2);
+
+        //Ill come back to this when I know better.
+        //N = New cell
+        //P = Old parent cell
+        if (newCellToTheLeftOfTheParent)
+        {
+            if (newCellAboveParent)
+            {
+                //N|
+                // |P
+                newParent.Subdivide(null, null, null, null);
+            }
+            else if (newCellBelowParent)
+            {
+                // |P
+                //N|
+                newParent.Subdivide(null, null, null, null);
+            }
+            else
+            {
+                //N|P
+                // |
+                newParent.Subdivide(null, null, null, null);
+            }
+        }
+        else if (newCellToTheRightOfTheParent)
+        {
+            if (newCellAboveParent)
+            {
+                // |N
+                //P|
+                newParent.Subdivide(null, null, null, null);
+            }
+            else if (newCellBelowParent)
+            {
+                //P|
+                // |N
+                newParent.Subdivide(null, null, null, null);
+            }
+            else
+            {
+                //P|N
+                // |
+                newParent.Subdivide(null, null, null, null);
+            }
         }
         else
         {
-            
+            if (newCellAboveParent)
+            {
+                //N|
+                //P|
+                newParent.Subdivide(null, null, null, null);
+            }
+            else if (newCellBelowParent)
+            {
+                //P|
+                //N|
+                newParent.Subdivide(null, null, null, null);
+            }
+            else
+            {
+                //PN| < Both new and old parent cell occupying the same quadrant
+                //  |
+                newParent.Subdivide(null, null, null, null);
+            }
         }
+        
+        parentCell = newParent;
+
+        //Recursively check again untill the new parent cell now encompasses the given location
+        CheckAndGrowCellToBounds(loc);
     }
 }
+//newParent = new(parentCell.NodeCapacity, new(parentCell.TopLeftCorner.X, parentCell.TopLeftCorner.Y + parentCell.Height), parentCell.Width, parentCell.Height);

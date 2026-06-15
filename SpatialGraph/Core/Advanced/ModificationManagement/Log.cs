@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace GG.SpatialGraph;
 
 /// <summary>
@@ -84,7 +86,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
     //Assumes the node already exists in the base graph.
     public void NodeRemoval(uint ID) => nodeMods[ID] = new(null, BaseGraph.Nodes[ID], ModificationType.Remove);
 
-    //Assumes the edge already exists in the base graph.
+    //Assumes the edge already exists in the base graph
     public void EdgeRemoval(uint ID) => edgeMods[ID] = new(null, BaseGraph.Edges[ID], ModificationType.Remove);
 
     public void RemoveNodeModification(uint ID) => nodeMods.Remove(ID);

@@ -11,8 +11,6 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// </summary>
     public Graph()
     {
-        Nodes = nodes;
-        Edges = edges;
     }
 
     /// <summary>
@@ -22,9 +20,7 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     public Graph(IReadOnlyGraph<TNode> graph)
     {
         nodes = new(graph.Nodes);
-        Nodes = nodes;
         edges = new(graph.Edges);
-        Edges = edges;
     }
 
     /// <summary>
@@ -33,16 +29,14 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     public Graph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges)
     {
         this.nodes = new(nodes);
-        Nodes = this.nodes;
         this.edges = new(edges);
-        Edges = this.edges;
     }
 
     protected Dictionary<uint, TNode> nodes = new();
-    public IReadOnlyDictionary<uint, TNode> Nodes {get;}
+    public IReadOnlyDictionary<uint, TNode> Nodes => nodes;
 
     protected Dictionary<uint, Edge> edges = new();
-    public IReadOnlyDictionary<uint, Edge> Edges {get;}
+    public IReadOnlyDictionary<uint, Edge> Edges => edges;
 
     /// <summary>
     /// Add or replace multiple nodes with the same ID.

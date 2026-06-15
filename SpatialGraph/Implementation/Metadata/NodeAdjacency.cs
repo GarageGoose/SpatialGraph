@@ -23,6 +23,18 @@ public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, I
     {
     }
 
+    protected override void OnInitialize()
+    {
+        foreach(uint nodeID in Nodes.Keys)
+        {
+            connectedNodes.Add(nodeID, new());
+        }
+        foreach(Edge edge in Edges.Values)
+        {
+            AddEdge(edge);
+        }
+    }
+
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> log)
     {
         foreach(KeyValuePair<uint, ElementModificationLog<TNode>> nodeLog in log.NodeMods)
@@ -57,23 +69,23 @@ public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, I
                 break;
             }
         }
+    }
 
-        void AddEdge(Edge edge)
-        {
-            connectedEdges[edge.NodeID1].Add(edge.ID);
-            connectedEdges[edge.NodeID2].Add(edge.ID);
+    void AddEdge(Edge edge)
+    {
+        connectedEdges[edge.NodeID1].Add(edge.ID);
+        connectedEdges[edge.NodeID2].Add(edge.ID);
 
-            connectedNodes[edge.NodeID1].Add(edge.GetConnectingNode(edge.NodeID1));
-            connectedNodes[edge.NodeID2].Add(edge.GetConnectingNode(edge.NodeID2));
-        }
+        connectedNodes[edge.NodeID1].Add(edge.GetConnectingNode(edge.NodeID1));
+        connectedNodes[edge.NodeID2].Add(edge.GetConnectingNode(edge.NodeID2));
+    }
 
-        void RemoveEdge(Edge edge)
-        {
-            connectedEdges[edge.NodeID1].Remove(edge.ID);
-            connectedEdges[edge.NodeID2].Remove(edge.ID);
+    void RemoveEdge(Edge edge)
+    {
+        connectedEdges[edge.NodeID1].Remove(edge.ID);
+        connectedEdges[edge.NodeID2].Remove(edge.ID);
 
-            connectedNodes[edge.NodeID1].Remove(edge.GetConnectingNode(edge.NodeID1));
-            connectedNodes[edge.NodeID2].Remove(edge.GetConnectingNode(edge.NodeID2));
-        }
+        connectedNodes[edge.NodeID1].Remove(edge.GetConnectingNode(edge.NodeID1));
+        connectedNodes[edge.NodeID2].Remove(edge.GetConnectingNode(edge.NodeID2));
     }
 }
