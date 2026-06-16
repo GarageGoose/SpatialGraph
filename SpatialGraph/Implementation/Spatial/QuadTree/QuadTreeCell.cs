@@ -83,3 +83,9 @@ public interface IReadOnlyQuadTreeCell<TElement> where TElement : IElement
     float HalfHeight {get;}
     bool Subdivided {get;}
 }
+
+public interface IQuadTreeCollision<TElement> where TElement : struct, IElement
+{
+    bool CellCollision(IReadOnlyQuadTreeCell<Node2D> cell);
+    bool ElementCollision(Vector2 point);
+}

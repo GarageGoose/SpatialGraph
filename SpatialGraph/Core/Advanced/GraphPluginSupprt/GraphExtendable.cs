@@ -6,7 +6,7 @@ namespace GG.SpatialGraph;
 /// Adds plugin support for the base graph.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, INode
+public class GraphExtendable<TNode> : ITrackedGraph<TNode> where TNode : struct, INode
 {
     /// <param name="baseGraph">Base graph to extend from.</param>
     public GraphExtendable(ITrackedGraph<TNode> baseGraph)
@@ -14,6 +14,19 @@ public class GraphExtendable<TNode> : IGraph<TNode> where TNode : struct, INode
         this.baseGraph = baseGraph;
         Plugins = new(baseGraph);
         Modification = new(this.baseGraph, Plugins);
+    }
+
+    public event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified
+    {
+        add
+        {
+            baseGraph.GraphModified += value;
+        }
+
+        remove
+        {
+            baseGraph.GraphModified -= value;
+        }
     }
 
     readonly ITrackedGraph<TNode> baseGraph;
@@ -81,13 +94,6 @@ internal class PluginHandler<TNode> where TNode : struct, INode
 
     private void CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        if(e.NewItems != null)
-        {
-            foreach(GraphPlugin<TNode> NewPlugins in e.NewItems)
-            {
-                NewPlugins.OnInitialize();
-            }
-        }
         if(e.OldItems != null)
         {
             foreach(GraphPlugin<TNode> NewPlugins in e.OldItems)

@@ -1,59 +1,82 @@
 using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
-using System.Text.RegularExpressions;
-
 namespace GG.SpatialGraph.Spatial;
 
 public static class QuadTreeOps
 {
-    public static HashSet<uint> NodesWithinCircle(this QuadTreeNodes quadTree, Vector2 loc, float radius)
+    public static void Query(IReadOnlyQuadTreeCell<Node2D> currCell, IQuadTreeCollision<Node2D> collision, ICollection<uint> outputNodeIDs)
     {
-        HashSet<uint> nodes = new();
-        ProcessCell(quadTree.ParentCell, nodes);
-        return nodes;
-
-        void ProcessCell(IReadOnlyQuadTreeCell<Node2D> currCell, HashSet<uint> hashSet)
+        if(collision.CellCollision(currCell))
         {
-            if(CircleCellCol(loc, radius, currCell))
+            if (currCell.Subdivided)
             {
-                if (currCell.Subdivided)
+                Query(currCell.NorthEastRO!, collision, outputNodeIDs);
+                Query(currCell.NorthWestRO!, collision, outputNodeIDs);
+                Query(currCell.SouthEastRO!, collision, outputNodeIDs);
+                Query(currCell.SouthWestRO!, collision, outputNodeIDs);
+            }
+            else
+            {
+                foreach(Node2D node in currCell.Elements.Values)
                 {
-                    ProcessCell(currCell.NorthEastRO!, hashSet);
-                    ProcessCell(currCell.NorthWestRO!, hashSet);
-                    ProcessCell(currCell.SouthEastRO!, hashSet);
-                    ProcessCell(currCell.SouthWestRO!, hashSet);
-                }
-                else
-                {
-                    foreach(Node2D node in currCell.Elements.Values)
+                    if(collision.ElementCollision(node.Loc))
                     {
-                        if(PointCircleCol(loc, radius, node.Loc))
-                        {
-                            hashSet.Add(node.ID);
-                        }
+                        outputNodeIDs.Add(node.ID);
                     }
                 }
             }
         }
+    }
+}
 
-        bool CircleCellCol(Vector2 circle, float radius, IReadOnlyQuadTreeCell<Node2D> cell)
+public class QuadTreeCircleCollition : IQuadTreeCollision<Node2D>
+{
+    public readonly Vector2 Loc;
+    public readonly float Radius;
+    public QuadTreeCircleCollition(Vector2 loc, float radius)
+    {
+        Loc = loc;
+        Radius = radius;
+    }
+    
+    public bool CellCollision(IReadOnlyQuadTreeCell<Node2D> cell)
+    {
+        Vector2 circleAxisDist = new(MathF.Abs(Loc.X - cell.Center.X), MathF.Abs(Loc.Y - cell.Center.Y));
+
+        if(circleAxisDist.X <= cell.HalfWidth || circleAxisDist.Y <= cell.HalfHeight)
         {
-            Vector2 circleAxisDist = new(MathF.Abs(circle.X - cell.Center.X), MathF.Abs(circle.Y - cell.Center.Y));
-
-            if(circleAxisDist.X <= cell.HalfWidth || circleAxisDist.Y <= cell.HalfHeight)
-            {
-                return true;
-            }
-
-            if(circleAxisDist.X > cell.HalfWidth + radius || circleAxisDist.Y > cell.HalfHeight + radius)
-            {
-                return false;
-            }
-
-            float cornerDistSquared = MathF.Pow(circleAxisDist.X - cell.HalfWidth, 2) + MathF.Pow(circleAxisDist.Y - cell.HalfHeight, 2);
-            return cornerDistSquared <= MathF.Pow(radius, 2);
+            return true;
         }
 
-        bool PointCircleCol(Vector2 circle, float radius, Vector2 point) => MathF.Pow(circle.X + point.X, 2) + MathF.Pow(circle.Y + point.Y, 2) <= radius;
+        if(circleAxisDist.X > cell.HalfWidth + Radius || circleAxisDist.Y > cell.HalfHeight + Radius)
+        {
+            return false;
+        }
+
+        float cornerDistSquared = MathF.Pow(circleAxisDist.X - cell.HalfWidth, 2) + MathF.Pow(circleAxisDist.Y - cell.HalfHeight, 2);
+        return cornerDistSquared <= MathF.Pow(Radius, 2);
+    }
+
+    public bool ElementCollision(Vector2 point) => MathF.Pow(Loc.X - point.X, 2) + MathF.Pow(Loc.Y - point.Y, 2) <= Radius;
+}
+
+public class QuadTreeAABBCollision : IQuadTreeCollision<Node2D>
+{
+    public readonly Vector2 TopLeft;
+    public readonly Vector2 BottomRight;
+
+    public QuadTreeAABBCollision(Vector2 TopLeft, Vector2 BottomRight)
+    {
+        this.TopLeft = TopLeft;
+        this.BottomRight = BottomRight;
+    }
+
+    public bool CellCollision(IReadOnlyQuadTreeCell<Node2D> cell)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool ElementCollision(Vector2 point)
+    {
+        throw new NotImplementedException();
     }
 }

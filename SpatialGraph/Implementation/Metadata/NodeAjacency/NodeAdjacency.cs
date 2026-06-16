@@ -23,10 +23,6 @@ public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, I
 
     public NodeAdjacency(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
     {
-    }
-
-    protected override void OnInitialize()
-    {
         foreach(uint nodeID in Nodes.Keys)
         {
             connectedNodes.Add(nodeID, new());
@@ -37,7 +33,7 @@ public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, I
         }
     }
 
-    protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> log)
+    protected override void OnGraphUpdate(IReadOnlyModificationLog<TNode> log)
     {
         foreach(KeyValuePair<uint, ElementModificationLog<TNode>> nodeLog in log.NodeMods)
         {

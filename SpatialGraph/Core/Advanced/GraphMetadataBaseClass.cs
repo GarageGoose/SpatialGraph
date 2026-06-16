@@ -7,36 +7,55 @@ namespace GG.SpatialGraph.Metadata;
 public abstract class GraphMetadata<TNode> : IReadOnlyTrackedGraph<TNode> where TNode : struct, INode
 {
     IReadOnlyTrackedGraph<TNode> BaseGraph;
-
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
-
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
+    public uint GenerateID() => BaseGraph.GenerateID();
 
     public GraphMetadata(IReadOnlyTrackedGraph<TNode> baseGraph)
     {
         BaseGraph = baseGraph;
-        baseGraph.GraphModified += OnGraphUpdate;
-        OnInitialize();
+        baseGraph.GraphModified += internalOnGraphUpdate;
     }
-
+    
+    /// <summary>
+    /// Contains information about the changes in the BaseGraph. Invokes when the graph changes after the metadata is modified. Note that event this is separate from BaseGraph.GraphModified.
+    /// </summary>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified
     {
         add
         {
-            BaseGraph.GraphModified += value;
+            MetadataUpdated += value;
         }
 
         remove
         {
-            BaseGraph.GraphModified -= value;
+            MetadataUpdated -= value;
         }
     }
+    event EventHandler<IReadOnlyModificationLog<TNode>>? MetadataUpdated;
 
-    protected virtual void OnInitialize() {}
-    protected virtual void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> e) {}
-
-    public uint GenerateID()
+    /// <summary>
+    /// Contains information about the changes in the BaseGraph. Invokes when the graph changes before the metadata is modified. Note that this event is separate from BaseGraph.GraphModified.
+    /// </summary>
+    public event EventHandler<IReadOnlyModificationLog<TNode>>? BaseGraphModified
     {
-        return BaseGraph.GenerateID();
+        add
+        {
+            MetadataUpdateInit += value;
+        }
+
+        remove
+        {
+            MetadataUpdateInit -= value;
+        }
     }
+    public event EventHandler<IReadOnlyModificationLog<TNode>>? MetadataUpdateInit;
+
+    void internalOnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> e)
+    {
+        MetadataUpdateInit?.Invoke(this, e);
+        OnGraphUpdate(e);
+        MetadataUpdated?.Invoke(this, e);
+    }
+    protected virtual void OnGraphUpdate(IReadOnlyModificationLog<TNode> modLog) {}
 }

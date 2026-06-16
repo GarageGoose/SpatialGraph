@@ -93,7 +93,7 @@ public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, IN
         return new();
     }
 
-    protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> modLog) => modHistory.Add(modLog);
+    protected override void OnGraphUpdate(IReadOnlyModificationLog<TNode> modLog) => modHistory.Add(modLog);
 }
 
 public readonly record struct GraphSnapshot<TNode>(int ModStep, Graph<TNode> Snapshot) where TNode : struct, INode;
