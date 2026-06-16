@@ -19,7 +19,7 @@ public class QuadTreeCell<TElement> : IReadOnlyQuadTreeCell<TElement> where TEle
     public bool Subdivided {get; private set;} = false;
 
     public uint ElementCapacity {get; private set;}
-    Dictionary<uint, TElement> elements = new();
+    public Dictionary<uint, TElement> elements = new();
     public IReadOnlyDictionary<uint, TElement> Elements => elements;
 
     //Size and bounds
@@ -37,16 +37,6 @@ public class QuadTreeCell<TElement> : IReadOnlyQuadTreeCell<TElement> where TEle
         Height = height;
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height - 2)); 
         BottomRightCorner = new(TopLeftCorner.X + width, TopLeftCorner.Y - Height);
-    }
-
-    public bool AddElement(TElement newNode)
-    {
-        if (Subdivided && elements.Count >= ElementCapacity)
-        {
-            return false;
-        }
-        elements.Add(newNode.ID, newNode);
-        return true;
     }
 
     public void Subdivide()
@@ -86,40 +76,3 @@ public interface IReadOnlyQuadTreeCell<TElement> where TElement : IElement
     float Width {get;}
     float Height {get;}
 }
-
-/*
-            if(Center.X < node.Loc.X)
-        {
-            if(Center.Y < node.Loc.Y)
-            {
-                NorthEast!.AddElement(node);
-                return;
-            }
-            SouthEast!.AddElement(node);
-            return;
-        }
-        if(Center.Y < node.Loc.Y)
-        {
-            SouthEast!.AddElement(node);
-            return;
-        }
-        SouthWest!.AddElement(node);    private void AddNodeToChild(Node2D node)
-    {
-        if(Center.X < node.Loc.X)
-        {
-            if(Center.Y < node.Loc.Y)
-            {
-                NorthEast!.AddPoint(node);
-                return;
-            }
-            SouthEast!.AddPoint(node);
-            return;
-        }
-        if(Center.Y < node.Loc.Y)
-        {
-            SouthEast!.AddPoint(node);
-            return;
-        }
-        SouthWest!.AddPoint(node);
-    }*/
-

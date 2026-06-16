@@ -5,6 +5,9 @@ namespace GG.SpatialGraph.Spatial;
 public class QuadTreeNodes : GraphMetadata<Node2D>
 {
     QuadTreeCell<Node2D> parentCell;
+    Dictionary<uint, QuadTreeCell<Node2D>> cellOfNodes = new();
+    public IReadOnlyQuadTreeCell<Node2D> CellOfNode(uint NodeID) => cellOfNodes[NodeID];
+    public IReadOnlyQuadTreeCell<Node2D> ParentCell => parentCell;
 
     public QuadTreeNodes(IReadOnlyTrackedGraph<Node2D> baseGraph, Vector2 origin, float width = 100f, float height = 100f, uint nodeCapacity = 1) : base(baseGraph)
     {
@@ -13,7 +16,11 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
 
     protected override void OnInitialize()
     {
-        
+        foreach(Node2D node in Nodes.Values)
+        {
+            CheckAndGrowCellToBounds(node.Loc);
+            AddNode(node, parentCell);
+        }
     }
 
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<Node2D> e)
@@ -24,16 +31,65 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
             {
                 case ModificationType.Add:
                     CheckAndGrowCellToBounds(node.NewElement!.Value.Loc);
-                    parentCell.AddElement(node.NewElement!.Value);
+                    AddNode(node.NewElement!.Value, parentCell);
                 break;
 
                 case ModificationType.Modify:
+                    RemoveNode(node.NewElement!.Value.ID);
+                    CheckAndGrowCellToBounds(node.NewElement!.Value.Loc);
+                    AddNode(node.NewElement!.Value, parentCell);
                 break;
 
                 case ModificationType.Remove:
+                    RemoveNode(node.NewElement!.Value.ID);
                 break;
             }
         }
+    }
+
+    void AddNode(Node2D node, QuadTreeCell<Node2D> currCell)
+    {
+        if (currCell.Elements.Count >= currCell.ElementCapacity && !currCell.Subdivided)
+        {
+            currCell.Subdivide();
+            foreach(Node2D nodeInCell in currCell.elements.Values)
+            {
+                cellOfNodes[nodeInCell.ID] = NodeToChildren(currCell, nodeInCell);
+            }
+        }
+        else if (currCell.Subdivided)
+        {
+            NodeToChildren(currCell, node);
+        }
+        currCell.elements.Add(node.ID, node);
+        cellOfNodes[node.ID] = currCell;
+    }
+
+    void RemoveNode(uint ID)
+    {
+        cellOfNodes[ID].elements.Remove(ID);
+        cellOfNodes.Remove(ID);
+    }
+
+    QuadTreeCell<Node2D> NodeToChildren(QuadTreeCell<Node2D> currCell, Node2D node)
+    {
+        if(node.Loc.X < currCell.Center.X)
+        {
+            if(node.Loc.Y < currCell.Center.Y)
+            {
+                AddNode(node, currCell.SouthWest!);
+                return currCell.SouthWest!;
+            }
+            AddNode(node, currCell.NorthWest!);
+            return currCell.NorthWest!;
+        }
+        if(node.Loc.Y < currCell.Center.Y)
+        {
+            AddNode(node, currCell.SouthEast!);
+            return currCell.SouthEast!;
+        }
+        AddNode(node, currCell.NorthEast!);
+        return currCell.NorthEast!;
     }
     void CheckAndGrowCellToBounds(Vector2 loc)
     {
@@ -68,16 +124,10 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
                 // |P
                 newParent.Subdivide(null, null, null, parentCell);
             }
-            else if (newCellBelowParent)
-            {
-                // |P
-                //N|
-                newParent.Subdivide(null, parentCell, null, null);
-            }
             else
             {
-                //N|P
-                // |
+                // |P    N|P
+                //N|  or  |
                 newParent.Subdivide(null, parentCell, null, null);
             }
         }
@@ -89,16 +139,10 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
                 //P|
                 newParent.Subdivide(null, null, parentCell, null);
             }
-            else if (newCellBelowParent)
-            {
-                //P|
-                // |N
-                newParent.Subdivide(parentCell, null, null, null);
-            }
             else
             {
-                //P|N
-                // |
+                //P|     P|N
+                // |N or  |
                 newParent.Subdivide(parentCell, null, null, null);
             }
         }
@@ -112,15 +156,9 @@ public class QuadTreeNodes : GraphMetadata<Node2D>
             }
             else if (newCellBelowParent)
             {
-                //P|
-                //N|
+                //P|     PN|  < Both new and old parent cell occupying the same quadrant
+                //N|  or   |
                 newParent.Subdivide(parentCell, null, null, null);
-            }
-            else
-            {
-                //PN| < Both new and old parent cell occupying the same quadrant
-                //  |
-                newParent.Subdivide(null, null, null, null);
             }
         }
         
