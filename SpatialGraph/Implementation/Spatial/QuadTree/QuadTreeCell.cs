@@ -27,14 +27,18 @@ public class QuadTreeCell<TElement> : IReadOnlyQuadTreeCell<TElement> where TEle
     public Vector2 Center {get; private set;}
     public Vector2 BottomRightCorner {get; private set;}
     public float Width {get; private set;}
+    public float HalfWidth {get; private set;}
     public float Height {get; private set;}
+    public float HalfHeight {get; private set;}
 
     public QuadTreeCell(uint nodeCapacity, Vector2 originTopLeft, float width, float height)
     {
         ElementCapacity = nodeCapacity;
         TopLeftCorner = originTopLeft;
         Width = width;
+        HalfWidth = Width / 2;
         Height = height;
+        HalfHeight = Height / 2;
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height - 2)); 
         BottomRightCorner = new(TopLeftCorner.X + width, TopLeftCorner.Y - Height);
     }
@@ -74,5 +78,8 @@ public interface IReadOnlyQuadTreeCell<TElement> where TElement : IElement
     Vector2 Center {get;}
     Vector2 BottomRightCorner {get;}
     float Width {get;}
+    float HalfWidth {get;}
     float Height {get;}
+    float HalfHeight {get;}
+    bool Subdivided {get;}
 }
