@@ -19,6 +19,8 @@ public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, I
     /// </summary>
     public IReadOnlySet<uint> ConnectedEdges(uint nodeID) => connectedEdges[nodeID];
 
+    public int ConnectedEdgesCount(uint nodeID) => connectedEdges[nodeID].Count;
+
     public NodeAdjacency(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
     {
     }

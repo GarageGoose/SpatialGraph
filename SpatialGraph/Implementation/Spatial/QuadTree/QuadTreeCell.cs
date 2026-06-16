@@ -1,7 +1,7 @@
 using System.Numerics;
 namespace GG.SpatialGraph.Spatial;
 
-internal class QuadTreeCell<TElement> where TElement : IElement
+public class QuadTreeCell<TElement> : IReadOnlyQuadTreeCell<TElement> where TElement : IElement
 {
     //Children
     public QuadTreeCell<TElement>? NorthWest {get; private set;}
@@ -9,17 +9,25 @@ internal class QuadTreeCell<TElement> where TElement : IElement
     public QuadTreeCell<TElement>? SouthEast {get; private set;}
     public QuadTreeCell<TElement>? SouthWest {get; private set;}
 
+    public IReadOnlyQuadTreeCell<TElement>? NorthWestRO => NorthWest;
+    public IReadOnlyQuadTreeCell<TElement>? NorthEastRO => NorthEast;
+    public IReadOnlyQuadTreeCell<TElement>? SouthEastRO => SouthWest;
+    public IReadOnlyQuadTreeCell<TElement>? SouthWestRO => SouthEast;
+    
+
     //Cell properties
     public bool Subdivided {get; private set;} = false;
-    public readonly uint ElementCapacity;
-    Dictionary<uint, TElement> Elements = new();
+
+    public uint ElementCapacity {get; private set;}
+    Dictionary<uint, TElement> elements = new();
+    public IReadOnlyDictionary<uint, TElement> Elements => elements;
 
     //Size and bounds
-    public readonly Vector2 TopLeftCorner;
-    public readonly Vector2 Center;
-    public readonly Vector2 BottomRightCorner;
-    public readonly float Width;
-    public readonly float Height;
+    public Vector2 TopLeftCorner {get; private set;}
+    public Vector2 Center {get; private set;}
+    public Vector2 BottomRightCorner {get; private set;}
+    public float Width {get; private set;}
+    public float Height {get; private set;}
 
     public QuadTreeCell(uint nodeCapacity, Vector2 originTopLeft, float width, float height)
     {
@@ -33,11 +41,11 @@ internal class QuadTreeCell<TElement> where TElement : IElement
 
     public bool AddElement(TElement newNode)
     {
-        if (Subdivided && Elements.Count >= ElementCapacity)
+        if (Subdivided && elements.Count >= ElementCapacity)
         {
             return false;
         }
-        Elements.Add(newNode.ID, newNode);
+        elements.Add(newNode.ID, newNode);
         return true;
     }
 
@@ -50,7 +58,7 @@ internal class QuadTreeCell<TElement> where TElement : IElement
         Subdivided = true;
     }
 
-    public void Subdivide(QuadTreeCell<TElement>? northEast, QuadTreeCell<TElement>? northWest, QuadTreeCell<TElement>? southEast, QuadTreeCell<TElement>? southWest)
+    public void Subdivide(QuadTreeCell<TElement>? northWest, QuadTreeCell<TElement>? northEast, QuadTreeCell<TElement>? southWest, QuadTreeCell<TElement>? southEast)
     {
         NorthEast = northEast == null ? new(ElementCapacity, TopLeftCorner, Width / 2, Height / 2) : northEast;
         NorthWest = northWest == null ? new(ElementCapacity, new(Center.X, TopLeftCorner.Y), Width / 2, Height / 2) : northWest;
@@ -59,7 +67,24 @@ internal class QuadTreeCell<TElement> where TElement : IElement
         Subdivided = true;
     }
 
-    public void RemoveElement(uint NodeID) => Elements.Remove(NodeID);
+    public void RemoveElement(uint NodeID) => elements.Remove(NodeID);
+}
+
+public interface IReadOnlyQuadTreeCell<TElement> where TElement : IElement
+{
+    IReadOnlyQuadTreeCell<TElement>? NorthWestRO {get;}
+    IReadOnlyQuadTreeCell<TElement>? NorthEastRO {get;}
+    IReadOnlyQuadTreeCell<TElement>? SouthEastRO {get;}
+    IReadOnlyQuadTreeCell<TElement>? SouthWestRO {get;}
+
+    uint ElementCapacity {get;}
+    IReadOnlyDictionary<uint, TElement> Elements {get;}
+
+    Vector2 TopLeftCorner {get;}
+    Vector2 Center {get;}
+    Vector2 BottomRightCorner {get;}
+    float Width {get;}
+    float Height {get;}
 }
 
 /*
