@@ -6,6 +6,7 @@ namespace GG.SpatialGraph.Metadata;
 /// <typeparam name="TNode"></typeparam>
 public abstract class GraphMetadata<TNode> : IReadOnlyTrackedGraph<TNode> where TNode : struct, INode
 {
+    //BaseGraph stuff
     IReadOnlyTrackedGraph<TNode> BaseGraph;
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;

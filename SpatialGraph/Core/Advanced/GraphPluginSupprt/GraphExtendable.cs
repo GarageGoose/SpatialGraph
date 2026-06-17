@@ -2,8 +2,9 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 namespace GG.SpatialGraph;
 
+//Will redo this.
 /// <summary>
-/// Adds plugin support for the base graph.
+/// Adds plugin support for the base graph. See SpatialGraph/Implementation/Behavior for plugins.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public class GraphExtendable<TNode> : ITrackedGraph<TNode> where TNode : struct, INode

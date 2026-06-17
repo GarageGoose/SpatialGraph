@@ -3,7 +3,23 @@ using GG.SpatialGraph.Metadata;
 
 namespace GG.SpatialGraph.Traversal;
 
+/// <summary>
+/// Provides traversal info for a specific node.
+/// </summary>
+/// <typeparam name="TNode">Node type.</typeparam>
+/// <param name="NodeID">Current node ID traversed.</param>
+/// <param name="OriginNodeID">Node where the current node was found.</param>
+/// <param name="EdgeUsedForTraversal">Edge where the current node was found.</param>
 public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNodeID, uint? EdgeUsedForTraversal) where TNode : struct, INode;
+
+/// <summary>
+/// Graph traversal algorithms.
+/// </summary>
+/// <typeparam name="TNode">Node type.</typeparam>
+/// <param name="Traverse">Traverse the graph.</param>
+/// <param name="BaseGraph">Graph to traverse.</param>
+/// <param name="StartingNodeID">Node to start traversal.</param>
+/// <param name="TagretNodeID">Node to find when travering.</param>
 public readonly record struct GraphTraversal<TNode>(IEnumerable<TraversalInfo<TNode>> Traverse, NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, uint? TagretNodeID) where TNode : struct, INode;
 
 public static class Pathfinding
@@ -22,6 +38,8 @@ public static class Pathfinding
             {
                 { nodeIDStart, null }
             };
+
+            //For tracking where an edge was discovered from (k: current node, v: edge where it's discovered)
             Dictionary<uint, uint?> EdgeDiscovery = new()
             {
                 { nodeIDStart, null }
@@ -64,6 +82,8 @@ public static class Pathfinding
             {
             { nodeIDStart, null }
             };
+
+            //For tracking where an edge was discovered from (k: current node, v: edge where it's discovered)
             Dictionary<uint, uint?> EdgeDiscovery = new()
             {
                 { nodeIDStart, null }
@@ -113,6 +133,8 @@ public static class Pathfinding
             {
                 { nodeIDStart, null }
             };
+
+            //For tracking where an edge was discovered from (k: current node, v: edge where it's discovered)
             Dictionary<uint, uint?> EdgeDiscovery = new()
             {
                 { nodeIDStart, null }

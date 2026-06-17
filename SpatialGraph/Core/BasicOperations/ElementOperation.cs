@@ -3,21 +3,21 @@ namespace GG.SpatialGraph;
 
 public static class ElemOp
 {
-    public static Edge UpdateID(this Edge edge, uint newID) => new(newID, edge.NodeID1, edge.NodeID2);
-    public static Edge UpdateNodeIDs(this Edge edge, uint newNodeID1, uint newNodeID2) => new(edge.ID, newNodeID1, newNodeID2);
-    public static Edge UpdateNodeID1(this Edge edge, uint newNodeID1) => new(edge.ID, newNodeID1, edge.NodeID2);
-    public static Edge UpdateNodeID2(this Edge edge, uint newNodeID2) => new(edge.ID, edge.NodeID1, newNodeID2);
+    public static Edge ChangeID(this Edge edge, uint newID) => new(newID, edge.NodeID1, edge.NodeID2);
+    public static Edge ChangeNodeIDs(this Edge edge, uint newNodeID1, uint newNodeID2) => new(edge.ID, newNodeID1, newNodeID2);
+    public static Edge ChangeNodeID1(this Edge edge, uint newNodeID1) => new(edge.ID, newNodeID1, edge.NodeID2);
+    public static Edge ChangeNodeID2(this Edge edge, uint newNodeID2) => new(edge.ID, edge.NodeID1, newNodeID2);
 
-    public static Node2D UpdateID(this Node2D node, uint newID) => new(newID, node.Loc);
-    public static Node2D UpdateLoc(this Node2D node, Vector2 newLoc) => new(node.ID, newLoc);
-    public static Node2D UpdateX(this Node2D node, float newX) => new(node.ID, new(newX, node.Loc.Y));
-    public static Node2D UpdateY(this Node2D node, float newY) => new(node.ID, new(node.Loc.X, newY));
+    public static Node2D ChangeID(this Node2D node, uint newID) => new(newID, node.Loc);
+    public static Node2D ChangeLoc(this Node2D node, Vector2 newLoc) => new(node.ID, newLoc);
+    public static Node2D ChangeX(this Node2D node, float newX) => new(node.ID, new(newX, node.Loc.Y));
+    public static Node2D ChangeY(this Node2D node, float newY) => new(node.ID, new(node.Loc.X, newY));
 
-    public static Node3D UpdateID(this Node3D node, uint newID) => new(newID, node.Loc);
-    public static Node3D UpdateLoc(this Node3D node, Vector3 newLoc) => new(node.ID, newLoc);
-    public static Node3D UpdateX(this Node3D node, float newX) => new(node.ID, new(newX, node.Loc.Y, node.Loc.Z));
-    public static Node3D UpdateY(this Node3D node, float newY) => new(node.ID, new(node.Loc.X, newY, node.Loc.Z));
-    public static Node3D UpdateZ(this Node3D node, float newZ) => new(node.ID, new(node.Loc.X, node.Loc.Y, newZ));
+    public static Node3D ChangeID(this Node3D node, uint newID) => new(newID, node.Loc);
+    public static Node3D ChangeLoc(this Node3D node, Vector3 newLoc) => new(node.ID, newLoc);
+    public static Node3D ChangeX(this Node3D node, float newX) => new(node.ID, new(newX, node.Loc.Y, node.Loc.Z));
+    public static Node3D ChangeY(this Node3D node, float newY) => new(node.ID, new(node.Loc.X, newY, node.Loc.Z));
+    public static Node3D ChangeZ(this Node3D node, float newZ) => new(node.ID, new(node.Loc.X, node.Loc.Y, newZ));
 
     public static NodeEdgeAssignment EdgeAssignmentOfNode(this Edge edge, uint nodeID)
     {
