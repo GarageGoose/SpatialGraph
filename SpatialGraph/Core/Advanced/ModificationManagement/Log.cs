@@ -122,6 +122,7 @@ public interface IReadOnlyModificationLog<TNode> where TNode : struct, INode
 {
     IReadOnlyDictionary<uint, ElementModificationLog<TNode>> NodeMods {get;}
     IReadOnlyDictionary<uint, ElementModificationLog<Edge>> EdgeMods {get;}
+    BatchedModifications<TNode> GetBatchedModifications();
 }
 
 public enum ModificationType

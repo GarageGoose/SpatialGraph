@@ -1,6 +1,6 @@
 namespace GG.SpatialGraph.Serializable;
 
-//Should be good enough, ill expand it eventually when needed.
+//Should be good enough (for now ig), ill expand it eventually when needed.
 /// <summary>
 /// Common interface for serialization/deserialization.
 /// </summary>

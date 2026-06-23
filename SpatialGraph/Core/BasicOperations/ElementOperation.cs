@@ -1,7 +1,7 @@
 using System.Numerics;
 namespace GG.SpatialGraph;
 
-public static class ElemOp
+public static class BasicElementOperations
 {
     public static Edge ChangeID(this Edge edge, uint newID) => new(newID, edge.NodeID1, edge.NodeID2);
     public static Edge ChangeNodeIDs(this Edge edge, uint newNodeID1, uint newNodeID2) => new(edge.ID, newNodeID1, newNodeID2);

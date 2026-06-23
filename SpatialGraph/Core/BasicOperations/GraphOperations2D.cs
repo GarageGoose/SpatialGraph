@@ -2,7 +2,7 @@ using System.Numerics;
 using GG.SpatialGraph.Metadata;
 namespace GG.SpatialGraph;
 
-public static class GraphOp2D
+public static class BasicGraph2DOperations
 {
     /// <summary>
     /// Copy specified elements from one graph to another.

@@ -93,7 +93,7 @@ public static class PathfindingOps
     /// <param name="edgeIDs">IDs of edges connecting the source and target nodes.</param>
     /// <param name="nodeIDs">IDs of nodes connecting the source and target nodes.</param>
     /// <returns>If path between the two nodes were found.</returns>
-    public static bool Pathfind<TGraph, TNode>(this GraphTraversal<TNode> graphTraversal, out Stack<uint> edgeIDs, out Stack<uint> nodeIDs) where TNode : struct, INode
+    public static bool Pathfind<TNode>(this GraphTraversal<TNode> graphTraversal, out Stack<uint> edgeIDs, out Stack<uint> nodeIDs) where TNode : struct, INode
     {
         edgeIDs = new();
         nodeIDs = new();
