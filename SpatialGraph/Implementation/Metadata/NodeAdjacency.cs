@@ -4,7 +4,7 @@ namespace GG.SpatialGraph.Metadata;
 /// Records adjecent nodes or edges from a node in a graph.
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
-public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, INode
+public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : struct, INode
 {
     Dictionary<uint, HashSet<uint>> connectedNodes = new();
     Dictionary<uint, HashSet<uint>> connectedEdges = new();
@@ -33,39 +33,32 @@ public class NodeAdjacency<TNode> : GraphMetadata<TNode> where TNode : struct, I
         }
     }
 
-    protected override void OnGraphUpdate(IReadOnlyModificationLog<TNode> log)
+    protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> log)
     {
-        foreach(KeyValuePair<uint, ElementModificationLog<TNode>> nodeLog in log.NodeMods)
+        foreach(ElementAdded<TNode> node in log.NewNodes.Values)
         {
-            switch (nodeLog.Value.ModType)
-            {
-                case ModificationType.Add:
-                    connectedNodes.Add(nodeLog.Key, new());
-                break;
-
-                case ModificationType.Remove:
-                    connectedNodes.Remove(nodeLog.Key);
-                break;
-            }
+            connectedNodes.Add(node.ID, new());
         }
 
-        foreach(KeyValuePair<uint, ElementModificationLog<Edge>> edgeLog in log.EdgeMods)
+        foreach(ElementRemoved<TNode> node in log.RemovedNodes.Values)
         {
-            switch (edgeLog.Value.ModType)
-            {
-                case ModificationType.Add:
-                    AddEdge((Edge)edgeLog.Value.NewElement!);
-                break;
+            connectedNodes.Remove(node.ID);
+        }
 
-                case ModificationType.Modify:
-                    RemoveEdge((Edge)edgeLog.Value.OldElement!);
-                    AddEdge((Edge)edgeLog.Value.NewElement!);
-                break;
+        foreach(ElementAdded<Edge> edge in log.NewEdges.Values)
+        {
+            AddEdge(edge.Element);
+        }
 
-                case ModificationType.Remove:
-                    RemoveEdge((Edge)edgeLog.Value.OldElement!);
-                break;
-            }
+        foreach(ElementModified<Edge> edge in log.ModifiedEdges.Values)
+        {
+            AddEdge(edge.NewElement);
+            RemoveEdge(edge.OldElement);
+        }
+
+        foreach(ElementRemoved<Edge> edge in log.RemovedEdges.Values)
+        {
+            RemoveEdge(edge.Element);
         }
     }
 

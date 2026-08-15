@@ -4,42 +4,41 @@ namespace GG.SpatialGraph;
 /// Graph which tracked changes within it.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNode : struct, INode
+public class TrackedGraphInterceptable<TNode> : Graph<TNode>, ITrackedGraphInterceptable<TNode> where TNode : struct, INode
 {
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
+    public event EventHandler<ModificationLog<TNode>>? OnGraphModificationInit;
 
-    public TrackedGraph() : base()
+    public TrackedGraphInterceptable() : base()
     {
     }
 
-    public TrackedGraph(IReadOnlyGraph<TNode> graph) : base(graph)
+    public TrackedGraphInterceptable(IReadOnlyGraph<TNode> graph) : base(graph)
     {
     }
 
-    public TrackedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
+    public TrackedGraphInterceptable(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
     {
     }
 
-    public override void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> mods)
-    {
-        ModificationLog<TNode> log = new(this);
+    public override void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> mods) => applyBatchedModifications(new(this, mods));
 
-        foreach(TNode node in mods.GetUpsertedNodes())
+    private void applyBatchedModifications(ModificationLog<TNode> log)
+    {
+        OnGraphModificationInit?.Invoke(this, log);
+        
+        foreach(TNode node in log.GetUpsertedNodes())
         {
-            log.NodeUpsert(node);
             nodes[node.ID] = node;
         }
         
-        foreach(Edge edge in mods.GetUpsertedEdges())
+        foreach(Edge edge in log.GetUpsertedEdges())
         {
-            log.EdgeUpsert(edge);
             edges[edge.ID] = edge;
         }
 
-        foreach(uint nodeID in mods.GetNodeRemovalID())
+        foreach(uint nodeID in log.GetNodeRemovalID())
         {
-            log.NodeRemoval(nodeID);
-
             //Undo log if operation failed
             if (!nodes.Remove(nodeID))
             {
@@ -47,10 +46,8 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
             }
         }
 
-        foreach(uint edgeID in mods.GetEdgeRemovalID())
+        foreach(uint edgeID in log.GetEdgeRemovalID())
         {
-            log.EdgeRemoval(edgeID);
-
             //Undo log if operation failed
             if (!edges.Remove(edgeID))
             {
@@ -65,39 +62,29 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
     {
         ModificationLog<TNode> log = new(this);
         log.EdgeRemoval(ID);
-        if (base.RemoveEdge(ID))
-        {
-            OnGraphModified?.Invoke(this, log);
-            return true;
-        }
-        return false;
+        ApplyBatchedModifications(log);
+        return true;
     }
 
     public override bool RemoveNode(uint ID)
     {
         ModificationLog<TNode> log = new(this);
         log.NodeRemoval(ID);
-        if (base.RemoveNode(ID))
-        {
-            OnGraphModified?.Invoke(this, log);
-            return true;
-        }
-        return false;
+        ApplyBatchedModifications(log);
+        return true;
     }
 
     public override void UpsertEdge(Edge edge)
     {
         ModificationLog<TNode> log = new(this);
         log.EdgeUpsert(edge);
-        base.UpsertEdge(edge);
-        OnGraphModified?.Invoke(this, log);
+        ApplyBatchedModifications(log);
     }
 
     public override void UpsertNode(TNode Node)
     {
         ModificationLog<TNode> log = new(this);
         log.NodeUpsert(Node);
-        base.UpsertNode(Node);
-        OnGraphModified?.Invoke(this, log);
+        ApplyBatchedModifications(log);
     }
 }

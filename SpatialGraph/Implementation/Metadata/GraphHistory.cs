@@ -4,10 +4,10 @@ namespace GG.SpatialGraph.Metadata;
 /// Records history of a graph from accumulated ModificationLogs.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, INode
+public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : struct, INode
 {
     //Mod step is a single iteration of a modification of the base graph
-    public int ModStep => modHistory.Count - 1;
+    public int ModStepMax => modHistory.Count - 1;
 
     private List<IReadOnlyModificationLog<TNode>> modHistory = new();
     public IReadOnlyList<IReadOnlyModificationLog<TNode>> ModHistory => modHistory;
@@ -29,7 +29,8 @@ public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, IN
         {
             return graphSnapshotModStep;
         }
-        if(modStep <= ModStep && modStep >= 0)
+
+        if(modStep <= ModStepMax && modStep >= 0)
         {
             //Find the closest earlier snapshot to the modStep to base the changes from.
             int BaseSnapshotIndex = 0;
@@ -40,9 +41,13 @@ public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, IN
                 snapshotModStep = graphSnapshot[BaseSnapshotIndex].ModStep;
             }
 
-
+            //closest earlier snapshot to the modStep
             Graph<TNode> newSnapshot = new(graphSnapshot[BaseSnapshotIndex].Snapshot);
+
+            //Stores latest modifications succedding the snapshot
             BatchedModifications<TNode> modsAfterSnapshot = new();
+
+            //Logs when an element is already recorded to ensure only the latest change is applied.
             HashSet<uint> isNodeRecorded = new();
             HashSet<uint> isEdgeRecorded = new();
 
@@ -50,34 +55,42 @@ public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, IN
             //Iterate modifications from the required mod step back to the mod step just after the base snapshot
             for(int i = modStep; i > snapshotModStep; i--)
             {
-                foreach(KeyValuePair<uint, ElementModificationLog<TNode>> nodeMod in modHistory[i].NodeMods)
+                //Check if the current node is already recorded, if not, record it.
+                //Since we are iterating from the newest mod log to the oldest, this should ensure that only the latest modification is recorded.
+                //Repeats for every operation/elements.
+                foreach(TNode node in modHistory[i].GetUpsertedNodes())
                 {
-                    //Check if the current node is already recorded, if not, record it.
-                    //Since we are iterating from the newest mod log to the oldest, this should ensure that only the latest modification is recorded.
-                    if (!isNodeRecorded.Contains(nodeMod.Key))
+                    if (!isNodeRecorded.Contains(node.ID))
                     {
-                        isNodeRecorded.Add(nodeMod.Key);
-                        if(nodeMod.Value.NewElement == null)
-                        {
-                            modsAfterSnapshot.RemoveNode(nodeMod.Key);
-                            continue;
-                        }
-                        modsAfterSnapshot.UpsertNode((TNode)nodeMod.Value.NewElement);
+                        isNodeRecorded.Add(node.ID);
+                        modsAfterSnapshot.UpsertNode(node);
                     }
                 }
 
-                //Repeat for edges
-                foreach(KeyValuePair<uint, ElementModificationLog<Edge>> edgeMod in modHistory[i].EdgeMods)
+                foreach(uint iD in modHistory[i].GetNodeRemovalID())
                 {
-                    if (!isEdgeRecorded.Contains(edgeMod.Key))
+                    if (!isNodeRecorded.Contains(iD))
                     {
-                        isEdgeRecorded.Add(edgeMod.Key);
-                        if(edgeMod.Value.NewElement == null)
-                        {
-                            modsAfterSnapshot.RemoveEdge(edgeMod.Key);
-                            continue;
-                        }
-                        modsAfterSnapshot.UpsertEdge((Edge)edgeMod.Value.NewElement);
+                        isNodeRecorded.Add(iD);
+                        modsAfterSnapshot.RemoveNode(iD);
+                    }
+                }
+
+                foreach(Edge edge in modHistory[i].GetUpsertedEdges())
+                {
+                    if (!isEdgeRecorded.Contains(edge.ID))
+                    {
+                        isEdgeRecorded.Add(edge.ID);
+                        modsAfterSnapshot.UpsertEdge(edge);
+                    }
+                }
+
+                foreach(uint iD in modHistory[i].GetEdgeRemovalID())
+                {
+                    if (!isEdgeRecorded.Contains(iD))
+                    {
+                        isEdgeRecorded.Add(iD);
+                        modsAfterSnapshot.RemoveEdge(iD);
                     }
                 }
             }
@@ -93,7 +106,7 @@ public class GraphHistory<TNode> : GraphMetadata<TNode> where TNode : struct, IN
         return new();
     }
 
-    protected override void OnGraphUpdate(IReadOnlyModificationLog<TNode> modLog) => modHistory.Add(modLog);
+    protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> modLog) => modHistory.Add(modLog);
 }
 
 public readonly record struct GraphSnapshot<TNode>(int ModStep, Graph<TNode> Snapshot) where TNode : struct, INode;

@@ -21,7 +21,7 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
-    event EventHandler<IReadOnlyModificationLog<TNode>>? GraphModified;
+    event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
 }
 
 /// <summary>
@@ -53,7 +53,7 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     /// <summary>
     /// Perform multiple operations at once.
     /// </summary>
-    void ApplyBatchedModifications(BatchedModifications<TNode> modifications);
+    void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> modifications);
 }
 
 /// <summary>
@@ -61,3 +61,8 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
 public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode;
+
+public interface ITrackedGraphInterceptable<TNode> : ITrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode
+{
+    event EventHandler<ModificationLog<TNode>>? OnGraphModificationInit;
+}

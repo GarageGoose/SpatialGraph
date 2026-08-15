@@ -4,7 +4,7 @@ namespace GG.SpatialGraph;
 /// Stores modifications for a graph.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class BatchedModifications<TNode> : IBatchedMods<TNode> where TNode : struct, INode
+public class BatchedModifications<TNode> : IReadOnlyBatchedMods<TNode> where TNode : struct, INode
 {
     Dictionary<uint, TNode> nodesForUpsert = new();
     public IReadOnlyDictionary<uint, TNode> NodesForUpsert => nodesForUpsert;
@@ -67,6 +67,28 @@ public class BatchedModifications<TNode> : IBatchedMods<TNode> where TNode : str
         nodesForRemoval = batchedMods.nodesForRemoval;
         edgesForRemoval = batchedMods.edgesForRemoval;
     }
+    public BatchedModifications(IReadOnlyBatchedMods<TNode> batchedMods)
+    {
+        foreach(TNode node in batchedMods.GetUpsertedNodes())
+        {
+            UpsertNode(node);
+        }
+
+        foreach(Edge edge in batchedMods.GetUpsertedEdges())
+        {
+            UpsertEdge(edge);
+        }
+
+        foreach(uint iD in batchedMods.GetNodeRemovalID())
+        {
+            RemoveNode(iD);
+        }
+
+        foreach(uint iD in batchedMods.GetEdgeRemovalID())
+        {
+            RemoveEdge(iD);
+        }
+    }
 
     public void Union(BatchedModifications<TNode> batchedMods)
     {
@@ -84,19 +106,19 @@ public class BatchedModifications<TNode> : IBatchedMods<TNode> where TNode : str
         edgesForRemoval.IntersectWith(batchedMods.edgesForRemoval);
     }
 
-    public IEnumerable<TNode> NodeUpsert() => NodesForUpsert.Values;
+    public IEnumerable<TNode> GetUpsertedNodes() => NodesForUpsert.Values;
 
-    public IEnumerable<Edge> EdgeUpsert() => EdgesForUpsert.Values;
+    public IEnumerable<Edge> GetUpsertedEdges() => EdgesForUpsert.Values;
 
-    public IEnumerable<uint> NodeRemovalID() => NodesForRemoval;
+    public IEnumerable<uint> GetNodeRemovalID() => NodesForRemoval;
 
-    public IEnumerable<uint> EdgeRemovalID() => EdgesForRemoval;
+    public IEnumerable<uint> GetEdgeRemovalID() => EdgesForRemoval;
 }
 
-public interface IBatchedMods<TNode> where TNode : struct, INode
+public interface IReadOnlyBatchedMods<TNode> where TNode : struct, INode
 {
-    IEnumerable<TNode> NodeUpsert();
-    IEnumerable<Edge> EdgeUpsert();
-    IEnumerable<uint> NodeRemovalID();
-    IEnumerable<uint> EdgeRemovalID();
+    IEnumerable<TNode> GetUpsertedNodes();
+    IEnumerable<Edge> GetUpsertedEdges();
+    IEnumerable<uint> GetNodeRemovalID();
+    IEnumerable<uint> GetEdgeRemovalID();
 }

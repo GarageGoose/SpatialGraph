@@ -2,7 +2,7 @@ using System.Numerics;
 using GG.SpatialGraph.Metadata;
 namespace GG.SpatialGraph.Spatial;
 
-public class QuadTreeNodes : GraphMetadata<Node2D>
+public class QuadTreeNodes : GraphReadOnlyPlugin<Node2D>
 {
     QuadTreeCell<Node2D> parentCell;
     Dictionary<uint, QuadTreeCell<Node2D>> cellOfNodes = new();
