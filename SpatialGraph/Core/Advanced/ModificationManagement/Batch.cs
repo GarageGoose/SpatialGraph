@@ -4,7 +4,7 @@ namespace GG.SpatialGraph;
 /// Stores modifications for a graph.
 /// </summary>
 /// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class BatchedModifications<TNode> where TNode : struct, INode
+public class BatchedModifications<TNode> : IBatchedMods<TNode> where TNode : struct, INode
 {
     Dictionary<uint, TNode> nodesForUpsert = new();
     public IReadOnlyDictionary<uint, TNode> NodesForUpsert => nodesForUpsert;
@@ -83,4 +83,20 @@ public class BatchedModifications<TNode> where TNode : struct, INode
         edgesForUpsert.Intersect(batchedMods.edgesForUpsert);
         edgesForRemoval.IntersectWith(batchedMods.edgesForRemoval);
     }
+
+    public IEnumerable<TNode> NodeUpsert() => NodesForUpsert.Values;
+
+    public IEnumerable<Edge> EdgeUpsert() => EdgesForUpsert.Values;
+
+    public IEnumerable<uint> NodeRemovalID() => NodesForRemoval;
+
+    public IEnumerable<uint> EdgeRemovalID() => EdgesForRemoval;
+}
+
+public interface IBatchedMods<TNode> where TNode : struct, INode
+{
+    IEnumerable<TNode> NodeUpsert();
+    IEnumerable<Edge> EdgeUpsert();
+    IEnumerable<uint> NodeRemovalID();
+    IEnumerable<uint> EdgeRemovalID();
 }
