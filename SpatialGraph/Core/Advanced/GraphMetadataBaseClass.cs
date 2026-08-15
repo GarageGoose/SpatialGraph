@@ -38,18 +38,6 @@ public abstract class GraphMetadata<TNode> : IReadOnlyTrackedGraph<TNode> where 
     /// <summary>
     /// Contains information about the changes in the BaseGraph. Invokes when the graph changes before the metadata is modified. Note that this event is separate from BaseGraph.GraphModified.
     /// </summary>
-    public event EventHandler<IReadOnlyModificationLog<TNode>>? BaseGraphModified
-    {
-        add
-        {
-            MetadataUpdateInit += value;
-        }
-
-        remove
-        {
-            MetadataUpdateInit -= value;
-        }
-    }
     public event EventHandler<IReadOnlyModificationLog<TNode>>? MetadataUpdateInit;
 
     void internalOnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> e)

@@ -32,6 +32,6 @@ public abstract class GraphPlugin<TNode> where TNode : struct, INode
     /// <summary>
     /// Called when the modification is finished and applied.
     /// </summary>
-    /// <param name="Log">Stores the modification on the graph. Do note that it cannot be changed since the modifications are applied.</param>
+    /// <param name="Log">Stores the modification on the graph.</param>
     protected internal virtual void OnModificationApplied(IReadOnlyModificationLog<TNode> Log){}
 }

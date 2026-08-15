@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-
 namespace GG.SpatialGraph;
 
 /// <summary>

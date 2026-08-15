@@ -87,7 +87,7 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
 
     uint currID = 0;
     /// <summary>
-    /// Generate IDs without duplication. Do note that it should be used with this graph only and not for other graphs as duplicates may occur.
+    /// Generate IDs without duplication.
     /// </summary>
     public virtual uint GenerateID()
     {

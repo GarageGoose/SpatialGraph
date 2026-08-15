@@ -7,7 +7,7 @@ namespace GG.SpatialGraph.Traversal;
 /// Provides traversal info for a specific node.
 /// </summary>
 /// <typeparam name="TNode">Node type.</typeparam>
-/// <param name="NodeID">Current node ID traversed.</param>
+/// <param name="NodeID">Current node ID.</param>
 /// <param name="OriginNodeID">Node where the current node was found.</param>
 /// <param name="EdgeUsedForTraversal">Edge where the current node was found.</param>
 public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNodeID, uint? EdgeUsedForTraversal) where TNode : struct, INode;

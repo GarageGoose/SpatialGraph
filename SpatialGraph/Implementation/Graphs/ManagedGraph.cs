@@ -2,6 +2,8 @@ using GG.SpatialGraph.Metadata;
 
 namespace GG.SpatialGraph;
 
+
+//WIP summary, don't really like how'd I wrote it
 /// <summary>
 /// Graph with builtin checks and measures (like deleting connected edges to a deleted node) to prevent dangling references. Also tracks edges connected on nodes.
 /// </summary>
