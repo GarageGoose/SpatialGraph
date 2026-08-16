@@ -63,7 +63,7 @@ public class TrackedGraphInterceptable<TNode> : Graph<TNode>, ITrackedGraphInter
         ModificationLog<TNode> log = new(this);
         log.EdgeRemoval(ID);
         ApplyBatchedModifications(log);
-        return true;
+        return true; 
     }
 
     public override bool RemoveNode(uint ID)
