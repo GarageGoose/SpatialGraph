@@ -5,15 +5,13 @@ public static class SpatialGraph2DOperations
 {
     public static float EdgeAngle(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
-        Vector2 Dir = new();
-        Dir = baseGraph.GetSecondNodeOfEdge(edgeID).Loc - baseGraph.GetFirstNodeOfEdge(edgeID).Loc;
+        Vector2 Dir = baseGraph.GetSecondNodeOfEdge(edgeID).Loc - baseGraph.GetFirstNodeOfEdge(edgeID).Loc;
         return MathF.Atan2(Dir.X, Dir.Y);
     }
 
     public static float EdgeAngleOpposite(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
-        Vector2 Dir = new();
-        Dir = baseGraph.GetFirstNodeOfEdge(edgeID).Loc - baseGraph.GetSecondNodeOfEdge(edgeID).Loc;
+        Vector2 Dir = baseGraph.GetFirstNodeOfEdge(edgeID).Loc - baseGraph.GetSecondNodeOfEdge(edgeID).Loc;
         return MathF.Atan2(Dir.X, Dir.Y);
     }
 

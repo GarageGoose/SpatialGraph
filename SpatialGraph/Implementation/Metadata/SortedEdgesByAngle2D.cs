@@ -1,3 +1,4 @@
+using System.Numerics;
 using GG.SpatialGraph;
 namespace GG.SpatialGraph.Metadata;
 
@@ -5,9 +6,41 @@ public class SortedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
 {
     //node id, edge id, angle from node
     Dictionary<uint, SortedList<uint, float>> SortedEdges = new();
-    public IDictionary<uint, float> EdgeAngles(uint nodeID) => SortedEdges[nodeID];
-    
-    //WIP HEREE!!!
+    public IDictionary<uint, float> EdgesAnglesOnNode(uint nodeID) => SortedEdges[nodeID];
+
+    public uint NextEdgeFromEdge(uint nodeID, uint edgeID)
+    {
+        int EdgeIndex = SortedEdges[nodeID].IndexOfKey(nodeID);
+        if(EdgeIndex != SortedEdges.Count - 1)
+        {
+            return (uint)EdgeIndex + 1;
+        }
+        return 0;
+    }
+
+    public uint PreviousEdgeFromEdge(uint nodeID, uint edgeID)
+    {
+        int EdgeIndex = SortedEdges[nodeID].IndexOfKey(nodeID);
+        if(EdgeIndex != 0)
+        {
+            return (uint)EdgeIndex - 1;
+        }
+        return (uint)SortedEdges.Count - 1;
+    }
+
+    public float AngleBetweenNextEdge(uint nodeID, uint edgeID)
+    {
+        uint NextEdgeID = NextEdgeFromEdge(nodeID, edgeID);
+        float radBetweenEdge = MathF.Abs(EdgesAnglesOnNode(nodeID)[edgeID] - EdgesAnglesOnNode(nodeID)[NextEdgeID]);
+        return MathF.Min(radBetweenEdge, 2 * MathF.PI - radBetweenEdge);
+    }
+
+    public float AngleBetweenPreviousEdge(uint nodeID, uint edgeID)
+    {
+        uint PrevEdgeID = PreviousEdgeFromEdge(nodeID, edgeID);
+        float radBetweenEdge = MathF.Abs(EdgesAnglesOnNode(nodeID)[edgeID] - EdgesAnglesOnNode(nodeID)[PrevEdgeID]);
+        return MathF.Min(radBetweenEdge, 2 * MathF.PI - radBetweenEdge);
+    }
 
     public SortedEdgesByAngle2D(IReadOnlyTrackedGraph<Node2D> baseGraph) : base(baseGraph)
     {
@@ -41,6 +74,11 @@ public class SortedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
         {
             RemoveEdge(edge.OldElement);
             AddEdge(edge.NewElement);
+        }
+
+        foreach(ElementRemoved<Edge> edge in modLog.RemovedEdges.Values)
+        {
+            RemoveEdge(edge.Element);
         }
     }
 
