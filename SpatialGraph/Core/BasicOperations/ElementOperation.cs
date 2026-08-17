@@ -19,6 +19,9 @@ public static class BasicElementOperations
     public static Node3D ChangeY(this Node3D node, float newY) => new(node.ID, new(node.Loc.X, newY, node.Loc.Z));
     public static Node3D ChangeZ(this Node3D node, float newZ) => new(node.ID, new(node.Loc.X, node.Loc.Y, newZ));
 
+    public static TNode GetFirstNodeOfEdge<TNode>(this IReadOnlyGraph<TNode> graph, uint edgeID) where TNode : struct, INode => graph.Nodes[graph.Edges[edgeID].NodeID1];
+    public static TNode GetSecondNodeOfEdge<TNode>(this IReadOnlyGraph<TNode> graph, uint edgeID) where TNode : struct, INode => graph.Nodes[graph.Edges[edgeID].NodeID2];
+
     public static NodeEdgeAssignment EdgeAssignmentOfNode(this Edge edge, uint nodeID)
     {
         if(edge.NodeID1 == nodeID)
@@ -31,6 +34,8 @@ public static class BasicElementOperations
         }
         return NodeEdgeAssignment.None;
     }
+
+    public static bool EdgeHasNodeID(this Edge edge, uint nodeID) => edge.NodeID1 == nodeID ? true : edge.NodeID2 == nodeID ? true : false;
 
     /// <summary>
     /// Get the other connecting node from node in an edge

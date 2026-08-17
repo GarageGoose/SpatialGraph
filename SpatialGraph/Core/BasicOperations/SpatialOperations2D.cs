@@ -3,17 +3,34 @@ namespace GG.SpatialGraph;
 
 public static class SpatialGraph2DOperations
 {
-    public static float EdgeAngle(this IGraph<Node2D> baseGraph, uint edgeID)
+    public static float EdgeAngle(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
+        Vector2 Dir = new();
+        Dir = baseGraph.GetSecondNodeOfEdge(edgeID).Loc - baseGraph.GetFirstNodeOfEdge(edgeID).Loc;
+        return MathF.Atan2(Dir.X, Dir.Y);
+    }
+
+    public static float EdgeAngleOpposite(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
+    {
+        Vector2 Dir = new();
+        Dir = baseGraph.GetFirstNodeOfEdge(edgeID).Loc - baseGraph.GetSecondNodeOfEdge(edgeID).Loc;
+        return MathF.Atan2(Dir.X, Dir.Y);
+    }
+
+    public static float EdgeAngleFromNode(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID, uint nodeID)
+    {
+        if (baseGraph.Edges[edgeID].EdgeAssignmentOfNode(nodeID) == NodeEdgeAssignment.Node1)
+        {
+            return baseGraph.EdgeAngle(edgeID);
+        }
+        else if(baseGraph.Edges[edgeID].EdgeAssignmentOfNode(nodeID) == NodeEdgeAssignment.Node2)
+        {
+            return baseGraph.EdgeAngleOpposite(edgeID);
+        }
         return 0;
     }
 
-    public static float EdgeAngleFromNode(this IGraph<Node2D> baseGraph, uint edgeID, uint nodeID)
-    {
-        return 0;
-    }
-
-    public static float EdgeLengthSquared(this IGraph<Node2D> baseGraph, uint edgeID)
+    public static float EdgeLengthSquared(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Edge edge = baseGraph.Edges[edgeID];
         Vector2 loc1 = baseGraph.Nodes[edge.NodeID1].Loc;
@@ -23,7 +40,7 @@ public static class SpatialGraph2DOperations
         return (xLength * xLength) + (yLength * yLength);
     }
 
-    public static float EdgeLength(this IGraph<Node2D> baseGraph, uint edgeID)
+    public static float EdgeLength(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Edge edge = baseGraph.Edges[edgeID];
         Vector2 loc1 = baseGraph.Nodes[edge.NodeID1].Loc;
