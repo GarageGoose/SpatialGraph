@@ -10,7 +10,10 @@ public static class BasicGraph2DOperations
     /// <param name="copyFrom">Source graph to copy from.</param>
     /// <param name="elementsToCopy">Elements to copy.</param>
     /// <param name="pasteTo">Target graph to paste the elements to.</param>
-    /// <param name="preserveID">Preserves the id of the elements from the source graph. If false, new ids will be generated for the elements in the target graph.</param>
+    /// <param name="preserveID">
+    /// Preserves the id of the elements from the source graph, do note that elements with same IDs will be replaced with
+    /// elements from the target graph. If false, new ids will be generated for the elements in the target graph.
+    /// </param>
     public static void CopyElementsToGraph(this IGraph<Node2D> copyFrom, IEnumerable<ElementID> elementsToCopy, IGraph<Node2D> pasteTo, bool preserveID)
     {
         BatchedModifications<Node2D> mods = new();
@@ -70,6 +73,10 @@ public static class BasicGraph2DOperations
     /// </summary>
     /// <param name="copyFrom">Source graph to copy.</param>
     /// <param name="pasteTo">Target graph to paste the source graph to.</param>
+    /// <param name="preserveID">
+    /// Preserves the id of the elements from the source graph, do note that elements with same IDs will be replaced with
+    /// elements from the target graph. If false, new ids will be generated for the elements in the target graph.
+    /// </param>
     public static void CopyGraph(this IGraph<Node2D> copyFrom, IGraph<Node2D> pasteTo, bool preserveID)
     {
         BatchedModifications<Node2D> mods = new();
@@ -95,7 +102,7 @@ public static class BasicGraph2DOperations
             }
             foreach(Edge edge in copyFrom.Edges.Values)
             {
-                uint newEdgeID = pasteTo.GenerateID();
+                pasteTo.GenerateID();
                 uint nodeID1 = oldToNewNodeID.ContainsKey(edge.NodeID1) ? oldToNewNodeID[edge.NodeID1] : edge.NodeID1;
                 uint nodeID2 = oldToNewNodeID.ContainsKey(edge.NodeID2) ? oldToNewNodeID[edge.NodeID2] : edge.NodeID2;
                 mods.UpsertEdge(edge.ChangeNodeIDs(nodeID1, nodeID2));
@@ -128,8 +135,9 @@ public static class BasicGraph2DOperations
     /// <summary>
     /// Combine multiple nodes into a single one.
     /// </summary>
-    /// <param name="baseGraph"></param>
-    /// <param name="nodeIDsToCollapse"></param>
+    /// <param name="baseGraph">Graph to perform the operation.</param>
+    /// <param name="adjacency">Elements adjacency plugin for baseGraph.</param>
+    /// <param name="nodeIDsToCollapse">IDs of the node to collapse to a single node. The first in the array will be the new node.</param>
     public static void CollapseNode(this IGraph<Node2D> baseGraph, NodeAdjacency<Node2D> adjacency, params uint[] nodeIDsToCollapse)
     {
         if(nodeIDsToCollapse.Length <= 1)
