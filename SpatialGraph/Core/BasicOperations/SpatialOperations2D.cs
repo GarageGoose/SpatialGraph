@@ -47,4 +47,14 @@ public static class SpatialGraph2DOperations
         float yLength = MathF.Abs(loc1.Y - loc2.Y);
         return MathF.Sqrt(xLength * xLength) + (yLength * yLength);
     }
+
+    public static bool NodesWithinRadius(this Node2D node, Vector2 loc, float radius)
+    {
+        return false;
+    }
+
+    public static bool NodesWithinAABB(this Node2D node, Vector2 topLeftCorner, float width, float height)
+    {
+        return false;
+    }
 }
