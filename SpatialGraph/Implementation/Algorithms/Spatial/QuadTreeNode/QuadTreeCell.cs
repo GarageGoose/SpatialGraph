@@ -1,37 +1,55 @@
 using System.IO.Compression;
 using System.Numerics;
-
-namespace GG.SpatialGraph.Spatial;
+using GG.SpatialGraph.Spatial;
+namespace GG.SpatialGraph.Internal;
 
 public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 {
-    public QuadTreeNodeCell(int cellCapacity, Vector2 originTopLeft, float width, float height)
+    //Construct without nodes
+    public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, Vector2 originTopLeft, float width, float height)
     {
+        Parent = parent;
         CellCapacity = cellCapacity;
         Nodes = new(cellCapacity);
+
+        //Setup cell bounds
         ULCorner = originTopLeft;
         LRCorner = new(originTopLeft.X + width, originTopLeft.Y - height);
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height / 2));
+        Width = width;
+        Height = height;
     }
 
-    public QuadTreeNodeCell(int cellCapacity, List<Node2D> nodes, Vector2 originTopLeft, float width, float height)
+    //Construct with nodes
+    public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, List<Node2D> nodes, Vector2 originTopLeft, float width, float height)
     {
+        Parent = parent;
         CellCapacity = cellCapacity;
         Nodes = [.. nodes];
+
+        //Setup cell bounds
         ULCorner = originTopLeft;
         LRCorner = new(originTopLeft.X + width, originTopLeft.Y - height);
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height / 2));
+        Width = width;
+        Height = height;
     }
 
-    public bool Subdivided {get; private set;} = false;
-    public int CellCapacity;
+    //Cell parent plugin
+    QuadTreeNode Parent;
 
+    //Cell state
+    public bool Subdivided {get; private set;} = false;
+    public readonly int CellCapacity;
+
+    //Cell contents
     public QuadTreeNodeCell? UL; //Upper left children
     public QuadTreeNodeCell? UR; //Upper right children
     public QuadTreeNodeCell? LL; //Lower left children
     public QuadTreeNodeCell? LR; //Lower right children
-    public List<Node2D> Nodes;
+    public HashSet<Node2D> Nodes;
 
+    //Cell bounds
     public Vector2 ULCorner; //Upper left corner boundary
     public Vector2 LRCorner; //Lower right corner boundary
     public Vector2 Center;
@@ -40,7 +58,7 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
     public bool AddPoint(Node2D point)
     {
-        if (Subdivided || Nodes.Count - 1 >= CellCapacity)
+        if (Subdivided || Nodes.Count >= CellCapacity)
         {
             return TransferNodeToSubCell(point);
         }
@@ -49,19 +67,35 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
             return false;
         }
         Nodes.Add(point);
+        Parent.nodeCurrCell.Add(point.ID, this);
         return true;
+    }
+
+    public void RemovePoint(uint iD)
+    {
+        foreach(Node2D node in Nodes)
+        {
+            if(node.ID == iD)
+            {
+                Nodes.Remove(node);
+                Parent.nodeCurrCell.Remove(iD);
+                return;
+            }
+        }
     }
 
     public void Subdivide()
     {
-        UL = new(CellCapacity, ULCorner, Width / 2, Height / 2);
-        LL = new(CellCapacity, new(ULCorner.X, Center.Y), Width / 2, Height / 2);
-        UR = new(CellCapacity, new(Center.X, ULCorner.Y), Width / 2, Height / 2);
-        LL = new(CellCapacity, Center, Width / 2, Height / 2);
+        Subdivided = true;
+        UL = new(Parent, CellCapacity, ULCorner, Width / 2, Height / 2);
+        LL = new(Parent, CellCapacity, new(ULCorner.X, Center.Y), Width / 2, Height / 2);
+        UR = new(Parent, CellCapacity, new(Center.X, ULCorner.Y), Width / 2, Height / 2);
+        LR = new(Parent, CellCapacity, Center, Width / 2, Height / 2);
         foreach(Node2D node in Nodes)
         {
             TransferNodeToSubCell(node);
         }
+        Nodes.Clear();
     }
 
     public void QueryRadius(Vector2 location, float radius)
