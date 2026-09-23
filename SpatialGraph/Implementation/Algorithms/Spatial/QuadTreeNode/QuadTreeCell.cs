@@ -13,8 +13,10 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         Nodes = new(cellCapacity);
 
         //Setup cell bounds
-        ULCorner = originTopLeft;
-        LRCorner = new(originTopLeft.X + width, originTopLeft.Y - height);
+        North = originTopLeft.Y;
+        East = originTopLeft.X;
+        West = originTopLeft.X + width;
+        South = originTopLeft.Y - height;
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height / 2));
         Width = width;
         Height = height;
@@ -28,8 +30,10 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         Nodes = [.. nodes];
 
         //Setup cell bounds
-        ULCorner = originTopLeft;
-        LRCorner = new(originTopLeft.X + width, originTopLeft.Y - height);
+        North = originTopLeft.Y;
+        East = originTopLeft.X;
+        West = originTopLeft.X + width;
+        South = originTopLeft.Y - height;
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height / 2));
         Width = width;
         Height = height;
@@ -50,8 +54,10 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     public HashSet<Node2D> Nodes;
 
     //Cell bounds
-    public Vector2 ULCorner; //Upper left corner boundary
-    public Vector2 LRCorner; //Lower right corner boundary
+    public readonly float North;
+    public readonly float East;
+    public readonly float West;
+    public readonly float South;
     public Vector2 Center;
     public float Width;
     public float Height;
@@ -62,7 +68,7 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         {
             return TransferNodeToSubCell(point);
         }
-        if(!point.NodesWithinAABB(ULCorner, Width, Height))
+        if(!point.IsNodeWithinAABB(new(West, North), Width, Height))
         {
             return false;
         }
@@ -87,9 +93,9 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     public void Subdivide()
     {
         Subdivided = true;
-        UL = new(Parent, CellCapacity, ULCorner, Width / 2, Height / 2);
-        LL = new(Parent, CellCapacity, new(ULCorner.X, Center.Y), Width / 2, Height / 2);
-        UR = new(Parent, CellCapacity, new(Center.X, ULCorner.Y), Width / 2, Height / 2);
+        UL = new(Parent, CellCapacity, new(West, North), Width / 2, Height / 2);
+        LL = new(Parent, CellCapacity, new(West, Center.Y), Width / 2, Height / 2);
+        UR = new(Parent, CellCapacity, new(Center.X, West), Width / 2, Height / 2);
         LR = new(Parent, CellCapacity, Center, Width / 2, Height / 2);
         foreach(Node2D node in Nodes)
         {
@@ -100,7 +106,10 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
     public void QueryRadius(Vector2 location, float radius)
     {
-        
+        if (Subdivided)
+        {
+            
+        }
     }
 
     public void QueryAABB(Vector2 topLeftCorner, float width, float height)
@@ -120,19 +129,19 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
     bool TransferNodeToSubCell(Node2D point)
     {
-        if(point.NodesWithinAABB(UL!.ULCorner, UL!.Width, UL!.Height))
+        if(point.IsNodeWithinAABB(new(UL!.West, UL!.North), UL!.Width, UL!.Height))
         {
             return UL!.AddPoint(point); 
         }
-        if(point.NodesWithinAABB(LL!.ULCorner, LL!.Width, LL!.Height))
+        if(point.IsNodeWithinAABB(new(LL!.West, LL!.North), LL!.Width, LL!.Height))
         {
             return LL!.AddPoint(point);
         }
-        if(point.NodesWithinAABB(UR!.ULCorner, UR!.Width, UR!.Height))
+        if(point.IsNodeWithinAABB(new(UR!.West, UR!.North), UR!.Width, UR!.Height))
         {
             return UR!.AddPoint(point);
         }
-        if(point.NodesWithinAABB(LR!.ULCorner, LR!.Width, LR!.Height))
+        if(point.IsNodeWithinAABB(new(LR!.West, LR!.North), LR!.Width, LR!.Height))
         {
             return LR!.AddPoint(point);
         }

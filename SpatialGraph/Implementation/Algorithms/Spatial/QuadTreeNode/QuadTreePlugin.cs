@@ -36,13 +36,13 @@ public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>, IGraphSpatialNode2D
         if (!ParentCell.AddPoint(node)) //Outside of the parent cell boundary if false.
         {
             //Create new cell and add the current parent cell as its child.
-            bool OutsideLeft = ParentCell.ULCorner.X > node.Loc.X;
-            bool OutsideUp = ParentCell.ULCorner.Y < node.Loc.Y;
+            bool OutsideLeft = ParentCell.West > node.Loc.X;
+            bool OutsideUp = ParentCell.North < node.Loc.Y;
             
-            float newCellPosX = ParentCell.ULCorner.X;
+            float newCellPosX = ParentCell.West;
             newCellPosX -= OutsideLeft ? - ParentCell.Width : 0;
 
-            float newCellPosY = ParentCell.ULCorner.Y;
+            float newCellPosY = ParentCell.North;
             newCellPosY += OutsideUp ? ParentCell.Height : 0;
             
             QuadTreeNodeCell newCell = new(this, ParentCell.CellCapacity, new(newCellPosX, newCellPosY), ParentCell.Width * 2, ParentCell.Height * 2);
@@ -72,6 +72,7 @@ public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>, IGraphSpatialNode2D
             }
             ParentCell = newCell;
             AddPoint(node); //Recursively try again
+            return;
         }
     }
 
