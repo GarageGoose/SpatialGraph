@@ -48,12 +48,12 @@ public static class SpatialGraph2DOperations
         return MathF.Sqrt(xLength * xLength) + (yLength * yLength);
     }
 
-    public static bool NodesWithinRadius(this Node2D node, Vector2 loc, float radius)
+    public static bool IsNodeWithinRadius(this Node2D node, Vector2 loc, float radius)
     {
         return false;
     }
 
-    public static bool NodesWithinAABB(this Node2D node, Vector2 topLeftCorner, float width, float height)
+    public static bool IsNodeWithinAABB(this Node2D node, Vector2 topLeftCorner, float width, float height)
     {
         return false;
     }
