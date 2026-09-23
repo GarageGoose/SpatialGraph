@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace GG.SpatialGraph;
 
 /// <summary>
@@ -46,6 +48,12 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     void UpsertEdge(Edge edge);
 
     /// <summary>
+    /// Add an edge from two nodes.
+    /// </summary>
+    /// <returns>Unique edge ID</returns>
+    uint AddEdge(uint NodePoint1, uint NodePoint2);
+
+    /// <summary>
     /// Remove an edge in the graph using its corresponding ID.
     /// </summary>
     bool RemoveEdge(uint ID);
@@ -54,6 +62,24 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     /// Perform multiple operations at once.
     /// </summary>
     void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> modifications);
+}
+
+/// <summary>
+/// Graph2D interface.
+/// </summary>
+public interface IGraph2D
+{
+    uint AddNode(float X, float Y);
+    uint AddNode(Vector2 Loc);
+}
+
+/// <summary>
+/// Graph3D interface.
+/// </summary>
+public interface IGraph3D
+{
+    uint AddNode(float X, float Y, float Z);
+    uint AddNode(Vector3 Loc);
 }
 
 /// <summary>

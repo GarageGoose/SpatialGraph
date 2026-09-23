@@ -61,6 +61,12 @@ public abstract class GraphPlugin<TNode> : ITrackedGraphInterceptable<TNode> whe
     public bool RemoveEdge(uint ID) => BaseGraph.RemoveEdge(ID);
     public bool RemoveNode(uint ID) => BaseGraph.RemoveNode(ID);
     public void UpsertEdge(Edge edge) => BaseGraph.UpsertEdge(edge);
+    public uint AddEdge(uint NodeID1, uint NodeID2)
+    {
+        uint EdgeID = BaseGraph.GenerateID();
+        UpsertEdge(new(EdgeID, NodeID1, NodeID2));
+        return EdgeID;
+    }
     public void UpsertNode(TNode Node) => BaseGraph.UpsertNode(Node);
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;

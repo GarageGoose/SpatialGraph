@@ -56,6 +56,13 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <param name="Edges">Edges to add.</param>
     public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;
 
+    public virtual uint AddEdge(uint NodeID1, uint NodeID2)
+    {
+        uint EdgeID = GenerateID();
+        UpsertEdge(new(EdgeID, NodeID1, NodeID2));
+        return EdgeID;
+    }
+
     /// <summary>
     /// Remove multiple edges with the target IDs.
     /// </summary>
