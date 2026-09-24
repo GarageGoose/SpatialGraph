@@ -1,5 +1,3 @@
-using System.Numerics;
-using GG.SpatialGraph;
 namespace GG.SpatialGraph.Metadata;
 
 public class SortedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>

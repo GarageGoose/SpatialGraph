@@ -1,13 +1,16 @@
 ﻿using System.Numerics;
 using GG.SpatialGraph;
+using GG.SpatialGraph.Metadata;
+using GG.SpatialGraph.Traversal;
 
 namespace SpatialGraph.Tests;
 
-public class UnitTest1
+public class BasicGraphTests
 {
     [Fact]
     public void BasicGraphGeneric()
     {
+        //Create a 2d graph and retrieve both nodes.
         Graph<Node2D> graph2D = new();
         graph2D.UpsertNode(new(1, new(0, 0)));
         graph2D.UpsertNode(new(2, new(0, 1)));
@@ -15,6 +18,7 @@ public class UnitTest1
         Assert.Equal(new Vector2(0, 0), graph2D.GetFirstNodeOfEdge(3).Loc);
         Assert.Equal(new Vector2(0, 1), graph2D.GetSecondNodeOfEdge(3).Loc);
 
+        //Create a 3d graph and retrieve both nodes.
         Graph<Node3D> graph3D = new();
         graph3D.UpsertNode(new(1, new(0, 0, 0)));
         graph3D.UpsertNode(new(2, new(0, 1, 0)));
@@ -56,5 +60,24 @@ public class UnitTest1
 
         Assert.Equal(new Vector2(0, 1), graph2D.GetFirstNodeOfEdge(3).Loc);
         Assert.Equal(new Vector2(2, 0), graph2D.GetSecondNodeOfEdge(3).Loc);
+    }
+
+    [Fact]
+    public void TraversalTest()
+    {
+        TrackedGraph2D graph2D = new();
+        NodeAdjacency<Node2D> adjacentGraph2D = new(graph2D);
+        uint NodeID1 = graph2D.AddNode(0, 1);
+        uint NodeID2 = graph2D.AddNode(0, 0);
+        uint NodeID3 = graph2D.AddNode(0, 3);
+        uint DisconnectedNodeID1 = graph2D.AddNode(1, 0);
+        uint DisconnectedNodeID2 = graph2D.AddNode(2, 0);
+
+        graph2D.AddEdge(NodeID1, NodeID2);
+        graph2D.AddEdge(NodeID2, NodeID3);
+        graph2D.AddEdge(DisconnectedNodeID1, DisconnectedNodeID2);
+
+        Assert.True(adjacentGraph2D.DepthFirstTraversal(NodeID1, NodeID3).IsNodeConnected());
+        Assert.True(!adjacentGraph2D.DepthFirstTraversal(NodeID1, DisconnectedNodeID2).IsNodeConnected());
     }
 }

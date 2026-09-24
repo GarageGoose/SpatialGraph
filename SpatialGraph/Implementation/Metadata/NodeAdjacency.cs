@@ -38,11 +38,13 @@ public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : str
         foreach(ElementAdded<TNode> node in log.NewNodes.Values)
         {
             connectedNodes.Add(node.ID, new());
+            connectedEdges.Add(node.ID, new());
         }
 
         foreach(ElementRemoved<TNode> node in log.RemovedNodes.Values)
         {
             connectedNodes.Remove(node.ID);
+            connectedEdges.Remove(node.ID);
         }
 
         foreach(ElementAdded<Edge> edge in log.NewEdges.Values)
