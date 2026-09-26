@@ -3,15 +3,15 @@ using System.Numerics;
 namespace GG.SpatialGraph;
 
 /// <summary>
-/// 3D Graph which tracks and can modifiy incoming changes within it.
+/// 2D Graph which tracks and can modifiy incoming changes within it.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
-public class TrackedGraphInterceptable3D : Graph<Node3D>, IGraph<Node3D>, IGraph3D
+public class InterceptableTrackedGraph2D : InterceptableTrackedGraph<Node2D>, IGraph<Node2D>, IGraph2D
 {
     /// <summary>
     /// Start an empty graph.
     /// </summary>
-    public TrackedGraphInterceptable3D() : base()
+    public InterceptableTrackedGraph2D() : base()
     {
     }
 
@@ -19,14 +19,14 @@ public class TrackedGraphInterceptable3D : Graph<Node3D>, IGraph<Node3D>, IGraph
     /// Start graph from a pre-exisitng graph.
     /// </summary>
     /// <param name="graph">Graph to replicate from.</param>
-    public TrackedGraphInterceptable3D(IReadOnlyGraph<Node3D> graph) : base(graph)
+    public InterceptableTrackedGraph2D(IReadOnlyGraph<Node2D> graph) : base(graph)
     {
     }
 
     /// <summary>
     /// Start a graph from pre-exisiting dictionaries of nodes and edges.
     /// </summary>
-    public TrackedGraphInterceptable3D(Dictionary<uint, Node3D> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
+    public InterceptableTrackedGraph2D(Dictionary<uint, Node2D> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
     {
     }
 
@@ -35,7 +35,7 @@ public class TrackedGraphInterceptable3D : Graph<Node3D>, IGraph<Node3D>, IGraph
     /// </summary>
     /// <param name="Loc">Location of the new node.</param>
     /// <returns>ID of the new node.</returns>
-    public virtual uint AddNode(Vector3 Loc)
+    public virtual uint AddNode(Vector2 Loc)
     {
         uint NodeID = GenerateID();
         UpsertNode(new(NodeID, Loc));
@@ -47,7 +47,6 @@ public class TrackedGraphInterceptable3D : Graph<Node3D>, IGraph<Node3D>, IGraph
     /// </summary>
     /// <param name="X">X position of the new node.</param>
     /// <param name="Y">Y position of the new node.</param>
-    /// <param name="Z">Z position of the new node.</param>
     /// <returns>ID of the new node.</returns>
-    public virtual uint AddNode(float X, float Y, float Z) => AddNode(new(X, Y, Z));
+    public virtual uint AddNode(float X, float Y) => AddNode(new(X, Y));
 }

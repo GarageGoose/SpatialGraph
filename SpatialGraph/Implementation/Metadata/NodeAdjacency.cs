@@ -31,6 +31,7 @@ public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : str
         foreach(uint nodeID in Nodes.Keys)
         {
             connectedNodes.Add(nodeID, new());
+            connectedEdges.Add(nodeID, new());
         }
         foreach(Edge edge in Edges.Values)
         {

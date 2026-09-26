@@ -22,15 +22,18 @@ public static class BasicElementOperations
     public static TNode GetFirstNodeOfEdge<TNode>(this IReadOnlyGraph<TNode> graph, uint edgeID) where TNode : struct, INode => graph.Nodes[graph.Edges[edgeID].NodeID1];
     public static TNode GetSecondNodeOfEdge<TNode>(this IReadOnlyGraph<TNode> graph, uint edgeID) where TNode : struct, INode => graph.Nodes[graph.Edges[edgeID].NodeID2];
 
+    /// <summary>
+    /// Determine if a node is assigned as Node 1 or Node 2 in an edge.
+    /// </summary>
     public static NodeEdgeAssignment EdgeAssignmentOfNode(this Edge edge, uint nodeID)
     {
         if(edge.NodeID1 == nodeID)
         {
-            return NodeEdgeAssignment.Node2;
+            return NodeEdgeAssignment.Node1;
         }
         else if (edge.NodeID2 == nodeID)
         {
-            return NodeEdgeAssignment.Node1;
+            return NodeEdgeAssignment.Node2;
         }
         return NodeEdgeAssignment.None;
     }
@@ -50,6 +53,6 @@ public static class BasicElementOperations
         {
             return edge.NodeID1;
         }
-        throw new Exception(); //Setup later
+        throw new Exception(); //Setup later WIP!!
     }
 }

@@ -66,12 +66,12 @@ public class BasicGraphTests
     public void TraversalTest()
     {
         TrackedGraph2D graph2D = new();
-        NodeAdjacency<Node2D> adjacentGraph2D = new(graph2D);
         uint NodeID1 = graph2D.AddNode(0, 1);
         uint NodeID2 = graph2D.AddNode(0, 0);
         uint NodeID3 = graph2D.AddNode(0, 3);
         uint DisconnectedNodeID1 = graph2D.AddNode(1, 0);
         uint DisconnectedNodeID2 = graph2D.AddNode(2, 0);
+        NodeAdjacency<Node2D> adjacentGraph2D = new(graph2D);
 
         graph2D.AddEdge(NodeID1, NodeID2);
         graph2D.AddEdge(NodeID2, NodeID3);

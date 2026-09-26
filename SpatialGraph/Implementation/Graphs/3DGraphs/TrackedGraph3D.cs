@@ -6,7 +6,7 @@ namespace GG.SpatialGraph;
 /// 3D Graph which tracks changes within it.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
-public class TrackedGraph3D : Graph<Node3D>, IGraph<Node3D>, IGraph3D
+public class TrackedGraph3D : TrackedGraph<Node3D>, IGraph<Node3D>, IGraph3D
 {
     /// <summary>
     /// Start an empty graph.
