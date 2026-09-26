@@ -1,21 +1,34 @@
 namespace GG.SpatialGraph.Metadata;
 
 /// <summary>
-/// Records history of a graph from accumulated ModificationLogs.
+/// Records changes from a graph.
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Node which the base graph uses.</typeparam>
 public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : struct, INode
 {
-    //Mod step is a single iteration of a modification of the base graph
-    public int ModStepMax => modHistory.Count - 1;
+    /// <summary>
+    /// Amount of snapshots taken since the plugin was created.
+    /// </summary>
+    public int ModSnapshotCount => modSnapshots.Count - 1;
 
-    private List<IReadOnlyModificationLog<TNode>> modHistory = new();
-    public IReadOnlyList<IReadOnlyModificationLog<TNode>> ModHistory => modHistory;
+    /// <summary>
+    /// List of graph modification snapshots. A modification snapshot is a ModificationLog which is taken every time the graph is updated, with index 0 being the oldest/first snapshot.
+    /// </summary>
+    public IReadOnlyList<IReadOnlyModificationLog<TNode>> ModSnapshots => modSnapshots;
+    private List<IReadOnlyModificationLog<TNode>> modSnapshots = new();
 
-    private List<GraphSnapshot<TNode>> graphSnapshot = new();
+    /// <summary>
+    /// List of graph snapshots. A graph snapshot is a reconstructed Graph from accumulated ModificationLogs. Taken and stored in this list with TakeSnapshot().
+    /// </summary>
     public IReadOnlyList<GraphSnapshot<TNode>> GraphSnapshot => graphSnapshot;
+    private List<GraphSnapshot<TNode>> graphSnapshot = new();
+
     private Dictionary<int, GraphSnapshot<TNode>> snapshotDict = new();
 
+    /// <summary>
+    /// Create a graph history from a graph.
+    /// </summary>
+    /// <param name="baseGraph">Graph to record changes from.</param>
     public GraphHistory(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
     {
         GraphSnapshot<TNode> snapshot = new(0, new(baseGraph));
@@ -23,6 +36,11 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
         snapshotDict.Add(0, snapshot);
     }
 
+    /// <summary>
+    /// Reconstruct a graph from a specific modification step. A modification snapshot is a ModificationLog which is taken every time the graph is updated with each one counting as a single modStep, with index 0 being the oldest/first snapshot.
+    /// </summary>
+    /// <param name="modStep">Modification step to reconstruct a graph from.</param>
+    /// <returns>Reconstructed graph.</returns>
     public GraphSnapshot<TNode> TakeSnapshot(int modStep)
     {
         if(snapshotDict.TryGetValue(modStep, out GraphSnapshot<TNode> graphSnapshotModStep))
@@ -30,7 +48,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
             return graphSnapshotModStep;
         }
 
-        if(modStep <= ModStepMax && modStep >= 0)
+        if(modStep <= ModSnapshotCount && modStep >= 0)
         {
             //Find the closest earlier snapshot to the modStep to base the changes from.
             int BaseSnapshotIndex = 0;
@@ -58,7 +76,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                 //Check if the current node is already recorded, if not, record it.
                 //Since we are iterating from the newest mod log to the oldest, this should ensure that only the latest modification is recorded.
                 //Repeats for every operation/elements.
-                foreach(TNode node in modHistory[i].GetUpsertedNodes())
+                foreach(TNode node in modSnapshots[i].GetNodeUpserts())
                 {
                     if (!isNodeRecorded.Contains(node.ID))
                     {
@@ -67,7 +85,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                     }
                 }
 
-                foreach(uint iD in modHistory[i].GetNodeRemovalID())
+                foreach(uint iD in modSnapshots[i].GetNodeRemovalIDs())
                 {
                     if (!isNodeRecorded.Contains(iD))
                     {
@@ -76,7 +94,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                     }
                 }
 
-                foreach(Edge edge in modHistory[i].GetUpsertedEdges())
+                foreach(Edge edge in modSnapshots[i].GetEdgeUpserts())
                 {
                     if (!isEdgeRecorded.Contains(edge.ID))
                     {
@@ -85,7 +103,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                     }
                 }
 
-                foreach(uint iD in modHistory[i].GetEdgeRemovalID())
+                foreach(uint iD in modSnapshots[i].GetEdgeRemovalIDs())
                 {
                     if (!isEdgeRecorded.Contains(iD))
                     {
@@ -106,7 +124,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
         return new();
     }
 
-    protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> modLog) => modHistory.Add(modLog);
+    protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> modLog) => modSnapshots.Add(modLog);
 }
 
 public readonly record struct GraphSnapshot<TNode>(int ModStep, Graph<TNode> Snapshot) where TNode : struct, INode;

@@ -14,7 +14,7 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     OnGraphPluginUpdated  - - - Emits after the plugin starts logging changes. 
 
     GraphPlugins can only subscribe to OnGraphModificationInit and OnGraphModificationInit
-    (from GraphPlugin) as only these these two offer write access to ModificationLog.
+    (from GraphPlugin) as only these two offer write access to ModificationLog.
 
     GraphReadOnlyPlugin can subscribe to all 4 of the events above from TrackedGraph, TrackedGraphInterceptable,
     GraphPlugin, and GraphReadOnlyPlugin since it only needs read access from ModificationLog.
@@ -33,7 +33,7 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     /// Listens to a TrackedGraphInterceptable when an update occurs.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
-    public GraphReadOnlyPlugin(ITrackedGraphInterceptable<TNode> baseGraph, ReadOnlyGraphPluginListenerForTrackedGraph SubscribeTo)
+    public GraphReadOnlyPlugin(IInterceptableTrackedGraph<TNode> baseGraph, ReadOnlyGraphPluginListenerForTrackedGraph SubscribeTo)
     {
         BaseGraph = baseGraph;
         switch (SubscribeTo)
@@ -52,16 +52,16 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     /// Listens to a GraphReadOnlyPlugin when an update occurs.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
-    public GraphReadOnlyPlugin(GraphReadOnlyPlugin<TNode> baseGraph, GraphReadonlyPluginListenerForPlugin SubscribeTo)
+    public GraphReadOnlyPlugin(GraphReadOnlyPlugin<TNode> baseGraph, ReadOnlyGraphPluginListenerForPlugin SubscribeTo)
     {
         BaseGraph = baseGraph;
         switch (SubscribeTo)
         {
-            case GraphReadonlyPluginListenerForPlugin.OnGraphPluginInit:
+            case ReadOnlyGraphPluginListenerForPlugin.OnGraphPluginInit:
                 baseGraph.OnGraphPluginInit += InternalOnGraphUpdate;
             break;
 
-            case GraphReadonlyPluginListenerForPlugin.OnGraphPluginUpdated:
+            case ReadOnlyGraphPluginListenerForPlugin.OnGraphPluginUpdated:
                 baseGraph.OnGraphPluginUpdated += InternalOnGraphUpdate;
             break;
         }
@@ -71,16 +71,16 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     /// Listens to a GraphPlugin when an update occurs.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
-    public GraphReadOnlyPlugin(GraphPlugin<TNode> baseGraph, GraphReadonlyPluginListenerForPlugin SubscribeTo)
+    public GraphReadOnlyPlugin(GraphPlugin<TNode> baseGraph, ReadOnlyGraphPluginListenerForPlugin SubscribeTo)
     {
         BaseGraph = baseGraph;
         switch (SubscribeTo)
         {
-            case GraphReadonlyPluginListenerForPlugin.OnGraphPluginInit:
+            case ReadOnlyGraphPluginListenerForPlugin.OnGraphPluginInit:
                 baseGraph.OnGraphPluginInit += InternalOnGraphUpdate;
             break;
 
-            case GraphReadonlyPluginListenerForPlugin.OnGraphPluginUpdated:
+            case ReadOnlyGraphPluginListenerForPlugin.OnGraphPluginUpdated:
                 baseGraph.OnGraphPluginUpdated += InternalOnGraphUpdate;
             break;
         }
@@ -132,7 +132,7 @@ public enum ReadOnlyGraphPluginListenerForTrackedGraph
     OnGraphModified, OnGraphModificationInit
 }
 
-public enum GraphReadonlyPluginListenerForPlugin
+public enum ReadOnlyGraphPluginListenerForPlugin
 {
     OnGraphPluginInit, OnGraphPluginUpdated
 }

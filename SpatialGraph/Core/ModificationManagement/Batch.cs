@@ -69,22 +69,22 @@ public class BatchedModifications<TNode> : IReadOnlyBatchedMods<TNode> where TNo
     }
     public BatchedModifications(IReadOnlyBatchedMods<TNode> batchedMods)
     {
-        foreach(TNode node in batchedMods.GetUpsertedNodes())
+        foreach(TNode node in batchedMods.GetNodeUpserts())
         {
             UpsertNode(node);
         }
 
-        foreach(Edge edge in batchedMods.GetUpsertedEdges())
+        foreach(Edge edge in batchedMods.GetEdgeUpserts())
         {
             UpsertEdge(edge);
         }
 
-        foreach(uint iD in batchedMods.GetNodeRemovalID())
+        foreach(uint iD in batchedMods.GetNodeRemovalIDs())
         {
             RemoveNode(iD);
         }
 
-        foreach(uint iD in batchedMods.GetEdgeRemovalID())
+        foreach(uint iD in batchedMods.GetEdgeRemovalIDs())
         {
             RemoveEdge(iD);
         }
@@ -106,19 +106,19 @@ public class BatchedModifications<TNode> : IReadOnlyBatchedMods<TNode> where TNo
         edgesForRemoval.IntersectWith(batchedMods.edgesForRemoval);
     }
 
-    public IEnumerable<TNode> GetUpsertedNodes() => NodesForUpsert.Values;
+    public IEnumerable<TNode> GetNodeUpserts() => NodesForUpsert.Values;
 
-    public IEnumerable<Edge> GetUpsertedEdges() => EdgesForUpsert.Values;
+    public IEnumerable<Edge> GetEdgeUpserts() => EdgesForUpsert.Values;
 
-    public IEnumerable<uint> GetNodeRemovalID() => NodesForRemoval;
+    public IEnumerable<uint> GetNodeRemovalIDs() => NodesForRemoval;
 
-    public IEnumerable<uint> GetEdgeRemovalID() => EdgesForRemoval;
+    public IEnumerable<uint> GetEdgeRemovalIDs() => EdgesForRemoval;
 }
 
 public interface IReadOnlyBatchedMods<TNode> where TNode : struct, INode
 {
-    IEnumerable<TNode> GetUpsertedNodes();
-    IEnumerable<Edge> GetUpsertedEdges();
-    IEnumerable<uint> GetNodeRemovalID();
-    IEnumerable<uint> GetEdgeRemovalID();
+    IEnumerable<TNode> GetNodeUpserts();
+    IEnumerable<Edge> GetEdgeUpserts();
+    IEnumerable<uint> GetNodeRemovalIDs();
+    IEnumerable<uint> GetEdgeRemovalIDs();
 }

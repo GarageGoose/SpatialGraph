@@ -3,7 +3,7 @@ namespace GG.SpatialGraph;
 /// <summary>
 /// Base class for graphs, can be built upon.
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
@@ -39,23 +39,27 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     public IReadOnlyDictionary<uint, Edge> Edges => edges;
 
     /// <summary>
-    /// Add or replace multiple nodes with the same ID.
+    /// Add or replace a node with the same ID.
     /// </summary>
     /// <param name="Nodes">Nodes to add.</param>
     public virtual void UpsertNode(TNode Node) => nodes[Node.ID] = Node;
 
     /// <summary>
-    /// Remove multiple nodes using their IDs. Do note that edges connected to a node that is removed isn't autmatically removed.
+    /// Remove a node using their IDs. Do note that edges connected to a node that is removed isn't automatically removed.
     /// </summary>
     /// <param name="IDs">IDs of the nodes to remove.</param>
     public virtual bool RemoveNode(uint ID) => nodes.Remove(ID);
 
     /// <summary>
-    /// Add or replace multiple edge with the same IDs.
+    /// Add or replace an edge with the same IDs.
     /// </summary>
     /// <param name="Edges">Edges to add.</param>
     public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;
 
+    /// <summary>
+    /// Add a new edge.
+    /// </summary>
+    /// <param name="Edges">Edges to add.</param>
     public virtual uint AddEdge(uint NodeID1, uint NodeID2)
     {
         uint EdgeID = GenerateID();
@@ -64,29 +68,33 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     }
 
     /// <summary>
-    /// Remove multiple edges with the target IDs.
+    /// Remove an edge with the target IDs.
     /// </summary>
     /// <param name="IDs">IDs of the edges to remove.</param>
     public virtual bool RemoveEdge(uint ID) => edges.Remove(ID);
 
+    /// <summary>
+    /// Apply multiple modifications at once with BatchedMods.
+    /// </summary>
+    /// <param name="mods">BatchedMods containing the modifications.</param>
     public virtual void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> mods)
     {
-        foreach(TNode node in mods.GetUpsertedNodes())
+        foreach(TNode node in mods.GetNodeUpserts())
         {
             nodes[node.ID] = node;
         }
         
-        foreach(Edge edge in mods.GetUpsertedEdges())
+        foreach(Edge edge in mods.GetEdgeUpserts())
         {
             edges[edge.ID] = edge;
         }
 
-        foreach(uint nodeID in mods.GetNodeRemovalID())
+        foreach(uint nodeID in mods.GetNodeRemovalIDs())
         {
             nodes.Remove(nodeID);
         }
 
-        foreach(uint edgeID in mods.GetEdgeRemovalID())
+        foreach(uint edgeID in mods.GetEdgeRemovalIDs())
         {
             edges.Remove(edgeID);
         }

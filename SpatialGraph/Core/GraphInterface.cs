@@ -5,7 +5,7 @@ namespace GG.SpatialGraph;
 /// <summary>
 /// Read only interface of the graph.
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     IReadOnlyDictionary<uint, TNode> Nodes {get;}
@@ -18,9 +18,9 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 }
 
 /// <summary>
-/// Read only interface of a tracked graph. Tracked graphs returns modification logs when it is modified.
+/// Read only interface of a tracked graph. Tracked graphs returns read only modification logs when it is modified.
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
@@ -29,7 +29,7 @@ public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNod
 /// <summary>
 /// Base interface for all graphs.
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
@@ -83,12 +83,16 @@ public interface IGraph3D
 }
 
 /// <summary>
-/// Base interface for all tracked graphs. Tracked graphs returns modification logs when it is modified.
+/// Base interface for all tracked graphs. Tracked graphs returns read only modification logs when it is modified.
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode;
 
-public interface ITrackedGraphInterceptable<TNode> : ITrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode
+/// <summary>
+/// Base interface for all tracked graphs which can modifiy incoming changes. Tracked graphs returns read only modification logs when it is modified and a modification log for incoming mnodifications.
+/// </summary>
+/// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
+public interface IInterceptableTrackedGraph<TNode> : ITrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode
 {
     event EventHandler<ModificationLog<TNode>>? OnGraphModificationInit;
 }

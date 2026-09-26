@@ -9,23 +9,36 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
     public IReadOnlyGraph<TNode> BaseGraph {get;}
 
     Dictionary<uint, ModificationType> nodeModType = new();
-    public IReadOnlyDictionary<uint, ModificationType> NodeModType {get;}
     Dictionary<uint, ModificationType> edgeModType = new();
-    public IReadOnlyDictionary<uint, ModificationType> EdgeModType {get;}
 
     Dictionary<uint, ElementAdded<TNode>> newNodes = new();
-    public IReadOnlyDictionary<uint, ElementAdded<TNode>> NewNodes {get;}
     Dictionary<uint, ElementAdded<Edge>> newEdges = new();
-    public IReadOnlyDictionary<uint, ElementAdded<Edge>> NewEdges {get;}
 
     Dictionary<uint, ElementModified<TNode>> modifiedNodes = new();
-    public IReadOnlyDictionary<uint, ElementModified<TNode>> ModifiedNodes {get;}
     Dictionary<uint, ElementModified<Edge>> modifiedEdges = new();
-    public IReadOnlyDictionary<uint, ElementModified<Edge>> ModifiedEdges {get;}
 
     Dictionary<uint, ElementRemoved<TNode>> removedNodes = new();
-    public IReadOnlyDictionary<uint, ElementRemoved<TNode>> RemovedNodes {get;}
     Dictionary<uint, ElementRemoved<Edge>> removedEdges = new();
+
+    /// <summary>
+    /// Dictionary for type of modifications (Add, Remove, Modify) each node have.
+    /// </summary>
+    public IReadOnlyDictionary<uint, ModificationType> NodeModType {get;}
+
+    /// <summary>
+    /// Dictionary for type of modifications (Add, Remove, Modify) each edge have.
+    /// </summary>
+    public IReadOnlyDictionary<uint, ModificationType> EdgeModType {get;}
+
+    //WIP!! XML COMMENTS
+
+    public IReadOnlyDictionary<uint, ElementAdded<TNode>> NewNodes {get;}
+    public IReadOnlyDictionary<uint, ElementAdded<Edge>> NewEdges {get;}
+
+    public IReadOnlyDictionary<uint, ElementModified<TNode>> ModifiedNodes {get;}
+    public IReadOnlyDictionary<uint, ElementModified<Edge>> ModifiedEdges {get;}
+
+    public IReadOnlyDictionary<uint, ElementRemoved<TNode>> RemovedNodes {get;}
     public IReadOnlyDictionary<uint, ElementRemoved<Edge>> RemovedEdges {get;}
 
     public ModificationLog(IReadOnlyGraph<TNode> baseGraph)
@@ -90,22 +103,22 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
 
     public void BatchedModifications(IReadOnlyBatchedMods<TNode> batchedMods)
     {
-        foreach(TNode node in batchedMods.GetUpsertedNodes())
+        foreach(TNode node in batchedMods.GetNodeUpserts())
         {
             NodeUpsert(node);
         }
 
-        foreach(uint nodeID in batchedMods.GetNodeRemovalID())
+        foreach(uint nodeID in batchedMods.GetNodeRemovalIDs())
         {
             NodeRemoval(nodeID);
         }
 
-        foreach(Edge edge in batchedMods.GetUpsertedEdges())
+        foreach(Edge edge in batchedMods.GetEdgeUpserts())
         {
             EdgeUpsert(edge);
         }
 
-        foreach(uint edgeID in batchedMods.GetEdgeRemovalID())
+        foreach(uint edgeID in batchedMods.GetEdgeRemovalIDs())
         {
             NodeRemoval(edgeID);
         }
@@ -197,7 +210,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<TNode> GetUpsertedNodes()
+    public IEnumerable<TNode> GetNodeUpserts()
     {
         foreach(ElementAdded<TNode> node in NewNodes.Values)
         {
@@ -209,7 +222,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<Edge> GetUpsertedEdges()
+    public IEnumerable<Edge> GetEdgeUpserts()
     {
         foreach(ElementAdded<Edge> edge in NewEdges.Values)
         {
@@ -221,7 +234,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<uint> GetNodeRemovalID()
+    public IEnumerable<uint> GetNodeRemovalIDs()
     {
         foreach(ElementRemoved<TNode> node in RemovedNodes.Values)
         {
@@ -229,7 +242,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<uint> GetEdgeRemovalID()
+    public IEnumerable<uint> GetEdgeRemovalIDs()
     {
         foreach(ElementRemoved<Edge> edge in RemovedEdges.Values)
         {

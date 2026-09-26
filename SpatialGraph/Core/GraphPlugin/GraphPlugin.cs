@@ -4,7 +4,7 @@ namespace GG.SpatialGraph.Metadata;
 /// Base class for storing additional metadata in a graph.
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
-public abstract class GraphPlugin<TNode> : ITrackedGraphInterceptable<TNode> where TNode : struct, INode
+public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> where TNode : struct, INode
 {
     /*
     Graph Events:
@@ -14,7 +14,7 @@ public abstract class GraphPlugin<TNode> : ITrackedGraphInterceptable<TNode> whe
     OnGraphPluginUpdated  - - - Emits after the plugin starts logging changes.
 
     GraphPlugins can only subscribe to OnGraphModificationInit and OnGraphModificationInit
-    (from GraphPlugin) as only these these two offer write access to ModificationLog.
+    (from GraphPlugin) as only these two offer write access to ModificationLog.
 
     GraphReadOnlyPlugin can subscribe to all 4 of the events above from TrackedGraph, TrackedGraphInterceptable,
     GraphPlugin, and GraphReadOnlyPlugin since it only needs read access from ModificationLog.
@@ -23,7 +23,7 @@ public abstract class GraphPlugin<TNode> : ITrackedGraphInterceptable<TNode> whe
     /// <summary>
     /// Listens to the graph when an update occurs.
     /// </summary>
-    public GraphPlugin(ITrackedGraphInterceptable<TNode> baseGraph)
+    public GraphPlugin(IInterceptableTrackedGraph<TNode> baseGraph)
     {
         BaseGraph = baseGraph;
         baseGraph.OnGraphModificationInit += InternalOnGraphUpdateInit;
@@ -67,7 +67,7 @@ public abstract class GraphPlugin<TNode> : ITrackedGraphInterceptable<TNode> whe
     protected abstract void OnGraphUpdate(object? sender, ModificationLog<TNode> modLog);
 
     //BaseGraph stuff
-    public readonly ITrackedGraphInterceptable<TNode> BaseGraph;
+    public readonly IInterceptableTrackedGraph<TNode> BaseGraph;
     public event EventHandler<ModificationLog<TNode>>? OnGraphModificationInit
     {
         add

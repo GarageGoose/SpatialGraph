@@ -3,7 +3,7 @@ namespace GG.SpatialGraph.Metadata;
 /// <summary>
 /// Records adjecent nodes or edges from a node in a graph.
 /// </summary>
-/// <typeparam name="TNode"></typeparam>
+/// <typeparam name="TNode">Node which the base class uses.</typeparam>
 public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : struct, INode
 {
     Dictionary<uint, HashSet<uint>> connectedNodes = new();
@@ -19,6 +19,11 @@ public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : str
     /// </summary>
     public IReadOnlySet<uint> ConnectedEdges(uint nodeID) => connectedEdges[nodeID];
 
+    /// <summary>
+    /// Get the amount of edges connected in a node.
+    /// </summary>
+    /// <param name="nodeID">ID of the specified node.</param>
+    /// <returns>Amount of edges connected in a node.</returns>
     public int ConnectedEdgesCount(uint nodeID) => connectedEdges[nodeID].Count;
 
     public NodeAdjacency(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
