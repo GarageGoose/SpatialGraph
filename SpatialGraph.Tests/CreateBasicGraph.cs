@@ -30,14 +30,14 @@ public class BasicGraphTests
     [Fact]
     public void BasicGraph()
     {
-        Graph2D graph2D = new();
+        Graph<Node2D> graph2D = new();
         uint NodeID1 = graph2D.AddNode(0, 1);
         uint NodeID2 = graph2D.AddNode(0, 0);
         uint EdgeID = graph2D.AddEdge(NodeID1, NodeID2);
         Assert.Equal(new Vector2(0, 1), graph2D.GetFirstNodeOfEdge(EdgeID).Loc);
         Assert.Equal(new Vector2(0, 0), graph2D.GetSecondNodeOfEdge(EdgeID).Loc);
 
-        Graph3D graph3D = new();
+        Graph<Node3D> graph3D = new();
         NodeID1 = graph3D.AddNode(0, 1, 0);
         NodeID2 = graph3D.AddNode(0, 0, 0);
         EdgeID = graph3D.AddEdge(NodeID1, NodeID2);
@@ -65,7 +65,7 @@ public class BasicGraphTests
     [Fact]
     public void TraversalTest()
     {
-        TrackedGraph2D graph2D = new();
+        TrackedGraph<Node2D> graph2D = new();
         uint NodeID1 = graph2D.AddNode(0, 1);
         uint NodeID2 = graph2D.AddNode(0, 0);
         uint NodeID3 = graph2D.AddNode(0, 3);
