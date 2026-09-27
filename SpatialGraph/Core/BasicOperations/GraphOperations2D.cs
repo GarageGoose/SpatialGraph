@@ -51,7 +51,7 @@ public static class Graph2DOperations
             {
                 uint newID = pasteTo.GenerateID();
                 oldToNewNodeID.Add(node.ID, newID);
-                mods.UpsertNode(node.ChangeID(newID));
+                mods.UpsertNode(node.WithID(newID));
             }
 
             //change the edge node references to the new node ids.
@@ -60,7 +60,7 @@ public static class Graph2DOperations
                 uint newEdgeID = pasteTo.GenerateID();
                 uint nodeID1 = oldToNewNodeID.ContainsKey(edge.NodeID1) ? oldToNewNodeID[edge.NodeID1] : edge.NodeID1;
                 uint nodeID2 = oldToNewNodeID.ContainsKey(edge.NodeID2) ? oldToNewNodeID[edge.NodeID2] : edge.NodeID2;
-                mods.UpsertEdge(edge.ChangeNodeIDs(nodeID1, nodeID2));
+                mods.UpsertEdge(edge.WithNodeIDs(nodeID1, nodeID2));
             }
         }
 
@@ -98,14 +98,14 @@ public static class Graph2DOperations
             {
                 uint newID = pasteTo.GenerateID();
                 oldToNewNodeID.Add(node.ID, newID);
-                mods.UpsertNode(node.ChangeID(newID));
+                mods.UpsertNode(node.WithID(newID));
             }
             foreach(Edge edge in copyFrom.Edges.Values)
             {
                 pasteTo.GenerateID();
                 uint nodeID1 = oldToNewNodeID.ContainsKey(edge.NodeID1) ? oldToNewNodeID[edge.NodeID1] : edge.NodeID1;
                 uint nodeID2 = oldToNewNodeID.ContainsKey(edge.NodeID2) ? oldToNewNodeID[edge.NodeID2] : edge.NodeID2;
-                mods.UpsertEdge(edge.ChangeNodeIDs(nodeID1, nodeID2));
+                mods.UpsertEdge(edge.WithNodeIDs(nodeID1, nodeID2));
             }
         }
         pasteTo.ApplyBatchedModifications(mods);
@@ -123,7 +123,7 @@ public static class Graph2DOperations
 
         Edge edgeToInsert = baseGraph.Edges[edgeID];
         Edge newEdge = new(baseGraph.GenerateID(), newNode.ID, edgeToInsert.NodeID2);
-        edgeToInsert = edgeToInsert.ChangeNodeID2(newNode.ID);
+        edgeToInsert = edgeToInsert.WithNodeID2(newNode.ID);
 
         mods.UpsertNode(newNode);
         mods.UpsertEdge(edgeToInsert);
@@ -179,7 +179,7 @@ public static class Graph2DOperations
                     continue;
                 }
                 
-                mods.UpsertEdge(edge.ChangeNodeIDs(newNodeID1, newNodeID2));
+                mods.UpsertEdge(edge.WithNodeIDs(newNodeID1, newNodeID2));
             }
         }
 

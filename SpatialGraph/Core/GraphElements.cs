@@ -20,11 +20,11 @@ public interface INode : IElement;
 public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2) : IElement;
 
 /// <summary>
-/// An enum for identifying if a node is the 1st or 2nd node in an edge (or even if its in an edge at all).
+/// An enum for identifying the first or second node in a Edge.
 /// </summary>
-public enum NodeEdgeAssignment
+public enum NodeInEdge
 {
-    Node1, Node2, None
+    First, Second, None
 }
 
 /// <summary>

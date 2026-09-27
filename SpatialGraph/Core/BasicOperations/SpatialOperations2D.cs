@@ -17,11 +17,11 @@ public static class SpatialGraph2DOperations
 
     public static float EdgeAngleFromNode(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID, uint nodeID)
     {
-        if (baseGraph.Edges[edgeID].EdgeAssignmentOfNode(nodeID) == NodeEdgeAssignment.Node1)
+        if (baseGraph.Edges[edgeID].EdgeAssignmentOfNode(nodeID) == NodeInEdge.First)
         {
             return baseGraph.EdgeAngle(edgeID);
         }
-        else if(baseGraph.Edges[edgeID].EdgeAssignmentOfNode(nodeID) == NodeEdgeAssignment.Node2)
+        else if(baseGraph.Edges[edgeID].EdgeAssignmentOfNode(nodeID) == NodeInEdge.Second)
         {
             return baseGraph.EdgeAngleOpposite(edgeID);
         }

@@ -251,11 +251,18 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
     }
 }
 
+/// <summary>
+/// 
+/// </summary>
 public enum ModificationType
 {
     Add, Modify, Remove
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TNode"></typeparam>
 public interface IReadOnlyModificationLog<TNode> : IReadOnlyBatchedMods<TNode> where TNode : struct, INode
 {
     public IReadOnlyGraph<TNode> BaseGraph {get;}
