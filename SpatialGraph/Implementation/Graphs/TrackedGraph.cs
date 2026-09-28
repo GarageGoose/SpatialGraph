@@ -34,23 +34,23 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
     /// Apply multiple modifications at once with BatchedMods.
     /// </summary>
     /// <param name="mods">BatchedMods containing the modifications.</param>
-    public override void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> mods)
+    public override void ApplyBatchedModifications(GraphChangeSet<TNode> mods)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
 
-        foreach(TNode node in mods.GetNodeUpserts())
+        foreach(TNode node in mods.NodeUpserts())
         {
             log.NodeUpsert(node);
             nodes[node.ID] = node;
         }
         
-        foreach(Edge edge in mods.GetEdgeUpserts())
+        foreach(Edge edge in mods.EdgeUpserts())
         {
             log.EdgeUpsert(edge);
             edges[edge.ID] = edge;
         }
 
-        foreach(uint nodeID in mods.GetNodeRemovalIDs())
+        foreach(uint nodeID in mods.NodeRemovals())
         {
             log.NodeRemoval(nodeID);
 
@@ -61,7 +61,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
             }
         }
 
-        foreach(uint edgeID in mods.GetEdgeRemovalIDs())
+        foreach(uint edgeID in mods.EdgeRemovals())
         {
             log.EdgeRemoval(edgeID);
 
@@ -77,7 +77,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
 
     public override bool RemoveEdge(uint ID)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.EdgeRemoval(ID);
         if (base.RemoveEdge(ID))
         {
@@ -89,7 +89,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
 
     public override bool RemoveNode(uint ID)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.NodeRemoval(ID);
         if (base.RemoveNode(ID))
         {
@@ -101,7 +101,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
 
     public override void UpsertEdge(Edge edge)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.EdgeUpsert(edge);
         base.UpsertEdge(edge);
         OnGraphModified?.Invoke(this, log);
@@ -109,7 +109,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
 
     public override void UpsertNode(TNode Node)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.NodeUpsert(Node);
         base.UpsertNode(Node);
         OnGraphModified?.Invoke(this, log);

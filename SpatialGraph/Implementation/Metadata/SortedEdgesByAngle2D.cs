@@ -78,7 +78,7 @@ public class OrderedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
         {
             SortedEdges.Add(node.ID , new());
         }
-        foreach(Edge edge in BaseGraph.Edges.Values)
+        foreach(Edge edge in Edges.Values)
         {
             AddEdge(edge);
         }

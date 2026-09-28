@@ -63,7 +63,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
             Graph<TNode> newSnapshot = new(graphSnapshot[BaseSnapshotIndex].Snapshot);
 
             //Stores latest modifications succedding the snapshot
-            BatchedModifications<TNode> modsAfterSnapshot = new();
+            GraphIncomingChanges<TNode> modsAfterSnapshot = new();
 
             //Logs when an element is already recorded to ensure only the latest change is applied.
             HashSet<uint> isNodeRecorded = new();
@@ -76,7 +76,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                 //Check if the current node is already recorded, if not, record it.
                 //Since we are iterating from the newest mod log to the oldest, this should ensure that only the latest modification is recorded.
                 //Repeats for every operation/elements.
-                foreach(TNode node in modSnapshots[i].GetNodeUpserts())
+                foreach(TNode node in modSnapshots[i].NodeUpserts())
                 {
                     if (!isNodeRecorded.Contains(node.ID))
                     {
@@ -85,7 +85,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                     }
                 }
 
-                foreach(uint iD in modSnapshots[i].GetNodeRemovalIDs())
+                foreach(uint iD in modSnapshots[i].NodeRemovals())
                 {
                     if (!isNodeRecorded.Contains(iD))
                     {
@@ -94,7 +94,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                     }
                 }
 
-                foreach(Edge edge in modSnapshots[i].GetEdgeUpserts())
+                foreach(Edge edge in modSnapshots[i].EdgeUpserts())
                 {
                     if (!isEdgeRecorded.Contains(edge.ID))
                     {
@@ -103,7 +103,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
                     }
                 }
 
-                foreach(uint iD in modSnapshots[i].GetEdgeRemovalIDs())
+                foreach(uint iD in modSnapshots[i].EdgeRemovals())
                 {
                     if (!isEdgeRecorded.Contains(iD))
                     {

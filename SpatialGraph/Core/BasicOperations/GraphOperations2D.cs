@@ -16,7 +16,7 @@ public static class Graph2DOperations
     /// </param>
     public static void CopyElementsToGraph(this IGraph<Node2D> copyFrom, IEnumerable<ElementID> elementsToCopy, IGraph<Node2D> pasteTo, bool preserveID)
     {
-        BatchedModifications<Node2D> mods = new();
+        GraphIncomingChanges<Node2D> mods = new();
         if (preserveID)
         {
             foreach(ElementID element in elementsToCopy)
@@ -79,7 +79,7 @@ public static class Graph2DOperations
     /// </param>
     public static void CopyGraph(this IGraph<Node2D> copyFrom, IGraph<Node2D> pasteTo, bool preserveID)
     {
-        BatchedModifications<Node2D> mods = new();
+        GraphIncomingChanges<Node2D> mods = new();
         if (preserveID)
         {
             foreach(Node2D node in copyFrom.Nodes.Values)
@@ -119,7 +119,7 @@ public static class Graph2DOperations
     /// <param name="newNode">Node to insert.</param>
     public static void InsertNode(this IGraph<Node2D> baseGraph, uint edgeID, Node2D newNode)
     {
-        BatchedModifications<Node2D> mods = new();
+        GraphIncomingChanges<Node2D> mods = new();
 
         Edge edgeToInsert = baseGraph.Edges[edgeID];
         Edge newEdge = new(baseGraph.GenerateID(), newNode.ID, edgeToInsert.NodeID2);
@@ -144,7 +144,7 @@ public static class Graph2DOperations
         {
             return;
         }
-        BatchedModifications<Node2D> mods = new();
+        GraphIncomingChanges<Node2D> mods = new();
 
         //Get new average coord
         Vector2 AverageCoord = Vector2.Zero;
@@ -171,7 +171,7 @@ public static class Graph2DOperations
             {
                 edge = baseGraph.Edges[edgeID];
                 uint newNodeID1 = collapsedNodes.Contains(edge.NodeID1) ? collapsedNodeID : edge.NodeID1;
-                uint newNodeID2 = collapsedNodes.Contains(edge.NodeID1) ? collapsedNodeID : edge.NodeID2;
+                uint newNodeID2 = collapsedNodes.Contains(edge.NodeID2) ? collapsedNodeID : edge.NodeID2;
 
                 //Check if the new edge now connects to the same collapsed node, do not readd if so.
                 if(newNodeID1 == newNodeID2)

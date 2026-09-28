@@ -51,24 +51,28 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
     /// <summary>
     /// Emits after the plugin starts logging changes.
     /// </summary>
-    public event EventHandler<ModificationLog<TNode>>? OnGraphPluginUpdated;
+    public event EventHandler<GraphChangeLog<TNode>>? OnGraphPluginUpdated;
 
     /// <summary>
     /// Emits before the plugin starts logging changes.
     /// </summary>
-    public event EventHandler<ModificationLog<TNode>>? OnGraphPluginInit;
+    public event EventHandler<GraphChangeLog<TNode>>? OnGraphPluginInit;
 
-    private void InternalOnGraphUpdateInit(object? sender, ModificationLog<TNode> modLog)
+    private void InternalOnGraphUpdateInit(object? sender, GraphChangeLog<TNode> modLog)
     {
         OnGraphPluginInit?.Invoke(this, modLog);
         OnGraphUpdate(sender, modLog);
         OnGraphPluginUpdated?.Invoke(this, modLog);
     }
-    protected abstract void OnGraphUpdate(object? sender, ModificationLog<TNode> modLog);
+    protected abstract void OnGraphUpdate(object? sender, GraphChangeLog<TNode> modLog);
 
     //BaseGraph stuff
-    public readonly IInterceptableTrackedGraph<TNode> BaseGraph;
-    public event EventHandler<ModificationLog<TNode>>? OnGraphModificationInit
+    IInterceptableTrackedGraph<TNode> BaseGraph;
+
+    /// <summary>
+    /// Event for incoming changes. Modifications can be changed before being applied to the graph.
+    /// </summary>
+    public event EventHandler<GraphChangeLog<TNode>>? OnGraphModificationInit
     {
         add
         {
@@ -79,6 +83,10 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
             BaseGraph.OnGraphModificationInit -= value;
         }
     }
+
+    /// <summary>
+    /// Event for changes applied. Invokes after the graph is modified.
+    /// </summary>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified
     {
         add
@@ -90,22 +98,58 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
             BaseGraph.OnGraphModified -= value;
         }
     }
-    public void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> modifications) => BaseGraph.ApplyBatchedModifications(modifications);
+
+    /// <summary>
+    /// Perform multiple operations at once.
+    /// </summary>
+    /// <param name="modifications">Contains operations to perform.</param>
+    public void ApplyBatchedModifications(GraphChangeSet<TNode> modifications) => BaseGraph.ApplyBatchedModifications(modifications);
+
+    /// <summary>
+    /// Generate unique IDs for the elements of the graph.
+    /// </summary>
     public uint GenerateID() => BaseGraph.GenerateID();
+
+    /// <summary>
+    /// Remove an edge in the graph using its corresponding ID.
+    /// </summary>
+    /// <param name="ID">ID of the edge to be removed.</param>
+    /// <returns>If the edge is removed.</returns>
     public bool RemoveEdge(uint ID) => BaseGraph.RemoveEdge(ID);
+
+    /// <summary>
+    /// Remove a node in the graph using their correspinding IDs.
+    /// </summary>
+    /// <param name="ID">ID of the node to be removed.</param>
+    /// <returns>If the node is removed.</returns>
     public bool RemoveNode(uint ID) => BaseGraph.RemoveNode(ID);
+
+    /// <summary>
+    /// Add or modify an edge with its corresponding ID.
+    /// </summary>
+    /// <param name="edge">Edge to upsert.</param>
     public void UpsertEdge(Edge edge) => BaseGraph.UpsertEdge(edge);
-    public uint AddEdge(uint NodeID1, uint NodeID2)
-    {
-        uint EdgeID = BaseGraph.GenerateID();
-        UpsertEdge(new(EdgeID, NodeID1, NodeID2));
-        return EdgeID;
-    }
+
+    /// <summary>
+    /// Add or modify a node with their corresponding ID.
+    /// </summary>
+    /// <param name="Node">Node to upsert.</param>
     public void UpsertNode(TNode Node) => BaseGraph.UpsertNode(Node);
+
+    /// <summary>
+    /// Nodes stored in this graph. Elements such as nodes are referenced be their unique IDs.
+    /// </summary>
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
+
+    /// <summary>
+    /// Edges stored in this graph. Elements such as edges are referenced be their unique IDs.
+    /// </summary>
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
 }
 
+/// <summary>
+/// Determines an event to subscribe to from a GraphPlugin in a GraphPlugin.
+/// </summary>
 public enum GraphPluginSubscription
 {
     OnGraphModificationInit, OnGraphPluginInit

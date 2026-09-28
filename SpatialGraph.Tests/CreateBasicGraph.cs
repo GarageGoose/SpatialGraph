@@ -50,7 +50,7 @@ public class BasicGraphTests
     {
         Graph<Node2D> graph2D = new();
 
-        BatchedModifications<Node2D> ModBatch = new();
+        GraphIncomingChanges<Node2D> ModBatch = new();
 
         ModBatch.UpsertNode(new(1, new(0, 1)));
         ModBatch.UpsertNode(new(2, new(2, 0)));

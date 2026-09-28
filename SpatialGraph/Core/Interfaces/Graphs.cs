@@ -8,7 +8,14 @@ namespace GG.SpatialGraph;
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 {
+    /// <summary>
+    /// Nodes stored in this graph. Elements such as nodes are referenced be their unique IDs.
+    /// </summary>
     IReadOnlyDictionary<uint, TNode> Nodes {get;}
+
+    /// <summary>
+    /// Edges stored in this graph. Elements such as edges are referenced be their unique IDs.
+    /// </summary>
     IReadOnlyDictionary<uint, Edge> Edges {get;}
 
     /// <summary>
@@ -23,6 +30,9 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
+    /// <summary>
+    /// Event for changes applied. Invokes after the graph is modified.
+    /// </summary>
     event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
 }
 
@@ -35,51 +45,34 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     /// <summary>
     /// Add or modify a node with their corresponding ID.
     /// </summary>
+    /// <param name="Node">Node to upsert.</param>
     void UpsertNode(TNode Node);
 
     /// <summary>
     /// Remove a node in the graph using their correspinding IDs.
     /// </summary>
+    /// <param name="ID">ID of the node to be removed.</param>
+    /// <returns>If the node is removed.</returns>
     bool RemoveNode(uint ID);
 
     /// <summary>
     /// Add or modify an edge with its corresponding ID.
     /// </summary>
+    /// <param name="edge">Edge to upsert.</param>
     void UpsertEdge(Edge edge);
-
-    /// <summary>
-    /// Add an edge from two nodes.
-    /// </summary>
-    /// <returns>Unique edge ID</returns>
-    uint AddEdge(uint NodePoint1, uint NodePoint2);
 
     /// <summary>
     /// Remove an edge in the graph using its corresponding ID.
     /// </summary>
+    /// <param name="ID">ID of the edge to be removed.</param>
+    /// <returns>If the edge is removed.</returns>
     bool RemoveEdge(uint ID);
 
     /// <summary>
     /// Perform multiple operations at once.
     /// </summary>
-    void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> modifications);
-}
-
-/// <summary>
-/// Graph2D interface.
-/// </summary>
-public interface IGraph2D
-{
-    uint AddNode(float X, float Y);
-    uint AddNode(Vector2 Loc);
-}
-
-/// <summary>
-/// Graph3D interface.
-/// </summary>
-public interface IGraph3D
-{
-    uint AddNode(float X, float Y, float Z);
-    uint AddNode(Vector3 Loc);
+    /// <param name="modifications">Contains operations to perform.</param>
+    void ApplyBatchedModifications(GraphChangeSet<TNode> modifications);
 }
 
 /// <summary>
@@ -94,5 +87,8 @@ public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNo
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IInterceptableTrackedGraph<TNode> : ITrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode
 {
-    event EventHandler<ModificationLog<TNode>>? OnGraphModificationInit;
+    /// <summary>
+    /// Event for incoming changes. Modifications can be changed before being applied to the graph.
+    /// </summary>
+    event EventHandler<GraphChangeLog<TNode>>? OnGraphModificationInit;
 }

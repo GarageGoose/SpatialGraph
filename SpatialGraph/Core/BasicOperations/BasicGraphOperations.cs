@@ -4,7 +4,7 @@ namespace GG.SpatialGraph;
 public static class BasicGraphOperations
 {
     /// <summary>
-    /// Add or replace a node with the same ID in a Graph2D.
+    /// Add or replace a node with the same ID in a 2D graph.
     /// </summary>
     /// <param name="graph">Graph to upsert a node.</param>
     /// <param name="ID">ID of the node to add/replace.</param>
@@ -13,7 +13,7 @@ public static class BasicGraphOperations
     public static void UpsertNode(this Graph<Node2D> graph, uint ID, float X, float Y) => graph.UpsertNode(new(ID, new(X, Y)));
 
     /// <summary>
-    /// Add or replace a node with the same ID in a Graph2D.
+    /// Add or replace a node with the same ID in a 2D graph.
     /// </summary>
     /// <param name="graph">Graph to upsert a node.</param>
     /// <param name="ID">ID of the node to add/replace.</param>
@@ -21,7 +21,7 @@ public static class BasicGraphOperations
     public static void UpsertNode(this Graph<Node2D> graph, uint ID, Vector2 Loc) => graph.UpsertNode(new(ID, Loc));
     
     /// <summary>
-    /// Add a node in a Graph2D.
+    /// Add a node in a 2D graph.
     /// </summary>
     /// <param name="graph">Graph to add a node.</param>
     /// <param name="X">X position of the node.</param>
@@ -35,7 +35,7 @@ public static class BasicGraphOperations
     }
 
     /// <summary>
-    /// Add a node in a Graph2D.
+    /// Add a node in a 2D graph.
     /// </summary>
     /// <param name="graph">Graph to add a node.</param>
     /// <param name="Loc">Location of the node.</param>
@@ -48,7 +48,7 @@ public static class BasicGraphOperations
     }
 
     /// <summary>
-    /// Add or replace a node with the same ID in a Graph3D.
+    /// Add or replace a node with the same ID in a 3D graph.
     /// </summary>
     /// <param name="graph">Graph to add a node.</param>
     /// <param name="ID">ID of the node to add/replace.</param>
@@ -58,7 +58,7 @@ public static class BasicGraphOperations
     public static void UpsertNode(this Graph<Node3D> graph, uint ID, float X, float Y, float Z) => graph.UpsertNode(new(ID, new(X, Y, Z)));
 
     /// <summary>
-    /// Add or replace a node with the same ID in a Graph3D.
+    /// Add or replace a node with the same ID in a 3D graph.
     /// </summary>
     /// <param name="graph">Graph to add a node.</param>
     /// <param name="ID">ID of the node to add/replace.</param>
@@ -66,7 +66,7 @@ public static class BasicGraphOperations
     public static void UpsertNode(this Graph<Node3D> graph, uint ID, Vector3 Loc) => graph.UpsertNode(new(ID, Loc));
 
     /// <summary>
-    /// Add a node in a Graph3D.
+    /// Add a node in a 3D graph.
     /// </summary>
     /// <param name="graph">Graph to add a node.</param>
     /// <param name="X">X position of the new node.</param>
@@ -81,7 +81,7 @@ public static class BasicGraphOperations
     }
 
     /// <summary>
-    /// Add a node in a Graph3D.
+    /// Add a node in a 3D graph.
     /// </summary>
     /// <param name="graph">Graph to add a node.</param>
     /// <param name="Loc">Location of the node.</param>
@@ -90,6 +90,21 @@ public static class BasicGraphOperations
     {
         uint ID = graph.GenerateID();
         graph.UpsertNode(new(ID, Loc));
+        return ID;
+    }
+
+    /// <summary>
+    /// Add an edge in a graph.
+    /// </summary>
+    /// <typeparam name="TNode">Type of node the graph have.</typeparam>
+    /// <param name="graph">Graph to add an edge.</param>
+    /// <param name="NodeID1">The first node in an edge.</param>
+    /// <param name="NodeID2">The second node in an edge.</param>
+    /// <returns></returns>
+    public static uint AddEdge<TNode>(this Graph<TNode> graph, uint NodeID1, uint NodeID2) where TNode : struct, INode
+    {
+        uint ID = graph.GenerateID();
+        graph.UpsertEdge(new(ID, NodeID1, NodeID2));
         return ID;
     }
 

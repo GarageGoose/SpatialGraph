@@ -1,10 +1,10 @@
 namespace GG.SpatialGraph;
 
 /// <summary>
-/// Logs incoming modifications for a graph.
+/// Logs incoming changes for a graph. Stores additional data: type of modification of an element (Add, Modify, Delete), old value of an element (if any), and new value of an element (if any).
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
-public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNode : struct, INode
+/// <typeparam name="TNode">Node which the base graph uses.</typeparam>
+public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode : struct, INode
 {
     public IReadOnlyGraph<TNode> BaseGraph {get;}
 
@@ -41,7 +41,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
     public IReadOnlyDictionary<uint, ElementRemoved<TNode>> RemovedNodes {get;}
     public IReadOnlyDictionary<uint, ElementRemoved<Edge>> RemovedEdges {get;}
 
-    public ModificationLog(IReadOnlyGraph<TNode> baseGraph)
+    public GraphChangeLog(IReadOnlyGraph<TNode> baseGraph)
     {
         BaseGraph = baseGraph;
 
@@ -57,32 +57,32 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         NodeModType = nodeModType;
         EdgeModType = edgeModType;
     }
-    public ModificationLog(IReadOnlyModificationLog<TNode> baseGraph)
+    public GraphChangeLog(IReadOnlyModificationLog<TNode> baseGraph)
     {
         BaseGraph = baseGraph.BaseGraph;
 
         newNodes = new(baseGraph.NewNodes);
-        NewNodes = newNodes;
         newEdges = new(baseGraph.NewEdges);
+        NewNodes = newNodes;
         NewEdges = newEdges;
 
         modifiedNodes = new(baseGraph.ModifiedNodes);
-        ModifiedNodes = modifiedNodes;
         modifiedEdges = new(baseGraph.ModifiedEdges);
+        ModifiedNodes = modifiedNodes;
         ModifiedEdges = modifiedEdges;
 
         removedEdges = new(baseGraph.RemovedEdges);
-        RemovedNodes = removedNodes;
         removedNodes = new(baseGraph.RemovedNodes);
+        RemovedNodes = removedNodes;
         RemovedEdges = removedEdges;
 
         nodeModType = new(baseGraph.NodeModType);
-        NodeModType = nodeModType;
         edgeModType = new(baseGraph.EdgeModType);
+        NodeModType = nodeModType;
         EdgeModType = edgeModType;
     }
 
-    public ModificationLog(IReadOnlyGraph<TNode> baseGraph, IReadOnlyBatchedMods<TNode> batchedMods)
+    public GraphChangeLog(IReadOnlyGraph<TNode> baseGraph, GraphChangeSet<TNode> changeSet)
     {
         BaseGraph = baseGraph;
 
@@ -98,27 +98,27 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         NodeModType = nodeModType;
         EdgeModType = edgeModType;
 
-        BatchedModifications(batchedMods);
+        LogChangeSet(changeSet);
     }
 
-    public void BatchedModifications(IReadOnlyBatchedMods<TNode> batchedMods)
+    public void LogChangeSet(GraphChangeSet<TNode> batchedMods)
     {
-        foreach(TNode node in batchedMods.GetNodeUpserts())
+        foreach(TNode node in batchedMods.NodeUpserts())
         {
             NodeUpsert(node);
         }
 
-        foreach(uint nodeID in batchedMods.GetNodeRemovalIDs())
+        foreach(uint nodeID in batchedMods.NodeRemovals())
         {
             NodeRemoval(nodeID);
         }
 
-        foreach(Edge edge in batchedMods.GetEdgeUpserts())
+        foreach(Edge edge in batchedMods.EdgeUpserts())
         {
             EdgeUpsert(edge);
         }
 
-        foreach(uint edgeID in batchedMods.GetEdgeRemovalIDs())
+        foreach(uint edgeID in batchedMods.EdgeRemovals())
         {
             NodeRemoval(edgeID);
         }
@@ -210,7 +210,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<TNode> GetNodeUpserts()
+    public IEnumerable<TNode> NodeUpserts()
     {
         foreach(ElementAdded<TNode> node in NewNodes.Values)
         {
@@ -222,7 +222,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<Edge> GetEdgeUpserts()
+    public IEnumerable<Edge> EdgeUpserts()
     {
         foreach(ElementAdded<Edge> edge in NewEdges.Values)
         {
@@ -234,7 +234,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<uint> GetNodeRemovalIDs()
+    public IEnumerable<uint> NodeRemovals()
     {
         foreach(ElementRemoved<TNode> node in RemovedNodes.Values)
         {
@@ -242,7 +242,7 @@ public class ModificationLog<TNode> : IReadOnlyModificationLog<TNode> where TNod
         }
     }
 
-    public IEnumerable<uint> GetEdgeRemovalIDs()
+    public IEnumerable<uint> EdgeRemovals()
     {
         foreach(ElementRemoved<Edge> edge in RemovedEdges.Values)
         {
@@ -263,7 +263,7 @@ public enum ModificationType
 /// 
 /// </summary>
 /// <typeparam name="TNode"></typeparam>
-public interface IReadOnlyModificationLog<TNode> : IReadOnlyBatchedMods<TNode> where TNode : struct, INode
+public interface IReadOnlyModificationLog<TNode> : GraphChangeSet<TNode> where TNode : struct, INode
 {
     public IReadOnlyGraph<TNode> BaseGraph {get;}
     public IReadOnlyDictionary<uint, ModificationType> NodeModType {get;}
@@ -279,3 +279,4 @@ public interface IReadOnlyModificationLog<TNode> : IReadOnlyBatchedMods<TNode> w
 public readonly record struct ElementModified<TElement>(TElement NewElement, TElement OldElement, uint ID) where TElement : struct;
 public readonly record struct ElementRemoved<TElement>(TElement Element, uint ID) where TElement : struct;
 public readonly record struct ElementAdded<TElement>(TElement Element, uint ID) where TElement : struct;
+

@@ -38,6 +38,12 @@ public static class SpatialGraph2DOperations
         return (xLength * xLength) + (yLength * yLength);
     }
 
+    /// <summary>
+    /// Get length of an edge
+    /// </summary>
+    /// <param name="baseGraph">Graph where the edge resides from.</param>
+    /// <param name="edgeID">ID of the edge get its length.</param>
+    /// <returns>Length of the edge.</returns>
     public static float EdgeLength(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Edge edge = baseGraph.Edges[edgeID];
@@ -45,6 +51,6 @@ public static class SpatialGraph2DOperations
         Vector2 loc2 = baseGraph.Nodes[edge.NodeID2].Loc;
         float xLength = MathF.Abs(loc1.X - loc2.X);
         float yLength = MathF.Abs(loc1.Y - loc2.Y);
-        return MathF.Sqrt(xLength * xLength) + (yLength * yLength);
+        return MathF.Sqrt(xLength * xLength) + MathF.Sqrt(yLength * yLength);
     }
 }

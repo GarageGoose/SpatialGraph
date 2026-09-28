@@ -57,17 +57,6 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;
 
     /// <summary>
-    /// Add a new edge.
-    /// </summary>
-    /// <param name="Edges">Edges to add.</param>
-    public virtual uint AddEdge(uint NodeID1, uint NodeID2)
-    {
-        uint EdgeID = GenerateID();
-        UpsertEdge(new(EdgeID, NodeID1, NodeID2));
-        return EdgeID;
-    }
-
-    /// <summary>
     /// Remove an edge with the target IDs.
     /// </summary>
     /// <param name="IDs">IDs of the edges to remove.</param>
@@ -77,24 +66,24 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// Apply multiple modifications at once with BatchedMods.
     /// </summary>
     /// <param name="mods">BatchedMods containing the modifications.</param>
-    public virtual void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> mods)
+    public virtual void ApplyBatchedModifications(GraphChangeSet<TNode> mods)
     {
-        foreach(TNode node in mods.GetNodeUpserts())
+        foreach(TNode node in mods.NodeUpserts())
         {
             nodes[node.ID] = node;
         }
         
-        foreach(Edge edge in mods.GetEdgeUpserts())
+        foreach(Edge edge in mods.EdgeUpserts())
         {
             edges[edge.ID] = edge;
         }
 
-        foreach(uint nodeID in mods.GetNodeRemovalIDs())
+        foreach(uint nodeID in mods.NodeRemovals())
         {
             nodes.Remove(nodeID);
         }
 
-        foreach(uint edgeID in mods.GetEdgeRemovalIDs())
+        foreach(uint edgeID in mods.EdgeRemovals())
         {
             edges.Remove(edgeID);
         }

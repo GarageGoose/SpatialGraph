@@ -7,7 +7,7 @@ namespace GG.SpatialGraph;
 public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrackedGraph<TNode> where TNode : struct, INode
 {
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
-    public event EventHandler<ModificationLog<TNode>>? OnGraphModificationInit;
+    public event EventHandler<GraphChangeLog<TNode>>? OnGraphModificationInit;
 
     /// <summary>
     /// Start an empty graph.
@@ -35,23 +35,23 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
     /// Apply multiple modifications at once with BatchedMods.
     /// </summary>
     /// <param name="mods">BatchedMods containing the modifications.</param>
-    public override void ApplyBatchedModifications(IReadOnlyBatchedMods<TNode> mods) => applyBatchedModifications(new(this, mods));
+    public override void ApplyBatchedModifications(GraphChangeSet<TNode> mods) => applyBatchedModifications(new(this, mods));
 
-    private void applyBatchedModifications(ModificationLog<TNode> log)
+    private void applyBatchedModifications(GraphChangeLog<TNode> log)
     {
         OnGraphModificationInit?.Invoke(this, log);
         
-        foreach(TNode node in log.GetNodeUpserts())
+        foreach(TNode node in log.NodeUpserts())
         {
             nodes[node.ID] = node;
         }
         
-        foreach(Edge edge in log.GetEdgeUpserts())
+        foreach(Edge edge in log.EdgeUpserts())
         {
             edges[edge.ID] = edge;
         }
 
-        foreach(uint nodeID in log.GetNodeRemovalIDs())
+        foreach(uint nodeID in log.NodeRemovals())
         {
             //Undo log if operation failed
             if (!nodes.Remove(nodeID))
@@ -60,7 +60,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
             }
         }
 
-        foreach(uint edgeID in log.GetEdgeRemovalIDs())
+        foreach(uint edgeID in log.EdgeRemovals())
         {
             //Undo log if operation failed
             if (!edges.Remove(edgeID))
@@ -74,7 +74,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
 
     public override bool RemoveEdge(uint ID)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.EdgeRemoval(ID);
         ApplyBatchedModifications(log);
         return true; 
@@ -82,7 +82,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
 
     public override bool RemoveNode(uint ID)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.NodeRemoval(ID);
         ApplyBatchedModifications(log);
         return true;
@@ -90,14 +90,14 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
 
     public override void UpsertEdge(Edge edge)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.EdgeUpsert(edge);
         ApplyBatchedModifications(log);
     }
 
     public override void UpsertNode(TNode Node)
     {
-        ModificationLog<TNode> log = new(this);
+        GraphChangeLog<TNode> log = new(this);
         log.NodeUpsert(Node);
         ApplyBatchedModifications(log);
     }

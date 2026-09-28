@@ -32,7 +32,7 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     /// <summary>
     /// Listens to a TrackedGraphInterceptable when an update occurs.
     /// </summary>
-    /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
+    /// <param name="SubscribeTo">Determine which event from the TrackedGraphInterceptable to subscribe to.</param>
     public GraphReadOnlyPlugin(IInterceptableTrackedGraph<TNode> baseGraph, ReadOnlyGraphPluginListenerForTrackedGraph SubscribeTo)
     {
         BaseGraph = baseGraph;
@@ -108,7 +108,11 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
 
 
     //BaseGraph stuff
-    public readonly IReadOnlyTrackedGraph<TNode> BaseGraph;
+    IReadOnlyTrackedGraph<TNode> BaseGraph;
+
+    /// <summary>
+    /// Event for changes applied. Invokes after the graph is modified.
+    /// </summary>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified
     {
         add
@@ -122,16 +126,33 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
         }
     }
     
+    /// <summary>
+    /// Nodes stored in this graph. Elements such as nodes are referenced be their unique IDs.
+    /// </summary>
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
+
+    /// <summary>
+    /// Edges stored in this graph. Elements such as edges are referenced be their unique IDs.
+    /// </summary>
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
+
+    /// <summary>
+    /// Generate unique IDs for the elements of the graph.
+    /// </summary>
     public uint GenerateID() => BaseGraph.GenerateID();
 }
 
+/// <summary>
+/// Determines an event to subscribe to from a TrackedGraph in a GraphReadOnlyPlugin.
+/// </summary>
 public enum ReadOnlyGraphPluginListenerForTrackedGraph
 {
     OnGraphModified, OnGraphModificationInit
 }
 
+/// <summary>
+/// Determines an event to subscribe to from a Plugin (GraphPlugin/GraphReadOnlyPlugin) in a GraphReadOnlyPlugin.
+/// </summary>
 public enum ReadOnlyGraphPluginListenerForPlugin
 {
     OnGraphPluginInit, OnGraphPluginUpdated
