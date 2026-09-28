@@ -3,14 +3,15 @@ using System.Numerics;
 using GG.SpatialGraph.Spatial;
 namespace GG.SpatialGraph.Internal;
 
-public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
+internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 {
     //Construct without nodes
     public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, Vector2 originTopLeft, float width, float height)
     {
         Parent = parent;
         CellCapacity = cellCapacity;
-        Nodes = new(cellCapacity);
+        _Nodes = new(cellCapacity);
+        Nodes = _Nodes;
 
         //Setup cell bounds
         North = originTopLeft.Y;
@@ -27,7 +28,8 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     {
         Parent = parent;
         CellCapacity = cellCapacity;
-        Nodes = [.. nodes];
+        this._Nodes = [.. nodes];
+        Nodes = this._Nodes;
 
         //Setup cell bounds
         North = originTopLeft.Y;
@@ -39,32 +41,38 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         Height = height;
     }
 
-    //Cell parent plugin
+    //Parent plugin of cell
     QuadTreeNode Parent;
 
     //Cell state
     public bool Subdivided {get; private set;} = false;
-    public readonly int CellCapacity;
+    public int CellCapacity {get;}
 
     //Cell contents
-    public QuadTreeNodeCell? UL; //Upper left children
-    public QuadTreeNodeCell? UR; //Upper right children
-    public QuadTreeNodeCell? LL; //Lower left children
-    public QuadTreeNodeCell? LR; //Lower right children
-    public HashSet<Node2D> Nodes;
+    internal QuadTreeNodeCell? _UpperLeft;
+    public IReadOnlyQuadTreeNodeCell? UpperLeft() => _UpperLeft;
+    internal QuadTreeNodeCell? _UpperRight;
+    public IReadOnlyQuadTreeNodeCell? UpperRight() => _UpperRight;
+    internal QuadTreeNodeCell? _LowerLeft;
+    public IReadOnlyQuadTreeNodeCell? LowerLeft() => _LowerLeft;
+    internal QuadTreeNodeCell? _LowerRight;
+    public IReadOnlyQuadTreeNodeCell? LowerRight() => _LowerRight;
+
+    readonly HashSet<Node2D> _Nodes;
+    public IReadOnlySet<Node2D> Nodes {get;}
 
     //Cell bounds
-    public readonly float North;
-    public readonly float East;
-    public readonly float West;
-    public readonly float South;
-    public Vector2 Center;
-    public float Width;
-    public float Height;
+    public float North {get;}
+    public float East {get;}
+    public float West {get;}
+    public float South {get;}
+    public Vector2 Center {get;}
+    public float Width {get;}
+    public float Height {get;}
 
-    public bool AddPoint(Node2D point)
+    internal bool AddPoint(Node2D point)
     {
-        if (Subdivided || Nodes.Count >= CellCapacity)
+        if (Subdivided || _Nodes.Count >= CellCapacity)
         {
             return TransferNodeToSubCell(point);
         }
@@ -72,78 +80,55 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         {
             return false;
         }
-        Nodes.Add(point);
+        _Nodes.Add(point);
         Parent.nodeCurrCell.Add(point.ID, this);
         return true;
     }
 
-    public void RemovePoint(uint iD)
+    internal void RemovePoint(uint iD)
     {
-        foreach(Node2D node in Nodes)
+        foreach(Node2D node in _Nodes)
         {
             if(node.ID == iD)
             {
-                Nodes.Remove(node);
+                _Nodes.Remove(node);
                 Parent.nodeCurrCell.Remove(iD);
                 return;
             }
         }
     }
 
-    public void Subdivide()
+    internal void Subdivide()
     {
         Subdivided = true;
-        UL = new(Parent, CellCapacity, new(West, North), Width / 2, Height / 2);
-        LL = new(Parent, CellCapacity, new(West, Center.Y), Width / 2, Height / 2);
-        UR = new(Parent, CellCapacity, new(Center.X, West), Width / 2, Height / 2);
-        LR = new(Parent, CellCapacity, Center, Width / 2, Height / 2);
-        foreach(Node2D node in Nodes)
+        _UpperLeft = new(Parent, CellCapacity, new(West, North), Width / 2, Height / 2);
+        _LowerLeft = new(Parent, CellCapacity, new(West, Center.Y), Width / 2, Height / 2);
+        _UpperRight = new(Parent, CellCapacity, new(Center.X, West), Width / 2, Height / 2);
+        _LowerRight = new(Parent, CellCapacity, Center, Width / 2, Height / 2);
+        foreach(Node2D node in _Nodes)
         {
             TransferNodeToSubCell(node);
         }
-        Nodes.Clear();
-    }
-
-    public void QueryRadius(Vector2 location, float radius)
-    {
-        if (Subdivided)
-        {
-            
-        }
-    }
-
-    public void QueryAABB(Vector2 topLeftCorner, float width, float height)
-    {
-        
-    }
-
-    public void QueryNearestNeighbor(uint nodeIDSource)
-    {
-        
-    }
-
-    public void QueryNearestNeighbors(uint nodeIDSource, int maxCount)
-    {
-        
+        _Nodes.Clear();
     }
 
     bool TransferNodeToSubCell(Node2D point)
     {
-        if(point.IsNodeWithinAABB(new(UL!.West, UL!.North), UL!.Width, UL!.Height))
+        if(point.IsNodeWithinAABB(new(_UpperLeft!.West, _UpperLeft!.North), _UpperLeft!.Width, _UpperLeft!.Height))
         {
-            return UL!.AddPoint(point); 
+            return _UpperLeft!.AddPoint(point); 
         }
-        if(point.IsNodeWithinAABB(new(LL!.West, LL!.North), LL!.Width, LL!.Height))
+        if(point.IsNodeWithinAABB(new(_LowerLeft!.West, _LowerLeft!.North), _LowerLeft!.Width, _LowerLeft!.Height))
         {
-            return LL!.AddPoint(point);
+            return _LowerLeft!.AddPoint(point);
         }
-        if(point.IsNodeWithinAABB(new(UR!.West, UR!.North), UR!.Width, UR!.Height))
+        if(point.IsNodeWithinAABB(new(_UpperRight!.West, _UpperRight!.North), _UpperRight!.Width, _UpperRight!.Height))
         {
-            return UR!.AddPoint(point);
+            return _UpperRight!.AddPoint(point);
         }
-        if(point.IsNodeWithinAABB(new(LR!.West, LR!.North), LR!.Width, LR!.Height))
+        if(point.IsNodeWithinAABB(new(_LowerRight!.West, _LowerRight!.North), _LowerRight!.Width, _LowerRight!.Height))
         {
-            return LR!.AddPoint(point);
+            return _LowerRight!.AddPoint(point);
         }
         return false;
     }
@@ -151,5 +136,21 @@ public class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
 public interface IReadOnlyQuadTreeNodeCell
 {
-    
+    bool Subdivided {get;}
+    int CellCapacity {get;}
+
+    IReadOnlyQuadTreeNodeCell? UpperLeft();
+    IReadOnlyQuadTreeNodeCell? UpperRight();
+    IReadOnlyQuadTreeNodeCell? LowerLeft();
+    IReadOnlyQuadTreeNodeCell? LowerRight();
+
+    IReadOnlySet<Node2D> Nodes {get;}
+
+    float North {get;}
+    float East {get;}
+    float West {get;}
+    float South {get;}
+    Vector2 Center {get;}
+    float Width {get;}
+    float Height {get;}
 }

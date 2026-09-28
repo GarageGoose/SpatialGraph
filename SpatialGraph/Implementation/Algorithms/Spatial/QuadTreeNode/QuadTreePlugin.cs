@@ -4,14 +4,16 @@ using GG.SpatialGraph.Internal;
 
 namespace GG.SpatialGraph.Spatial;
 
-public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>, IGraphSpatialNode2D
+public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>
 {
-    QuadTreeNodeCell ParentCell;
+    QuadTreeNodeCell _ParentCell;
+    public IReadOnlyQuadTreeNodeCell ParentCell() => _ParentCell;
+
     internal Dictionary<uint, QuadTreeNodeCell> nodeCurrCell = new();
 
     public QuadTreeNode(ITrackedGraph<Node2D> graph, int cellCapacity, Vector2 originTopLeft, float width, float height) : base(graph)
     {
-        ParentCell = new(this, cellCapacity, originTopLeft, width, height);
+        _ParentCell = new(this, cellCapacity, originTopLeft, width, height);
     }
 
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<Node2D> modLog)
@@ -31,68 +33,50 @@ public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>, IGraphSpatialNode2D
         }
     }
 
-    public void AddPoint(Node2D node)
+    void AddPoint(Node2D node)
     {
-        if (!ParentCell.AddPoint(node)) //Outside of the parent cell boundary if false.
+        if (!_ParentCell.AddPoint(node)) //Outside of the parent cell boundary if false.
         {
             //Create new cell and add the current parent cell as its child.
-            bool OutsideLeft = ParentCell.West > node.Loc.X;
-            bool OutsideUp = ParentCell.North < node.Loc.Y;
+            //What the fuck is happening here??
+            bool OutsideLeft = _ParentCell.West > node.Loc.X;
+            bool OutsideUp = _ParentCell.North < node.Loc.Y;
             
-            float newCellPosX = ParentCell.West;
-            newCellPosX -= OutsideLeft ? - ParentCell.Width : 0;
+            float newCellPosX = _ParentCell.West;
+            newCellPosX -= OutsideLeft ? - _ParentCell.Width : 0;
 
-            float newCellPosY = ParentCell.North;
-            newCellPosY += OutsideUp ? ParentCell.Height : 0;
+            float newCellPosY = _ParentCell.North;
+            newCellPosY += OutsideUp ? _ParentCell.Height : 0;
             
-            QuadTreeNodeCell newCell = new(this, ParentCell.CellCapacity, new(newCellPosX, newCellPosY), ParentCell.Width * 2, ParentCell.Height * 2);
+            QuadTreeNodeCell newCell = new(this, _ParentCell.CellCapacity, new(newCellPosX, newCellPosY), _ParentCell.Width * 2, _ParentCell.Height * 2);
             newCell.Subdivide();
 
+            //Huh?????!?!?!?!?!??!
             if (OutsideLeft)
             {
                 if (OutsideUp)
                 {
-                    newCell.LR = ParentCell;
+                    newCell._LowerRight = _ParentCell;
                 }
                 else
                 {
-                    newCell.UR = ParentCell;
+                    newCell._UpperRight = _ParentCell;
                 }
             }
             else
             {
                 if (OutsideUp)
                 {
-                    newCell.LL = ParentCell;
+                    newCell._LowerLeft = _ParentCell;
                 }
                 else
                 {
-                    newCell.UL = ParentCell;
+                    newCell._UpperLeft = _ParentCell;
                 }
             }
-            ParentCell = newCell;
+            _ParentCell = newCell;
             AddPoint(node); //Recursively try again
             return;
         }
-    }
-
-    public uint QueryNodeNearestNeighbor(uint nodeIDSource)
-    {
-        return 0;
-    }
-
-    public IEnumerable<uint> QueryNodeNearestNeighbors(uint nodeIDSource, int count)
-    {
-        yield return 0;
-    }
-
-    public IEnumerable<uint> QueryNodesAABB(Vector2 topLeftCorner, float width, float height)
-    {
-        yield return 0;
-    }
-
-    public IEnumerable<uint> QueryNodesRadius(Vector2 location, float radius)
-    {
-        yield return 0;
     }
 }
