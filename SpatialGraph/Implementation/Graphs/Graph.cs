@@ -39,11 +39,7 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     public IReadOnlyDictionary<uint, Edge> Edges => edges;
 
     public virtual void UpsertNode(TNode Node) => nodes[Node.ID] = Node;
-
-    /// <summary>
-    /// Remove a node using their IDs. Do note that edges connected to a node that is removed isn't automatically removed.
-    /// </summary>
-    /// <param name="ID">ID of the nodes to be removed.</param>
+    
     public virtual bool RemoveNode(uint ID) => nodes.Remove(ID);
 
     public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;

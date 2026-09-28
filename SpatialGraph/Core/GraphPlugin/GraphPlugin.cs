@@ -21,7 +21,8 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
     */
 
     /// <summary>
-    /// Listens to the graph when an update occurs.
+    /// Listens to a graph when an update occurs.
+    /// An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements.
     /// </summary>
     public GraphPlugin(IInterceptableTrackedGraph<TNode> baseGraph)
     {
@@ -31,6 +32,7 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
 
     /// <summary>
     /// Listens to the plugin when an update occurs.
+    /// An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
     public GraphPlugin(GraphPlugin<TNode> baseGraph, GraphPluginSubscription SubscribeTo)
@@ -68,10 +70,6 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
 
     //BaseGraph stuff
     IInterceptableTrackedGraph<TNode> BaseGraph;
-
-    /// <summary>
-    /// Event for incoming changes. Modifications can be changed before being applied to the graph.
-    /// </summary>
     public event EventHandler<GraphChangeLog<TNode>>? OnGraphModificationInit
     {
         add
@@ -83,10 +81,6 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
             BaseGraph.OnGraphModificationInit -= value;
         }
     }
-
-    /// <summary>
-    /// Event for changes applied. Invokes after the graph is modified.
-    /// </summary>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified
     {
         add
@@ -99,51 +93,13 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
         }
     }
 
-    /// <summary>
-    /// Perform multiple operations at once.
-    /// </summary>
-    /// <param name="modifications">Contains operations to perform.</param>
     public void ApplyChangeSet(GraphChangeSet<TNode> modifications) => BaseGraph.ApplyChangeSet(modifications);
-
-    /// <summary>
-    /// Generate unique IDs for the elements of the graph.
-    /// </summary>
     public uint GenerateID() => BaseGraph.GenerateID();
-
-    /// <summary>
-    /// Remove an edge in the graph using its corresponding ID.
-    /// </summary>
-    /// <param name="ID">ID of the edge to be removed.</param>
-    /// <returns>If the edge is removed.</returns>
     public bool RemoveEdge(uint ID) => BaseGraph.RemoveEdge(ID);
-
-    /// <summary>
-    /// Remove a node in the graph using their correspinding IDs.
-    /// </summary>
-    /// <param name="ID">ID of the node to be removed.</param>
-    /// <returns>If the node is removed.</returns>
     public bool RemoveNode(uint ID) => BaseGraph.RemoveNode(ID);
-
-    /// <summary>
-    /// Add or modify an edge with its corresponding ID.
-    /// </summary>
-    /// <param name="edge">Edge to upsert.</param>
     public void UpsertEdge(Edge edge) => BaseGraph.UpsertEdge(edge);
-
-    /// <summary>
-    /// Add or modify a node with their corresponding ID.
-    /// </summary>
-    /// <param name="Node">Node to upsert.</param>
     public void UpsertNode(TNode Node) => BaseGraph.UpsertNode(Node);
-
-    /// <summary>
-    /// Nodes stored in this graph. Elements such as nodes are referenced be their unique IDs.
-    /// </summary>
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
-
-    /// <summary>
-    /// Edges stored in this graph. Elements such as edges are referenced be their unique IDs.
-    /// </summary>
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
 }
 
@@ -152,5 +108,13 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
 /// </summary>
 public enum GraphPluginSubscription
 {
-    OnGraphModificationInit, OnGraphPluginInit
+    /// <summary>
+    /// Points to an event within a GraphPlugin which is invoked when a plugin receives a ChangeLog before it processes the update.
+    /// </summary>
+    OnGraphModificationInit,
+    
+    /// <summary>
+    /// Points to an event within a GraphPlugin which is invoked after the plugin processes the update.
+    /// </summary>
+    OnGraphPluginInit
 }

@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace GG.SpatialGraph;
 
 /// <summary>
@@ -54,7 +52,7 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     void UpsertNode(TNode Node);
 
     /// <summary>
-    /// Remove a node in the graph using its correspinding ID.
+    /// Remove a node in the graph using its correspinding ID. Connecting edges referencing this node will not be removed.
     /// Nodes and edges can share the same ID, this will remove only the node with the corresponding ID.
     /// </summary>
     /// <param name="ID">ID of the node to be removed.</param>

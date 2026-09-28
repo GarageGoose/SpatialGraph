@@ -21,7 +21,7 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     */
 
     /// <summary>
-    /// Listens to a TrackedGraph when an update occurs.
+    /// Listens to a TrackedGraph when an update occurs. An update is the 
     /// </summary>
     public GraphReadOnlyPlugin(IReadOnlyTrackedGraph<TNode> baseGraph)
     {
@@ -109,10 +109,6 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
 
     //BaseGraph stuff
     IReadOnlyTrackedGraph<TNode> BaseGraph;
-
-    /// <summary>
-    /// Event for changes applied. Invokes after the graph is modified.
-    /// </summary>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified
     {
         add
@@ -125,20 +121,8 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
             BaseGraph.OnGraphModified -= value;
         }
     }
-    
-    /// <summary>
-    /// Nodes stored in this graph. Elements such as nodes are referenced be their unique IDs.
-    /// </summary>
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
-
-    /// <summary>
-    /// Edges stored in this graph. Elements such as edges are referenced be their unique IDs.
-    /// </summary>
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
-
-    /// <summary>
-    /// Generate unique IDs for the elements of the graph.
-    /// </summary>
     public uint GenerateID() => BaseGraph.GenerateID();
 }
 
