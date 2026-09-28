@@ -15,8 +15,8 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
         //Setup cell bounds
         North = originTopLeft.Y;
-        East = originTopLeft.X;
         West = originTopLeft.X + width;
+        East = originTopLeft.X;
         South = originTopLeft.Y - height;
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height / 2));
         Width = width;
@@ -33,8 +33,8 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
         //Setup cell bounds
         North = originTopLeft.Y;
-        East = originTopLeft.X;
         West = originTopLeft.X + width;
+        East = originTopLeft.X;
         South = originTopLeft.Y - height;
         Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height / 2));
         Width = width;
@@ -63,8 +63,8 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
     //Cell bounds
     public float North {get;}
+    public float West {get;} //West is on the LEFT, just like the western hemisphere is on the left.
     public float East {get;}
-    public float West {get;}
     public float South {get;}
     public Vector2 Center {get;}
     public float Width {get;}
@@ -76,7 +76,7 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         {
             return TransferNodeToSubCell(point);
         }
-        if(!point.IsNodeWithinAABB(new(West, North), Width, Height))
+        if(!point.IsNodeWithinAABB(new(East, North), Width, Height))
         {
             return false;
         }
@@ -101,9 +101,9 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     internal void Subdivide()
     {
         Subdivided = true;
-        _UpperLeft = new(Parent, CellCapacity, new(West, North), Width / 2, Height / 2);
-        _LowerLeft = new(Parent, CellCapacity, new(West, Center.Y), Width / 2, Height / 2);
-        _UpperRight = new(Parent, CellCapacity, new(Center.X, West), Width / 2, Height / 2);
+        _UpperLeft = new(Parent, CellCapacity, new(East, North), Width / 2, Height / 2);
+        _LowerLeft = new(Parent, CellCapacity, new(East, Center.Y), Width / 2, Height / 2);
+        _UpperRight = new(Parent, CellCapacity, new(Center.X, East), Width / 2, Height / 2);
         _LowerRight = new(Parent, CellCapacity, Center, Width / 2, Height / 2);
         foreach(Node2D node in _Nodes)
         {
@@ -114,19 +114,19 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 
     bool TransferNodeToSubCell(Node2D point)
     {
-        if(point.IsNodeWithinAABB(new(_UpperLeft!.West, _UpperLeft!.North), _UpperLeft!.Width, _UpperLeft!.Height))
+        if(point.IsNodeWithinAABB(new(_UpperLeft!.East, _UpperLeft!.North), _UpperLeft!.Width, _UpperLeft!.Height))
         {
             return _UpperLeft!.AddPoint(point); 
         }
-        if(point.IsNodeWithinAABB(new(_LowerLeft!.West, _LowerLeft!.North), _LowerLeft!.Width, _LowerLeft!.Height))
+        if(point.IsNodeWithinAABB(new(_LowerLeft!.East, _LowerLeft!.North), _LowerLeft!.Width, _LowerLeft!.Height))
         {
             return _LowerLeft!.AddPoint(point);
         }
-        if(point.IsNodeWithinAABB(new(_UpperRight!.West, _UpperRight!.North), _UpperRight!.Width, _UpperRight!.Height))
+        if(point.IsNodeWithinAABB(new(_UpperRight!.East, _UpperRight!.North), _UpperRight!.Width, _UpperRight!.Height))
         {
             return _UpperRight!.AddPoint(point);
         }
-        if(point.IsNodeWithinAABB(new(_LowerRight!.West, _LowerRight!.North), _LowerRight!.Width, _LowerRight!.Height))
+        if(point.IsNodeWithinAABB(new(_LowerRight!.East, _LowerRight!.North), _LowerRight!.Width, _LowerRight!.Height))
         {
             return _LowerRight!.AddPoint(point);
         }
@@ -147,8 +147,8 @@ public interface IReadOnlyQuadTreeNodeCell
     IReadOnlySet<Node2D> Nodes {get;}
 
     float North {get;}
-    float East {get;}
     float West {get;}
+    float East {get;}
     float South {get;}
     Vector2 Center {get;}
     float Width {get;}
