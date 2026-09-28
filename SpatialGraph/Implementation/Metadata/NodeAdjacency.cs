@@ -1,7 +1,7 @@
 namespace GG.SpatialGraph.Metadata;
 
 /// <summary>
-/// Records adjecent nodes or edges from a node in a graph.
+/// Records adjecent nodes and edges from a node in a graph.
 /// </summary>
 /// <typeparam name="TNode">Node which the base class uses.</typeparam>
 public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : struct, INode

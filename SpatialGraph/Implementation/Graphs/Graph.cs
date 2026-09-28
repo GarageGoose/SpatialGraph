@@ -38,10 +38,6 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     protected Dictionary<uint, Edge> edges = new();
     public IReadOnlyDictionary<uint, Edge> Edges => edges;
 
-    /// <summary>
-    /// Add or replace a node with the same ID.
-    /// </summary>
-    /// <param name="Nodes">Nodes to add.</param>
     public virtual void UpsertNode(TNode Node) => nodes[Node.ID] = Node;
 
     /// <summary>
@@ -50,23 +46,11 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <param name="IDs">IDs of the nodes to remove.</param>
     public virtual bool RemoveNode(uint ID) => nodes.Remove(ID);
 
-    /// <summary>
-    /// Add or replace an edge with the same IDs.
-    /// </summary>
-    /// <param name="Edges">Edges to add.</param>
     public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;
 
-    /// <summary>
-    /// Remove an edge with the target IDs.
-    /// </summary>
-    /// <param name="IDs">IDs of the edges to remove.</param>
     public virtual bool RemoveEdge(uint ID) => edges.Remove(ID);
 
-    /// <summary>
-    /// Apply multiple modifications at once with BatchedMods.
-    /// </summary>
-    /// <param name="mods">BatchedMods containing the modifications.</param>
-    public virtual void ApplyBatchedModifications(GraphChangeSet<TNode> mods)
+    public virtual void ApplyChangeSet(GraphChangeSet<TNode> mods)
     {
         foreach(TNode node in mods.NodeUpserts())
         {
@@ -90,9 +74,6 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     }
 
     uint currID = 0;
-    /// <summary>
-    /// Generate IDs without duplication.
-    /// </summary>
     public virtual uint GenerateID()
     {
         currID++;

@@ -65,7 +65,7 @@ public static class Graph2DOperations
         }
 
         //Apply changes.
-        pasteTo.ApplyBatchedModifications(mods);
+        pasteTo.ApplyChangeSet(mods);
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public static class Graph2DOperations
                 mods.UpsertEdge(edge.WithNodeIDs(nodeID1, nodeID2));
             }
         }
-        pasteTo.ApplyBatchedModifications(mods);
+        pasteTo.ApplyChangeSet(mods);
     }
 
     /// <summary>
@@ -129,7 +129,7 @@ public static class Graph2DOperations
         mods.UpsertEdge(edgeToInsert);
         mods.UpsertEdge(newEdge);
 
-        baseGraph.ApplyBatchedModifications(mods);
+        baseGraph.ApplyChangeSet(mods);
     }
 
     /// <summary>
@@ -190,7 +190,7 @@ public static class Graph2DOperations
         }
 
         //Apply changes
-        baseGraph.ApplyBatchedModifications(mods);
+        baseGraph.ApplyChangeSet(mods);
     }
 
     /*

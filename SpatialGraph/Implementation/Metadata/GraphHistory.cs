@@ -114,7 +114,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
             }
 
             //Apply the recorded modifications to the base snapshot
-            newSnapshot.ApplyBatchedModifications(modsAfterSnapshot);
+            newSnapshot.ApplyChangeSet(modsAfterSnapshot);
             GraphSnapshot<TNode> graphSnapshotFinal = new(modStep, newSnapshot);
             snapshotDict.Add(modStep, graphSnapshotFinal);
             return graphSnapshotFinal;

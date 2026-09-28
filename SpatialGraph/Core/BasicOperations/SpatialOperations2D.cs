@@ -3,18 +3,37 @@ namespace GG.SpatialGraph;
 
 public static class SpatialGraph2DOperations
 {
+    /// <summary>
+    /// Get the angle of an edge in radians.
+    /// </summary>
+    /// <param name="baseGraph">Graph where the edge resides from.</param>
+    /// <param name="edgeID">ID of the target edge.</param>
+    /// <returns>Angle of the edge in radians.</returns>
     public static float EdgeAngle(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Vector2 Dir = baseGraph.GetSecondNodeOfEdge(edgeID).Loc - baseGraph.GetFirstNodeOfEdge(edgeID).Loc;
         return MathF.Atan2(Dir.X, Dir.Y);
     }
-
+    
+    /// <summary>
+    /// Get the angle of an edge, flipped 180 degrees, in radians.
+    /// </summary>
+    /// <param name="baseGraph">Graph where the edge resides from.</param>
+    /// <param name="edgeID">ID of the target edge.</param>
+    /// <returns>Angle of the edge, flipped 180 degrees, in radians.</returns>
     public static float EdgeAngleOpposite(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Vector2 Dir = baseGraph.GetFirstNodeOfEdge(edgeID).Loc - baseGraph.GetSecondNodeOfEdge(edgeID).Loc;
         return MathF.Atan2(Dir.X, Dir.Y);
     }
 
+    /// <summary>
+    /// Get the angle of an edge (in radians) relative to one of the node connected from it.
+    /// </summary>
+    /// <param name="baseGraph">Graph where the edge resides from.</param>
+    /// <param name="edgeID">ID of the edge get its angle.</param>
+    /// <param name="nodeID">ID of the node to get the angle of the edge from.</param>
+    /// <returns>Angle of the edge (in radians) relative to the node.</returns>
     public static float EdgeAngleFromNode(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID, uint nodeID)
     {
         if (baseGraph.Edges[edgeID].EdgeAssignmentOfNode(nodeID) == NodeInEdge.First)
@@ -28,6 +47,12 @@ public static class SpatialGraph2DOperations
         return 0;
     }
 
+    /// <summary>
+    /// Get the squared length of an edge.
+    /// </summary>
+    /// <param name="baseGraph">Graph where the edge resides from.</param>
+    /// <param name="edgeID">ID of the edge get its length.</param>
+    /// <returns>Length of the edge.</returns>
     public static float EdgeLengthSquared(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Edge edge = baseGraph.Edges[edgeID];
@@ -39,7 +64,7 @@ public static class SpatialGraph2DOperations
     }
 
     /// <summary>
-    /// Get length of an edge
+    /// Get length of an edge.
     /// </summary>
     /// <param name="baseGraph">Graph where the edge resides from.</param>
     /// <param name="edgeID">ID of the edge get its length.</param>

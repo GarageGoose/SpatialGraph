@@ -31,11 +31,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
     {
     }
 
-    /// <summary>
-    /// Apply multiple modifications at once with BatchedMods.
-    /// </summary>
-    /// <param name="mods">BatchedMods containing the modifications.</param>
-    public override void ApplyBatchedModifications(GraphChangeSet<TNode> mods) => applyBatchedModifications(new(this, mods));
+    public override void ApplyChangeSet(GraphChangeSet<TNode> mods) => applyBatchedModifications(new(this, mods));
 
     private void applyBatchedModifications(GraphChangeLog<TNode> log)
     {
@@ -76,7 +72,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
     {
         GraphChangeLog<TNode> log = new(this);
         log.EdgeRemoval(ID);
-        ApplyBatchedModifications(log);
+        ApplyChangeSet(log);
         return true; 
     }
 
@@ -84,7 +80,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
     {
         GraphChangeLog<TNode> log = new(this);
         log.NodeRemoval(ID);
-        ApplyBatchedModifications(log);
+        ApplyChangeSet(log);
         return true;
     }
 
@@ -92,13 +88,13 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
     {
         GraphChangeLog<TNode> log = new(this);
         log.EdgeUpsert(edge);
-        ApplyBatchedModifications(log);
+        ApplyChangeSet(log);
     }
 
     public override void UpsertNode(TNode Node)
     {
         GraphChangeLog<TNode> log = new(this);
         log.NodeUpsert(Node);
-        ApplyBatchedModifications(log);
+        ApplyChangeSet(log);
     }
 }

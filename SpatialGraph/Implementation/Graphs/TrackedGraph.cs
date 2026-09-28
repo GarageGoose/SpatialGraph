@@ -29,12 +29,8 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
     public TrackedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
     {
     }
-
-    /// <summary>
-    /// Apply multiple modifications at once with BatchedMods.
-    /// </summary>
-    /// <param name="mods">BatchedMods containing the modifications.</param>
-    public override void ApplyBatchedModifications(GraphChangeSet<TNode> mods)
+    
+    public override void ApplyChangeSet(GraphChangeSet<TNode> mods)
     {
         GraphChangeLog<TNode> log = new(this);
 

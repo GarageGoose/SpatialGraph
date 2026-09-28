@@ -56,7 +56,7 @@ public class BasicGraphTests
         ModBatch.UpsertNode(new(2, new(2, 0)));
         ModBatch.UpsertEdge(new(3, 1, 2));
 
-        graph2D.ApplyBatchedModifications(ModBatch);
+        graph2D.ApplyChangeSet(ModBatch);
 
         Assert.Equal(new Vector2(0, 1), graph2D.GetFirstNodeOfEdge(3).Loc);
         Assert.Equal(new Vector2(2, 0), graph2D.GetSecondNodeOfEdge(3).Loc);

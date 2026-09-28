@@ -72,7 +72,7 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     /// Perform multiple operations at once.
     /// </summary>
     /// <param name="modifications">Contains operations to perform.</param>
-    void ApplyBatchedModifications(GraphChangeSet<TNode> modifications);
+    void ApplyChangeSet(GraphChangeSet<TNode> modifications);
 }
 
 /// <summary>

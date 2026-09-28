@@ -103,7 +103,7 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
     /// Perform multiple operations at once.
     /// </summary>
     /// <param name="modifications">Contains operations to perform.</param>
-    public void ApplyBatchedModifications(GraphChangeSet<TNode> modifications) => BaseGraph.ApplyBatchedModifications(modifications);
+    public void ApplyChangeSet(GraphChangeSet<TNode> modifications) => BaseGraph.ApplyChangeSet(modifications);
 
     /// <summary>
     /// Generate unique IDs for the elements of the graph.
