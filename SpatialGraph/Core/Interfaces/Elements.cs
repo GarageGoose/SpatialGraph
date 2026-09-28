@@ -15,7 +15,7 @@ public interface IElement
 public interface INode : IElement;
 
 /// <summary>
-/// A line segment from 2 nodes.
+/// A line segment which is formed from 2 nodes.
 /// </summary>
 public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2) : IElement;
 

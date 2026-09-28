@@ -43,7 +43,7 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <summary>
     /// Remove a node using their IDs. Do note that edges connected to a node that is removed isn't automatically removed.
     /// </summary>
-    /// <param name="IDs">IDs of the nodes to remove.</param>
+    /// <param name="ID">ID of the nodes to be removed.</param>
     public virtual bool RemoveNode(uint ID) => nodes.Remove(ID);
 
     public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;

@@ -1,9 +1,9 @@
 namespace GG.SpatialGraph.Metadata;
 
 /// <summary>
-/// Base class for storing additional metadata in a graph.
+/// Base class for plugins which can observe and modify changes either in a graph or another plugin (only GraphPlugins).
 /// </summary>
-/// <typeparam name="TNode"></typeparam>
+/// <typeparam name="TNode">Type of node used in the base graph.</typeparam>
 public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> where TNode : struct, INode
 {
     /*
