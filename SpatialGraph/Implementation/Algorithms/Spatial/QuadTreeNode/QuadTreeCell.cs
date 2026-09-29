@@ -23,24 +23,6 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         Height = height;
     }
 
-    //Construct with nodes
-    public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, List<Node2D> nodes, Vector2 originTopLeft, float width, float height)
-    {
-        Parent = parent;
-        CellCapacity = cellCapacity;
-        this._Nodes = [.. nodes];
-        Nodes = this._Nodes;
-
-        //Setup cell bounds
-        North = originTopLeft.Y;
-        West = originTopLeft.X + width;
-        East = originTopLeft.X;
-        South = originTopLeft.Y - height;
-        Center = new(originTopLeft.X + (width / 2), originTopLeft.Y - (height / 2));
-        Width = width;
-        Height = height;
-    }
-
     //Parent plugin of cell
     QuadTreeNode Parent;
 

@@ -1,7 +1,7 @@
 namespace GG.SpatialGraph;
 
 /// <summary>
-/// Read only interface of a graph.
+/// Read only interface of a graph. A graph stores nodes and edges within it, identified by their IDs.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IReadOnlyGraph<TNode> where TNode : struct, INode
