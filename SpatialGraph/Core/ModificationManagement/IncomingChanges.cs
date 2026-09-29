@@ -3,7 +3,7 @@ namespace GG.SpatialGraph;
 /// <summary>
 /// Stores incoming changes for a graph.
 /// </summary>
-/// <typeparam name="TNode">Nodes to be used, either Node2D or Node3D (or a custom one with a base Node) depending on the dimensions of the graph.</typeparam>
+/// <typeparam name="TNode">Type of node used in the graph.</typeparam>
 public class GraphIncomingChanges<TNode> : IReadOnlyBatchedMods<TNode> where TNode : struct, INode
 {
     Dictionary<uint, TNode> nodesForUpsert = new();
