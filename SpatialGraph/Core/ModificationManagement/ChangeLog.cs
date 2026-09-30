@@ -335,21 +335,73 @@ public enum ModificationType
 /// <summary>
 /// Logs incoming changes for a graph. Stores additional data: type of modification of an element (Add, Modify, Delete), old value of an element (if any), and new value of an element (if any).
 /// </summary>
-/// <typeparam name="TNode"></typeparam>
+/// <typeparam name="TNode">Type of node used in the graph to log changes from.</typeparam>
 public interface IReadOnlyModificationLog<TNode> : GraphChangeSet<TNode> where TNode : struct, INode
 {
-    public IReadOnlyGraph<TNode> BaseGraph {get;}
-    public IReadOnlyDictionary<uint, ModificationType> NodeModType {get;}
-    public IReadOnlyDictionary<uint, ModificationType> EdgeModType {get;}
-    public IReadOnlyDictionary<uint, ElementAdded<TNode>> NewNodes {get;}
-    public IReadOnlyDictionary<uint, ElementAdded<Edge>> NewEdges {get;}
-    public IReadOnlyDictionary<uint, ElementModified<TNode>> ModifiedNodes {get;}
-    public IReadOnlyDictionary<uint, ElementModified<Edge>> ModifiedEdges {get;}
-    public IReadOnlyDictionary<uint, ElementRemoved<TNode>> RemovedNodes {get;}
-    public IReadOnlyDictionary<uint, ElementRemoved<Edge>> RemovedEdges {get;}
+    IReadOnlyGraph<TNode> BaseGraph {get;}
+
+    /// <summary>
+    /// Dictionary for type of modifications (Add, Remove, Modify) each node have.
+    /// </summary>
+    IReadOnlyDictionary<uint, ModificationType> NodeModType {get;}
+
+    /// <summary>
+    /// Dictionary for type of modifications (Add, Remove, Modify) each edge have.
+    /// </summary>
+    IReadOnlyDictionary<uint, ModificationType> EdgeModType {get;}
+
+    /// <summary>
+    /// Dictionary for nodes which was/will be added.
+    /// </summary>
+    IReadOnlyDictionary<uint, ElementAdded<TNode>> NewNodes {get;}
+
+    /// <summary>
+    /// Dictionary for edges which was/will be added.
+    /// </summary>
+    IReadOnlyDictionary<uint, ElementAdded<Edge>> NewEdges {get;}
+
+    /// <summary>
+    /// Dictionary for nodes which was/will be modified. Contains the original and new value of the node.
+    /// </summary>
+    IReadOnlyDictionary<uint, ElementModified<TNode>> ModifiedNodes {get;}
+
+    /// <summary>
+    /// Dictionary for edges which was/will be modified. Contains the original and new value of the edge.
+    /// </summary>
+    IReadOnlyDictionary<uint, ElementModified<Edge>> ModifiedEdges {get;}
+
+    /// <summary>
+    /// Dictionary for nodes which was/will be removed. Contains its original value.
+    /// </summary>
+    IReadOnlyDictionary<uint, ElementRemoved<TNode>> RemovedNodes {get;}
+
+    /// <summary>
+    /// Dictionary for edges which was/will be removed. Contains its original value.
+    /// </summary>
+    IReadOnlyDictionary<uint, ElementRemoved<Edge>> RemovedEdges {get;}
 }
 
+/// <summary>
+/// Single log of an element which is modified. Used in a ModificationLog.
+/// </summary>
+/// <typeparam name="TElement">Type of an element which is modified. Typically an edge or a type of node.</typeparam>
+/// <param name="NewElement">The new value of the element after it was modified.</param>
+/// <param name="OldElement">The old value of the element before it was modified.</param>
+/// <param name="ID">Identifier of the element.</param>
 public readonly record struct ElementModified<TElement>(TElement NewElement, TElement OldElement, uint ID) where TElement : struct;
-public readonly record struct ElementRemoved<TElement>(TElement Element, uint ID) where TElement : struct;
-public readonly record struct ElementAdded<TElement>(TElement Element, uint ID) where TElement : struct;
 
+/// <summary>
+/// Single log of an element which is removed. Used in a ModificationLog.
+/// </summary>
+/// <typeparam name="TElement">Type of an element which is/will be removed. Typically an edge or a type of node.</typeparam>
+/// <param name="Element">Value of an element which is/will be removed.</param>
+/// <param name="ID">Identifier of the element.</param>
+public readonly record struct ElementRemoved<TElement>(TElement Element, uint ID) where TElement : struct;
+
+/// <summary>
+/// Single log of an element which is added. Used in a ModificationLog.
+/// </summary>
+/// <typeparam name="TElement">Type of an element which is/will be added. Typically an edge or a type of node.</typeparam>
+/// <param name="Element">Value of an element which is/will be added.</param>
+/// <param name="ID">Identifier of the element.</param>
+public readonly record struct ElementAdded<TElement>(TElement Element, uint ID) where TElement : struct;

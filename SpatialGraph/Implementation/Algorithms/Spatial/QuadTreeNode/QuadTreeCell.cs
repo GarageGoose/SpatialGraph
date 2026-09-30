@@ -5,10 +5,10 @@ namespace GG.SpatialGraph.Internal;
 
 internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 {
-    //Construct without nodes
-    public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, Vector2 originTopLeft, float width, float height)
+    public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, Vector2 originTopLeft, float width, float height, QuadTreeNodeCell? parentCell = null)
     {
         Parent = parent;
+        _ParentCell = parentCell;
         CellCapacity = cellCapacity;
         _Nodes = new(cellCapacity);
         Nodes = _Nodes;
@@ -24,7 +24,7 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     }
 
     //Parent plugin of cell
-    QuadTreeNode Parent;
+    readonly QuadTreeNode Parent;
 
     //Cell state
     public bool Subdivided {get; private set;} = false;
@@ -39,6 +39,8 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     public IReadOnlyQuadTreeNodeCell? LowerLeft() => _LowerLeft;
     internal QuadTreeNodeCell? _LowerRight;
     public IReadOnlyQuadTreeNodeCell? LowerRight() => _LowerRight;
+    internal QuadTreeNodeCell? _ParentCell;
+    public IReadOnlyQuadTreeNodeCell? ParentCell() => _ParentCell;
 
     readonly HashSet<Node2D> _Nodes;
     public IReadOnlySet<Node2D> Nodes {get;}
@@ -83,10 +85,10 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     internal void Subdivide()
     {
         Subdivided = true;
-        _UpperLeft = new(Parent, CellCapacity, new(East, North), Width / 2, Height / 2);
-        _LowerLeft = new(Parent, CellCapacity, new(East, Center.Y), Width / 2, Height / 2);
-        _UpperRight = new(Parent, CellCapacity, new(Center.X, East), Width / 2, Height / 2);
-        _LowerRight = new(Parent, CellCapacity, Center, Width / 2, Height / 2);
+        _UpperLeft = new(Parent, CellCapacity, new(East, North), Width / 2, Height / 2, this);
+        _LowerLeft = new(Parent, CellCapacity, new(East, Center.Y), Width / 2, Height / 2, this);
+        _UpperRight = new(Parent, CellCapacity, new(Center.X, East), Width / 2, Height / 2, this);
+        _LowerRight = new(Parent, CellCapacity, Center, Width / 2, Height / 2, this);
         foreach(Node2D node in _Nodes)
         {
             TransferNodeToSubCell(node);
@@ -116,23 +118,91 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     }
 }
 
+/// <summary>
+/// A specific region in a quadtree which holds nodes or if subdivided,
+/// four sub quad trees each on the of the quadrant of the quadtree.
+/// </summary>
 public interface IReadOnlyQuadTreeNodeCell
 {
+    /// <summary>
+    /// Indicated if a cell is subdivided.
+    /// Subdivided cells contains four child cells on each of its quadrant.
+    /// Else it contains nodes in it.
+    /// </summary>
     bool Subdivided {get;}
+
+    /// <summary>
+    /// Maximum amount of nodes allowed in this cell before being subdivied.
+    /// </summary>
     int CellCapacity {get;}
 
+    /// <summary>
+    /// Upper left (Northwest) quadrant of the cell.
+    /// </summary>
+    /// <returns>Quad tree cell, null if the cell isn't subdivided yet.</returns>
     IReadOnlyQuadTreeNodeCell? UpperLeft();
+
+    /// <summary>
+    /// Upper right (Northeast) quadrant of the cell.
+    /// </summary>
+    /// <returns>Quad tree cell, null if the cell isn't subdivided yet.</returns>
     IReadOnlyQuadTreeNodeCell? UpperRight();
+
+    /// <summary>
+    /// Lower left (Southwest) quadrant of the cell.
+    /// </summary>
+    /// <returns>Quad tree cell, null if the cell isn't subdivided yet.</returns>
     IReadOnlyQuadTreeNodeCell? LowerLeft();
+
+    /// <summary>
+    /// Lower right (Southeast) quadrant of the cell.
+    /// </summary>
+    /// <returns>Quad tree cell, null if the cell isn't subdivided yet.</returns>
     IReadOnlyQuadTreeNodeCell? LowerRight();
 
+    /// <summary>
+    /// Upper left (Northwest) quadrant of the cell.
+    /// </summary>
+    /// <returns>Quad tree cell, null if the current cell is the parent cell.</returns>
+    IReadOnlyQuadTreeNodeCell? ParentCell();
+
+    /// <summary>
+    /// Nodes stored in this cell. Set is empty if the cell is subdivided.
+    /// </summary>
     IReadOnlySet<Node2D> Nodes {get;}
 
+    /// <summary>
+    /// Upper border of the cell.
+    /// </summary>
     float North {get;}
+
+    /// <summary>
+    /// Leftmost border of the cell.
+    /// </summary>
     float West {get;}
+
+    /// <summary>
+    /// Rightmost border of the cell.
+    /// </summary>
     float East {get;}
+
+    /// <summary>
+    /// Lower border of the cell.
+    /// </summary>
     float South {get;}
+
+    /// <summary>
+    /// Center point of the cell.
+    /// </summary>
     Vector2 Center {get;}
+
+    /// <summary>
+    /// Width of the cell.
+    /// </summary>
     float Width {get;}
+
+    /// <summary>
+    /// Height of the cell.
+    /// </summary>
     float Height {get;}
 }

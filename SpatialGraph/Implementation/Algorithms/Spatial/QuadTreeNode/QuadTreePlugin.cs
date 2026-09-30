@@ -66,9 +66,9 @@ public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>
             }
 
             Vector2 NewCellPosition = new(newCellPosX, newCellPosY);
-            
             QuadTreeNodeCell newCell = new(this, _ParentCell.CellCapacity, NewCellPosition, _ParentCell.Width * 2, _ParentCell.Height * 2);
             newCell.Subdivide();
+            _ParentCell._ParentCell = newCell;
 
             //Assign the old parent cell as a child of the new parent cell.
             if (OutsideLeft)
