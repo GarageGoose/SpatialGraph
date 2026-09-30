@@ -4,9 +4,17 @@ using GG.SpatialGraph.Internal;
 
 namespace GG.SpatialGraph.Spatial;
 
+/// <summary>
+/// Quadtree implementation for nodes in a graph. Enables spatial indexing for nodes.
+/// </summary>
 public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>
 {
     QuadTreeNodeCell _ParentCell;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public IReadOnlyQuadTreeNodeCell ParentCell() => _ParentCell;
 
     internal Dictionary<uint, QuadTreeNodeCell> nodeCurrCell = new();

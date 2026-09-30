@@ -4,7 +4,7 @@ namespace GG.SpatialGraph;
 /// Stores incoming changes for a graph.
 /// </summary>
 /// <typeparam name="TNode">Type of node used in the graph.</typeparam>
-public class GraphIncomingChanges<TNode> : IReadOnlyBatchedMods<TNode> where TNode : struct, INode
+public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> where TNode : struct, INode
 {
     Dictionary<uint, TNode> nodesForUpsert = new();
     HashSet<uint> nodesForRemoval = new();
@@ -28,7 +28,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyBatchedMods<TNode> where TNo
         EdgesForRemoval = edgesForRemoval;
     }
 
-    public GraphIncomingChanges(IReadOnlyBatchedMods<TNode> batchedMods)
+    public GraphIncomingChanges(IReadOnlyGraphIncomingChanges<TNode> batchedMods)
     {
         edgesForUpsert = new(batchedMods.EdgesForUpsert);
         nodesForUpsert = new(batchedMods.NodesForUpsert);
@@ -98,7 +98,11 @@ public class GraphIncomingChanges<TNode> : IReadOnlyBatchedMods<TNode> where TNo
     public IEnumerable<uint> EdgeRemovals() => EdgesForRemoval;
 }
 
-public interface IReadOnlyBatchedMods<TNode> : GraphChangeSet<TNode> where TNode : struct, INode
+/// <summary>
+/// Interface for objects which stores incoming changes for a graph.
+/// </summary>
+/// <typeparam name="TNode">Type of node used in the graph.</typeparam>
+public interface IReadOnlyGraphIncomingChanges<TNode> : GraphChangeSet<TNode> where TNode : struct, INode
 {
     IReadOnlyDictionary<uint, TNode> NodesForUpsert {get;}
     IReadOnlySet<uint> NodesForRemoval {get;}

@@ -6,6 +6,7 @@ namespace GG.SpatialGraph;
 /// <typeparam name="TNode">Node which the base graph uses.</typeparam>
 public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode : struct, INode
 {
+    /// <inheritdoc/>
     public IReadOnlyGraph<TNode> BaseGraph {get;}
 
     Dictionary<uint, ModificationType> nodeModType = new();
@@ -20,50 +21,35 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     Dictionary<uint, ElementRemoved<TNode>> removedNodes = new();
     Dictionary<uint, ElementRemoved<Edge>> removedEdges = new();
 
-    /// <summary>
-    /// Dictionary for type of modifications (Add, Remove, Modify) each node have.
-    /// </summary>
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ModificationType> NodeModType {get;}
 
-    /// <summary>
-    /// Dictionary for type of modifications (Add, Remove, Modify) each edge have.
-    /// </summary>
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ModificationType> EdgeModType {get;}
 
-    /// <summary>
-    /// Dictionary for nodes which was/will be added.
-    /// </summary>
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ElementAdded<TNode>> NewNodes {get;}
 
-    /// <summary>
-    /// Dictionary for edges which was/will be added.
-    /// </summary>
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ElementAdded<Edge>> NewEdges {get;}
 
-    /// <summary>
-    /// Dictionary for nodes which was/will be modified. Contains the original and new value of the node.
-    /// </summary>
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ElementModified<TNode>> ModifiedNodes {get;}
 
-    /// <summary>
-    /// Dictionary for edges which was/will be modified. Contains the original and new value of the edge.
-    /// </summary>
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ElementModified<Edge>> ModifiedEdges {get;}
 
-    /// <summary>
-    /// Dictionary for nodes which was/will be removed. Contains its original value.
-    /// </summary>
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ElementRemoved<TNode>> RemovedNodes {get;}
 
-    /// <summary>
-    /// Dictionary for edges which was/will be removed. Contains its original value.
-    /// </summary>
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, ElementRemoved<Edge>> RemovedEdges {get;}
 
     /// <summary>
     /// Create a ChangeLog referencing a graph.
     /// </summary>
-    /// <typeparam name="baseGraph">Graph to reference the changes from.</typeparam>
+    /// <param name="baseGraph">Graph to reference the changes from.</param>
     public GraphChangeLog(IReadOnlyGraph<TNode> baseGraph)
     {
         BaseGraph = baseGraph;
@@ -84,7 +70,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Duplicate a ChangeLog from another ChangeLog.
     /// </summary>
-    /// <typeparam name="baseGraph">ChangeLog to duplicate from.</typeparam>
+    /// <param name="baseGraph">ChangeLog to duplicate from.</param>
     public GraphChangeLog(IReadOnlyModificationLog<TNode> baseGraph)
     {
         BaseGraph = baseGraph.BaseGraph;
@@ -113,8 +99,8 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Create a ChangeLog referencing a graph with changes from a ChangeSet.
     /// </summary>
-    /// <typeparam name="baseGraph">Graph to reference the changes from.</typeparam>
-    /// /// <typeparam name="changeSet">Set of changes to log.</typeparam>
+    /// <param name="baseGraph">Graph to reference the changes from.</param>
+    /// <param name="changeSet">Set of changes to log.</param>
     public GraphChangeLog(IReadOnlyGraph<TNode> baseGraph, GraphChangeSet<TNode> changeSet)
     {
         BaseGraph = baseGraph;
@@ -137,7 +123,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Log changes from a change set.
     /// </summary>
-    /// <typeparam name="batchedMods">Contains set of changes for this graph.</typeparam>
+    /// <param name="batchedMods">Contains set of changes for this graph.</param>
     public void LogChangeSet(GraphChangeSet<TNode> batchedMods)
     {
         foreach(TNode node in batchedMods.NodeUpserts())
@@ -164,7 +150,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Add a log for a new edge or modify an edge with its corresponding ID. This will not add it to the base graph.
     /// </summary>
-    /// <typeparam name="edge">Edge to upsert, identified by its ID.</typeparam>
+    /// <param name="edge">Edge to upsert, identified by its ID.</param>
     public void EdgeUpsert(Edge edge)
     {
         UnlogEdge(edge.ID);
@@ -181,7 +167,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Add a log for new node or modify a node with its corresponding ID. This will not add it to the base graph.
     /// </summary>
-    /// <typeparam name="node">Node to upsert, identified by its ID.</typeparam>
+    /// <param name="node">Node to upsert, identified by its ID.</param>
     public void NodeUpsert(TNode node)
     {
         UnlogNode(node.ID);
@@ -198,7 +184,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Add a log for the removal of an edge in the graph using its corresponding ID. This will not remove it from the base graph.
     /// </summary>
-    /// <typeparam name="ID">ID of the edge to be removed.</typeparam>
+    /// <param name="ID">ID of the edge to be removed.</param>
     public void EdgeRemoval(uint ID)
     {
         UnlogEdge(ID);
@@ -211,7 +197,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Add a log for the removal of a node in the graph using its corresponding ID. This will not remove it from the base graph.
     /// </summary>
-    /// <typeparam name="ID">ID of the node to be removed.</typeparam>
+    /// <param name="ID">ID of the node to be removed.</param>
     public void NodeRemoval(uint ID)
     {
         UnlogNode(ID);
@@ -224,7 +210,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     /// <summary>
     /// Remove the log of a change in an edge.
     /// </summary>
-    /// <typeparam name="ID">ID of the edge for its log to be removed.</typeparam>
+    /// <param name="ID">ID of the edge for its log to be removed.</param>
     public void UnlogEdge(uint ID)
     {
         if(edgeModType.TryGetValue(ID, out ModificationType edgeMod))
@@ -247,9 +233,9 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Remove the log of a change in a node.
+    /// 
     /// </summary>
-    /// <typeparam name="ID">ID of the node for its log to be removed.</typeparam>
+    /// <param name="ID"></param>
     public void UnlogNode(uint ID)
     {
         if(nodeModType.TryGetValue(ID, out ModificationType nodeMod))
@@ -329,7 +315,20 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
 /// </summary>
 public enum ModificationType
 {
-    Add, Modify, Remove
+    /// <summary>
+    /// Adds new element to a graph.
+    /// </summary>
+    Add, 
+    
+    /// <summary>
+    /// Modifies an element on a graph.
+    /// </summary>
+    Modify,
+    
+    /// <summary>
+    /// Removes an elemet on a graph.
+    /// </summary>
+    Remove
 }
 
 /// <summary>
@@ -338,6 +337,9 @@ public enum ModificationType
 /// <typeparam name="TNode">Type of node used in the graph to log changes from.</typeparam>
 public interface IReadOnlyModificationLog<TNode> : GraphChangeSet<TNode> where TNode : struct, INode
 {
+    /// <summary>
+    /// Graph to reference the changes from.
+    /// </summary>
     IReadOnlyGraph<TNode> BaseGraph {get;}
 
     /// <summary>

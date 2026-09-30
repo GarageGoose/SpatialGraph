@@ -16,6 +16,7 @@ public class OrderedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
     /// <param name="nodeID">ID of the node on where to find the next adjecent edge.</param>
     /// <param name="edgeID">ID of the specified edge.</param>
     /// <returns>Next adjacent edge from a specified edge.</returns>
+    /// <seealso cref="PreviousEdgeFromEdge"/>
     public uint NextEdgeFromEdge(uint nodeID, uint edgeID)
     {
         int EdgeIndex = SortedEdges[nodeID].IndexOfKey(edgeID);
@@ -32,6 +33,7 @@ public class OrderedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
     /// <param name="nodeID">ID of the node on where to find the next adjecent edge.</param>
     /// <param name="edgeID">ID of the specified edge.</param>
     /// <returns>Next previous edge from a specified edge.</returns>
+    /// /// <seealso cref="NextEdgeFromEdge"/>
     public uint PreviousEdgeFromEdge(uint nodeID, uint edgeID)
     {
         int EdgeIndex = SortedEdges[nodeID].IndexOfKey(edgeID);
