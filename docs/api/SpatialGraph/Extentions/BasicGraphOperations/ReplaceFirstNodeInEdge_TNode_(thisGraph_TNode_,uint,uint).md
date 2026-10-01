@@ -1,6 +1,6 @@
-## BasicGraphOperations\.ReplaceFirstNodeInEdge\<TNode\>\(this Graph\<TNode\>, uint, uint\) Method
+## BasicGraphOperations\.ReplaceFirstNodeInEdge<TNode>(this Graph<TNode>, uint, uint) Method
 
-Replace the first node \(NodeID1\) in an edge to a new one in a graph\.
+Replace the first node (NodeID1) in an edge to a new one in a graph\.
 
 ```csharp
 public static void ReplaceFirstNodeInEdge<TNode>(this SpatialGraph.Graph<TNode> graph, uint EdgeID, uint NewNodeID)
@@ -17,7 +17,7 @@ Type of node the graph is using\.
 
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceFirstNodeInEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).graph'></a>
 
-`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')[TNode](ReplaceFirstNodeInEdge_TNode_(thisGraph_TNode_,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceFirstNodeInEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceFirstNodeInEdge\<TNode\>\(this SpatialGraph\.Graph\<TNode\>, uint, uint\)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')
+`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')[TNode](ReplaceFirstNodeInEdge_TNode_(thisGraph_TNode_,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceFirstNodeInEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceFirstNodeInEdge<TNode>(this SpatialGraph\.Graph<TNode>, uint, uint)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')
 
 Graph where to replace the first node of an edge\.
 

@@ -1,4 +1,4 @@
-## GraphTraversal\<TNode\>\.StartingNodeID Property
+## GraphTraversal<TNode>\.StartingNodeID Property
 
 Node to start traversal\.
 

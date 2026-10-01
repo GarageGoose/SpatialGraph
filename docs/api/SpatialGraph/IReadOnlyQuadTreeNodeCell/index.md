@@ -22,8 +22,8 @@ public interface IReadOnlyQuadTreeNodeCell
 
 | Methods | |
 | :--- | :--- |
-| [LowerLeft\(\)](LowerLeft().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.LowerLeft\(\)') | Lower left \(Southwest\) quadrant of the cell\. |
-| [LowerRight\(\)](LowerRight().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.LowerRight\(\)') | Lower right \(Southeast\) quadrant of the cell\. |
-| [ParentCell\(\)](ParentCell().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.ParentCell\(\)') | Upper left \(Northwest\) quadrant of the cell\. |
-| [UpperLeft\(\)](UpperLeft().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.UpperLeft\(\)') | Upper left \(Northwest\) quadrant of the cell\. |
-| [UpperRight\(\)](UpperRight().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.UpperRight\(\)') | Upper right \(Northeast\) quadrant of the cell\. |
+| [LowerLeft()](LowerLeft().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.LowerLeft()') | Lower left (Southwest) quadrant of the cell\. |
+| [LowerRight()](LowerRight().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.LowerRight()') | Lower right (Southeast) quadrant of the cell\. |
+| [ParentCell()](ParentCell().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.ParentCell()') | Upper left (Northwest) quadrant of the cell\. |
+| [UpperLeft()](UpperLeft().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.UpperLeft()') | Upper left (Northwest) quadrant of the cell\. |
+| [UpperRight()](UpperRight().md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell\.UpperRight()') | Upper right (Northeast) quadrant of the cell\. |

@@ -1,4 +1,4 @@
-## TraversalInfo\<TNode\>\.OriginNodeID Property
+## TraversalInfo<TNode>\.OriginNodeID Property
 
 Node where the current node was found\.
 

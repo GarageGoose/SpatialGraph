@@ -1,4 +1,4 @@
-## IGraph\<TNode\>\.RemoveEdge\(uint\) Method
+## IGraph<TNode>\.RemoveEdge(uint) Method
 
 Remove an edge in the graph using its corresponding ID\.
 Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\.

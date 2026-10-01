@@ -1,4 +1,4 @@
-## IReadOnlyGraphIncomingChanges\<TNode\>\.EdgesForRemoval Property
+## IReadOnlyGraphIncomingChanges<TNode>\.EdgesForRemoval Property
 
 Edges to be removed in a graph\.
 

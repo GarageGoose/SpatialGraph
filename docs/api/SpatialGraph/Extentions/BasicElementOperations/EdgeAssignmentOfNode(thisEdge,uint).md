@@ -1,4 +1,4 @@
-## BasicElementOperations\.EdgeAssignmentOfNode\(this Edge, uint\) Method
+## BasicElementOperations\.EdgeAssignmentOfNode(this Edge, uint) Method
 
 Determine if a node is assigned as Node 1 or Node 2 in an edge\.
 

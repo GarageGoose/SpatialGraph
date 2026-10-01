@@ -1,4 +1,4 @@
-## GraphSnapshot\(int, Graph\<TNode\>\) Constructor
+## GraphSnapshot(int, Graph<TNode>) Constructor
 
 Reconstructed graph from a specific modification step\. Used in GraphHistory\.
 
@@ -15,6 +15,6 @@ Modification step which this graph is recreated from\.
 
 <a name='SpatialGraph.Metadata.GraphSnapshot_TNode_.GraphSnapshot(int,SpatialGraph.Graph_TNode_).Snapshot'></a>
 
-`Snapshot` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')[TNode](index.md#SpatialGraph.Metadata.GraphSnapshot_TNode_.TNode 'SpatialGraph\.Metadata\.GraphSnapshot\<TNode\>\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')
+`Snapshot` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')[TNode](index.md#SpatialGraph.Metadata.GraphSnapshot_TNode_.TNode 'SpatialGraph\.Metadata\.GraphSnapshot<TNode>\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')
 
 Reconstructed graph\.

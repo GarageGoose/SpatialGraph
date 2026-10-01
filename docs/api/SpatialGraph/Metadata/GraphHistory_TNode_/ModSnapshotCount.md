@@ -1,4 +1,4 @@
-## GraphHistory\<TNode\>\.ModSnapshotCount Property
+## GraphHistory<TNode>\.ModSnapshotCount Property
 
 Amount of snapshots taken since the plugin was created\.
 

@@ -1,4 +1,4 @@
-## ElementRemoved\(TElement, uint\) Constructor
+## ElementRemoved(TElement, uint) Constructor
 
 Single log of an element which is removed\. Used in a ModificationLog\.
 
@@ -9,7 +9,7 @@ public ElementRemoved(TElement Element, uint ID);
 
 <a name='SpatialGraph.ElementRemoved_TElement_.ElementRemoved(TElement,uint).Element'></a>
 
-`Element` [TElement](index.md#SpatialGraph.ElementRemoved_TElement_.TElement 'SpatialGraph\.ElementRemoved\<TElement\>\.TElement')
+`Element` [TElement](index.md#SpatialGraph.ElementRemoved_TElement_.TElement 'SpatialGraph\.ElementRemoved<TElement>\.TElement')
 
 Value of an element which is/will be removed\.
 

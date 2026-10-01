@@ -1,4 +1,4 @@
-## GraphChangeLog\<TNode\>\.EdgeRemoval\(uint\) Method
+## GraphChangeLog<TNode>\.EdgeRemoval(uint) Method
 
 Add a log for the removal of an edge in the graph using its corresponding ID\. This will not remove it from the base graph\.
 

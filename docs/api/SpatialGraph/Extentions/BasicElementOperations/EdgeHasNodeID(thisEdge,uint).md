@@ -1,4 +1,4 @@
-## BasicElementOperations\.EdgeHasNodeID\(this Edge, uint\) Method
+## BasicElementOperations\.EdgeHasNodeID(this Edge, uint) Method
 
 Check if an Edge connect to a node with a specific ID\.
 

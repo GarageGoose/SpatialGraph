@@ -1,4 +1,4 @@
-## GraphChangeSet\<TNode\>\.EdgeUpserts\(\) Method
+## GraphChangeSet<TNode>\.EdgeUpserts() Method
 
 Edges to be either added or replaced if it has the same ID as a node in a graph\.
 

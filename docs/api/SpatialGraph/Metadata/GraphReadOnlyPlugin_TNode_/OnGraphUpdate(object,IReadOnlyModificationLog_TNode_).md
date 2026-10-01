@@ -1,4 +1,4 @@
-## GraphReadOnlyPlugin\<TNode\>\.OnGraphUpdate\(object, IReadOnlyModificationLog\<TNode\>\) Method
+## GraphReadOnlyPlugin<TNode>\.OnGraphUpdate(object, IReadOnlyModificationLog<TNode>) Method
 
 Emits when a modification occurs in the base graph\.
 
@@ -15,6 +15,6 @@ Source of the event\.
 
 <a name='SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.OnGraphUpdate(object,SpatialGraph.IReadOnlyModificationLog_TNode_).modLog'></a>
 
-`modLog` [SpatialGraph\.IReadOnlyModificationLog&lt;](../../IReadOnlyModificationLog_TNode_/index.md 'SpatialGraph\.IReadOnlyModificationLog\<TNode\>')[TNode](index.md#SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.TNode 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin\<TNode\>\.TNode')[&gt;](../../IReadOnlyModificationLog_TNode_/index.md 'SpatialGraph\.IReadOnlyModificationLog\<TNode\>')
+`modLog` [SpatialGraph\.IReadOnlyModificationLog&lt;](../../IReadOnlyModificationLog_TNode_/index.md 'SpatialGraph\.IReadOnlyModificationLog<TNode>')[TNode](index.md#SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.TNode 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin<TNode>\.TNode')[&gt;](../../IReadOnlyModificationLog_TNode_/index.md 'SpatialGraph\.IReadOnlyModificationLog<TNode>')
 
 Log of changes for the base graph\.

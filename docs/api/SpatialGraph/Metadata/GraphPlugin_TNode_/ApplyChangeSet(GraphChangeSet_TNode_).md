@@ -1,4 +1,4 @@
-## GraphPlugin\<TNode\>\.ApplyChangeSet\(GraphChangeSet\<TNode\>\) Method
+## GraphPlugin<TNode>\.ApplyChangeSet(GraphChangeSet<TNode>) Method
 
 Perform multiple operations at once with a GraphChangeSet\. Existing nodes or edges with
 a corresponding ID in the graph will be replaced\.
@@ -11,8 +11,8 @@ public void ApplyChangeSet(SpatialGraph.GraphChangeSet<TNode> modifications);
 
 <a name='SpatialGraph.Metadata.GraphPlugin_TNode_.ApplyChangeSet(SpatialGraph.GraphChangeSet_TNode_).modifications'></a>
 
-`modifications` [SpatialGraph\.GraphChangeSet&lt;](../../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet\<TNode\>')[TNode](index.md#SpatialGraph.Metadata.GraphPlugin_TNode_.TNode 'SpatialGraph\.Metadata\.GraphPlugin\<TNode\>\.TNode')[&gt;](../../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet\<TNode\>')
+`modifications` [SpatialGraph\.GraphChangeSet&lt;](../../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')[TNode](index.md#SpatialGraph.Metadata.GraphPlugin_TNode_.TNode 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.TNode')[&gt;](../../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')
 
 Contains operations to perform\.
 
-Implements [ApplyChangeSet\(GraphChangeSet&lt;TNode&gt;\)](../../IGraph_TNode_/ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.IGraph\<TNode\>\.ApplyChangeSet\(SpatialGraph\.GraphChangeSet\<TNode\>\)')
+Implements [ApplyChangeSet(GraphChangeSet&lt;TNode&gt;)](../../IGraph_TNode_/ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.IGraph<TNode>\.ApplyChangeSet(SpatialGraph\.GraphChangeSet<TNode>)')

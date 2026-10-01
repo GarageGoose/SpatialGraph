@@ -1,4 +1,4 @@
-## ElementModified\(TElement, TElement, uint\) Constructor
+## ElementModified(TElement, TElement, uint) Constructor
 
 Single log of an element which is modified\. Used in a ModificationLog\.
 
@@ -9,13 +9,13 @@ public ElementModified(TElement NewElement, TElement OldElement, uint ID);
 
 <a name='SpatialGraph.ElementModified_TElement_.ElementModified(TElement,TElement,uint).NewElement'></a>
 
-`NewElement` [TElement](index.md#SpatialGraph.ElementModified_TElement_.TElement 'SpatialGraph\.ElementModified\<TElement\>\.TElement')
+`NewElement` [TElement](index.md#SpatialGraph.ElementModified_TElement_.TElement 'SpatialGraph\.ElementModified<TElement>\.TElement')
 
 The new value of the element after it was modified\.
 
 <a name='SpatialGraph.ElementModified_TElement_.ElementModified(TElement,TElement,uint).OldElement'></a>
 
-`OldElement` [TElement](index.md#SpatialGraph.ElementModified_TElement_.TElement 'SpatialGraph\.ElementModified\<TElement\>\.TElement')
+`OldElement` [TElement](index.md#SpatialGraph.ElementModified_TElement_.TElement 'SpatialGraph\.ElementModified<TElement>\.TElement')
 
 The old value of the element before it was modified\.
 

@@ -10,4 +10,4 @@ Implements [INode](../INode/index.md 'SpatialGraph\.INode'), [IElement](../IElem
 
 | Constructors | |
 | :--- | :--- |
-| [Node3D\(uint, Vector3\)](Node3D(uint,Vector3).md 'SpatialGraph\.Node3D\.Node3D\(uint, System\.Numerics\.Vector3\)') | Node with coordinate in 3 dimensions\. Used for 3D graphs\. |
+| [Node3D(uint, Vector3)](Node3D(uint,Vector3).md 'SpatialGraph\.Node3D\.Node3D(uint, System\.Numerics\.Vector3)') | Node with coordinate in 3 dimensions\. Used for 3D graphs\. |

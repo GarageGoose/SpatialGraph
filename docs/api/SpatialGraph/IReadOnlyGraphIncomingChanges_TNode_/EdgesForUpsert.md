@@ -1,6 +1,6 @@
-## IReadOnlyGraphIncomingChanges\<TNode\>\.EdgesForUpsert Property
+## IReadOnlyGraphIncomingChanges<TNode>\.EdgesForUpsert Property
 
-Edges to be added or modified \(replaced with identical IDs\) in a graph\.
+Edges to be added or modified (replaced with identical IDs) in a graph\.
 
 ```csharp
 System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.Edge> EdgesForUpsert { get; }

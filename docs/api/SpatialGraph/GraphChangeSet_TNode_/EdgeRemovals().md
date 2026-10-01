@@ -1,4 +1,4 @@
-## GraphChangeSet\<TNode\>\.EdgeRemovals\(\) Method
+## GraphChangeSet<TNode>\.EdgeRemovals() Method
 
 IDs of the edges to be removed in a graph\.
 

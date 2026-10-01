@@ -1,6 +1,6 @@
-## IReadOnlyQuadTreeNodeCell\.ParentCell\(\) Method
+## IReadOnlyQuadTreeNodeCell\.ParentCell() Method
 
-Upper left \(Northwest\) quadrant of the cell\.
+Upper left (Northwest) quadrant of the cell\.
 
 ```csharp
 SpatialGraph.IReadOnlyQuadTreeNodeCell? ParentCell();

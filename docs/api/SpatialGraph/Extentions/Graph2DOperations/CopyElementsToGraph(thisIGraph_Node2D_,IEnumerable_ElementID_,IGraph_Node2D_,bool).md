@@ -1,4 +1,4 @@
-## Graph2DOperations\.CopyElementsToGraph\(this IGraph\<Node2D\>, IEnumerable\<ElementID\>, IGraph\<Node2D\>, bool\) Method
+## Graph2DOperations\.CopyElementsToGraph(this IGraph<Node2D>, IEnumerable<ElementID>, IGraph<Node2D>, bool) Method
 
 Copy specified elements from one graph to another\.
 
@@ -9,7 +9,7 @@ public static void CopyElementsToGraph(this SpatialGraph.IGraph<SpatialGraph.Nod
 
 <a name='SpatialGraph.Extentions.Graph2DOperations.CopyElementsToGraph(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,System.Collections.Generic.IEnumerable_SpatialGraph.ElementID_,SpatialGraph.IGraph_SpatialGraph.Node2D_,bool).copyFrom'></a>
 
-`copyFrom` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph\<TNode\>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph\<TNode\>')
+`copyFrom` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
 Source graph to copy from\.
 
@@ -21,7 +21,7 @@ Elements to copy\.
 
 <a name='SpatialGraph.Extentions.Graph2DOperations.CopyElementsToGraph(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,System.Collections.Generic.IEnumerable_SpatialGraph.ElementID_,SpatialGraph.IGraph_SpatialGraph.Node2D_,bool).pasteTo'></a>
 
-`pasteTo` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph\<TNode\>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph\<TNode\>')
+`pasteTo` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
 Target graph to paste the elements to\.
 

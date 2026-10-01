@@ -1,4 +1,4 @@
-## ElementAdded\<TElement\>\.ID Property
+## ElementAdded<TElement>\.ID Property
 
 Identifier of the element\.
 

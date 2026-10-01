@@ -1,4 +1,4 @@
-## NodeAdjacency\<TNode\>\.ConnectedEdgesCount\(uint\) Method
+## NodeAdjacency<TNode>\.ConnectedEdgesCount(uint) Method
 
 Get the amount of edges connected in a node\.
 

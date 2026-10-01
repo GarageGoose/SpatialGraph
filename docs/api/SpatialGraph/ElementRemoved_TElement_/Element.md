@@ -1,4 +1,4 @@
-## ElementRemoved\<TElement\>\.Element Property
+## ElementRemoved<TElement>\.Element Property
 
 Value of an element which is/will be removed\.
 
@@ -7,4 +7,4 @@ public TElement Element { get; init; }
 ```
 
 #### Property Value
-[TElement](index.md#SpatialGraph.ElementRemoved_TElement_.TElement 'SpatialGraph\.ElementRemoved\<TElement\>\.TElement')
+[TElement](index.md#SpatialGraph.ElementRemoved_TElement_.TElement 'SpatialGraph\.ElementRemoved<TElement>\.TElement')

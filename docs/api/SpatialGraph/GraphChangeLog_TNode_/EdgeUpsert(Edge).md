@@ -1,4 +1,4 @@
-## GraphChangeLog\<TNode\>\.EdgeUpsert\(Edge\) Method
+## GraphChangeLog<TNode>\.EdgeUpsert(Edge) Method
 
 Add a log for a new edge or modify an edge with its corresponding ID\. This will not add it to the base graph\.
 

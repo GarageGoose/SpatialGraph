@@ -1,4 +1,4 @@
-## Node3D\(uint, Vector3\) Constructor
+## Node3D(uint, Vector3) Constructor
 
 Node with coordinate in 3 dimensions\. Used for 3D graphs\.
 

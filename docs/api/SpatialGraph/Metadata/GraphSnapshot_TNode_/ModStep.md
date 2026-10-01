@@ -1,4 +1,4 @@
-## GraphSnapshot\<TNode\>\.ModStep Property
+## GraphSnapshot<TNode>\.ModStep Property
 
 Modification step which this graph is recreated from\.
 

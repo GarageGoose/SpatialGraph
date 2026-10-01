@@ -1,4 +1,4 @@
-## ElementModified\<TElement\>\.ID Property
+## ElementModified<TElement>\.ID Property
 
 Identifier of the element\.
 

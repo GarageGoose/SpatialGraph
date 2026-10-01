@@ -1,4 +1,4 @@
-## IReadOnlyGraphIncomingChanges\<TNode\>\.NodesForRemoval Property
+## IReadOnlyGraphIncomingChanges<TNode>\.NodesForRemoval Property
 
 Nodes to be removed in a graph\.
 

@@ -10,4 +10,4 @@ Implements [IElement](../IElement/index.md 'SpatialGraph\.IElement'), [System\.I
 
 | Constructors | |
 | :--- | :--- |
-| [Edge\(uint, uint, uint\)](Edge(uint,uint,uint).md 'SpatialGraph\.Edge\.Edge\(uint, uint, uint\)') | A line segment which is formed from 2 nodes\. |
+| [Edge(uint, uint, uint)](Edge(uint,uint,uint).md 'SpatialGraph\.Edge\.Edge(uint, uint, uint)') | A line segment which is formed from 2 nodes\. |

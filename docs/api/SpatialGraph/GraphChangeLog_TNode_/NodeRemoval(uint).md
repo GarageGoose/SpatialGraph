@@ -1,4 +1,4 @@
-## GraphChangeLog\<TNode\>\.NodeRemoval\(uint\) Method
+## GraphChangeLog<TNode>\.NodeRemoval(uint) Method
 
 Add a log for the removal of a node in the graph using its corresponding ID\. This will not remove it from the base graph\.
 

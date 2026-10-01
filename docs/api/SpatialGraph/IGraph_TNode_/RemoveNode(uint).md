@@ -1,4 +1,4 @@
-## IGraph\<TNode\>\.RemoveNode\(uint\) Method
+## IGraph<TNode>\.RemoveNode(uint) Method
 
 Remove a node in the graph using its correspinding ID\. Connecting edges referencing this node will not be removed\.
 Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\.

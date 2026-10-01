@@ -1,4 +1,4 @@
-## SpatialGraph2DOperations\.IsNodeWithinRadius\(this Node2D, Vector2, float\) Method
+## SpatialGraph2DOperations\.IsNodeWithinRadius(this Node2D, Vector2, float) Method
 
 Checks if a node is within the radius
 

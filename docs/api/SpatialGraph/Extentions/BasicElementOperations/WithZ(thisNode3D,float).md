@@ -1,4 +1,4 @@
-## BasicElementOperations\.WithZ\(this Node3D, float\) Method
+## BasicElementOperations\.WithZ(this Node3D, float) Method
 
 Creates a new copy of a node with a different Y location\.
 

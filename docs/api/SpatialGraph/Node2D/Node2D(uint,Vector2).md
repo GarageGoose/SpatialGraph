@@ -1,4 +1,4 @@
-## Node2D\(uint, Vector2\) Constructor
+## Node2D(uint, Vector2) Constructor
 
 Node with coordinate in 2 dimensions\. Used for 2D graphs\.
 

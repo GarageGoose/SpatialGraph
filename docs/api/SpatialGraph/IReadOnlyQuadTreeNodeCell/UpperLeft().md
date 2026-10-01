@@ -1,6 +1,6 @@
-## IReadOnlyQuadTreeNodeCell\.UpperLeft\(\) Method
+## IReadOnlyQuadTreeNodeCell\.UpperLeft() Method
 
-Upper left \(Northwest\) quadrant of the cell\.
+Upper left (Northwest) quadrant of the cell\.
 
 ```csharp
 SpatialGraph.IReadOnlyQuadTreeNodeCell? UpperLeft();

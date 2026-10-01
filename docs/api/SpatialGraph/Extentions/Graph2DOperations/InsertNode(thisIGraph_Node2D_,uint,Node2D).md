@@ -1,4 +1,4 @@
-## Graph2DOperations\.InsertNode\(this IGraph\<Node2D\>, uint, Node2D\) Method
+## Graph2DOperations\.InsertNode(this IGraph<Node2D>, uint, Node2D) Method
 
 Insert a new node in between an edge\.
 
@@ -9,7 +9,7 @@ public static void InsertNode(this SpatialGraph.IGraph<SpatialGraph.Node2D> base
 
 <a name='SpatialGraph.Extentions.Graph2DOperations.InsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,SpatialGraph.Node2D).baseGraph'></a>
 
-`baseGraph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph\<TNode\>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph\<TNode\>')
+`baseGraph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
 Graph to perform the operation\.
 

@@ -1,4 +1,4 @@
-## GraphChangeLog\<TNode\>\.EdgeUpserts\(\) Method
+## GraphChangeLog<TNode>\.EdgeUpserts() Method
 
 Log of edges to be upserted/has been upserted in the graph\.
 
@@ -6,7 +6,7 @@ Log of edges to be upserted/has been upserted in the graph\.
 public System.Collections.Generic.IEnumerable<SpatialGraph.Edge> EdgeUpserts();
 ```
 
-Implements [EdgeUpserts\(\)](../GraphChangeSet_TNode_/EdgeUpserts().md 'SpatialGraph\.GraphChangeSet\<TNode\>\.EdgeUpserts\(\)')
+Implements [EdgeUpserts()](../GraphChangeSet_TNode_/EdgeUpserts().md 'SpatialGraph\.GraphChangeSet<TNode>\.EdgeUpserts()')
 
 #### Returns
 [System\.Collections\.Generic\.IEnumerable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')[Edge](../Edge/index.md 'SpatialGraph\.Edge')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')

@@ -1,4 +1,4 @@
-## TraversalInfo\<TNode\>\.EdgeUsedForTraversal Property
+## TraversalInfo<TNode>\.EdgeUsedForTraversal Property
 
 Edge where the current node was found\.
 

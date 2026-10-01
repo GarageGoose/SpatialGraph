@@ -1,4 +1,4 @@
-## Pathfinding\.DepthFirstTraversal\<TNode\>\(this NodeAdjacency\<TNode\>, uint, Nullable\<uint\>\) Method
+## Pathfinding\.DepthFirstTraversal<TNode>(this NodeAdjacency<TNode>, uint, Nullable<uint>) Method
 
 Pathfinding algorithm wherein it explores a branch as deep as it can before backtracking\.
 
@@ -17,7 +17,7 @@ Type of nodes used in the base graph\.
 
 <a name='SpatialGraph.Traversal.Pathfinding.DepthFirstTraversal_TNode_(thisSpatialGraph.Metadata.NodeAdjacency_TNode_,uint,System.Nullable_uint_).baseGraph'></a>
 
-`baseGraph` [SpatialGraph\.Metadata\.NodeAdjacency&lt;](../../Metadata/NodeAdjacency_TNode_/index.md 'SpatialGraph\.Metadata\.NodeAdjacency\<TNode\>')[TNode](DepthFirstTraversal_TNode_(thisNodeAdjacency_TNode_,uint,Nullable_uint_).md#SpatialGraph.Traversal.Pathfinding.DepthFirstTraversal_TNode_(thisSpatialGraph.Metadata.NodeAdjacency_TNode_,uint,System.Nullable_uint_).TNode 'SpatialGraph\.Traversal\.Pathfinding\.DepthFirstTraversal\<TNode\>\(this SpatialGraph\.Metadata\.NodeAdjacency\<TNode\>, uint, System\.Nullable\<uint\>\)\.TNode')[&gt;](../../Metadata/NodeAdjacency_TNode_/index.md 'SpatialGraph\.Metadata\.NodeAdjacency\<TNode\>')
+`baseGraph` [SpatialGraph\.Metadata\.NodeAdjacency&lt;](../../Metadata/NodeAdjacency_TNode_/index.md 'SpatialGraph\.Metadata\.NodeAdjacency<TNode>')[TNode](DepthFirstTraversal_TNode_(thisNodeAdjacency_TNode_,uint,Nullable_uint_).md#SpatialGraph.Traversal.Pathfinding.DepthFirstTraversal_TNode_(thisSpatialGraph.Metadata.NodeAdjacency_TNode_,uint,System.Nullable_uint_).TNode 'SpatialGraph\.Traversal\.Pathfinding\.DepthFirstTraversal<TNode>(this SpatialGraph\.Metadata\.NodeAdjacency<TNode>, uint, System\.Nullable<uint>)\.TNode')[&gt;](../../Metadata/NodeAdjacency_TNode_/index.md 'SpatialGraph\.Metadata\.NodeAdjacency<TNode>')
 
 Graph to perform the search\.
 
@@ -34,5 +34,5 @@ ID of the node to start the search\.
 ID of the node to search, if any\.
 
 #### Returns
-[SpatialGraph\.Traversal\.GraphTraversal&lt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')[TNode](DepthFirstTraversal_TNode_(thisNodeAdjacency_TNode_,uint,Nullable_uint_).md#SpatialGraph.Traversal.Pathfinding.DepthFirstTraversal_TNode_(thisSpatialGraph.Metadata.NodeAdjacency_TNode_,uint,System.Nullable_uint_).TNode 'SpatialGraph\.Traversal\.Pathfinding\.DepthFirstTraversal\<TNode\>\(this SpatialGraph\.Metadata\.NodeAdjacency\<TNode\>, uint, System\.Nullable\<uint\>\)\.TNode')[&gt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')  
+[SpatialGraph\.Traversal\.GraphTraversal&lt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>')[TNode](DepthFirstTraversal_TNode_(thisNodeAdjacency_TNode_,uint,Nullable_uint_).md#SpatialGraph.Traversal.Pathfinding.DepthFirstTraversal_TNode_(thisSpatialGraph.Metadata.NodeAdjacency_TNode_,uint,System.Nullable_uint_).TNode 'SpatialGraph\.Traversal\.Pathfinding\.DepthFirstTraversal<TNode>(this SpatialGraph\.Metadata\.NodeAdjacency<TNode>, uint, System\.Nullable<uint>)\.TNode')[&gt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>')  
 Graph traversal algorithm\.

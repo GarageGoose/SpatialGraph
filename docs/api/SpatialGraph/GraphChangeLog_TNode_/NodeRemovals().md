@@ -1,4 +1,4 @@
-## GraphChangeLog\<TNode\>\.NodeRemovals\(\) Method
+## GraphChangeLog<TNode>\.NodeRemovals() Method
 
 Log of nodes to be removed/has been removed in the graph\.
 
@@ -6,7 +6,7 @@ Log of nodes to be removed/has been removed in the graph\.
 public System.Collections.Generic.IEnumerable<uint> NodeRemovals();
 ```
 
-Implements [NodeRemovals\(\)](../GraphChangeSet_TNode_/NodeRemovals().md 'SpatialGraph\.GraphChangeSet\<TNode\>\.NodeRemovals\(\)')
+Implements [NodeRemovals()](../GraphChangeSet_TNode_/NodeRemovals().md 'SpatialGraph\.GraphChangeSet<TNode>\.NodeRemovals()')
 
 #### Returns
 [System\.Collections\.Generic\.IEnumerable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')[System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')

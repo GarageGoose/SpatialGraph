@@ -1,4 +1,4 @@
-## GraphTraversal\<TNode\>\.TagretNodeID Property
+## GraphTraversal<TNode>\.TagretNodeID Property
 
 Node to find when travering\.
 

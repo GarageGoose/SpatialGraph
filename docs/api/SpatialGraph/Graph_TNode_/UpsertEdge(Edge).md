@@ -1,4 +1,4 @@
-## Graph\<TNode\>\.UpsertEdge\(Edge\) Method
+## Graph<TNode>\.UpsertEdge(Edge) Method
 
 Add a new edge or modify an edge with its corresponding ID\.
 
@@ -11,4 +11,4 @@ public virtual void UpsertEdge(SpatialGraph.Edge Edge);
 
 `Edge` [Edge](../Edge/index.md 'SpatialGraph\.Edge')
 
-Implements [UpsertEdge\(Edge\)](../IGraph_TNode_/UpsertEdge(Edge).md 'SpatialGraph\.IGraph\<TNode\>\.UpsertEdge\(SpatialGraph\.Edge\)')
+Implements [UpsertEdge(Edge)](../IGraph_TNode_/UpsertEdge(Edge).md 'SpatialGraph\.IGraph<TNode>\.UpsertEdge(SpatialGraph\.Edge)')

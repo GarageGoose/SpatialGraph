@@ -1,4 +1,4 @@
-## Edge\(uint, uint, uint\) Constructor
+## Edge(uint, uint, uint) Constructor
 
 A line segment which is formed from 2 nodes\.
 

@@ -1,4 +1,4 @@
-## BasicElementOperations\.WithNodeIDs\(this Edge, uint, uint\) Method
+## BasicElementOperations\.WithNodeIDs(this Edge, uint, uint) Method
 
 Creates a new copy of an edge with different ID of connecting nodes\.
 

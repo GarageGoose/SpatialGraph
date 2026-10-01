@@ -1,4 +1,4 @@
-## OrderedEdgesByAngle2D\.AngleBetweenPreviousEdge\(uint, uint\) Method
+## OrderedEdgesByAngle2D\.AngleBetweenPreviousEdge(uint, uint) Method
 
 Get the angle in rads between the target edge and the previous adjacent edge in a node\.
 

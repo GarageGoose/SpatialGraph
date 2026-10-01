@@ -1,4 +1,4 @@
-## BasicElementOperations\.GetSecondNodeOfEdge\<TNode\>\(this IReadOnlyGraph\<TNode\>, uint\) Method
+## BasicElementOperations\.GetSecondNodeOfEdge<TNode>(this IReadOnlyGraph<TNode>, uint) Method
 
 Get the second connecting node of an edge\.
 
@@ -17,7 +17,7 @@ Type of node used in the graph\.
 
 <a name='SpatialGraph.Extentions.BasicElementOperations.GetSecondNodeOfEdge_TNode_(thisSpatialGraph.IReadOnlyGraph_TNode_,uint).graph'></a>
 
-`graph` [SpatialGraph\.IReadOnlyGraph&lt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph\<TNode\>')[TNode](GetSecondNodeOfEdge_TNode_(thisIReadOnlyGraph_TNode_,uint).md#SpatialGraph.Extentions.BasicElementOperations.GetSecondNodeOfEdge_TNode_(thisSpatialGraph.IReadOnlyGraph_TNode_,uint).TNode 'SpatialGraph\.Extentions\.BasicElementOperations\.GetSecondNodeOfEdge\<TNode\>\(this SpatialGraph\.IReadOnlyGraph\<TNode\>, uint\)\.TNode')[&gt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph\<TNode\>')
+`graph` [SpatialGraph\.IReadOnlyGraph&lt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph<TNode>')[TNode](GetSecondNodeOfEdge_TNode_(thisIReadOnlyGraph_TNode_,uint).md#SpatialGraph.Extentions.BasicElementOperations.GetSecondNodeOfEdge_TNode_(thisSpatialGraph.IReadOnlyGraph_TNode_,uint).TNode 'SpatialGraph\.Extentions\.BasicElementOperations\.GetSecondNodeOfEdge<TNode>(this SpatialGraph\.IReadOnlyGraph<TNode>, uint)\.TNode')[&gt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph<TNode>')
 
 Graph where the edge resides\.
 
@@ -28,5 +28,5 @@ Graph where the edge resides\.
 ID of the edge\.
 
 #### Returns
-[TNode](GetSecondNodeOfEdge_TNode_(thisIReadOnlyGraph_TNode_,uint).md#SpatialGraph.Extentions.BasicElementOperations.GetSecondNodeOfEdge_TNode_(thisSpatialGraph.IReadOnlyGraph_TNode_,uint).TNode 'SpatialGraph\.Extentions\.BasicElementOperations\.GetSecondNodeOfEdge\<TNode\>\(this SpatialGraph\.IReadOnlyGraph\<TNode\>, uint\)\.TNode')  
+[TNode](GetSecondNodeOfEdge_TNode_(thisIReadOnlyGraph_TNode_,uint).md#SpatialGraph.Extentions.BasicElementOperations.GetSecondNodeOfEdge_TNode_(thisSpatialGraph.IReadOnlyGraph_TNode_,uint).TNode 'SpatialGraph\.Extentions\.BasicElementOperations\.GetSecondNodeOfEdge<TNode>(this SpatialGraph\.IReadOnlyGraph<TNode>, uint)\.TNode')  
 Second connecting node of the edge\.

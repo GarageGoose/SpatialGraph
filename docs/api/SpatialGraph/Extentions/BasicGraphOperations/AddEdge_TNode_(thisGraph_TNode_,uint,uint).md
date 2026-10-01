@@ -1,4 +1,4 @@
-## BasicGraphOperations\.AddEdge\<TNode\>\(this Graph\<TNode\>, uint, uint\) Method
+## BasicGraphOperations\.AddEdge<TNode>(this Graph<TNode>, uint, uint) Method
 
 Add an edge in a graph\.
 
@@ -17,7 +17,7 @@ Type of node the graph have\.
 
 <a name='SpatialGraph.Extentions.BasicGraphOperations.AddEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).graph'></a>
 
-`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')[TNode](AddEdge_TNode_(thisGraph_TNode_,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.AddEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.AddEdge\<TNode\>\(this SpatialGraph\.Graph\<TNode\>, uint, uint\)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')
+`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')[TNode](AddEdge_TNode_(thisGraph_TNode_,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.AddEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.AddEdge<TNode>(this SpatialGraph\.Graph<TNode>, uint, uint)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')
 
 Graph to add an edge\.
 

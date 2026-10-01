@@ -1,4 +1,4 @@
-## GraphChangeSet\<TNode\>\.NodeRemovals\(\) Method
+## GraphChangeSet<TNode>\.NodeRemovals() Method
 
 IDs of the nodes to be removed in a graph\.
 

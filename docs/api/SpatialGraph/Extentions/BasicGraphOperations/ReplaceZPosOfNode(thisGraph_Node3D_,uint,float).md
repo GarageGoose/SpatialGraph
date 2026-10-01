@@ -1,4 +1,4 @@
-## BasicGraphOperations\.ReplaceZPosOfNode\(this Graph\<Node3D\>, uint, float\) Method
+## BasicGraphOperations\.ReplaceZPosOfNode(this Graph<Node3D>, uint, float) Method
 
 Replace the Z location of a node in a graph\.
 
@@ -9,7 +9,7 @@ public static void ReplaceZPosOfNode(this SpatialGraph.Graph<SpatialGraph.Node3D
 
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceZPosOfNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,uint,float).graph'></a>
 
-`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')
+`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')
 
 Graph with the node to replace its Z location\.
 

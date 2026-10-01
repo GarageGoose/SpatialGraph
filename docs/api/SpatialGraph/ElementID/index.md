@@ -10,7 +10,7 @@ Implements [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api
 
 | Constructors | |
 | :--- | :--- |
-| [ElementID\(ElementType, uint\)](ElementID(ElementType,uint).md 'SpatialGraph\.ElementID\.ElementID\(SpatialGraph\.ElementType, uint\)') | Generic element identifier\. |
+| [ElementID(ElementType, uint)](ElementID(ElementType,uint).md 'SpatialGraph\.ElementID\.ElementID(SpatialGraph\.ElementType, uint)') | Generic element identifier\. |
 
 | Properties | |
 | :--- | :--- |

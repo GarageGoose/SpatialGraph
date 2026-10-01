@@ -1,4 +1,4 @@
-## NodeAdjacency\<TNode\>\.ConnectedNodes\(uint\) Method
+## NodeAdjacency<TNode>\.ConnectedNodes(uint) Method
 
 Get connected nodes from a node\.
 

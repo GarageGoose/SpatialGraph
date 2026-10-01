@@ -1,4 +1,4 @@
-## ElementRemoved\<TElement\>\.ID Property
+## ElementRemoved<TElement>\.ID Property
 
 Identifier of the element\.
 

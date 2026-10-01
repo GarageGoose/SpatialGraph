@@ -1,4 +1,4 @@
-## IReadOnlyGraph\<TNode\>\.Edges Property
+## IReadOnlyGraph<TNode>\.Edges Property
 
 Edges stored in this graph\. Elements such as edges are referenced be their unique ID\.
 Nodes and edges can share the same ID\.

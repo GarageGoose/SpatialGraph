@@ -10,4 +10,4 @@ Implements [INode](../INode/index.md 'SpatialGraph\.INode'), [IElement](../IElem
 
 | Constructors | |
 | :--- | :--- |
-| [Node2D\(uint, Vector2\)](Node2D(uint,Vector2).md 'SpatialGraph\.Node2D\.Node2D\(uint, System\.Numerics\.Vector2\)') | Node with coordinate in 2 dimensions\. Used for 2D graphs\. |
+| [Node2D(uint, Vector2)](Node2D(uint,Vector2).md 'SpatialGraph\.Node2D\.Node2D(uint, System\.Numerics\.Vector2)') | Node with coordinate in 2 dimensions\. Used for 2D graphs\. |

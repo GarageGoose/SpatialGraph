@@ -1,4 +1,4 @@
-## GraphChangeLog\<TNode\>\.UnlogEdge\(uint\) Method
+## GraphChangeLog<TNode>\.UnlogEdge(uint) Method
 
 Remove the log of a change in an edge\.
 

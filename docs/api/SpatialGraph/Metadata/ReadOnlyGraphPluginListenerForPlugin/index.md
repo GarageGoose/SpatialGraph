@@ -1,6 +1,6 @@
 ## ReadOnlyGraphPluginListenerForPlugin Enum
 
-Determines an event to subscribe to from a Plugin \(GraphPlugin/GraphReadOnlyPlugin\) in a GraphReadOnlyPlugin\.
+Determines an event to subscribe to from a Plugin (GraphPlugin/GraphReadOnlyPlugin) in a GraphReadOnlyPlugin\.
 
 ```csharp
 public enum ReadOnlyGraphPluginListenerForPlugin

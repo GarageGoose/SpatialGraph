@@ -1,4 +1,4 @@
-## GraphIncomingChanges\<TNode\>\.RemoveNodeChange\(uint\) Method
+## GraphIncomingChanges<TNode>\.RemoveNodeChange(uint) Method
 
 Remove pending changes to a node\.
 

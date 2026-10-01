@@ -1,4 +1,4 @@
-## GraphChangeLog\<TNode\>\.UnlogNode\(uint\) Method
+## GraphChangeLog<TNode>\.UnlogNode(uint) Method
 
 ```csharp
 public void UnlogNode(uint ID);

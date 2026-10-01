@@ -1,4 +1,4 @@
-## ElementAdded\(TElement, uint\) Constructor
+## ElementAdded(TElement, uint) Constructor
 
 Single log of an element which is added\. Used in a ModificationLog\.
 
@@ -9,7 +9,7 @@ public ElementAdded(TElement Element, uint ID);
 
 <a name='SpatialGraph.ElementAdded_TElement_.ElementAdded(TElement,uint).Element'></a>
 
-`Element` [TElement](index.md#SpatialGraph.ElementAdded_TElement_.TElement 'SpatialGraph\.ElementAdded\<TElement\>\.TElement')
+`Element` [TElement](index.md#SpatialGraph.ElementAdded_TElement_.TElement 'SpatialGraph\.ElementAdded<TElement>\.TElement')
 
 Value of an element which is/will be added\.
 

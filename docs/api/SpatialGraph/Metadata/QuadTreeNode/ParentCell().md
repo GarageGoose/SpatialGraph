@@ -1,4 +1,4 @@
-## QuadTreeNode\.ParentCell\(\) Method
+## QuadTreeNode\.ParentCell() Method
 
 Parent cell of the quadtree\.
 

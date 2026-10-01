@@ -1,4 +1,4 @@
-## ElementID\(ElementType, uint\) Constructor
+## ElementID(ElementType, uint) Constructor
 
 Generic element identifier\.
 

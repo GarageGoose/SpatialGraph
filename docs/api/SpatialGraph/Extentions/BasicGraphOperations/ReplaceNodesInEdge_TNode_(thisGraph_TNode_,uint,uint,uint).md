@@ -1,4 +1,4 @@
-## BasicGraphOperations\.ReplaceNodesInEdge\<TNode\>\(this Graph\<TNode\>, uint, uint, uint\) Method
+## BasicGraphOperations\.ReplaceNodesInEdge<TNode>(this Graph<TNode>, uint, uint, uint) Method
 
 Replace both nodes in an edge to a new one in a graph\.
 
@@ -17,7 +17,7 @@ Type of node the graph is using\.
 
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceNodesInEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint,uint).graph'></a>
 
-`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')[TNode](ReplaceNodesInEdge_TNode_(thisGraph_TNode_,uint,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceNodesInEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceNodesInEdge\<TNode\>\(this SpatialGraph\.Graph\<TNode\>, uint, uint, uint\)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')
+`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')[TNode](ReplaceNodesInEdge_TNode_(thisGraph_TNode_,uint,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceNodesInEdge_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceNodesInEdge<TNode>(this SpatialGraph\.Graph<TNode>, uint, uint, uint)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')
 
 Graph where to replace the second node of an edge\.
 

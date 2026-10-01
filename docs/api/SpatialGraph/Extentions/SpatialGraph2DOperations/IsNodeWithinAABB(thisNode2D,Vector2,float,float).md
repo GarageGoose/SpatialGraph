@@ -1,4 +1,4 @@
-## SpatialGraph2DOperations\.IsNodeWithinAABB\(this Node2D, Vector2, float, float\) Method
+## SpatialGraph2DOperations\.IsNodeWithinAABB(this Node2D, Vector2, float, float) Method
 
 Check if a node is within an axis aligned bounding box\.
 

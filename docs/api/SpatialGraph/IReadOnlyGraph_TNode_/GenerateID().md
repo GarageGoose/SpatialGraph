@@ -1,4 +1,4 @@
-## IReadOnlyGraph\<TNode\>\.GenerateID\(\) Method
+## IReadOnlyGraph<TNode>\.GenerateID() Method
 
 Generate unique ID for the elements of the graph\.
 Nodes and edges can share the same ID\.

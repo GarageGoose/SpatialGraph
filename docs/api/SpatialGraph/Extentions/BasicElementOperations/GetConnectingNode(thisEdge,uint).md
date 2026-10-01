@@ -1,4 +1,4 @@
-## BasicElementOperations\.GetConnectingNode\(this Edge, uint\) Method
+## BasicElementOperations\.GetConnectingNode(this Edge, uint) Method
 
 Get the other connecting node from node in an edge\.
 

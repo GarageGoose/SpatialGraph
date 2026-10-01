@@ -1,4 +1,4 @@
-## Graph\<TNode\>\.UpsertNode\(TNode\) Method
+## Graph<TNode>\.UpsertNode(TNode) Method
 
 Add a new node or modify one with their corresponding ID\.
 Nodes and edges can share the same ID\.
@@ -10,8 +10,8 @@ public virtual void UpsertNode(TNode Node);
 
 <a name='SpatialGraph.Graph_TNode_.UpsertNode(TNode).Node'></a>
 
-`Node` [TNode](index.md#SpatialGraph.Graph_TNode_.TNode 'SpatialGraph\.Graph\<TNode\>\.TNode')
+`Node` [TNode](index.md#SpatialGraph.Graph_TNode_.TNode 'SpatialGraph\.Graph<TNode>\.TNode')
 
 Node to upsert, identified by its ID\.
 
-Implements [UpsertNode\(TNode\)](../IGraph_TNode_/UpsertNode(TNode).md 'SpatialGraph\.IGraph\<TNode\>\.UpsertNode\(TNode\)')
+Implements [UpsertNode(TNode)](../IGraph_TNode_/UpsertNode(TNode).md 'SpatialGraph\.IGraph<TNode>\.UpsertNode(TNode)')

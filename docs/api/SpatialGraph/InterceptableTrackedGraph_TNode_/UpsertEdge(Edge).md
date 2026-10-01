@@ -1,4 +1,4 @@
-## InterceptableTrackedGraph\<TNode\>\.UpsertEdge\(Edge\) Method
+## InterceptableTrackedGraph<TNode>\.UpsertEdge(Edge) Method
 
 Add a new edge or modify an edge with its corresponding ID\.
 
@@ -13,4 +13,4 @@ public override void UpsertEdge(SpatialGraph.Edge edge);
 
 Edge to upsert, identified by its ID\.
 
-Implements [UpsertEdge\(Edge\)](../IGraph_TNode_/UpsertEdge(Edge).md 'SpatialGraph\.IGraph\<TNode\>\.UpsertEdge\(SpatialGraph\.Edge\)')
+Implements [UpsertEdge(Edge)](../IGraph_TNode_/UpsertEdge(Edge).md 'SpatialGraph\.IGraph<TNode>\.UpsertEdge(SpatialGraph\.Edge)')

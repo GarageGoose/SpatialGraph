@@ -1,4 +1,4 @@
-## ElementModified\<TElement\>\.NewElement Property
+## ElementModified<TElement>\.NewElement Property
 
 The new value of the element after it was modified\.
 
@@ -7,4 +7,4 @@ public TElement NewElement { get; init; }
 ```
 
 #### Property Value
-[TElement](index.md#SpatialGraph.ElementModified_TElement_.TElement 'SpatialGraph\.ElementModified\<TElement\>\.TElement')
+[TElement](index.md#SpatialGraph.ElementModified_TElement_.TElement 'SpatialGraph\.ElementModified<TElement>\.TElement')

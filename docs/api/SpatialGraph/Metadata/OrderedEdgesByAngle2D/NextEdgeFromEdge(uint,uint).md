@@ -1,4 +1,4 @@
-## OrderedEdgesByAngle2D\.NextEdgeFromEdge\(uint, uint\) Method
+## OrderedEdgesByAngle2D\.NextEdgeFromEdge(uint, uint) Method
 
 Get the next adjacent edge from a specified edge\.
 
@@ -24,4 +24,4 @@ ID of the specified edge\.
 Next adjacent edge from a specified edge\.
 
 ### See Also
-- [PreviousEdgeFromEdge\(uint, uint\)](PreviousEdgeFromEdge(uint,uint).md 'SpatialGraph\.Metadata\.OrderedEdgesByAngle2D\.PreviousEdgeFromEdge\(uint, uint\)')
+- [PreviousEdgeFromEdge(uint, uint)](PreviousEdgeFromEdge(uint,uint).md 'SpatialGraph\.Metadata\.OrderedEdgesByAngle2D\.PreviousEdgeFromEdge(uint, uint)')

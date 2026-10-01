@@ -1,4 +1,4 @@
-## PathfindingOperations\.IsNodeConnected\<TNode\>\(this GraphTraversal\<TNode\>\) Method
+## PathfindingOperations\.IsNodeConnected<TNode>(this GraphTraversal<TNode>) Method
 
 Check if two nodes were connected through edges\.
 
@@ -17,7 +17,7 @@ Node type\.
 
 <a name='SpatialGraph.Traversal.PathfindingOperations.IsNodeConnected_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_).graphTraversal'></a>
 
-`graphTraversal` [SpatialGraph\.Traversal\.GraphTraversal&lt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')[TNode](IsNodeConnected_TNode_(thisGraphTraversal_TNode_).md#SpatialGraph.Traversal.PathfindingOperations.IsNodeConnected_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_).TNode 'SpatialGraph\.Traversal\.PathfindingOperations\.IsNodeConnected\<TNode\>\(this SpatialGraph\.Traversal\.GraphTraversal\<TNode\>\)\.TNode')[&gt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')
+`graphTraversal` [SpatialGraph\.Traversal\.GraphTraversal&lt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>')[TNode](IsNodeConnected_TNode_(thisGraphTraversal_TNode_).md#SpatialGraph.Traversal.PathfindingOperations.IsNodeConnected_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_).TNode 'SpatialGraph\.Traversal\.PathfindingOperations\.IsNodeConnected<TNode>(this SpatialGraph\.Traversal\.GraphTraversal<TNode>)\.TNode')[&gt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>')
 
 Traversal algorithm to use\.
 

@@ -1,4 +1,4 @@
-## SpatialGraph2DOperations\.EdgeAngle\(this IReadOnlyGraph\<Node2D\>, uint\) Method
+## SpatialGraph2DOperations\.EdgeAngle(this IReadOnlyGraph<Node2D>, uint) Method
 
 Get the angle of an edge in radians\.
 
@@ -9,7 +9,7 @@ public static float EdgeAngle(this SpatialGraph.IReadOnlyGraph<SpatialGraph.Node
 
 <a name='SpatialGraph.Extentions.SpatialGraph2DOperations.EdgeAngle(thisSpatialGraph.IReadOnlyGraph_SpatialGraph.Node2D_,uint).baseGraph'></a>
 
-`baseGraph` [SpatialGraph\.IReadOnlyGraph&lt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph\<TNode\>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph\<TNode\>')
+`baseGraph` [SpatialGraph\.IReadOnlyGraph&lt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph<TNode>')
 
 Graph where the edge resides from\.
 

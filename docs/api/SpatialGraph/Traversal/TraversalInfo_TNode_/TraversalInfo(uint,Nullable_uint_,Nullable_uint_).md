@@ -1,4 +1,4 @@
-## TraversalInfo\(uint, Nullable\<uint\>, Nullable\<uint\>\) Constructor
+## TraversalInfo(uint, Nullable<uint>, Nullable<uint>) Constructor
 
 Provides traversal info for a specific node\.
 

@@ -1,4 +1,4 @@
-## QuadTreeNode\(ITrackedGraph\<Node2D\>, int, Vector2, float, float\) Constructor
+## QuadTreeNode(ITrackedGraph<Node2D>, int, Vector2, float, float) Constructor
 
 New instance of a node quad tree\.
 
@@ -9,7 +9,7 @@ public QuadTreeNode(SpatialGraph.ITrackedGraph<SpatialGraph.Node2D> graph, int c
 
 <a name='SpatialGraph.Metadata.QuadTreeNode.QuadTreeNode(SpatialGraph.ITrackedGraph_SpatialGraph.Node2D_,int,System.Numerics.Vector2,float,float).graph'></a>
 
-`graph` [SpatialGraph\.ITrackedGraph&lt;](../../ITrackedGraph_TNode_/index.md 'SpatialGraph\.ITrackedGraph\<TNode\>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../ITrackedGraph_TNode_/index.md 'SpatialGraph\.ITrackedGraph\<TNode\>')
+`graph` [SpatialGraph\.ITrackedGraph&lt;](../../ITrackedGraph_TNode_/index.md 'SpatialGraph\.ITrackedGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../ITrackedGraph_TNode_/index.md 'SpatialGraph\.ITrackedGraph<TNode>')
 
 Graph to record the nodes from\.
 

@@ -1,4 +1,4 @@
-## IGraph\<TNode\>\.UpsertEdge\(Edge\) Method
+## IGraph<TNode>\.UpsertEdge(Edge) Method
 
 Add a new edge or modify an edge with its corresponding ID\.
 

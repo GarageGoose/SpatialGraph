@@ -1,4 +1,4 @@
-## GraphPlugin\<TNode\>\.RemoveNode\(uint\) Method
+## GraphPlugin<TNode>\.RemoveNode(uint) Method
 
 Remove a node in the graph using its correspinding ID\. Connecting edges referencing this node will not be removed\.
 Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\.
@@ -14,7 +14,7 @@ public bool RemoveNode(uint ID);
 
 ID of the node to be removed\.
 
-Implements [RemoveNode\(uint\)](../../IGraph_TNode_/RemoveNode(uint).md 'SpatialGraph\.IGraph\<TNode\>\.RemoveNode\(uint\)')
+Implements [RemoveNode(uint)](../../IGraph_TNode_/RemoveNode(uint).md 'SpatialGraph\.IGraph<TNode>\.RemoveNode(uint)')
 
 #### Returns
 [System\.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean 'System\.Boolean')  

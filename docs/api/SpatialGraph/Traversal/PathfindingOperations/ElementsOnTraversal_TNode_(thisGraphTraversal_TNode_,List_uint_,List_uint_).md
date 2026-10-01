@@ -1,4 +1,4 @@
-## PathfindingOperations\.ElementsOnTraversal\<TNode\>\(this GraphTraversal\<TNode\>, List\<uint\>, List\<uint\>\) Method
+## PathfindingOperations\.ElementsOnTraversal<TNode>(this GraphTraversal<TNode>, List<uint>, List<uint>) Method
 
 Get the elements traversed\.
 
@@ -17,7 +17,7 @@ Node type\.
 
 <a name='SpatialGraph.Traversal.PathfindingOperations.ElementsOnTraversal_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_,System.Collections.Generic.List_uint_,System.Collections.Generic.List_uint_).graphTraversal'></a>
 
-`graphTraversal` [SpatialGraph\.Traversal\.GraphTraversal&lt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')[TNode](ElementsOnTraversal_TNode_(thisGraphTraversal_TNode_,List_uint_,List_uint_).md#SpatialGraph.Traversal.PathfindingOperations.ElementsOnTraversal_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_,System.Collections.Generic.List_uint_,System.Collections.Generic.List_uint_).TNode 'SpatialGraph\.Traversal\.PathfindingOperations\.ElementsOnTraversal\<TNode\>\(this SpatialGraph\.Traversal\.GraphTraversal\<TNode\>, System\.Collections\.Generic\.List\<uint\>, System\.Collections\.Generic\.List\<uint\>\)\.TNode')[&gt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')
+`graphTraversal` [SpatialGraph\.Traversal\.GraphTraversal&lt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>')[TNode](ElementsOnTraversal_TNode_(thisGraphTraversal_TNode_,List_uint_,List_uint_).md#SpatialGraph.Traversal.PathfindingOperations.ElementsOnTraversal_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_,System.Collections.Generic.List_uint_,System.Collections.Generic.List_uint_).TNode 'SpatialGraph\.Traversal\.PathfindingOperations\.ElementsOnTraversal<TNode>(this SpatialGraph\.Traversal\.GraphTraversal<TNode>, System\.Collections\.Generic\.List<uint>, System\.Collections\.Generic\.List<uint>)\.TNode')[&gt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>')
 
 Traversal algorithm to use\.
 

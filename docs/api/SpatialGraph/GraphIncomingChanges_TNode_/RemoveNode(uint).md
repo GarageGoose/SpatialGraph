@@ -1,4 +1,4 @@
-## GraphIncomingChanges\<TNode\>\.RemoveNode\(uint\) Method
+## GraphIncomingChanges<TNode>\.RemoveNode(uint) Method
 
 Remove a node with its ID\.
 

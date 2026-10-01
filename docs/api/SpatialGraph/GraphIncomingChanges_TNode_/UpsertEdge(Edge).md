@@ -1,4 +1,4 @@
-## GraphIncomingChanges\<TNode\>\.UpsertEdge\(Edge\) Method
+## GraphIncomingChanges<TNode>\.UpsertEdge(Edge) Method
 
 Add a new edge or modify one with their corresponding ID\.
 

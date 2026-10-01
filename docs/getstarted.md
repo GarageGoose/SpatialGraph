@@ -1,3 +1,0 @@
-# Lets get started
-
-hello,

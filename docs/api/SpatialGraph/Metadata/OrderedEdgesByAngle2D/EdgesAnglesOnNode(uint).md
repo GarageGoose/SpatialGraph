@@ -1,4 +1,4 @@
-## OrderedEdgesByAngle2D\.EdgesAnglesOnNode\(uint\) Method
+## OrderedEdgesByAngle2D\.EdgesAnglesOnNode(uint) Method
 
 Returns a dictionary of connected edges from a node with its angle relative to the node\. Keyed by ID, returns node in radians\.
 

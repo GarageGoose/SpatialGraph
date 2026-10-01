@@ -1,6 +1,6 @@
-## IReadOnlyQuadTreeNodeCell\.LowerLeft\(\) Method
+## IReadOnlyQuadTreeNodeCell\.LowerLeft() Method
 
-Lower left \(Southwest\) quadrant of the cell\.
+Lower left (Southwest) quadrant of the cell\.
 
 ```csharp
 SpatialGraph.IReadOnlyQuadTreeNodeCell? LowerLeft();

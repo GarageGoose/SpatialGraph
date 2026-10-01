@@ -1,4 +1,4 @@
-## NodeAdjacency\<TNode\>\.ConnectedEdges\(uint\) Method
+## NodeAdjacency<TNode>\.ConnectedEdges(uint) Method
 
 Get connecting edges from a node\.
 

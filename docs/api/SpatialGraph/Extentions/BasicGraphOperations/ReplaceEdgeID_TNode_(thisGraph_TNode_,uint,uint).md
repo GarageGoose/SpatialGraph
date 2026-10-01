@@ -1,4 +1,4 @@
-## BasicGraphOperations\.ReplaceEdgeID\<TNode\>\(this Graph\<TNode\>, uint, uint\) Method
+## BasicGraphOperations\.ReplaceEdgeID<TNode>(this Graph<TNode>, uint, uint) Method
 
 Replace the ID of an edge with a new ID\. An existing edge with the same ID as the new ID will be replaced\.
 
@@ -15,7 +15,7 @@ public static void ReplaceEdgeID<TNode>(this SpatialGraph.Graph<TNode> graph, ui
 
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).graph'></a>
 
-`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')[TNode](ReplaceEdgeID_TNode_(thisGraph_TNode_,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceEdgeID\<TNode\>\(this SpatialGraph\.Graph\<TNode\>, uint, uint\)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph\<TNode\>')
+`graph` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')[TNode](ReplaceEdgeID_TNode_(thisGraph_TNode_,uint,uint).md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.Graph_TNode_,uint,uint).TNode 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceEdgeID<TNode>(this SpatialGraph\.Graph<TNode>, uint, uint)\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')
 
 Graph where to replace an edge ID\.
 

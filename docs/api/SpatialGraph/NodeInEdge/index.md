@@ -11,13 +11,13 @@ public enum NodeInEdge
 
 `First` 0
 
-Refers to the first node \(NodeID1\) in an edge\.
+Refers to the first node (NodeID1) in an edge\.
 
 <a name='SpatialGraph.NodeInEdge.Second'></a>
 
 `Second` 1
 
-Refers to the second node \(NodeID1\) in an edge\.
+Refers to the second node (NodeID1) in an edge\.
 
 <a name='SpatialGraph.NodeInEdge.None'></a>
 

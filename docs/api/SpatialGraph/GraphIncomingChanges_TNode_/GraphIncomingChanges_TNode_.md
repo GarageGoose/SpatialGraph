@@ -1,8 +1,13 @@
-## GraphIncomingChanges\<TNode\> Constructors
+## GraphIncomingChanges<TNode> Constructors
+
+| Overloads | |
+| :--- | :--- |
+| [GraphIncomingChanges()](GraphIncomingChanges_TNode_.md#SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges() 'SpatialGraph\.GraphIncomingChanges<TNode>\.GraphIncomingChanges()') | Create a new empty instance\. |
+| [GraphIncomingChanges(IReadOnlyGraphIncomingChanges&lt;TNode&gt;)](GraphIncomingChanges_TNode_.md#SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges_TNode_) 'SpatialGraph\.GraphIncomingChanges<TNode>\.GraphIncomingChanges(SpatialGraph\.IReadOnlyGraphIncomingChanges<TNode>)') | |
 
 <a name='SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges()'></a>
 
-## GraphIncomingChanges\(\) Constructor
+## GraphIncomingChanges() Constructor
 
 Create a new empty instance\.
 
@@ -12,7 +17,7 @@ public GraphIncomingChanges();
 
 <a name='SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges_TNode_)'></a>
 
-## GraphIncomingChanges\(IReadOnlyGraphIncomingChanges\<TNode\>\) Constructor
+## GraphIncomingChanges(IReadOnlyGraphIncomingChanges<TNode>) Constructor
 
 ```csharp
 public GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges<TNode> batchedMods);
@@ -21,4 +26,4 @@ public GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges<TNode> ba
 
 <a name='SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges_TNode_).batchedMods'></a>
 
-`batchedMods` [SpatialGraph\.IReadOnlyGraphIncomingChanges&lt;](../IReadOnlyGraphIncomingChanges_TNode_/index.md 'SpatialGraph\.IReadOnlyGraphIncomingChanges\<TNode\>')[TNode](index.md#SpatialGraph.GraphIncomingChanges_TNode_.TNode 'SpatialGraph\.GraphIncomingChanges\<TNode\>\.TNode')[&gt;](../IReadOnlyGraphIncomingChanges_TNode_/index.md 'SpatialGraph\.IReadOnlyGraphIncomingChanges\<TNode\>')
+`batchedMods` [SpatialGraph\.IReadOnlyGraphIncomingChanges&lt;](../IReadOnlyGraphIncomingChanges_TNode_/index.md 'SpatialGraph\.IReadOnlyGraphIncomingChanges<TNode>')[TNode](index.md#SpatialGraph.GraphIncomingChanges_TNode_.TNode 'SpatialGraph\.GraphIncomingChanges<TNode>\.TNode')[&gt;](../IReadOnlyGraphIncomingChanges_TNode_/index.md 'SpatialGraph\.IReadOnlyGraphIncomingChanges<TNode>')

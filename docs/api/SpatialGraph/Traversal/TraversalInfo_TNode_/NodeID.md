@@ -1,4 +1,4 @@
-## TraversalInfo\<TNode\>\.NodeID Property
+## TraversalInfo<TNode>\.NodeID Property
 
 Current node ID\.
 

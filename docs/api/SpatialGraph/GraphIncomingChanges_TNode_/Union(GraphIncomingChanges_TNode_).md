@@ -1,4 +1,4 @@
-## GraphIncomingChanges\<TNode\>\.Union\(GraphIncomingChanges\<TNode\>\) Method
+## GraphIncomingChanges<TNode>\.Union(GraphIncomingChanges<TNode>) Method
 
 Union between two GraphIncomingChanges\.
 
@@ -9,6 +9,6 @@ public void Union(SpatialGraph.GraphIncomingChanges<TNode> GraphIncomingChanges)
 
 <a name='SpatialGraph.GraphIncomingChanges_TNode_.Union(SpatialGraph.GraphIncomingChanges_TNode_).GraphIncomingChanges'></a>
 
-`GraphIncomingChanges` [SpatialGraph\.GraphIncomingChanges&lt;](index.md 'SpatialGraph\.GraphIncomingChanges\<TNode\>')[TNode](index.md#SpatialGraph.GraphIncomingChanges_TNode_.TNode 'SpatialGraph\.GraphIncomingChanges\<TNode\>\.TNode')[&gt;](index.md 'SpatialGraph\.GraphIncomingChanges\<TNode\>')
+`GraphIncomingChanges` [SpatialGraph\.GraphIncomingChanges&lt;](index.md 'SpatialGraph\.GraphIncomingChanges<TNode>')[TNode](index.md#SpatialGraph.GraphIncomingChanges_TNode_.TNode 'SpatialGraph\.GraphIncomingChanges<TNode>\.TNode')[&gt;](index.md 'SpatialGraph\.GraphIncomingChanges<TNode>')
 
 GraphIncomingChanges to perform the union to\.
