@@ -1,7 +1,7 @@
 using System.IO.Compression;
 using System.Numerics;
 using SpatialGraph.Spatial;
-namespace SpatialGraph.Internal;
+namespace SpatialGraph;
 
 internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 {

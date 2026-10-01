@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="SpatialGraph.Tests/SpatialGraph.Tests.csproj" />
-  <Project Path="SpatialGraph/SpatialGraph.csproj" />
+  <Project Path="src/SpatialGraph.csproj" />
+  <Project Path="Tests/SpatialGraph.Tests.csproj" />
 </Solution>

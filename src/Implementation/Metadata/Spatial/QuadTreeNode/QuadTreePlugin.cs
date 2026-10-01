@@ -1,6 +1,5 @@
 using System.Numerics;
 using SpatialGraph.Metadata;
-using SpatialGraph.Internal;
 
 namespace SpatialGraph.Spatial;
 

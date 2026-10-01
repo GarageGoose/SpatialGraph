@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpatialGraph\SpatialGraph.csproj" />
+    <ProjectReference Include="..\src\SpatialGraph.csproj" />
   </ItemGroup>
 
 </Project>
