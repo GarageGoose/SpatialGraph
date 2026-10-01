@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph;
+namespace SpatialGraph;
 
 /// <summary>
 /// Set of changes in a graph.

@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph.Traversal;
+namespace SpatialGraph.Traversal;
 
 public static class PathfindingOps
 {

@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph;
+namespace SpatialGraph;
 
 /// <summary>
 /// Graph which tracks changes within it.

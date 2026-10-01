@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph.Metadata;
+namespace SpatialGraph.Metadata;
 
 /// <summary>
 /// Records changes from a graph.

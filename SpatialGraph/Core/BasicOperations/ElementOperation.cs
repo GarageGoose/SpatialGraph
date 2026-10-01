@@ -1,5 +1,5 @@
 using System.Numerics;
-namespace GG.SpatialGraph;
+namespace SpatialGraph;
 
 /// <summary>
 /// Basic operation for the elements of a graph.

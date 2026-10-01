@@ -1,7 +1,7 @@
 using System.Numerics;
-using GG.SpatialGraph.Metadata;
+using SpatialGraph.Metadata;
 
-namespace GG.SpatialGraph.Traversal;
+namespace SpatialGraph.Traversal;
 
 /// <summary>
 /// Provides traversal info for a specific node.

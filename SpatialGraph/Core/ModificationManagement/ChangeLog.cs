@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph;
+namespace SpatialGraph;
 
 /// <summary>
 /// Logs incoming changes for a graph. Stores additional data: type of modification of an element (Add, Modify, Delete), old value of an element (if any), and new value of an element (if any).

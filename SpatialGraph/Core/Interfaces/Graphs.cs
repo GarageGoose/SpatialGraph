@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph;
+namespace SpatialGraph;
 
 /// <summary>
 /// Read only interface of a graph. A graph stores nodes and edges within it, identified by their IDs.

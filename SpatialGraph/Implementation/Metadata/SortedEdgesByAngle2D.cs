@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph.Metadata;
+namespace SpatialGraph.Metadata;
 
 /// <summary>
 /// Records the order and adjacency of edges in a node including the angles between them.

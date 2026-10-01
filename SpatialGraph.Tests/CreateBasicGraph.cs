@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
-using GG.SpatialGraph;
-using GG.SpatialGraph.Metadata;
-using GG.SpatialGraph.Traversal;
+using SpatialGraph;
+using SpatialGraph.Metadata;
+using SpatialGraph.Traversal;
 
 namespace SpatialGraph.Tests;
 

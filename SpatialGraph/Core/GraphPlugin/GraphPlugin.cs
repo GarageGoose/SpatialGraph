@@ -1,4 +1,4 @@
-namespace GG.SpatialGraph.Metadata;
+namespace SpatialGraph.Metadata;
 
 /// <summary>
 /// Base class for plugins which can observe and modify changes either in a graph or another plugin (only GraphPlugins).

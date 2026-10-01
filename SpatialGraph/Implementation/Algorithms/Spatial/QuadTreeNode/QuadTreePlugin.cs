@@ -1,8 +1,8 @@
 using System.Numerics;
-using GG.SpatialGraph.Metadata;
-using GG.SpatialGraph.Internal;
+using SpatialGraph.Metadata;
+using SpatialGraph.Internal;
 
-namespace GG.SpatialGraph.Spatial;
+namespace SpatialGraph.Spatial;
 
 /// <summary>
 /// Quadtree implementation for nodes in a graph. Enables spatial indexing for nodes.

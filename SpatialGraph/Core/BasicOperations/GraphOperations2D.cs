@@ -1,6 +1,6 @@
 using System.Numerics;
-using GG.SpatialGraph.Metadata;
-namespace GG.SpatialGraph;
+using SpatialGraph.Metadata;
+namespace SpatialGraph;
 
 /// <summary>
 /// Basic modification for 2D graphs.
