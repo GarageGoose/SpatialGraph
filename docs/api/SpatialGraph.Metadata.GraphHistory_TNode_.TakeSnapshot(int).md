@@ -14,5 +14,5 @@ public SpatialGraph.Metadata.GraphSnapshot<TNode> TakeSnapshot(int modStep);
 Modification step to reconstruct a graph from\.
 
 #### Returns
-[SpatialGraph\.Metadata\.GraphSnapshot&lt;](https://learn.microsoft.com/en-us/dotnet/api/spatialgraph.metadata.graphsnapshot-1 'SpatialGraph\.Metadata\.GraphSnapshot\`1')[TNode](SpatialGraph.Metadata.GraphHistory_TNode_.md#SpatialGraph.Metadata.GraphHistory_TNode_.TNode 'SpatialGraph\.Metadata\.GraphHistory\<TNode\>\.TNode')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/spatialgraph.metadata.graphsnapshot-1 'SpatialGraph\.Metadata\.GraphSnapshot\`1')  
+[SpatialGraph\.Metadata\.GraphSnapshot&lt;](SpatialGraph.Metadata.GraphSnapshot_TNode_.md 'SpatialGraph\.Metadata\.GraphSnapshot\<TNode\>')[TNode](SpatialGraph.Metadata.GraphHistory_TNode_.md#SpatialGraph.Metadata.GraphHistory_TNode_.TNode 'SpatialGraph\.Metadata\.GraphHistory\<TNode\>\.TNode')[&gt;](SpatialGraph.Metadata.GraphSnapshot_TNode_.md 'SpatialGraph\.Metadata\.GraphSnapshot\<TNode\>')  
 Reconstructed graph\.

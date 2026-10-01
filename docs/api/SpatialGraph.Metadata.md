@@ -9,6 +9,10 @@
 | [OrderedEdgesByAngle2D](SpatialGraph.Metadata.OrderedEdgesByAngle2D.md 'SpatialGraph\.Metadata\.OrderedEdgesByAngle2D') | Records the order and adjacency of edges in a node including the angles between them\. |
 | [QuadTreeNode](SpatialGraph.Metadata.QuadTreeNode.md 'SpatialGraph\.Metadata\.QuadTreeNode') | Quadtree implementation for nodes in a graph\. Enables spatial indexing for nodes\. |
 
+| Structs | |
+| :--- | :--- |
+| [GraphSnapshot&lt;TNode&gt;](SpatialGraph.Metadata.GraphSnapshot_TNode_.md 'SpatialGraph\.Metadata\.GraphSnapshot\<TNode\>') | Reconstructed graph from a specific modification step\. Used in GraphHistory\. |
+
 | Enums | |
 | :--- | :--- |
 | [GraphPluginSubscription](SpatialGraph.Metadata.GraphPluginSubscription.md 'SpatialGraph\.Metadata\.GraphPluginSubscription') | Determines an event to subscribe to from a GraphPlugin in a GraphPlugin\. |

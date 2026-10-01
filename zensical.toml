@@ -6,8 +6,8 @@ site_author = "GarageGoose"
 
 copyright = "Copyright GarageGoose. Licensed under the MIT License."
 
-# repo_url = "https://github.com/user/repo"
-# repo_name = "user/repo"
+repo_url = "https://github.com/GarageGoose/SpatialGraph"
+repo_name = "GarageGoose/SpatialGraph"
 # edit_uri = "edit/main/docs/"
 
 nav = [

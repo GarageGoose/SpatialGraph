@@ -23,3 +23,15 @@ Implements [SpatialGraph\.ITrackedGraph&lt;](SpatialGraph.ITrackedGraph_TNode_.m
 | [TrackedGraph\(\)](SpatialGraph.TrackedGraph_TNode_.#ctor.md#SpatialGraph.TrackedGraph_TNode_.TrackedGraph() 'SpatialGraph\.TrackedGraph\<TNode\>\.TrackedGraph\(\)') | Start an empty graph\. |
 | [TrackedGraph\(IReadOnlyGraph&lt;TNode&gt;\)](SpatialGraph.TrackedGraph_TNode_.#ctor.md#SpatialGraph.TrackedGraph_TNode_.TrackedGraph(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.TrackedGraph\<TNode\>\.TrackedGraph\(SpatialGraph\.IReadOnlyGraph\<TNode\>\)') | Start graph from a pre\-exisitng graph\. |
 | [TrackedGraph\(Dictionary&lt;uint,TNode&gt;, Dictionary&lt;uint,Edge&gt;\)](SpatialGraph.TrackedGraph_TNode_.#ctor.md#SpatialGraph.TrackedGraph_TNode_.TrackedGraph(System.Collections.Generic.Dictionary_uint,TNode_,System.Collections.Generic.Dictionary_uint,SpatialGraph.Edge_) 'SpatialGraph\.TrackedGraph\<TNode\>\.TrackedGraph\(System\.Collections\.Generic\.Dictionary\<uint,TNode\>, System\.Collections\.Generic\.Dictionary\<uint,SpatialGraph\.Edge\>\)') | Start a graph from pre\-exisiting dictionaries of nodes and edges\. |
+
+| Methods | |
+| :--- | :--- |
+| [ApplyChangeSet\(GraphChangeSet&lt;TNode&gt;\)](SpatialGraph.TrackedGraph_TNode_.ApplyChangeSet(SpatialGraph.GraphChangeSet_TNode_).md 'SpatialGraph\.TrackedGraph\<TNode\>\.ApplyChangeSet\(SpatialGraph\.GraphChangeSet\<TNode\>\)') | Perform multiple operations at once with a GraphChangeSet\. Existing nodes or edges with a corresponding ID in the graph will be replaced\. Nodes and edges can share the same ID\. |
+| [RemoveEdge\(uint\)](SpatialGraph.TrackedGraph_TNode_.RemoveEdge(uint).md 'SpatialGraph\.TrackedGraph\<TNode\>\.RemoveEdge\(uint\)') | Remove an edge in the graph using its corresponding ID\. Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\. |
+| [RemoveNode\(uint\)](SpatialGraph.TrackedGraph_TNode_.RemoveNode(uint).md 'SpatialGraph\.TrackedGraph\<TNode\>\.RemoveNode\(uint\)') | Remove a node in the graph using its correspinding ID\. Connecting edges referencing this node will not be removed\. Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\. |
+| [UpsertEdge\(Edge\)](SpatialGraph.TrackedGraph_TNode_.UpsertEdge(SpatialGraph.Edge).md 'SpatialGraph\.TrackedGraph\<TNode\>\.UpsertEdge\(SpatialGraph\.Edge\)') | Add a new edge or modify an edge with its corresponding ID\. |
+| [UpsertNode\(TNode\)](SpatialGraph.TrackedGraph_TNode_.UpsertNode(TNode).md 'SpatialGraph\.TrackedGraph\<TNode\>\.UpsertNode\(TNode\)') | Add a new node or modify one with their corresponding ID\. Nodes and edges can share the same ID\. |
+
+| Events | |
+| :--- | :--- |
+| [OnGraphModified](SpatialGraph.TrackedGraph_TNode_.OnGraphModified.md 'SpatialGraph\.TrackedGraph\<TNode\>\.OnGraphModified') | Event for changes applied\. Invokes with an IReadOnlyModificationLog, which contains the changes in the graph after it is modified\. |

@@ -28,4 +28,5 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 
 | Methods | |
 | :--- | :--- |
+| [OnGraphUpdate\(object, IReadOnlyModificationLog&lt;TNode&gt;\)](SpatialGraph.Metadata.GraphHistory_TNode_.OnGraphUpdate(object,SpatialGraph.IReadOnlyModificationLog_TNode_).md 'SpatialGraph\.Metadata\.GraphHistory\<TNode\>\.OnGraphUpdate\(object, SpatialGraph\.IReadOnlyModificationLog\<TNode\>\)') | Emits when a modification occurs in the base graph\. |
 | [TakeSnapshot\(int\)](SpatialGraph.Metadata.GraphHistory_TNode_.TakeSnapshot(int).md 'SpatialGraph\.Metadata\.GraphHistory\<TNode\>\.TakeSnapshot\(int\)') | Reconstruct a graph from a specific modification step\. A modification snapshot is a ModificationLog which is taken every time the graph is updated with each one counting as a single modStep, with index 0 being the oldest/first snapshot\. |

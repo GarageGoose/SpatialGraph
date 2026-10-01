@@ -2,7 +2,8 @@
 
 | Classes | |
 | :--- | :--- |
-| [PathfindingOps](SpatialGraph.Traversal.PathfindingOps.md 'SpatialGraph\.Traversal\.PathfindingOps') | |
+| [Pathfinding](SpatialGraph.Traversal.Pathfinding.md 'SpatialGraph\.Traversal\.Pathfinding') | Pathfinding algorithims for graphs\. |
+| [PathfindingOperations](SpatialGraph.Traversal.PathfindingOperations.md 'SpatialGraph\.Traversal\.PathfindingOperations') | Extention functions for graph traversal algorithms\. |
 
 | Structs | |
 | :--- | :--- |
