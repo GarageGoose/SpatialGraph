@@ -11,8 +11,9 @@ site_name = "SpatialGraph Documentation"
 # edit_uri = "edit/main/docs/"
 
 nav = [
-  { "Get started" = "index.md" },
+  { "Get started" = "getstarted.md" },
   { "Markdown in 5min" = "markdown.md" },
+  { "API" = "api/index.md" }
 ]
 
 # extra_css = ["stylesheets/extra.css"]
