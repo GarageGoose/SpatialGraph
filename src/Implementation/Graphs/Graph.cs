@@ -32,20 +32,36 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
         this.edges = new(edges);
     }
 
+    /// <summary>
+    /// Writable dictionary for nodes in the graph.
+    /// </summary>
     protected Dictionary<uint, TNode> nodes = new();
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, TNode> Nodes => nodes;
 
+
+    /// <summary>
+    /// Writable dictionary for edges in the graph.
+    /// </summary>
     protected Dictionary<uint, Edge> edges = new();
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, Edge> Edges => edges;
 
+    /// <inheritdoc/>
     public virtual void UpsertNode(TNode Node) => nodes[Node.ID] = Node;
     
+    /// <inheritdoc/>
     public virtual bool RemoveNode(uint ID) => nodes.Remove(ID);
 
+    /// <inheritdoc/>
     public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;
 
+    /// <inheritdoc/>
     public virtual bool RemoveEdge(uint ID) => edges.Remove(ID);
 
+    /// <inheritdoc/>
     public virtual void ApplyChangeSet(GraphChangeSet<TNode> mods)
     {
         foreach(TNode node in mods.NodeUpserts())
@@ -70,6 +86,8 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     }
 
     uint currID = 0;
+
+    /// <inheritdoc/>
     public virtual uint GenerateID()
     {
         currID++;

@@ -1,6 +1,6 @@
 {
   "OutputDirectoryPath": "../docs/api",
-  "GeneratedPages": "Namespaces,Types,Members",
+  "GeneratedPages": "Namespaces,Classes,Delegates,Enums,Structs,Interfaces,Members",
   "Sections": [
     "Default"
   ]

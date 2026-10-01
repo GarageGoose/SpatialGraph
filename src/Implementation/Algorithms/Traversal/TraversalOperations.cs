@@ -1,6 +1,9 @@
 namespace SpatialGraph.Traversal;
 
-public static class PathfindingOps
+/// <summary>
+/// Extention functions for graph traversal algorithms. 
+/// </summary>
+public static class PathfindingOperations
 {
     /// <summary>
     /// Check if two nodes were connected through edges.
@@ -160,7 +163,7 @@ public static class PathfindingOps
     /// <typeparam name="TNode">Node type.</typeparam>
     /// <param name="graphTraversal">Traversal algorithm to use.</param>
     /// <param name="limitEdges">Limit discovered edges to set amount.</param>
-    /// <returnsList of connected edges from the source node.></returns>
+    /// <returns>List of connected edges from the source node.</returns>
     public static List<uint> FloodfillEdges<TNode>(this GraphTraversal<TNode> graphTraversal, uint? limitEdges = null) where TNode : struct, INode
     {
         HashSet<uint> nodeIDs = new();

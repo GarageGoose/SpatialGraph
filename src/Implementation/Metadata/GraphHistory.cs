@@ -124,7 +124,14 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
         return new();
     }
 
+    /// <inheritdoc/>
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> modLog) => modSnapshots.Add(modLog);
 }
 
+/// <summary>
+/// Reconstructed graph from a specific modification step. Used in GraphHistory.
+/// </summary>
+/// <typeparam name="TNode">Type of node used in the graph.</typeparam>
+/// <param name="ModStep">Modification step which this graph is recreated from.</param>
+/// <param name="Snapshot">Reconstructed graph.</param>
 public readonly record struct GraphSnapshot<TNode>(int ModStep, Graph<TNode> Snapshot) where TNode : struct, INode;

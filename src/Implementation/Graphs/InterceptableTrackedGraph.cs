@@ -6,7 +6,10 @@ namespace SpatialGraph;
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrackedGraph<TNode> where TNode : struct, INode
 {
+    /// <inheritdoc/>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
+
+    /// <inheritdoc/>
     public event EventHandler<GraphChangeLog<TNode>>? OnGraphModificationInit;
 
     /// <summary>
@@ -31,6 +34,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
     {
     }
 
+    /// <inheritdoc/>
     public override void ApplyChangeSet(GraphChangeSet<TNode> mods) => applyBatchedModifications(new(this, mods));
 
     private void applyBatchedModifications(GraphChangeLog<TNode> log)
@@ -68,22 +72,27 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
         OnGraphModified?.Invoke(this, log);
     }
 
+    /// <inheritdoc/>
     public override bool RemoveEdge(uint ID)
     {
+        bool IsEdgeRemoved = edges.ContainsKey(ID);
         GraphChangeLog<TNode> log = new(this);
         log.EdgeRemoval(ID);
         ApplyChangeSet(log);
-        return true; 
+        return IsEdgeRemoved == true ? edges.ContainsKey(ID) ? false : true : false; 
     }
 
+    /// <inheritdoc/>
     public override bool RemoveNode(uint ID)
     {
+        bool IsNodeRemoved = edges.ContainsKey(ID);
         GraphChangeLog<TNode> log = new(this);
         log.NodeRemoval(ID);
         ApplyChangeSet(log);
-        return true;
+        return IsNodeRemoved == true ? edges.ContainsKey(ID) ? false : true : false; 
     }
 
+    /// <inheritdoc/>
     public override void UpsertEdge(Edge edge)
     {
         GraphChangeLog<TNode> log = new(this);
@@ -91,6 +100,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
         ApplyChangeSet(log);
     }
 
+    /// <inheritdoc/>
     public override void UpsertNode(TNode Node)
     {
         GraphChangeLog<TNode> log = new(this);

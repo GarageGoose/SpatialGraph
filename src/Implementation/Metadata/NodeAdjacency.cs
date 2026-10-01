@@ -27,6 +27,10 @@ public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : str
     /// <returns>Amount of edges connected in a node.</returns>
     public int ConnectedEdgesCount(uint nodeID) => connectedEdges[nodeID].Count;
 
+    /// <summary>
+    /// Creates a new instance of NodeAdjacency.
+    /// </summary>
+    /// <param name="baseGraph">Graph to record from.</param>
     public NodeAdjacency(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
     {
         foreach(uint nodeID in Nodes.Keys)
@@ -40,6 +44,7 @@ public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : str
         }
     }
 
+    /// <inheritdoc/>
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<TNode> log)
     {
         foreach(ElementAdded<TNode> node in log.NewNodes.Values)

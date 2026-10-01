@@ -11,7 +11,7 @@ copyright = "Copyright GarageGoose. Licensed under the MIT License."
 # edit_uri = "edit/main/docs/"
 
 nav = [
-  { "API Reference" = "api/index.md" }
+  { "API Reference" = ["api/index.md", "api/SpatialGraph.md", "api/SpatialGraph.Extentions.md", "api/SpatialGraph.Metadata.md", "api/SpatialGraph.Traversal.md"] }
 ]
 
 # extra_css = ["stylesheets/extra.css"]

@@ -63,50 +63,81 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
         nodesForUpsert.Add(node.ID, node);
         nodesForRemoval.Remove(node.ID);
     }
+
+    /// <summary>
+    /// Remove a node with its ID.
+    /// </summary>
+    /// <param name="nodeID">ID of the node to remove.</param>
     public void RemoveNode(uint nodeID)
     {
         nodesForUpsert.Remove(nodeID);
         nodesForRemoval.Add(nodeID);
     }
 
-    public void RemoveNodeMod(uint nodeID)
+    /// <summary>
+    /// Remove pending changes to a node.
+    /// </summary>
+    /// <param name="nodeID">ID of the node.</param>
+    public void RemoveNodeChange(uint nodeID)
     {
         nodesForUpsert.Remove(nodeID);
         nodesForRemoval.Remove(nodeID);
     }
 
+    /// <summary>
+    /// Add a new edge or modify one with their corresponding ID.
+    /// </summary>
+    /// <param name="edge">Edge to upsert.</param>
     public void UpsertEdge(Edge edge)
     {
         edgesForUpsert.Add(edge.ID, edge);
         edgesForRemoval.Remove(edge.ID);
     }
+
+    /// <summary>
+    /// Remove pending changes to a node.
+    /// </summary>
+    /// <param name="edgeID">ID of the node.</param>
     public void RemoveEdge(uint edgeID)
     {
         edgesForUpsert.Remove(edgeID);
         edgesForRemoval.Add(edgeID);
     }
-    public void RemoveEdgeMod(uint edgeID)
+
+    /// <summary>
+    /// Remove pending changes to an edge.
+    /// </summary>
+    /// <param name="edgeID">ID of the node.</param>
+    public void RemoveEdgeChange(uint edgeID)
     {
         edgesForUpsert.Remove(edgeID);
         edgesForRemoval.Remove(edgeID);
     }
 
-    public void Union(GraphIncomingChanges<TNode> batchedMods)
+    /// <summary>
+    /// Union between two GraphIncomingChanges.
+    /// </summary>
+    /// <param name="GraphIncomingChanges">GraphIncomingChanges to perform the union to.</param>
+    public void Union(GraphIncomingChanges<TNode> GraphIncomingChanges)
     {
         //WIP!!!
-        nodesForUpsert = new(nodesForUpsert.Union(batchedMods.nodesForUpsert));
-        nodesForRemoval.UnionWith(batchedMods.nodesForRemoval);
-        edgesForUpsert = new(edgesForUpsert.Union(batchedMods.edgesForUpsert));
-        edgesForRemoval.UnionWith(batchedMods.edgesForRemoval);
+        nodesForUpsert = new(nodesForUpsert.Union(GraphIncomingChanges.nodesForUpsert));
+        nodesForRemoval.UnionWith(GraphIncomingChanges.nodesForRemoval);
+        edgesForUpsert = new(edgesForUpsert.Union(GraphIncomingChanges.edgesForUpsert));
+        edgesForRemoval.UnionWith(GraphIncomingChanges.edgesForRemoval);
     }
 
-    public void Intersect(GraphIncomingChanges<TNode> batchedMods)
+    /// <summary>
+    /// Intersect between two GraphIncomingChanges.
+    /// </summary>
+    /// <param name="GraphIncomingChanges">GraphIncomingChanges to perform the intersection to.</param>
+    public void Intersect(GraphIncomingChanges<TNode> GraphIncomingChanges)
     {
         //WIP!!!
-        nodesForUpsert = new(nodesForUpsert.Intersect(batchedMods.nodesForUpsert));
-        nodesForRemoval.IntersectWith(batchedMods.nodesForRemoval);
-        edgesForUpsert = new(edgesForUpsert.Intersect(batchedMods.edgesForUpsert));
-        edgesForRemoval.IntersectWith(batchedMods.edgesForRemoval);
+        nodesForUpsert = new(nodesForUpsert.Intersect(GraphIncomingChanges.nodesForUpsert));
+        nodesForRemoval.IntersectWith(GraphIncomingChanges.nodesForRemoval);
+        edgesForUpsert = new(edgesForUpsert.Intersect(GraphIncomingChanges.edgesForUpsert));
+        edgesForRemoval.IntersectWith(GraphIncomingChanges.edgesForRemoval);
     }
 
     /// <inheritdoc/>

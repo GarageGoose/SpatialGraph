@@ -8,6 +8,12 @@ public class OrderedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
 {
     //node id, edge id, angle from node
     Dictionary<uint, SortedList<uint, float>> SortedEdges = new();
+
+    /// <summary>
+    /// Returns a dictionary of connected edges from a node with its angle relative to the node. Keyed by ID, returns node in radians.
+    /// </summary>
+    /// <param name="nodeID">ID of the node to get its connected edges.</param>
+    /// <returns>Dictionary of connected edges.</returns>
     public IReadOnlyDictionary<uint, float> EdgesAnglesOnNode(uint nodeID) => SortedEdges[nodeID];
 
     /// <summary>
@@ -86,6 +92,7 @@ public class OrderedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
         }
     }
 
+    /// <inheritdoc/>
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<Node2D> modLog)
     {
         foreach(ElementAdded<Node2D> node in modLog.NewNodes.Values)

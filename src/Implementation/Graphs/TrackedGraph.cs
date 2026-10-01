@@ -6,6 +6,7 @@ namespace SpatialGraph;
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNode : struct, INode
 {
+    /// <inheritdoc/>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
 
     /// <summary>
@@ -30,6 +31,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
     {
     }
     
+    /// <inheritdoc/>
     public override void ApplyChangeSet(GraphChangeSet<TNode> mods)
     {
         GraphChangeLog<TNode> log = new(this);
@@ -71,6 +73,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
         OnGraphModified?.Invoke(this, log);
     }
 
+    /// <inheritdoc/>
     public override bool RemoveEdge(uint ID)
     {
         GraphChangeLog<TNode> log = new(this);
@@ -83,6 +86,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
         return false;
     }
 
+    /// <inheritdoc/>
     public override bool RemoveNode(uint ID)
     {
         GraphChangeLog<TNode> log = new(this);
@@ -95,6 +99,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
         return false;
     }
 
+    /// <inheritdoc/>
     public override void UpsertEdge(Edge edge)
     {
         GraphChangeLog<TNode> log = new(this);
@@ -103,6 +108,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
         OnGraphModified?.Invoke(this, log);
     }
 
+    /// <inheritdoc/>
     public override void UpsertNode(TNode Node)
     {
         GraphChangeLog<TNode> log = new(this);

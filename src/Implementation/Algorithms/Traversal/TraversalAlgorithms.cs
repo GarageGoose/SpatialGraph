@@ -23,8 +23,19 @@ public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNode
 /// <param name="TagretNodeID">Node to find when travering.</param>
 public readonly record struct GraphTraversal<TNode>(IEnumerable<TraversalInfo<TNode>> Traverse, NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, uint? TagretNodeID) where TNode : struct, INode;
 
+/// <summary>
+/// Pathfinding algorithims for graphs.
+/// </summary>
 public static class Pathfinding
 {
+    /// <summary>
+    /// Pathfinding algorithm wherein all edges at a node are explored first before proceding to the next node.
+    /// </summary>
+    /// <typeparam name="TNode">Type of nodes used in the base graph.</typeparam>
+    /// <param name="baseGraph">Graph to perform the search.</param>
+    /// <param name="nodeIDStart">ID of the node to start the search.</param>
+    /// <param name="targetNodeID">ID of the node to search, if any.</param>
+    /// <returns>Graph traversal algorithm.</returns>
     public static GraphTraversal<TNode> BreadthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart, uint? targetNodeID = null) where TNode : struct, INode
     {
         return new(traverse(), baseGraph, nodeIDStart, targetNodeID);
@@ -69,6 +80,15 @@ public static class Pathfinding
             }
         }
     }
+
+    /// <summary>
+    /// Pathfinding algorithm wherein it explores a branch as deep as it can before backtracking.
+    /// </summary>
+    /// <typeparam name="TNode">Type of nodes used in the base graph.</typeparam>
+    /// <param name="baseGraph">Graph to perform the search.</param>
+    /// <param name="nodeIDStart">ID of the node to start the search.</param>
+    /// <param name="targetNodeID">ID of the node to search, if any.</param>
+    /// <returns>Graph traversal algorithm.</returns>
     public static GraphTraversal<TNode> DepthFirstTraversal<TNode>(this NodeAdjacency<TNode> baseGraph, uint nodeIDStart, uint? targetNodeID = null) where TNode : struct, INode
     {
         return new(traverse(), baseGraph, nodeIDStart, targetNodeID);
@@ -114,6 +134,17 @@ public static class Pathfinding
         }
     }
 
+    /// <summary>
+    /// Pathfinding algorithm wherein each connected node to search from a node were weighted via a custom function.
+    /// The highest scoring node will be traversed to, backtracking when theres no more unvisited node from a node.
+    /// </summary>
+    /// <typeparam name="TNode">Type of nodes used in the base graph.</typeparam>
+    /// <typeparam name="TScore">Type of INumber used for scoring.</typeparam>
+    /// <param name="baseGraph">Graph to perform the search.</param>
+    /// <param name="nodeScore">Score of a connecting node from a node.</param>
+    /// <param name="nodeIDStart">ID of the node to start the search.</param>
+    /// <param name="targetNodeID">ID of the node to search, if any.</param>
+    /// <returns>Graph traversal algorithm.</returns>
     public static GraphTraversal<TNode> WeightedTraversal<TNode, TScore>(this NodeAdjacency<TNode> baseGraph, Func<NodeAdjacency<TNode>, uint, TScore> nodeScore, uint nodeIDStart, uint? targetNodeID = null) where TNode : struct, INode where TScore : INumber<TScore>
     {
         return new(traverse(), baseGraph, nodeIDStart, targetNodeID);

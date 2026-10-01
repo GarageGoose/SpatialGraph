@@ -10,18 +10,27 @@ public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>
     QuadTreeNodeCell _ParentCell;
 
     /// <summary>
-    /// 
+    /// Parent cell of the quadtree.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Parent cell.</returns>
     public IReadOnlyQuadTreeNodeCell ParentCell() => _ParentCell;
 
     internal Dictionary<uint, QuadTreeNodeCell> nodeCurrCell = new();
 
+    /// <summary>
+    /// New instance of a node quad tree.
+    /// </summary>
+    /// <param name="graph">Graph to record the nodes from.</param>
+    /// <param name="cellCapacity">Maximum amount of nodes in a cell before subdividing.</param>
+    /// <param name="originTopLeft">Top left corner of the parent cell.</param>
+    /// <param name="width">Width of the cell.</param>
+    /// <param name="height">Height of the cell.</param>
     public QuadTreeNode(ITrackedGraph<Node2D> graph, int cellCapacity, Vector2 originTopLeft, float width, float height) : base(graph)
     {
         _ParentCell = new(this, cellCapacity, originTopLeft, width, height);
     }
 
+    /// <inheritdoc/>
     protected override void OnGraphUpdate(object? sender, IReadOnlyModificationLog<Node2D> modLog)
     {
         foreach(ElementAdded<Node2D> node in modLog.NewNodes.Values)
