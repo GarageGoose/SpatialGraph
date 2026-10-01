@@ -2,7 +2,7 @@
 
 | Namespaces | |
 | :--- | :--- |
-| [SpatialGraph](SpatialGraph.md 'SpatialGraph') | |
-| [SpatialGraph\.Extentions](SpatialGraph.Extentions.md 'SpatialGraph\.Extentions') | |
-| [SpatialGraph\.Metadata](SpatialGraph.Metadata.md 'SpatialGraph\.Metadata') | |
-| [SpatialGraph\.Traversal](SpatialGraph.Traversal.md 'SpatialGraph\.Traversal') | |
+| [SpatialGraph](SpatialGraph/index.md 'SpatialGraph') | |
+| [SpatialGraph\.Extentions](SpatialGraph/Extentions/index.md 'SpatialGraph\.Extentions') | |
+| [SpatialGraph\.Metadata](SpatialGraph/Metadata/index.md 'SpatialGraph\.Metadata') | |
+| [SpatialGraph\.Traversal](SpatialGraph/Traversal/index.md 'SpatialGraph\.Traversal') | |

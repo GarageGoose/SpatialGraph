@@ -1,6 +1,7 @@
 {
   "OutputDirectoryPath": "../docs/api",
-  "GeneratedPages": "Namespaces,Classes,Delegates,Enums,Structs,Interfaces,Members",
+  "GeneratedPages": "Assembly,Namespaces,Classes,Delegates,Enums,Structs,Interfaces,Constructors,Events,Fields,Methods,Operators,Properties,ExplicitInterfaceImplementations",
+  "FileNameFactory": "DirectoryName",
   "Sections": [
     "Default"
   ]

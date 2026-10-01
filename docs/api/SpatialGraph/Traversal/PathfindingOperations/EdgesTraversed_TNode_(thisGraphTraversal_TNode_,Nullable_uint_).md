@@ -1,0 +1,32 @@
+## PathfindingOperations\.EdgesTraversed\<TNode\>\(this GraphTraversal\<TNode\>, Nullable\<uint\>\) Method
+
+Get the edges traversed\.
+
+```csharp
+public static System.Collections.Generic.List<uint> EdgesTraversed<TNode>(this SpatialGraph.Traversal.GraphTraversal<TNode> graphTraversal, System.Nullable<uint> limitEdges=null)
+    where TNode : struct, SpatialGraph.INode;
+```
+#### Type parameters
+
+<a name='SpatialGraph.Traversal.PathfindingOperations.EdgesTraversed_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_,System.Nullable_uint_).TNode'></a>
+
+`TNode`
+
+Node type\.
+#### Parameters
+
+<a name='SpatialGraph.Traversal.PathfindingOperations.EdgesTraversed_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_,System.Nullable_uint_).graphTraversal'></a>
+
+`graphTraversal` [SpatialGraph\.Traversal\.GraphTraversal&lt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')[TNode](EdgesTraversed_TNode_(thisGraphTraversal_TNode_,Nullable_uint_).md#SpatialGraph.Traversal.PathfindingOperations.EdgesTraversed_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_,System.Nullable_uint_).TNode 'SpatialGraph\.Traversal\.PathfindingOperations\.EdgesTraversed\<TNode\>\(this SpatialGraph\.Traversal\.GraphTraversal\<TNode\>, System\.Nullable\<uint\>\)\.TNode')[&gt;](../GraphTraversal_TNode_/index.md 'SpatialGraph\.Traversal\.GraphTraversal\<TNode\>')
+
+Traversal algorithm to use\.
+
+<a name='SpatialGraph.Traversal.PathfindingOperations.EdgesTraversed_TNode_(thisSpatialGraph.Traversal.GraphTraversal_TNode_,System.Nullable_uint_).limitEdges'></a>
+
+`limitEdges` [System\.Nullable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')[System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')
+
+Limit discovered edges to a specific amount\.
+
+#### Returns
+[System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')  
+List of edges traversed\.
