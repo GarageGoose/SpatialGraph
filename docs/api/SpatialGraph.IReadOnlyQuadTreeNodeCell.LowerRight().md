@@ -1,0 +1,11 @@
+## IReadOnlyQuadTreeNodeCell\.LowerRight\(\) Method
+
+Lower right \(Southeast\) quadrant of the cell\.
+
+```csharp
+SpatialGraph.IReadOnlyQuadTreeNodeCell? LowerRight();
+```
+
+#### Returns
+[IReadOnlyQuadTreeNodeCell](SpatialGraph.IReadOnlyQuadTreeNodeCell.md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell')  
+Quad tree cell, null if the cell isn't subdivided yet\.

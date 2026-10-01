@@ -1,7 +1,6 @@
 using System.Numerics;
-using SpatialGraph.Metadata;
 
-namespace SpatialGraph.Spatial;
+namespace SpatialGraph.Metadata;
 
 /// <summary>
 /// Quadtree implementation for nodes in a graph. Enables spatial indexing for nodes.

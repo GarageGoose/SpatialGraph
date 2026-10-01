@@ -1,11 +1,13 @@
-# INode
+## INode Interface
 
-Namespace: SpatialGraph
-
-Base interface for all nodes.
+Base interface for all nodes\.
 
 ```csharp
-public interface INode : IElement
+public interface INode : SpatialGraph.IElement
 ```
 
-Implements [IElement](./spatialgraph.ielement.md)
+Derived  
+↳ [Node2D](SpatialGraph.Node2D.md 'SpatialGraph\.Node2D')  
+↳ [Node3D](SpatialGraph.Node3D.md 'SpatialGraph\.Node3D')
+
+Implements [IElement](SpatialGraph.IElement.md 'SpatialGraph\.IElement')

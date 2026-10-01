@@ -1,6 +1,6 @@
 using System.Numerics;
 using SpatialGraph.Metadata;
-namespace SpatialGraph;
+namespace SpatialGraph.Extentions;
 
 /// <summary>
 /// Basic modification for 2D graphs.

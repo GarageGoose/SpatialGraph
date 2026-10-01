@@ -1,51 +1,13 @@
-# Node3D
+## Node3D Struct
 
-Namespace: SpatialGraph
-
-Node with coordinate in 3 dimensions. Used for 3D graphs.
+Node with coordinate in 3 dimensions\. Used for 3D graphs\.
 
 ```csharp
-public readonly record struct Node3D
+public readonly record struct Node3D : SpatialGraph.INode, SpatialGraph.IElement, System.IEquatable<SpatialGraph.Node3D>
 ```
 
-Inheritance [Object](https://learn.microsoft.com/en-us/dotnet/api/system.object) → [ValueType](https://learn.microsoft.com/en-us/dotnet/api/system.valuetype) → [Node3D](./spatialgraph.node3d.md)<br>
-Implements [INode](./spatialgraph.inode.md), [IElement](./spatialgraph.ielement.md), [IEquatable&lt;Node3D&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1)<br>
-Attributes [IsReadOnlyAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.isreadonlyattribute)
+Implements [INode](SpatialGraph.INode.md 'SpatialGraph\.INode'), [IElement](SpatialGraph.IElement.md 'SpatialGraph\.IElement'), [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1 'System\.IEquatable\`1')[Node3D](SpatialGraph.Node3D.md 'SpatialGraph\.Node3D')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1 'System\.IEquatable\`1')
 
-## Properties
-
-### **ID**
-
-```csharp
-public uint ID { get; init; }
-```
-
-#### Property Value
-
-[UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32)<br>
-
-### **Loc**
-
-```csharp
-public Vector3 Loc { get; init; }
-```
-
-#### Property Value
-
-[Vector3](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3)<br>
-
-## Constructors
-
-### **Node3D(UInt32, Vector3)**
-
-Node with coordinate in 3 dimensions. Used for 3D graphs.
-
-```csharp
-public Node3D(uint ID, Vector3 Loc)
-```
-
-#### Parameters
-
-`ID` [UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32)<br>
-
-`Loc` [Vector3](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3)<br>
+| Constructors | |
+| :--- | :--- |
+| [Node3D\(uint, Vector3\)](SpatialGraph.Node3D.Node3D(uint,System.Numerics.Vector3).md 'SpatialGraph\.Node3D\.Node3D\(uint, System\.Numerics\.Vector3\)') | Node with coordinate in 3 dimensions\. Used for 3D graphs\. |

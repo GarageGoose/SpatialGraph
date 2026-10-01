@@ -2,6 +2,7 @@
 using SpatialGraph;
 using SpatialGraph.Metadata;
 using SpatialGraph.Traversal;
+using SpatialGraph.Extentions;
 
 namespace SpatialGraph.Tests;
 

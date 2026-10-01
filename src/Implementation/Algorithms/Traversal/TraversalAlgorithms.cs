@@ -1,5 +1,6 @@
 using System.Numerics;
 using SpatialGraph.Metadata;
+using SpatialGraph.Extentions;
 
 namespace SpatialGraph.Traversal;
 

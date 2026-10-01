@@ -1,9 +1,9 @@
+using SpatialGraph.Extentions;
 namespace SpatialGraph.Metadata;
 
 /// <summary>
 /// Records the order and adjacency of edges in a node including the angles between them.
 /// </summary>
-/// <typeparam name="TNode">Node which the base class uses.</typeparam>
 public class OrderedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
 {
     //node id, edge id, angle from node
