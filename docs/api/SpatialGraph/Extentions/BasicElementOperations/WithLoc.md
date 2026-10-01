@@ -1,10 +1,5 @@
 ## BasicElementOperations\.WithLoc Method
 
-| Overloads | |
-| :--- | :--- |
-| [WithLoc\(this Node2D, Vector2\)](WithLoc.md#SpatialGraph.Extentions.BasicElementOperations.WithLoc(thisSpatialGraph.Node2D,System.Numerics.Vector2) 'SpatialGraph\.Extentions\.BasicElementOperations\.WithLoc\(this SpatialGraph\.Node2D, System\.Numerics\.Vector2\)') | Creates a new copy of a node with a different node location\. |
-| [WithLoc\(this Node3D, Vector3\)](WithLoc.md#SpatialGraph.Extentions.BasicElementOperations.WithLoc(thisSpatialGraph.Node3D,System.Numerics.Vector3) 'SpatialGraph\.Extentions\.BasicElementOperations\.WithLoc\(this SpatialGraph\.Node3D, System\.Numerics\.Vector3\)') | Creates a new copy of a node with a different node location\. |
-
 <a name='SpatialGraph.Extentions.BasicElementOperations.WithLoc(thisSpatialGraph.Node2D,System.Numerics.Vector2)'></a>
 
 ## BasicElementOperations\.WithLoc\(this Node2D, Vector2\) Method

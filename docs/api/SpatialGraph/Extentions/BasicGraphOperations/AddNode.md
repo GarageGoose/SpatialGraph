@@ -1,12 +1,5 @@
 ## BasicGraphOperations\.AddNode Method
 
-| Overloads | |
-| :--- | :--- |
-| [AddNode\(this Graph&lt;Node2D&gt;, float, float\)](AddNode.md#SpatialGraph.Extentions.BasicGraphOperations.AddNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,float,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.AddNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, float, float\)') | Add a node in a 2D graph\. |
-| [AddNode\(this Graph&lt;Node2D&gt;, Vector2\)](AddNode.md#SpatialGraph.Extentions.BasicGraphOperations.AddNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,System.Numerics.Vector2) 'SpatialGraph\.Extentions\.BasicGraphOperations\.AddNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, System\.Numerics\.Vector2\)') | Add a node in a 2D graph\. |
-| [AddNode\(this Graph&lt;Node3D&gt;, float, float, float\)](AddNode.md#SpatialGraph.Extentions.BasicGraphOperations.AddNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,float,float,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.AddNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, float, float, float\)') | Add a node in a 3D graph\. |
-| [AddNode\(this Graph&lt;Node3D&gt;, Vector3\)](AddNode.md#SpatialGraph.Extentions.BasicGraphOperations.AddNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,System.Numerics.Vector3) 'SpatialGraph\.Extentions\.BasicGraphOperations\.AddNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, System\.Numerics\.Vector3\)') | Add a node in a 3D graph\. |
-
 <a name='SpatialGraph.Extentions.BasicGraphOperations.AddNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,float,float)'></a>
 
 ## BasicGraphOperations\.AddNode\(this Graph\<Node2D\>, float, float\) Method

@@ -1,10 +1,5 @@
 ## BasicGraphOperations\.ReplaceLocationOfNode Method
 
-| Overloads | |
-| :--- | :--- |
-| [ReplaceLocationOfNode\(this Graph&lt;Node2D&gt;, uint, Vector2\)](ReplaceLocationOfNode.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceLocationOfNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, uint, System\.Numerics\.Vector2\)') | Replace the location of a node in a graph\. |
-| [ReplaceLocationOfNode\(this Graph&lt;Node3D&gt;, uint, Vector3\)](ReplaceLocationOfNode.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceLocationOfNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, uint, System\.Numerics\.Vector3\)') | Replace the location of a node in a graph\. |
-
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2)'></a>
 
 ## BasicGraphOperations\.ReplaceLocationOfNode\(this Graph\<Node2D\>, uint, Vector2\) Method

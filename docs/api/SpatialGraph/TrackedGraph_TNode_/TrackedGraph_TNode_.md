@@ -1,11 +1,5 @@
 ## TrackedGraph\<TNode\> Constructors
 
-| Overloads | |
-| :--- | :--- |
-| [TrackedGraph\(\)](TrackedGraph_TNode_.md#SpatialGraph.TrackedGraph_TNode_.TrackedGraph() 'SpatialGraph\.TrackedGraph\<TNode\>\.TrackedGraph\(\)') | Start an empty graph\. |
-| [TrackedGraph\(IReadOnlyGraph&lt;TNode&gt;\)](TrackedGraph_TNode_.md#SpatialGraph.TrackedGraph_TNode_.TrackedGraph(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.TrackedGraph\<TNode\>\.TrackedGraph\(SpatialGraph\.IReadOnlyGraph\<TNode\>\)') | Start graph from a pre\-exisitng graph\. |
-| [TrackedGraph\(Dictionary&lt;uint,TNode&gt;, Dictionary&lt;uint,Edge&gt;\)](TrackedGraph_TNode_.md#SpatialGraph.TrackedGraph_TNode_.TrackedGraph(System.Collections.Generic.Dictionary_uint,TNode_,System.Collections.Generic.Dictionary_uint,SpatialGraph.Edge_) 'SpatialGraph\.TrackedGraph\<TNode\>\.TrackedGraph\(System\.Collections\.Generic\.Dictionary\<uint,TNode\>, System\.Collections\.Generic\.Dictionary\<uint,SpatialGraph\.Edge\>\)') | Start a graph from pre\-exisiting dictionaries of nodes and edges\. |
-
 <a name='SpatialGraph.TrackedGraph_TNode_.TrackedGraph()'></a>
 
 ## TrackedGraph\(\) Constructor

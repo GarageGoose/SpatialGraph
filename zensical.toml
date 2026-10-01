@@ -11,7 +11,12 @@ repo_name = "GarageGoose/SpatialGraph"
 # edit_uri = "edit/main/docs/"
 
 nav = [
-  { "API Reference" = ["api/index.md", "api/SpatialGraph.md", "api/SpatialGraph.Extentions.md", "api/SpatialGraph.Metadata.md", "api/SpatialGraph.Traversal.md"] }
+  { "API Reference" = [
+    { "Overview" = "api/index.md" },
+    { "Extensions" = "api/SpatialGraph/Extentions/index.md" },
+    { "Metadata" = "api/SpatialGraph/Metadata/index.md" },
+    { "Traversal" = "api/SpatialGraph/Traversal/index.md" }
+  ]}
 ]
 
 # extra_css = ["stylesheets/extra.css"]
@@ -35,7 +40,7 @@ features = [
   # "header.autohide",
   # "navigation.expand",
   "navigation.footer",
-  "navigation.indexes",
+  #"navigation.indexes",
   "navigation.instant",
   "navigation.instant.prefetch",
   # "navigation.instant.progress",

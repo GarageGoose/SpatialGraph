@@ -1,12 +1,5 @@
 ## GraphReadOnlyPlugin\<TNode\> Constructors
 
-| Overloads | |
-| :--- | :--- |
-| [GraphReadOnlyPlugin\(IInterceptableTrackedGraph&lt;TNode&gt;, ReadOnlyGraphPluginListenerForTrackedGraph\)](GraphReadOnlyPlugin_TNode_.md#SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.GraphReadOnlyPlugin(SpatialGraph.IInterceptableTrackedGraph_TNode_,SpatialGraph.Metadata.ReadOnlyGraphPluginListenerForTrackedGraph) 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin\<TNode\>\.GraphReadOnlyPlugin\(SpatialGraph\.IInterceptableTrackedGraph\<TNode\>, SpatialGraph\.Metadata\.ReadOnlyGraphPluginListenerForTrackedGraph\)') | Listens to a TrackedGraphInterceptable when an update occurs\. |
-| [GraphReadOnlyPlugin\(IReadOnlyTrackedGraph&lt;TNode&gt;\)](GraphReadOnlyPlugin_TNode_.md#SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.GraphReadOnlyPlugin(SpatialGraph.IReadOnlyTrackedGraph_TNode_) 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin\<TNode\>\.GraphReadOnlyPlugin\(SpatialGraph\.IReadOnlyTrackedGraph\<TNode\>\)') | Listens to a TrackedGraph when an update occurs\. An update is the |
-| [GraphReadOnlyPlugin\(GraphPlugin&lt;TNode&gt;, ReadOnlyGraphPluginListenerForPlugin\)](GraphReadOnlyPlugin_TNode_.md#SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.GraphReadOnlyPlugin(SpatialGraph.Metadata.GraphPlugin_TNode_,SpatialGraph.Metadata.ReadOnlyGraphPluginListenerForPlugin) 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin\<TNode\>\.GraphReadOnlyPlugin\(SpatialGraph\.Metadata\.GraphPlugin\<TNode\>, SpatialGraph\.Metadata\.ReadOnlyGraphPluginListenerForPlugin\)') | Listens to a GraphPlugin when an update occurs\. |
-| [GraphReadOnlyPlugin\(GraphReadOnlyPlugin&lt;TNode&gt;, ReadOnlyGraphPluginListenerForPlugin\)](GraphReadOnlyPlugin_TNode_.md#SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.GraphReadOnlyPlugin(SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_,SpatialGraph.Metadata.ReadOnlyGraphPluginListenerForPlugin) 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin\<TNode\>\.GraphReadOnlyPlugin\(SpatialGraph\.Metadata\.GraphReadOnlyPlugin\<TNode\>, SpatialGraph\.Metadata\.ReadOnlyGraphPluginListenerForPlugin\)') | Listens to a GraphReadOnlyPlugin when an update occurs\. |
-
 <a name='SpatialGraph.Metadata.GraphReadOnlyPlugin_TNode_.GraphReadOnlyPlugin(SpatialGraph.IInterceptableTrackedGraph_TNode_,SpatialGraph.Metadata.ReadOnlyGraphPluginListenerForTrackedGraph)'></a>
 
 ## GraphReadOnlyPlugin\(IInterceptableTrackedGraph\<TNode\>, ReadOnlyGraphPluginListenerForTrackedGraph\) Constructor

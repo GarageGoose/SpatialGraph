@@ -1,11 +1,5 @@
 ## Graph\<TNode\> Constructors
 
-| Overloads | |
-| :--- | :--- |
-| [Graph\(\)](Graph_TNode_.md#SpatialGraph.Graph_TNode_.Graph() 'SpatialGraph\.Graph\<TNode\>\.Graph\(\)') | Start an empty graph\. |
-| [Graph\(IReadOnlyGraph&lt;TNode&gt;\)](Graph_TNode_.md#SpatialGraph.Graph_TNode_.Graph(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.Graph\<TNode\>\.Graph\(SpatialGraph\.IReadOnlyGraph\<TNode\>\)') | Start graph from a pre\-exisitng graph\. |
-| [Graph\(Dictionary&lt;uint,TNode&gt;, Dictionary&lt;uint,Edge&gt;\)](Graph_TNode_.md#SpatialGraph.Graph_TNode_.Graph(System.Collections.Generic.Dictionary_uint,TNode_,System.Collections.Generic.Dictionary_uint,SpatialGraph.Edge_) 'SpatialGraph\.Graph\<TNode\>\.Graph\(System\.Collections\.Generic\.Dictionary\<uint,TNode\>, System\.Collections\.Generic\.Dictionary\<uint,SpatialGraph\.Edge\>\)') | Start a graph from pre\-exisiting dictionaries of nodes and edges\. |
-
 <a name='SpatialGraph.Graph_TNode_.Graph()'></a>
 
 ## Graph\(\) Constructor

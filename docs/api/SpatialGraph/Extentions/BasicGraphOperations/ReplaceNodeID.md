@@ -1,10 +1,5 @@
 ## BasicGraphOperations\.ReplaceNodeID Method
 
-| Overloads | |
-| :--- | :--- |
-| [ReplaceNodeID\(this Graph&lt;Node2D&gt;, uint, uint\)](ReplaceNodeID.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,uint) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceNodeID\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, uint, uint\)') | Replace the ID of a node with a new ID\. Existing node with the same ID as the new ID will be replaced\. |
-| [ReplaceNodeID\(this Graph&lt;Node3D&gt;, uint, uint\)](ReplaceNodeID.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.Graph_SpatialGraph.Node3D_,uint,uint) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceNodeID\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, uint, uint\)') | Replace the ID of a node with a new ID\. Existing node with the same ID as the new ID will be replaced\. |
-
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,uint)'></a>
 
 ## BasicGraphOperations\.ReplaceNodeID\(this Graph\<Node2D\>, uint, uint\) Method

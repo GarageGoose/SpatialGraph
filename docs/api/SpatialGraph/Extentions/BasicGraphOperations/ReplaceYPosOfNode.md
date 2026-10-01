@@ -1,10 +1,5 @@
 ## BasicGraphOperations\.ReplaceYPosOfNode Method
 
-| Overloads | |
-| :--- | :--- |
-| [ReplaceYPosOfNode\(this Graph&lt;Node2D&gt;, uint, float\)](ReplaceYPosOfNode.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceYPosOfNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, uint, float\)') | Replace the Y location of a node in a graph\. |
-| [ReplaceYPosOfNode\(this Graph&lt;Node3D&gt;, uint, float\)](ReplaceYPosOfNode.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,uint,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceYPosOfNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, uint, float\)') | Replace the Y location of a node in a graph\. |
-
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,float)'></a>
 
 ## BasicGraphOperations\.ReplaceYPosOfNode\(this Graph\<Node2D\>, uint, float\) Method

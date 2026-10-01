@@ -1,10 +1,5 @@
 ## BasicElementOperations\.WithY Method
 
-| Overloads | |
-| :--- | :--- |
-| [WithY\(this Node2D, float\)](WithY.md#SpatialGraph.Extentions.BasicElementOperations.WithY(thisSpatialGraph.Node2D,float) 'SpatialGraph\.Extentions\.BasicElementOperations\.WithY\(this SpatialGraph\.Node2D, float\)') | Creates a new copy of a node with a different Y location\. |
-| [WithY\(this Node3D, float\)](WithY.md#SpatialGraph.Extentions.BasicElementOperations.WithY(thisSpatialGraph.Node3D,float) 'SpatialGraph\.Extentions\.BasicElementOperations\.WithY\(this SpatialGraph\.Node3D, float\)') | Creates a new copy of a node with a different Y location\. |
-
 <a name='SpatialGraph.Extentions.BasicElementOperations.WithY(thisSpatialGraph.Node2D,float)'></a>
 
 ## BasicElementOperations\.WithY\(this Node2D, float\) Method

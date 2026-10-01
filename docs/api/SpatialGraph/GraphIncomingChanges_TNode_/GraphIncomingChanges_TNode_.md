@@ -1,10 +1,5 @@
 ## GraphIncomingChanges\<TNode\> Constructors
 
-| Overloads | |
-| :--- | :--- |
-| [GraphIncomingChanges\(\)](GraphIncomingChanges_TNode_.md#SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges() 'SpatialGraph\.GraphIncomingChanges\<TNode\>\.GraphIncomingChanges\(\)') | Create a new empty instance\. |
-| [GraphIncomingChanges\(IReadOnlyGraphIncomingChanges&lt;TNode&gt;\)](GraphIncomingChanges_TNode_.md#SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges_TNode_) 'SpatialGraph\.GraphIncomingChanges\<TNode\>\.GraphIncomingChanges\(SpatialGraph\.IReadOnlyGraphIncomingChanges\<TNode\>\)') | |
-
 <a name='SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges()'></a>
 
 ## GraphIncomingChanges\(\) Constructor

@@ -1,12 +1,5 @@
 ## BasicGraphOperations\.UpsertNode Method
 
-| Overloads | |
-| :--- | :--- |
-| [UpsertNode\(this Graph&lt;Node2D&gt;, uint, float, float\)](UpsertNode.md#SpatialGraph.Extentions.BasicGraphOperations.UpsertNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,float,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.UpsertNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, uint, float, float\)') | Add or replace a node with the same ID in a 2D graph\. |
-| [UpsertNode\(this Graph&lt;Node2D&gt;, uint, Vector2\)](UpsertNode.md#SpatialGraph.Extentions.BasicGraphOperations.UpsertNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2) 'SpatialGraph\.Extentions\.BasicGraphOperations\.UpsertNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, uint, System\.Numerics\.Vector2\)') | Add or replace a node with the same ID in a 2D graph\. |
-| [UpsertNode\(this Graph&lt;Node3D&gt;, uint, float, float, float\)](UpsertNode.md#SpatialGraph.Extentions.BasicGraphOperations.UpsertNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,uint,float,float,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.UpsertNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, uint, float, float, float\)') | Add or replace a node with the same ID in a 3D graph\. |
-| [UpsertNode\(this Graph&lt;Node3D&gt;, uint, Vector3\)](UpsertNode.md#SpatialGraph.Extentions.BasicGraphOperations.UpsertNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3) 'SpatialGraph\.Extentions\.BasicGraphOperations\.UpsertNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, uint, System\.Numerics\.Vector3\)') | Add or replace a node with the same ID in a 3D graph\. |
-
 <a name='SpatialGraph.Extentions.BasicGraphOperations.UpsertNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,float,float)'></a>
 
 ## BasicGraphOperations\.UpsertNode\(this Graph\<Node2D\>, uint, float, float\) Method

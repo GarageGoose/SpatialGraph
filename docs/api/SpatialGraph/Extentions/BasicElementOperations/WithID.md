@@ -1,11 +1,5 @@
 ## BasicElementOperations\.WithID Method
 
-| Overloads | |
-| :--- | :--- |
-| [WithID\(this Edge, uint\)](WithID.md#SpatialGraph.Extentions.BasicElementOperations.WithID(thisSpatialGraph.Edge,uint) 'SpatialGraph\.Extentions\.BasicElementOperations\.WithID\(this SpatialGraph\.Edge, uint\)') | Create a new copy of an edge with a different ID\. |
-| [WithID\(this Node2D, uint\)](WithID.md#SpatialGraph.Extentions.BasicElementOperations.WithID(thisSpatialGraph.Node2D,uint) 'SpatialGraph\.Extentions\.BasicElementOperations\.WithID\(this SpatialGraph\.Node2D, uint\)') | Creates a new copy of a node with a different ID\. |
-| [WithID\(this Node3D, uint\)](WithID.md#SpatialGraph.Extentions.BasicElementOperations.WithID(thisSpatialGraph.Node3D,uint) 'SpatialGraph\.Extentions\.BasicElementOperations\.WithID\(this SpatialGraph\.Node3D, uint\)') | Creates a new copy of a node with a different ID\. |
-
 <a name='SpatialGraph.Extentions.BasicElementOperations.WithID(thisSpatialGraph.Edge,uint)'></a>
 
 ## BasicElementOperations\.WithID\(this Edge, uint\) Method

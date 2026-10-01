@@ -1,10 +1,5 @@
 ## BasicGraphOperations\.ReplaceXPosOfNode Method
 
-| Overloads | |
-| :--- | :--- |
-| [ReplaceXPosOfNode\(this Graph&lt;Node2D&gt;, uint, float\)](ReplaceXPosOfNode.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceXPosOfNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node2D\>, uint, float\)') | Replace the X location of a node in a graph\. |
-| [ReplaceXPosOfNode\(this Graph&lt;Node3D&gt;, uint, float\)](ReplaceXPosOfNode.md#SpatialGraph.Extentions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.Graph_SpatialGraph.Node3D_,uint,float) 'SpatialGraph\.Extentions\.BasicGraphOperations\.ReplaceXPosOfNode\(this SpatialGraph\.Graph\<SpatialGraph\.Node3D\>, uint, float\)') | Replace the X location of a node in a graph\. |
-
 <a name='SpatialGraph.Extentions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.Graph_SpatialGraph.Node2D_,uint,float)'></a>
 
 ## BasicGraphOperations\.ReplaceXPosOfNode\(this Graph\<Node2D\>, uint, float\) Method
