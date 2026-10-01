@@ -1,5 +1,7 @@
 ## SpatialGraph\.Traversal Namespace
 
+Traversal algorithms for graphs including operations like floodfill\.
+
 | Classes | |
 | :--- | :--- |
 | [Pathfinding](Pathfinding/index.md 'SpatialGraph\.Traversal\.Pathfinding') | Pathfinding algorithims for graphs\. |

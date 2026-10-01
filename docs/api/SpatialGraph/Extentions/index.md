@@ -1,5 +1,7 @@
 ## SpatialGraph\.Extentions Namespace
 
+Extention methods for graphs and elements\.
+
 | Classes | |
 | :--- | :--- |
 | [BasicElementOperations](BasicElementOperations/index.md 'SpatialGraph\.Extentions\.BasicElementOperations') | Basic operation for the elements of a graph\. |

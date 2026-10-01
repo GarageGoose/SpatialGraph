@@ -1,5 +1,7 @@
 ## SpatialGraph\.Metadata Namespace
 
+Plugins for documenting additional information in graphs\.
+
 | Classes | |
 | :--- | :--- |
 | [GraphHistory&lt;TNode&gt;](GraphHistory_TNode_/index.md 'SpatialGraph\.Metadata\.GraphHistory<TNode>') | Records changes from a graph\. |

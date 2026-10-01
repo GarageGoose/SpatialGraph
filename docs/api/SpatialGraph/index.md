@@ -1,5 +1,7 @@
 ## SpatialGraph Namespace
 
+Graphs with spatial location in 2D or 3D space\.
+
 | Classes | |
 | :--- | :--- |
 | [Graph&lt;TNode&gt;](Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>') | Base class for graphs, can be built upon\. |
