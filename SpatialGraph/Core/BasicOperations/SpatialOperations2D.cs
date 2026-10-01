@@ -1,6 +1,9 @@
 using System.Numerics;
 namespace GG.SpatialGraph;
 
+/// <summary>
+/// Get spatial information in 2D graphs.
+/// </summary>
 public static class SpatialGraph2DOperations
 {
     /// <summary>
@@ -79,11 +82,26 @@ public static class SpatialGraph2DOperations
         return MathF.Sqrt(xLength * xLength) + MathF.Sqrt(yLength * yLength);
     }
 
+    /// <summary>
+    /// Checks if a node is within the radius
+    /// </summary>
+    /// <param name="node">Node to check.</param>
+    /// <param name="loc">Location of the radius.</param>
+    /// <param name="radius">Size of the radius.</param>
+    /// <returns>True of the node is within radius, else false.</returns>
     public static bool IsNodeWithinRadius(this Node2D node, Vector2 loc, float radius)
     {
         return false;
     }
 
+    /// <summary>
+    /// Check if a node is within an axis aligned bounding box.
+    /// </summary>
+    /// <param name="node">Node to check.</param>
+    /// <param name="topLeftCorner">Upper left bounds of the AABB.</param>
+    /// <param name="width">Width of the AABB.</param>
+    /// <param name="height">Height of the AABB.</param>
+    /// <returns>True if the node is within AABB, else false.</returns>
     public static bool IsNodeWithinAABB(this Node2D node, Vector2 topLeftCorner, float width, float height)
     {
         return false;

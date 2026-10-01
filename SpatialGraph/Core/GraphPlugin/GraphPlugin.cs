@@ -35,6 +35,7 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
     /// An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
+    /// <param name="baseGraph">Plugin to subscribe to.</param>
     public GraphPlugin(GraphPlugin<TNode> baseGraph, GraphPluginSubscription SubscribeTo)
     {
         BaseGraph = baseGraph;
@@ -66,10 +67,18 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
         OnGraphUpdate(sender, modLog);
         OnGraphPluginUpdated?.Invoke(this, modLog);
     }
+
+    /// <summary>
+    /// Emits when a modification occurs in the base graph.
+    /// </summary>
+    /// <param name="sender">Source of the event.</param>
+    /// <param name="modLog">Log of changes for the base graph.</param>
     protected abstract void OnGraphUpdate(object? sender, GraphChangeLog<TNode> modLog);
 
     //BaseGraph stuff
     IInterceptableTrackedGraph<TNode> BaseGraph;
+
+    /// <inheritdoc/>
     public event EventHandler<GraphChangeLog<TNode>>? OnGraphModificationInit
     {
         add
@@ -81,6 +90,8 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
             BaseGraph.OnGraphModificationInit -= value;
         }
     }
+
+    /// <inheritdoc/>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified
     {
         add
@@ -93,13 +104,28 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
         }
     }
 
+    /// <inheritdoc/>
     public void ApplyChangeSet(GraphChangeSet<TNode> modifications) => BaseGraph.ApplyChangeSet(modifications);
+
+    /// <inheritdoc/>
     public uint GenerateID() => BaseGraph.GenerateID();
+
+    /// <inheritdoc/>
     public bool RemoveEdge(uint ID) => BaseGraph.RemoveEdge(ID);
+
+    /// <inheritdoc/>
     public bool RemoveNode(uint ID) => BaseGraph.RemoveNode(ID);
+
+    /// <inheritdoc/>
     public void UpsertEdge(Edge edge) => BaseGraph.UpsertEdge(edge);
+
+    /// <inheritdoc/>
     public void UpsertNode(TNode Node) => BaseGraph.UpsertNode(Node);
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, TNode> Nodes => BaseGraph.Nodes;
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, Edge> Edges => BaseGraph.Edges;
 }
 

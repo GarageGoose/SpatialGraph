@@ -6,6 +6,9 @@ namespace GG.SpatialGraph;
 /// </summary>
 public interface IElement
 {
+    /// <summary>
+    /// Unique identifier for an element.
+    /// </summary>
     uint ID {get;}
 }
 
@@ -24,7 +27,20 @@ public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2) : IEleme
 /// </summary>
 public enum NodeInEdge
 {
-    First, Second, None
+    /// <summary>
+    /// Refers to the first node (NodeID1) in an edge.
+    /// </summary>
+    First,
+    
+    /// <summary>
+    /// Refers to the second node (NodeID1) in an edge.
+    /// </summary>
+    Second,
+    
+    /// <summary>
+    /// Node is not in an edge.
+    /// </summary>
+    None
 }
 
 /// <summary>
@@ -42,7 +58,15 @@ public readonly record struct Node3D(uint ID, Vector3 Loc) : INode;
 /// </summary>
 public enum ElementType
 {
-    Node, Edge
+    /// <summary>
+    /// Element is a node.
+    /// </summary>
+    Node,
+    
+    /// <summary>
+    /// Element is an edge.
+    /// </summary>
+    Edge
 }
 
 /// <summary>

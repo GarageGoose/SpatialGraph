@@ -1,10 +1,10 @@
 [project]
 site_url = "https://spatialgraph.readthedocs.io/"
-site_name = "Documentation"
-# site_description = "Your project description"
-# site_author = "Your name"
+site_name = "SpatialGraph Documentation"
+# site_description = "SpatialGraph Documentation"
+# site_author = "GarageGoose"
 
-# copyright = "Copyright &copy; 2026 Your name"
+# copyright = "Copyright &copy; 2026 Your nadadssaadsme"
 
 # repo_url = "https://github.com/user/repo"
 # repo_name = "user/repo"

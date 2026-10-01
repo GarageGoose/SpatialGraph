@@ -1,6 +1,9 @@
 using System.Numerics;
 namespace GG.SpatialGraph;
 
+/// <summary>
+/// Basic operations for a graph.
+/// </summary>
 public static class BasicGraphOperations
 {
     /// <summary>

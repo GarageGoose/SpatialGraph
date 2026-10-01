@@ -11,12 +11,22 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     Dictionary<uint, Edge> edgesForUpsert = new();
     HashSet<uint> edgesForRemoval = new();
 
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, TNode> NodesForUpsert {get;}
+
+    /// <inheritdoc/>
     public IReadOnlySet<uint> NodesForRemoval {get;}
+
+    /// <inheritdoc/>
     public IReadOnlyDictionary<uint, Edge> EdgesForUpsert {get;}
+
+    /// <inheritdoc/>
     public IReadOnlySet<uint> EdgesForRemoval {get;}
 
-        public GraphIncomingChanges()
+    /// <summary>
+    /// Create a new empty instance.
+    /// </summary>
+    public GraphIncomingChanges()
     {
         edgesForUpsert = new();
         nodesForUpsert = new();
@@ -28,6 +38,10 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
         EdgesForRemoval = edgesForRemoval;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="batchedMods"></param>
     public GraphIncomingChanges(IReadOnlyGraphIncomingChanges<TNode> batchedMods)
     {
         edgesForUpsert = new(batchedMods.EdgesForUpsert);
@@ -40,6 +54,10 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
         EdgesForRemoval = edgesForRemoval;
     }
     
+    /// <summary>
+    /// Add a new node or modify one with their corresponding ID.
+    /// </summary>
+    /// <param name="node">Node to upsert.</param>
     public void UpsertNode(TNode node)
     {
         nodesForUpsert.Add(node.ID, node);
@@ -75,26 +93,32 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
 
     public void Union(GraphIncomingChanges<TNode> batchedMods)
     {
-        nodesForUpsert.Union(batchedMods.nodesForUpsert);
+        //WIP!!!
+        nodesForUpsert = new(nodesForUpsert.Union(batchedMods.nodesForUpsert));
         nodesForRemoval.UnionWith(batchedMods.nodesForRemoval);
-        edgesForUpsert.Union(batchedMods.edgesForUpsert);
+        edgesForUpsert = new(edgesForUpsert.Union(batchedMods.edgesForUpsert));
         edgesForRemoval.UnionWith(batchedMods.edgesForRemoval);
     }
 
     public void Intersect(GraphIncomingChanges<TNode> batchedMods)
     {
-        nodesForUpsert.Intersect(batchedMods.nodesForUpsert);
+        //WIP!!!
+        nodesForUpsert = new(nodesForUpsert.Intersect(batchedMods.nodesForUpsert));
         nodesForRemoval.IntersectWith(batchedMods.nodesForRemoval);
-        edgesForUpsert.Intersect(batchedMods.edgesForUpsert);
+        edgesForUpsert = new(edgesForUpsert.Intersect(batchedMods.edgesForUpsert));
         edgesForRemoval.IntersectWith(batchedMods.edgesForRemoval);
     }
 
+    /// <inheritdoc/>
     public IEnumerable<TNode> NodeUpserts() => NodesForUpsert.Values;
 
+    /// <inheritdoc/>
     public IEnumerable<Edge> EdgeUpserts() => EdgesForUpsert.Values;
 
+    /// <inheritdoc/>
     public IEnumerable<uint> NodeRemovals() => NodesForRemoval;
 
+    /// <inheritdoc/>
     public IEnumerable<uint> EdgeRemovals() => EdgesForRemoval;
 }
 
@@ -104,8 +128,23 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
 /// <typeparam name="TNode">Type of node used in the graph.</typeparam>
 public interface IReadOnlyGraphIncomingChanges<TNode> : GraphChangeSet<TNode> where TNode : struct, INode
 {
+    /// <summary>
+    /// Nodes to be added or modified (replaced with identical IDs) in a graph.
+    /// </summary>
     IReadOnlyDictionary<uint, TNode> NodesForUpsert {get;}
+
+    /// <summary>
+    /// Nodes to be removed in a graph.
+    /// </summary>
     IReadOnlySet<uint> NodesForRemoval {get;}
+
+    /// <summary>
+    /// Edges to be added or modified (replaced with identical IDs) in a graph.
+    /// </summary>
     IReadOnlyDictionary<uint, Edge> EdgesForUpsert {get;}
+
+    /// <summary>
+    /// Edges to be removed in a graph.
+    /// </summary>
     IReadOnlySet<uint> EdgesForRemoval {get;}
 }

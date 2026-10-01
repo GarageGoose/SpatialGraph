@@ -2,6 +2,9 @@ using System.Numerics;
 using GG.SpatialGraph.Metadata;
 namespace GG.SpatialGraph;
 
+/// <summary>
+/// Basic modification for 2D graphs.
+/// </summary>
 public static class Graph2DOperations
 {
     /// <summary>
