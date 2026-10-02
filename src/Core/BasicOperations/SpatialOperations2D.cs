@@ -1,5 +1,5 @@
 using System.Numerics;
-namespace SpatialGraph.Extentions;
+namespace SpatialGraph.Extensions;
 
 /// <summary>
 /// Get spatial information in 2D graphs.

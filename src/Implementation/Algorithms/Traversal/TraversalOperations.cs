@@ -11,7 +11,7 @@ public static class PathfindingOperations
     /// <typeparam name="TNode">Node type.</typeparam>
     /// <param name="graphTraversal">Traversal algorithm to use.</param>
     /// <returns>If path between the two nodes were found.</returns>
-    public static bool IsNodeConnected<TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode => graphTraversal.Traverse.Any(node => node.NodeID == graphTraversal.TagretNodeID);
+    public static bool IsNodeConnected<TNode>(this GraphTraversal<TNode> graphTraversal) where TNode : struct, INode => graphTraversal.Traverse.Any(node => node.NodeID == graphTraversal.TargetNodeID);
 
     /// <summary>
     /// Find path between two nodes.
@@ -24,14 +24,14 @@ public static class PathfindingOperations
     {
         nodeIDs = new();
 
-        if(graphTraversal.TagretNodeID == null)
+        if(graphTraversal.TargetNodeID == null)
         {
             return false;
         }
         
         Dictionary<uint, uint?> nodeOrigin = new();
         
-        uint backtracingCurrNode = (uint)graphTraversal.TagretNodeID;
+        uint backtracingCurrNode = (uint)graphTraversal.TargetNodeID;
 
         foreach(TraversalInfo<TNode> node in graphTraversal.Traverse)
         {
@@ -61,7 +61,7 @@ public static class PathfindingOperations
     {
         edgeIDs = new();
 
-        if(graphTraversal.TagretNodeID == null)
+        if(graphTraversal.TargetNodeID == null)
         {
             return false;
         }
@@ -69,7 +69,7 @@ public static class PathfindingOperations
         Dictionary<uint, uint?> nodeOrigin = new();
         Dictionary<uint, uint?> edgeOrigin = new();
         
-        uint backtracingCurrNode = (uint)graphTraversal.TagretNodeID;
+        uint backtracingCurrNode = (uint)graphTraversal.TargetNodeID;
 
         foreach(TraversalInfo<TNode> node in graphTraversal.Traverse)
         {
@@ -101,7 +101,7 @@ public static class PathfindingOperations
         edgeIDs = new();
         nodeIDs = new();
 
-        if(graphTraversal.TagretNodeID == null)
+        if(graphTraversal.TargetNodeID == null)
         {
             return false;
         }
@@ -109,7 +109,7 @@ public static class PathfindingOperations
         Dictionary<uint, uint?> nodeOrigin = new();
         Dictionary<uint, uint?> edgeOrigin = new();
         
-        uint backtracingCurrNode = (uint)graphTraversal.TagretNodeID;
+        uint backtracingCurrNode = (uint)graphTraversal.TargetNodeID;
 
         foreach(TraversalInfo<TNode> node in graphTraversal.Traverse)
         {

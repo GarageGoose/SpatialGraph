@@ -1,7 +1,6 @@
 using System.Numerics;
-using SpatialGraph.Metadata;
-using SpatialGraph.Extentions;
-namespace SpatialGraph;
+using SpatialGraph.Extensions;
+namespace SpatialGraph.Metadata;
 
 internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 {

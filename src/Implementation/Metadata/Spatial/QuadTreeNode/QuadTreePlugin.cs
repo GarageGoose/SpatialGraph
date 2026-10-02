@@ -18,6 +18,13 @@ public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>
     internal Dictionary<uint, QuadTreeNodeCell> nodeCurrCell = new();
 
     /// <summary>
+    /// Get the cell of a node.
+    /// </summary>
+    /// <param name="NodeID">ID of the node.</param>
+    /// <returns>Cell which contains the node.</returns>
+    public IReadOnlyQuadTreeNodeCell CurrentCellOfNode(uint NodeID) => nodeCurrCell[NodeID];
+
+    /// <summary>
     /// New instance of a node quad tree.
     /// </summary>
     /// <param name="graph">Graph to record the nodes from.</param>

@@ -17,7 +17,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
     }
 
     /// <summary>
-    /// Start graph from a pre-exisitng graph.
+    /// Start graph from a pre-existing graph.
     /// </summary>
     /// <param name="graph">Graph to replicate from.</param>
     public TrackedGraph(IReadOnlyGraph<TNode> graph) : base(graph)
@@ -25,7 +25,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
     }
 
     /// <summary>
-    /// Start a graph from pre-exisiting dictionaries of nodes and edges.
+    /// Start a graph from pre-existing dictionaries of nodes and edges.
     /// </summary>
     public TrackedGraph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges) : base(nodes, edges)
     {

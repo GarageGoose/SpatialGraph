@@ -14,7 +14,7 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     }
 
     /// <summary>
-    /// Start graph from a pre-exisitng graph.
+    /// Start graph from a pre-existing graph.
     /// </summary>
     /// <param name="graph">Graph to replicate from.</param>
     public Graph(IReadOnlyGraph<TNode> graph)
@@ -24,7 +24,7 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     }
 
     /// <summary>
-    /// Start a graph from pre-exisiting dictionaries of nodes and edges.
+    /// Start a graph from pre-existing dictionaries of nodes and edges.
     /// </summary>
     public Graph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges)
     {

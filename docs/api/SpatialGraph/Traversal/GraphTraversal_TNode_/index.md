@@ -24,5 +24,5 @@ Implements [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api
 | :--- | :--- |
 | [BaseGraph](BaseGraph.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>\.BaseGraph') | Graph to traverse\. |
 | [StartingNodeID](StartingNodeID.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>\.StartingNodeID') | Node to start traversal\. |
-| [TagretNodeID](TagretNodeID.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>\.TagretNodeID') | Node to find when travering\. |
+| [TargetNodeID](TargetNodeID.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>\.TargetNodeID') | Node to find when traversing\. |
 | [Traverse](Traverse.md 'SpatialGraph\.Traversal\.GraphTraversal<TNode>\.Traverse') | Traverse the graph\. |

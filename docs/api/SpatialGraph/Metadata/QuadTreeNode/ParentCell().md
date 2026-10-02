@@ -3,9 +3,9 @@
 Parent cell of the quadtree\.
 
 ```csharp
-public SpatialGraph.IReadOnlyQuadTreeNodeCell ParentCell();
+public SpatialGraph.Metadata.IReadOnlyQuadTreeNodeCell ParentCell();
 ```
 
 #### Returns
-[IReadOnlyQuadTreeNodeCell](../../IReadOnlyQuadTreeNodeCell/index.md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell')  
+[IReadOnlyQuadTreeNodeCell](../IReadOnlyQuadTreeNodeCell/index.md 'SpatialGraph\.Metadata\.IReadOnlyQuadTreeNodeCell')  
 Parent cell\.

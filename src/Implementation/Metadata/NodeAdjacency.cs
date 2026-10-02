@@ -1,4 +1,4 @@
-using SpatialGraph.Extentions;
+using SpatialGraph.Extensions;
 namespace SpatialGraph.Metadata;
 
 /// <summary>

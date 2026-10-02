@@ -10,10 +10,15 @@ Plugins for documenting additional information in graphs\.
 | [NodeAdjacency&lt;TNode&gt;](NodeAdjacency_TNode_/index.md 'SpatialGraph\.Metadata\.NodeAdjacency<TNode>') | Records adjecent nodes and edges from a node in a graph\. |
 | [OrderedEdgesByAngle2D](OrderedEdgesByAngle2D/index.md 'SpatialGraph\.Metadata\.OrderedEdgesByAngle2D') | Records the order and adjacency of edges in a node including the angles between them\. |
 | [QuadTreeNode](QuadTreeNode/index.md 'SpatialGraph\.Metadata\.QuadTreeNode') | Quadtree implementation for nodes in a graph\. Enables spatial indexing for nodes\. |
+| [QuadTreeNodeOperations](QuadTreeNodeOperations/index.md 'SpatialGraph\.Metadata\.QuadTreeNodeOperations') | Spatial indexing operations for a 2D node quadtree\. |
 
 | Structs | |
 | :--- | :--- |
 | [GraphSnapshot&lt;TNode&gt;](GraphSnapshot_TNode_/index.md 'SpatialGraph\.Metadata\.GraphSnapshot<TNode>') | Reconstructed graph from a specific modification step\. Used in GraphHistory\. |
+
+| Interfaces | |
+| :--- | :--- |
+| [IReadOnlyQuadTreeNodeCell](IReadOnlyQuadTreeNodeCell/index.md 'SpatialGraph\.Metadata\.IReadOnlyQuadTreeNodeCell') | A specific region in a quadtree which holds nodes or if subdivided, four sub quad trees each on the of the quadrant of the quadtree\. |
 
 | Enums | |
 | :--- | :--- |

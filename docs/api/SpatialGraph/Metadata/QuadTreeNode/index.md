@@ -14,4 +14,5 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 
 | Methods | |
 | :--- | :--- |
+| [CurrentCellOfNode(uint)](CurrentCellOfNode(uint).md 'SpatialGraph\.Metadata\.QuadTreeNode\.CurrentCellOfNode(uint)') | Get the cell of a node\. |
 | [ParentCell()](ParentCell().md 'SpatialGraph\.Metadata\.QuadTreeNode\.ParentCell()') | Parent cell of the quadtree\. |

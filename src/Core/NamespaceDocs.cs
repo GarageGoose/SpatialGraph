@@ -5,7 +5,7 @@ namespace SpatialGraph
     /// </summary>
     internal class NamespaceDoc{}
 }
-namespace SpatialGraph.Extentions
+namespace SpatialGraph.Extensions
 {
     /// <summary>
     /// Extention methods for graphs and elements.

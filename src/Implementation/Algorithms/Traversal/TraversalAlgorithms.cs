@@ -1,6 +1,6 @@
 using System.Numerics;
 using SpatialGraph.Metadata;
-using SpatialGraph.Extentions;
+using SpatialGraph.Extensions;
 
 namespace SpatialGraph.Traversal;
 
@@ -20,8 +20,8 @@ public readonly record struct TraversalInfo<TNode>(uint NodeID, uint? OriginNode
 /// <param name="Traverse">Traverse the graph.</param>
 /// <param name="BaseGraph">Graph to traverse.</param>
 /// <param name="StartingNodeID">Node to start traversal.</param>
-/// <param name="TagretNodeID">Node to find when travering.</param>
-public readonly record struct GraphTraversal<TNode>(IEnumerable<TraversalInfo<TNode>> Traverse, NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, uint? TagretNodeID) where TNode : struct, INode;
+/// <param name="TargetNodeID">Node to find when traversing.</param>
+public readonly record struct GraphTraversal<TNode>(IEnumerable<TraversalInfo<TNode>> Traverse, NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, uint? TargetNodeID) where TNode : struct, INode;
 
 /// <summary>
 /// Pathfinding algorithims for graphs.

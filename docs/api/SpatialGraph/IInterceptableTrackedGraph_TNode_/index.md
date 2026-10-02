@@ -1,6 +1,6 @@
 ## IInterceptableTrackedGraph<TNode> Interface
 
-Base interface for all tracked graphs which can modifiy incoming changes\. A graph stores nodes and edges within it, identified by their IDs\.
+Base interface for all tracked graphs which can modify incoming changes\. A graph stores nodes and edges within it, identified by their IDs\.
 Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\.
 
 ```csharp

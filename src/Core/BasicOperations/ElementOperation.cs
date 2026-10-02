@@ -1,5 +1,5 @@
 using System.Numerics;
-namespace SpatialGraph.Extentions;
+namespace SpatialGraph.Extensions;
 
 /// <summary>
 /// Basic operation for the elements of a graph.

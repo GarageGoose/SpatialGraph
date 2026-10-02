@@ -7,7 +7,7 @@ Graphs with spatial location in 2D or 3D space\.
 | [Graph&lt;TNode&gt;](Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>') | Base class for graphs, can be built upon\. |
 | [GraphChangeLog&lt;TNode&gt;](GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>') | Logs incoming changes for a graph\. Stores additional data: type of modification of an element (Add, Modify, Delete), old value of an element (if any), and new value of an element (if any)\. |
 | [GraphIncomingChanges&lt;TNode&gt;](GraphIncomingChanges_TNode_/index.md 'SpatialGraph\.GraphIncomingChanges<TNode>') | Stores incoming changes for a graph\. |
-| [InterceptableTrackedGraph&lt;TNode&gt;](InterceptableTrackedGraph_TNode_/index.md 'SpatialGraph\.InterceptableTrackedGraph<TNode>') | Graph which tracks and can modifiy incoming changes within it\. |
+| [InterceptableTrackedGraph&lt;TNode&gt;](InterceptableTrackedGraph_TNode_/index.md 'SpatialGraph\.InterceptableTrackedGraph<TNode>') | Graph which tracks and can modify incoming changes within it\. |
 | [TrackedGraph&lt;TNode&gt;](TrackedGraph_TNode_/index.md 'SpatialGraph\.TrackedGraph<TNode>') | Graph which tracks changes within it\. |
 
 | Structs | |
@@ -25,12 +25,11 @@ Graphs with spatial location in 2D or 3D space\.
 | [GraphChangeSet&lt;TNode&gt;](GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>') | Set of changes in a graph\. |
 | [IElement](IElement/index.md 'SpatialGraph\.IElement') | Base interface for all elements\. |
 | [IGraph&lt;TNode&gt;](IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') | Base interface for all graphs\. A graph stores nodes and edges within it, identified by their IDs\. Nodes and edges can share the same ID\. |
-| [IInterceptableTrackedGraph&lt;TNode&gt;](IInterceptableTrackedGraph_TNode_/index.md 'SpatialGraph\.IInterceptableTrackedGraph<TNode>') | Base interface for all tracked graphs which can modifiy incoming changes\. A graph stores nodes and edges within it, identified by their IDs\. Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\. |
+| [IInterceptableTrackedGraph&lt;TNode&gt;](IInterceptableTrackedGraph_TNode_/index.md 'SpatialGraph\.IInterceptableTrackedGraph<TNode>') | Base interface for all tracked graphs which can modify incoming changes\. A graph stores nodes and edges within it, identified by their IDs\. Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\. |
 | [INode](INode/index.md 'SpatialGraph\.INode') | Base interface for all nodes\. |
 | [IReadOnlyGraph&lt;TNode&gt;](IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph<TNode>') | Read only interface of a graph\. A graph stores nodes and edges within it, identified by their IDs\. |
 | [IReadOnlyGraphIncomingChanges&lt;TNode&gt;](IReadOnlyGraphIncomingChanges_TNode_/index.md 'SpatialGraph\.IReadOnlyGraphIncomingChanges<TNode>') | Interface for objects which stores incoming changes for a graph\. |
 | [IReadOnlyModificationLog&lt;TNode&gt;](IReadOnlyModificationLog_TNode_/index.md 'SpatialGraph\.IReadOnlyModificationLog<TNode>') | Logs incoming changes for a graph\. Stores additional data: type of modification of an element (Add, Modify, Delete), old value of an element (if any), and new value of an element (if any)\. |
-| [IReadOnlyQuadTreeNodeCell](IReadOnlyQuadTreeNodeCell/index.md 'SpatialGraph\.IReadOnlyQuadTreeNodeCell') | A specific region in a quadtree which holds nodes or if subdivided, four sub quad trees each on the of the quadrant of the quadtree\. |
 | [IReadOnlyTrackedGraph&lt;TNode&gt;](IReadOnlyTrackedGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyTrackedGraph<TNode>') | Read only interface of a tracked graph\. Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\. |
 | [ITrackedGraph&lt;TNode&gt;](ITrackedGraph_TNode_/index.md 'SpatialGraph\.ITrackedGraph<TNode>') | Base interface for all tracked graphs\. A graph stores nodes and edges within it, identified by their IDs\. Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\. |
 

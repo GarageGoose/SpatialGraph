@@ -1,6 +1,6 @@
 ## InterceptableTrackedGraph<TNode> Class
 
-Graph which tracks and can modifiy incoming changes within it\.
+Graph which tracks and can modify incoming changes within it\.
 
 ```csharp
 public class InterceptableTrackedGraph<TNode> : SpatialGraph.Graph<TNode>, SpatialGraph.IInterceptableTrackedGraph<TNode>, SpatialGraph.ITrackedGraph<TNode>, SpatialGraph.IReadOnlyTrackedGraph<TNode>, SpatialGraph.IReadOnlyGraph<TNode>, SpatialGraph.IGraph<TNode>
@@ -21,8 +21,8 @@ Implements [SpatialGraph\.IInterceptableTrackedGraph&lt;](../IInterceptableTrack
 | Constructors | |
 | :--- | :--- |
 | [InterceptableTrackedGraph()](InterceptableTrackedGraph_TNode_.md#SpatialGraph.InterceptableTrackedGraph_TNode_.InterceptableTrackedGraph() 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.InterceptableTrackedGraph()') | Start an empty graph\. |
-| [InterceptableTrackedGraph(IReadOnlyGraph&lt;TNode&gt;)](InterceptableTrackedGraph_TNode_.md#SpatialGraph.InterceptableTrackedGraph_TNode_.InterceptableTrackedGraph(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.InterceptableTrackedGraph(SpatialGraph\.IReadOnlyGraph<TNode>)') | Start graph from a pre-exisitng graph\. |
-| [InterceptableTrackedGraph(Dictionary&lt;uint,TNode&gt;, Dictionary&lt;uint,Edge&gt;)](InterceptableTrackedGraph_TNode_.md#SpatialGraph.InterceptableTrackedGraph_TNode_.InterceptableTrackedGraph(System.Collections.Generic.Dictionary_uint,TNode_,System.Collections.Generic.Dictionary_uint,SpatialGraph.Edge_) 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.InterceptableTrackedGraph(System\.Collections\.Generic\.Dictionary<uint,TNode>, System\.Collections\.Generic\.Dictionary<uint,SpatialGraph\.Edge>)') | Start a graph from pre-exisiting dictionaries of nodes and edges\. |
+| [InterceptableTrackedGraph(IReadOnlyGraph&lt;TNode&gt;)](InterceptableTrackedGraph_TNode_.md#SpatialGraph.InterceptableTrackedGraph_TNode_.InterceptableTrackedGraph(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.InterceptableTrackedGraph(SpatialGraph\.IReadOnlyGraph<TNode>)') | Start graph from a pre-existing graph\. |
+| [InterceptableTrackedGraph(Dictionary&lt;uint,TNode&gt;, Dictionary&lt;uint,Edge&gt;)](InterceptableTrackedGraph_TNode_.md#SpatialGraph.InterceptableTrackedGraph_TNode_.InterceptableTrackedGraph(System.Collections.Generic.Dictionary_uint,TNode_,System.Collections.Generic.Dictionary_uint,SpatialGraph.Edge_) 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.InterceptableTrackedGraph(System\.Collections\.Generic\.Dictionary<uint,TNode>, System\.Collections\.Generic\.Dictionary<uint,SpatialGraph\.Edge>)') | Start a graph from pre-existing dictionaries of nodes and edges\. |
 
 | Methods | |
 | :--- | :--- |

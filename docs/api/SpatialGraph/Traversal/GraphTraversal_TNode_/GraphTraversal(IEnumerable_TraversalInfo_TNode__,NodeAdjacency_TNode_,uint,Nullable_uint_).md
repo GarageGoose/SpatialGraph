@@ -3,7 +3,7 @@
 Graph traversal algorithms\.
 
 ```csharp
-public GraphTraversal(System.Collections.Generic.IEnumerable<SpatialGraph.Traversal.TraversalInfo<TNode>> Traverse, SpatialGraph.Metadata.NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, System.Nullable<uint> TagretNodeID);
+public GraphTraversal(System.Collections.Generic.IEnumerable<SpatialGraph.Traversal.TraversalInfo<TNode>> Traverse, SpatialGraph.Metadata.NodeAdjacency<TNode> BaseGraph, uint StartingNodeID, System.Nullable<uint> TargetNodeID);
 ```
 #### Parameters
 
@@ -25,8 +25,8 @@ Graph to traverse\.
 
 Node to start traversal\.
 
-<a name='SpatialGraph.Traversal.GraphTraversal_TNode_.GraphTraversal(System.Collections.Generic.IEnumerable_SpatialGraph.Traversal.TraversalInfo_TNode__,SpatialGraph.Metadata.NodeAdjacency_TNode_,uint,System.Nullable_uint_).TagretNodeID'></a>
+<a name='SpatialGraph.Traversal.GraphTraversal_TNode_.GraphTraversal(System.Collections.Generic.IEnumerable_SpatialGraph.Traversal.TraversalInfo_TNode__,SpatialGraph.Metadata.NodeAdjacency_TNode_,uint,System.Nullable_uint_).TargetNodeID'></a>
 
-`TagretNodeID` [System\.Nullable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')[System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')
+`TargetNodeID` [System\.Nullable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')[System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.nullable-1 'System\.Nullable\`1')
 
-Node to find when travering\.
+Node to find when traversing\.
