@@ -4,7 +4,7 @@ site_name = "SpatialGraph Documentation"
 site_description = "SpatialGraph Documentation"
 site_author = "GarageGoose"
 
-copyright = "Copyright GarageGoose. Licensed under the MIT License."
+copyright = "© GarageGoose · MIT License"
 
 repo_url = "https://github.com/GarageGoose/SpatialGraph"
 repo_name = "GarageGoose/SpatialGraph"
@@ -14,6 +14,7 @@ nav = [
   { "Getting Started" = "index.md" },
   { "Examples" = "examples.md" },
   { "API Guide" = "apiguide.md" },
+  { "Licenses" = "licenses.md" },
   { "API Reference" = [
     { "Overview" = "api/index.md" },
     { "SpatialGraph" = "api/SpatialGraph/index.md" },

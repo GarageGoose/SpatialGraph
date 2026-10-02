@@ -1,6 +1,6 @@
 ## SpatialGraph Namespace
 
-Graphs with spatial location in 2D or 3D space\.
+Main interface for the library\. Contains all the essentials for building [IGraph&lt;TNode&gt;](IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')s\.
 
 | Classes | |
 | :--- | :--- |

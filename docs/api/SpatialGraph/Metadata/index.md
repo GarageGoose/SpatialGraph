@@ -1,6 +1,6 @@
 ## SpatialGraph\.Metadata Namespace
 
-Plugins for documenting additional information in graphs\.
+Plugins for documenting additional information in [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')s\.
 
 | Classes | |
 | :--- | :--- |

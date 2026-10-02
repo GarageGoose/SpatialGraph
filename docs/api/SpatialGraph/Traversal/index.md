@@ -1,6 +1,6 @@
 ## SpatialGraph\.Traversal Namespace
 
-Traversal algorithms for graphs including operations like floodfill\.
+Traversal algorithms for [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')s including operations like floodfill\.
 
 | Classes | |
 | :--- | :--- |
