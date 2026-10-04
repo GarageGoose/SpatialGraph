@@ -32,7 +32,7 @@ public class QuadTreeNode : GraphReadOnlyPlugin<Node2D>
     /// <param name="originTopLeft">Top left corner of the parent cell.</param>
     /// <param name="width">Width of the cell.</param>
     /// <param name="height">Height of the cell.</param>
-    public QuadTreeNode(ITrackedGraph<Node2D> graph, int cellCapacity, Vector2 originTopLeft, float width, float height) : base(graph)
+    public QuadTreeNode(IObservableGraph<Node2D> graph, int cellCapacity, Vector2 originTopLeft, float width, float height) : base(graph)
     {
         _ParentCell = new(this, cellCapacity, originTopLeft, width, height);
     }

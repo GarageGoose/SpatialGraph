@@ -1,6 +1,6 @@
 ## ReadOnlyGraphPluginListenerForPlugin Enum
 
-Determines an event to subscribe to from a Plugin (GraphPlugin/GraphReadOnlyPlugin) in a GraphReadOnlyPlugin\.
+Determines an event to subscribe to from a Plugin ([GraphPlugin&lt;TNode&gt;](../GraphPlugin_TNode_/index.md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>')/[GraphReadOnlyPlugin&lt;TNode&gt;](../GraphReadOnlyPlugin_TNode_/index.md 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin<TNode>')) in a [GraphReadOnlyPlugin&lt;TNode&gt;](../GraphReadOnlyPlugin_TNode_/index.md 'SpatialGraph\.Metadata\.GraphReadOnlyPlugin<TNode>')\.
 
 ```csharp
 public enum ReadOnlyGraphPluginListenerForPlugin

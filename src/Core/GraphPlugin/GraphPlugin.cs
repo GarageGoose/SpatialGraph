@@ -1,10 +1,11 @@
 namespace SpatialGraph.Metadata;
 
 /// <summary>
-/// Base class for plugins which can observe and modify changes either in a graph or another plugin (only GraphPlugins).
+/// Base class for plugins which can observe and modify changes either in <see cref="IInterceptableObservableGraph{TNode}"/> or another <see cref="GraphPlugin{TNode}"/>.
 /// </summary>
 /// <typeparam name="TNode">Type of node used in the base graph.</typeparam>
-public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> where TNode : struct, INode
+/// <seealso cref="GraphReadOnlyPlugin{TNode}"/>
+public abstract class GraphPlugin<TNode> : IInterceptableObservableGraph<TNode> where TNode : struct, INode
 {
     /*
     Graph Events:
@@ -24,7 +25,7 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
     /// Listens to a graph when an update occurs.
     /// An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements.
     /// </summary>
-    public GraphPlugin(IInterceptableTrackedGraph<TNode> baseGraph)
+    public GraphPlugin(IInterceptableObservableGraph<TNode> baseGraph)
     {
         BaseGraph = baseGraph;
         baseGraph.OnGraphModificationInit += InternalOnGraphUpdateInit;
@@ -76,7 +77,7 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
     protected abstract void OnGraphUpdate(object? sender, GraphChangeLog<TNode> modLog);
 
     //BaseGraph stuff
-    IInterceptableTrackedGraph<TNode> BaseGraph;
+    IInterceptableObservableGraph<TNode> BaseGraph;
 
     /// <inheritdoc/>
     public event EventHandler<GraphChangeLog<TNode>>? OnGraphModificationInit
@@ -130,17 +131,17 @@ public abstract class GraphPlugin<TNode> : IInterceptableTrackedGraph<TNode> whe
 }
 
 /// <summary>
-/// Determines an event to subscribe to from a GraphPlugin in a GraphPlugin.
+/// Determines an event to subscribe to from a <see cref="GraphPlugin{TNode}"/> in a <see cref="GraphPlugin{TNode}"/>.
 /// </summary>
 public enum GraphPluginSubscription
 {
     /// <summary>
-    /// Points to an event within a GraphPlugin which is invoked when a plugin receives a ChangeLog before it processes the update.
+    /// Points to an event within a <see cref="GraphPlugin{TNode}"/> which is invoked when a plugin receives a <see cref="GraphChangeLog{TNode}"/> before it processes the update.
     /// </summary>
     OnGraphModificationInit,
     
     /// <summary>
-    /// Points to an event within a GraphPlugin which is invoked after the plugin processes the update.
+    /// Points to an event within a <see cref="GraphPlugin{TNode}"/> which is invoked after the plugin processes the update.
     /// </summary>
     OnGraphPluginInit
 }

@@ -1,10 +1,11 @@
 namespace SpatialGraph.Metadata;
 
 /// <summary>
-/// Base class for plugins which can observe changes either in a graph or another plugin.
+/// Base class for plugins which can observe changes either in <see cref="IReadOnlyObservableGraph{TNode}"/> or another plugin.
 /// </summary>
 /// <typeparam name="TNode">Type of node used in the base graph.</typeparam>
-public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> where TNode : struct, INode
+/// <seealso cref="GraphPlugin{TNode}"/>
+public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyObservableGraph<TNode> where TNode : struct, INode
 {
     /*
     Graph Events:
@@ -21,20 +22,20 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     */
 
     /// <summary>
-    /// Listens to a TrackedGraph when an update occurs. An update is the 
+    /// Listens to a TrackedGraph when an update occurs. An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements.
     /// </summary>
-    public GraphReadOnlyPlugin(IReadOnlyTrackedGraph<TNode> baseGraph)
+    public GraphReadOnlyPlugin(IReadOnlyObservableGraph<TNode> baseGraph)
     {
         BaseGraph = baseGraph;
         baseGraph.OnGraphModified += InternalOnGraphUpdate;
     }
 
     /// <summary>
-    /// Listens to a TrackedGraphInterceptable when an update occurs.
+    /// Listens to a <see cref="IInterceptableObservableGraph{TNode}"/> when an update occurs.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the TrackedGraphInterceptable to subscribe to.</param>
     /// <param name="baseGraph">Graph to subscribe to.</param>
-    public GraphReadOnlyPlugin(IInterceptableTrackedGraph<TNode> baseGraph, ReadOnlyGraphPluginListenerForTrackedGraph SubscribeTo)
+    public GraphReadOnlyPlugin(IInterceptableObservableGraph<TNode> baseGraph, ReadOnlyGraphPluginListenerForTrackedGraph SubscribeTo)
     {
         BaseGraph = baseGraph;
         switch (SubscribeTo)
@@ -50,7 +51,7 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     }
 
     /// <summary>
-    /// Listens to a GraphReadOnlyPlugin when an update occurs.
+    /// Listens to a <see cref="GraphReadOnlyPlugin{TNode}"/> when an update occurs.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
     /// /// <param name="baseGraph">Plugin to subscribe to.</param>
@@ -70,7 +71,7 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
     }
 
     /// <summary>
-    /// Listens to a GraphPlugin when an update occurs.
+    /// Listens to a <see cref="GraphPlugin{TNode}"/> when an update occurs.
     /// </summary>
     /// <param name="SubscribeTo">Determine which event from the baseGraph to subscribe to.</param>
     /// /// <param name="baseGraph">Plugin to subscribe to.</param>
@@ -116,7 +117,7 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
 
 
     //BaseGraph stuff
-    IReadOnlyTrackedGraph<TNode> BaseGraph;
+    IReadOnlyObservableGraph<TNode> BaseGraph;
 
     /// <inheritdoc/>
     public event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified
@@ -143,23 +144,23 @@ public abstract class GraphReadOnlyPlugin<TNode> : IReadOnlyTrackedGraph<TNode> 
 }
 
 /// <summary>
-/// Determines an event to subscribe to from a TrackedGraph in a GraphReadOnlyPlugin.
+/// Determines an event to subscribe to from a <see cref="IObservableGraph{TNode}"/> in a <see cref="GraphReadOnlyPlugin{TNode}"/>.
 /// </summary>
 public enum ReadOnlyGraphPluginListenerForTrackedGraph
 {
     /// <summary>
-    /// Points to an event within a TrackedGraph which is invoked after it is modified.
+    /// Points to an event within a <see cref="IObservableGraph{TNode}"/> which is invoked after it is modified.
     /// </summary>
     OnGraphModified,
     
     /// <summary>
-    /// Points to an event within a TrackedGraph which is invoked before it is modified.
+    /// Points to an event within a <see cref="IObservableGraph{TNode}"/> which is invoked before it is modified.
     /// </summary>
     OnGraphModificationInit
 }
 
 /// <summary>
-/// Determines an event to subscribe to from a Plugin (GraphPlugin/GraphReadOnlyPlugin) in a GraphReadOnlyPlugin.
+/// Determines an event to subscribe to from a Plugin (<see cref="GraphPlugin{TNode}"/>/<see cref="GraphReadOnlyPlugin{TNode}"/>) in a <see cref="GraphReadOnlyPlugin{TNode}"/>.
 /// </summary>
 public enum ReadOnlyGraphPluginListenerForPlugin
 {

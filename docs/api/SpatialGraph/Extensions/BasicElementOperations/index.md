@@ -1,7 +1,7 @@
 ## BasicElementOperations Class
 
 Basic operation for creating modified copies of [IElement](../../IElement/index.md 'SpatialGraph\.IElement')s
-and retrieving element related information\.
+and retrieving [IElement](../../IElement/index.md 'SpatialGraph\.IElement') related information\.
 
 ```csharp
 public static class BasicElementOperations

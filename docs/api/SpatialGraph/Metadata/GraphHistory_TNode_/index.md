@@ -18,7 +18,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 
 | Constructors | |
 | :--- | :--- |
-| [GraphHistory(IReadOnlyTrackedGraph&lt;TNode&gt;)](GraphHistory(IReadOnlyTrackedGraph_TNode_).md 'SpatialGraph\.Metadata\.GraphHistory<TNode>\.GraphHistory(SpatialGraph\.IReadOnlyTrackedGraph<TNode>)') | Create a graph history from a graph\. |
+| [GraphHistory(IReadOnlyObservableGraph&lt;TNode&gt;)](GraphHistory(IReadOnlyObservableGraph_TNode_).md 'SpatialGraph\.Metadata\.GraphHistory<TNode>\.GraphHistory(SpatialGraph\.IReadOnlyObservableGraph<TNode>)') | Create a graph history from a graph\. |
 
 | Properties | |
 | :--- | :--- |

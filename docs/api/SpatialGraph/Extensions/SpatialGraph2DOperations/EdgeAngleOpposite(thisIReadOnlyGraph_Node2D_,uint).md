@@ -1,6 +1,6 @@
 ## SpatialGraph2DOperations\.EdgeAngleOpposite(this IReadOnlyGraph<Node2D>, uint) Method
 
-Get the angle of an edge, flipped 180 degrees, in radians\.
+Get the angle of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge'), flipped 180 degrees, in radians\.
 
 ```csharp
 public static float EdgeAngleOpposite(this SpatialGraph.IReadOnlyGraph<SpatialGraph.Node2D> baseGraph, uint edgeID);
@@ -22,3 +22,6 @@ ID of the target edge\.
 #### Returns
 [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')  
 Angle of the edge, flipped 180 degrees, in radians\.
+
+### See Also
+- [EdgeAngle(this IReadOnlyGraph&lt;Node2D&gt;, uint)](EdgeAngle(thisIReadOnlyGraph_Node2D_,uint).md 'SpatialGraph\.Extensions\.SpatialGraph2DOperations\.EdgeAngle(this SpatialGraph\.IReadOnlyGraph<SpatialGraph\.Node2D>, uint)')

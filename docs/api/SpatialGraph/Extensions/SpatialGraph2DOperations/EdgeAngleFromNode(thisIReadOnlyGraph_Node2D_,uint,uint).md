@@ -1,6 +1,6 @@
 ## SpatialGraph2DOperations\.EdgeAngleFromNode(this IReadOnlyGraph<Node2D>, uint, uint) Method
 
-Get the angle of an edge (in radians) relative to one of the node connected from it\.
+Get the angle of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') (in radians) relative to one of its endpoints\.
 
 ```csharp
 public static float EdgeAngleFromNode(this SpatialGraph.IReadOnlyGraph<SpatialGraph.Node2D> baseGraph, uint edgeID, uint nodeID);

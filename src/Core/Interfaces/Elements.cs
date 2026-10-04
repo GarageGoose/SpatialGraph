@@ -21,9 +21,9 @@ public interface IElement
 public interface INode : IElement;
 
 /// <summary>
-/// A line segment which is formed from 2 <see cref="INode"/>.
+/// Represents a connection between 2 <see cref="INode"/> endpoints.
 /// </summary>
-/// <param name="ID">Unique identifier for an element.</param>
+/// <param name="ID">Identifier for the element.</param>
 /// <param name="NodeID1">ID of the node for the first endpoint of the edge.</param>
 /// <param name="NodeID2">ID of the node for the second endpoint of the edge.</param>
 public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2) : IElement;
@@ -52,11 +52,15 @@ public enum NodeInEdge
 /// <summary>
 /// Node with coordinate in 2 dimensions. Used for 2D graphs.
 /// </summary>
+/// <param name="ID">Identifier for the element.</param>
+/// <param name="Loc">Location of the node.</param>
 public readonly record struct Node2D(uint ID, Vector2 Loc) : INode;
 
 /// <summary>
 /// Node with coordinate in 3 dimensions. Used for 3D graphs.
 /// </summary>
+/// <param name="ID">Identifier for the element.</param>
+/// <param name="Loc">Location of the node.</param>
 public readonly record struct Node3D(uint ID, Vector3 Loc) : INode;
 
 /// <summary>

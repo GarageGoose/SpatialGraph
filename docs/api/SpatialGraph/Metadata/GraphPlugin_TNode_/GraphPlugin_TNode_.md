@@ -2,24 +2,24 @@
 
 | Overloads | |
 | :--- | :--- |
-| [GraphPlugin(IInterceptableTrackedGraph&lt;TNode&gt;)](GraphPlugin_TNode_.md#SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.IInterceptableTrackedGraph_TNode_) 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.GraphPlugin(SpatialGraph\.IInterceptableTrackedGraph<TNode>)') | Listens to a graph when an update occurs\. An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements\. |
+| [GraphPlugin(IInterceptableObservableGraph&lt;TNode&gt;)](GraphPlugin_TNode_.md#SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.IInterceptableObservableGraph_TNode_) 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.GraphPlugin(SpatialGraph\.IInterceptableObservableGraph<TNode>)') | Listens to a graph when an update occurs\. An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements\. |
 | [GraphPlugin(GraphPlugin&lt;TNode&gt;, GraphPluginSubscription)](GraphPlugin_TNode_.md#SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.Metadata.GraphPlugin_TNode_,SpatialGraph.Metadata.GraphPluginSubscription) 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.GraphPlugin(SpatialGraph\.Metadata\.GraphPlugin<TNode>, SpatialGraph\.Metadata\.GraphPluginSubscription)') | Listens to the plugin when an update occurs\. An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements\. |
 
-<a name='SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.IInterceptableTrackedGraph_TNode_)'></a>
+<a name='SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.IInterceptableObservableGraph_TNode_)'></a>
 
-## GraphPlugin(IInterceptableTrackedGraph<TNode>) Constructor
+## GraphPlugin(IInterceptableObservableGraph<TNode>) Constructor
 
 Listens to a graph when an update occurs\.
 An update is invoked when the base graph is modified by adding, modifying, and removing any of its elements\.
 
 ```csharp
-public GraphPlugin(SpatialGraph.IInterceptableTrackedGraph<TNode> baseGraph);
+public GraphPlugin(SpatialGraph.IInterceptableObservableGraph<TNode> baseGraph);
 ```
 #### Parameters
 
-<a name='SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.IInterceptableTrackedGraph_TNode_).baseGraph'></a>
+<a name='SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.IInterceptableObservableGraph_TNode_).baseGraph'></a>
 
-`baseGraph` [SpatialGraph\.IInterceptableTrackedGraph&lt;](../../IInterceptableTrackedGraph_TNode_/index.md 'SpatialGraph\.IInterceptableTrackedGraph<TNode>')[TNode](index.md#SpatialGraph.Metadata.GraphPlugin_TNode_.TNode 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.TNode')[&gt;](../../IInterceptableTrackedGraph_TNode_/index.md 'SpatialGraph\.IInterceptableTrackedGraph<TNode>')
+`baseGraph` [SpatialGraph\.IInterceptableObservableGraph&lt;](../../IInterceptableObservableGraph_TNode_/index.md 'SpatialGraph\.IInterceptableObservableGraph<TNode>')[TNode](index.md#SpatialGraph.Metadata.GraphPlugin_TNode_.TNode 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.TNode')[&gt;](../../IInterceptableObservableGraph_TNode_/index.md 'SpatialGraph\.IInterceptableObservableGraph<TNode>')
 
 <a name='SpatialGraph.Metadata.GraphPlugin_TNode_.GraphPlugin(SpatialGraph.Metadata.GraphPlugin_TNode_,SpatialGraph.Metadata.GraphPluginSubscription)'></a>
 

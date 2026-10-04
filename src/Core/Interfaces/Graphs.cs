@@ -26,11 +26,11 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 }
 
 /// <summary>
-/// Read only interface of <see cref="ITrackedGraph{TNode}"/>. Tracked graphs returns read only
+/// Read only interface of <see cref="IObservableGraph{TNode}"/>. Tracked graphs returns read only
 /// modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
-public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
+public interface IReadOnlyObservableGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
     /// Event for changes applied. Invokes with an IReadOnlyModificationLog,
@@ -48,7 +48,6 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
 {
     /// <summary>
     /// Add a new <see cref="INode"/> or modify one with their corresponding ID.
-    /// Nodes and edges can share the same ID.
     /// </summary>
     /// <param name="Node">Node to upsert, identified by its ID.</param>
     void UpsertNode(TNode Node);
@@ -78,25 +77,24 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     /// <summary>
     /// Perform multiple operations at once with a <see cref="GraphChangeSet{TNode}"/>. Existing <see cref="INode"/> or <see cref="Edge"/>s with
     /// a corresponding ID in the graph will be replaced.
-    /// Nodes and edges can share the same ID.
     /// </summary>
-    /// <param name="modifications">Contains operations to perform.</param>
+    /// <param name="modifications">Set of operations to perform.</param>
     void ApplyChangeSet(GraphChangeSet<TNode> modifications);
 }
 
 /// <summary>
-/// Base interface for all tracked graphs which track changes within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
-/// Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
+/// Base interface for all observable graphs which track changes within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
+/// Observable graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
-public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode;
+public interface IObservableGraph<TNode> : IReadOnlyObservableGraph<TNode>, IGraph<TNode> where TNode : struct, INode;
 
 /// <summary>
-/// Base interface for all tracked graphs which can modify incoming changes and track changed within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
-/// Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
+/// Base interface for all observable graphs which can modify incoming changes and track changed within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
+/// Observable graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
-public interface IInterceptableTrackedGraph<TNode> : ITrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode
+public interface IInterceptableObservableGraph<TNode> : IObservableGraph<TNode>, IGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
     /// Event for incoming changes. Invokes with a GraphChangeLog which contains the modifications being performed.

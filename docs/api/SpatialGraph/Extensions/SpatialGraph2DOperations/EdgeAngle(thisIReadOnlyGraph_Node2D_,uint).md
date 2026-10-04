@@ -1,6 +1,6 @@
 ## SpatialGraph2DOperations\.EdgeAngle(this IReadOnlyGraph<Node2D>, uint) Method
 
-Get the angle of an edge in radians\.
+Get the angle of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') in radians\.
 
 ```csharp
 public static float EdgeAngle(this SpatialGraph.IReadOnlyGraph<SpatialGraph.Node2D> baseGraph, uint edgeID);
@@ -22,3 +22,6 @@ ID of the target edge\.
 #### Returns
 [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')  
 Angle of the edge in radians\.
+
+### See Also
+- [EdgeAngleOpposite(this IReadOnlyGraph&lt;Node2D&gt;, uint)](EdgeAngleOpposite(thisIReadOnlyGraph_Node2D_,uint).md 'SpatialGraph\.Extensions\.SpatialGraph2DOperations\.EdgeAngleOpposite(this SpatialGraph\.IReadOnlyGraph<SpatialGraph\.Node2D>, uint)')

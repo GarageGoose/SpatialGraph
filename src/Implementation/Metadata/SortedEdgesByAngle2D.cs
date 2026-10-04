@@ -80,7 +80,7 @@ public class OrderedEdgesByAngle2D : GraphReadOnlyPlugin<Node2D>
     /// Records the order and adjacency of edges in a node including the angles between them in a graph.
     /// </summary>
     /// <param name="baseGraph">Graph to create the data from.</param>
-    public OrderedEdgesByAngle2D(IReadOnlyTrackedGraph<Node2D> baseGraph) : base(baseGraph)
+    public OrderedEdgesByAngle2D(IReadOnlyObservableGraph<Node2D> baseGraph) : base(baseGraph)
     {
         foreach(Node2D node in baseGraph.Nodes.Values)
         {

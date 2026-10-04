@@ -10,7 +10,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 
 | Constructors | |
 | :--- | :--- |
-| [OrderedEdgesByAngle2D(IReadOnlyTrackedGraph&lt;Node2D&gt;)](OrderedEdgesByAngle2D(IReadOnlyTrackedGraph_Node2D_).md 'SpatialGraph\.Metadata\.OrderedEdgesByAngle2D\.OrderedEdgesByAngle2D(SpatialGraph\.IReadOnlyTrackedGraph<SpatialGraph\.Node2D>)') | Records the order and adjacency of edges in a node including the angles between them in a graph\. |
+| [OrderedEdgesByAngle2D(IReadOnlyObservableGraph&lt;Node2D&gt;)](OrderedEdgesByAngle2D(IReadOnlyObservableGraph_Node2D_).md 'SpatialGraph\.Metadata\.OrderedEdgesByAngle2D\.OrderedEdgesByAngle2D(SpatialGraph\.IReadOnlyObservableGraph<SpatialGraph\.Node2D>)') | Records the order and adjacency of edges in a node including the angles between them in a graph\. |
 
 | Methods | |
 | :--- | :--- |

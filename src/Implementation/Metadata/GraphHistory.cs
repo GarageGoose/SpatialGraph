@@ -29,7 +29,7 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
     /// Create a graph history from a graph.
     /// </summary>
     /// <param name="baseGraph">Graph to record changes from.</param>
-    public GraphHistory(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
+    public GraphHistory(IReadOnlyObservableGraph<TNode> baseGraph) : base(baseGraph)
     {
         GraphSnapshot<TNode> snapshot = new(0, new(baseGraph));
         graphSnapshot.Add(snapshot);

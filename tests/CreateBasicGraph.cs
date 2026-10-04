@@ -66,7 +66,7 @@ public class BasicGraphTests
     [Fact]
     public void TraversalTest()
     {
-        TrackedGraph<Node2D> graph2D = new();
+        ObservableGraph<Node2D> graph2D = new();
         uint NodeID1 = graph2D.AddNode(0, 1);
         uint NodeID2 = graph2D.AddNode(0, 0);
         uint NodeID3 = graph2D.AddNode(0, 3);

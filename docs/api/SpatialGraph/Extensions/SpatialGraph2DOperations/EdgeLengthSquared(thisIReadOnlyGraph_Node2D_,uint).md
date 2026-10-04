@@ -1,6 +1,6 @@
 ## SpatialGraph2DOperations\.EdgeLengthSquared(this IReadOnlyGraph<Node2D>, uint) Method
 
-Get the squared length of an edge\.
+Get the squared length of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge')\.
 
 ```csharp
 public static float EdgeLengthSquared(this SpatialGraph.IReadOnlyGraph<SpatialGraph.Node2D> baseGraph, uint edgeID);
@@ -22,3 +22,6 @@ ID of the edge get its length\.
 #### Returns
 [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')  
 Length of the edge\.
+
+### See Also
+- [EdgeLength(this IReadOnlyGraph&lt;Node2D&gt;, uint)](EdgeLength(thisIReadOnlyGraph_Node2D_,uint).md 'SpatialGraph\.Extensions\.SpatialGraph2DOperations\.EdgeLength(this SpatialGraph\.IReadOnlyGraph<SpatialGraph\.Node2D>, uint)')

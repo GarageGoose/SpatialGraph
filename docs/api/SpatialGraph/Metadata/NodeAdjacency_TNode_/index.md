@@ -18,7 +18,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 
 | Constructors | |
 | :--- | :--- |
-| [NodeAdjacency(IReadOnlyTrackedGraph&lt;TNode&gt;)](NodeAdjacency(IReadOnlyTrackedGraph_TNode_).md 'SpatialGraph\.Metadata\.NodeAdjacency<TNode>\.NodeAdjacency(SpatialGraph\.IReadOnlyTrackedGraph<TNode>)') | Creates a new instance of NodeAdjacency\. |
+| [NodeAdjacency(IReadOnlyObservableGraph&lt;TNode&gt;)](NodeAdjacency(IReadOnlyObservableGraph_TNode_).md 'SpatialGraph\.Metadata\.NodeAdjacency<TNode>\.NodeAdjacency(SpatialGraph\.IReadOnlyObservableGraph<TNode>)') | Creates a new instance of NodeAdjacency\. |
 
 | Methods | |
 | :--- | :--- |

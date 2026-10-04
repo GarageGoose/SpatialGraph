@@ -1,6 +1,6 @@
 ## SpatialGraph2DOperations\.IsNodeWithinAABB(this Node2D, Vector2, float, float) Method
 
-Check if a node is within an axis aligned bounding box\.
+Check if a [INode](../../INode/index.md 'SpatialGraph\.INode') is within an axis aligned bounding box\.
 
 ```csharp
 public static bool IsNodeWithinAABB(this SpatialGraph.Node2D node, System.Numerics.Vector2 topLeftCorner, float width, float height);

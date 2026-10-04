@@ -31,7 +31,7 @@ public class NodeAdjacency<TNode> : GraphReadOnlyPlugin<TNode> where TNode : str
     /// Creates a new instance of NodeAdjacency.
     /// </summary>
     /// <param name="baseGraph">Graph to record from.</param>
-    public NodeAdjacency(IReadOnlyTrackedGraph<TNode> baseGraph) : base(baseGraph)
+    public NodeAdjacency(IReadOnlyObservableGraph<TNode> baseGraph) : base(baseGraph)
     {
         foreach(uint nodeID in Nodes.Keys)
         {

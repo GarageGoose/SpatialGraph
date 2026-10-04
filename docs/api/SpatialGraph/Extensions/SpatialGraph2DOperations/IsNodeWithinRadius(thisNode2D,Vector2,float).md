@@ -1,6 +1,6 @@
 ## SpatialGraph2DOperations\.IsNodeWithinRadius(this Node2D, Vector2, float) Method
 
-Checks if a node is within the radius
+Checks if a [INode](../../INode/index.md 'SpatialGraph\.INode') is within the radius
 
 ```csharp
 public static bool IsNodeWithinRadius(this SpatialGraph.Node2D node, System.Numerics.Vector2 loc, float radius);

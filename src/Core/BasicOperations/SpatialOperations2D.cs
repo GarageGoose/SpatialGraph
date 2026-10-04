@@ -7,11 +7,12 @@ namespace SpatialGraph.Extensions;
 public static class SpatialGraph2DOperations
 {
     /// <summary>
-    /// Get the angle of an edge in radians.
+    /// Get the angle of an <see cref="Edge"/> in radians.
     /// </summary>
     /// <param name="baseGraph">Graph where the edge resides from.</param>
     /// <param name="edgeID">ID of the target edge.</param>
     /// <returns>Angle of the edge in radians.</returns>
+    /// <seealso cref="EdgeAngleOpposite"/>
     public static float EdgeAngle(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Vector2 Dir = baseGraph.GetSecondNodeOfEdge(edgeID).Loc - baseGraph.GetFirstNodeOfEdge(edgeID).Loc;
@@ -19,11 +20,12 @@ public static class SpatialGraph2DOperations
     }
     
     /// <summary>
-    /// Get the angle of an edge, flipped 180 degrees, in radians.
+    /// Get the angle of an <see cref="Edge"/>, flipped 180 degrees, in radians.
     /// </summary>
     /// <param name="baseGraph">Graph where the edge resides from.</param>
     /// <param name="edgeID">ID of the target edge.</param>
     /// <returns>Angle of the edge, flipped 180 degrees, in radians.</returns>
+    /// <seealso cref="EdgeAngle"/>
     public static float EdgeAngleOpposite(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Vector2 Dir = baseGraph.GetFirstNodeOfEdge(edgeID).Loc - baseGraph.GetSecondNodeOfEdge(edgeID).Loc;
@@ -31,7 +33,7 @@ public static class SpatialGraph2DOperations
     }
 
     /// <summary>
-    /// Get the angle of an edge (in radians) relative to one of the node connected from it.
+    /// Get the angle of an <see cref="Edge"/> (in radians) relative to one of its endpoints.
     /// </summary>
     /// <param name="baseGraph">Graph where the edge resides from.</param>
     /// <param name="edgeID">ID of the edge get its angle.</param>
@@ -51,11 +53,12 @@ public static class SpatialGraph2DOperations
     }
 
     /// <summary>
-    /// Get the squared length of an edge.
+    /// Get the squared length of an <see cref="Edge"/>.
     /// </summary>
     /// <param name="baseGraph">Graph where the edge resides from.</param>
     /// <param name="edgeID">ID of the edge get its length.</param>
     /// <returns>Length of the edge.</returns>
+    /// <seealso cref="EdgeLength"/>
     public static float EdgeLengthSquared(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Edge edge = baseGraph.Edges[edgeID];
@@ -67,11 +70,12 @@ public static class SpatialGraph2DOperations
     }
 
     /// <summary>
-    /// Get length of an edge.
+    /// Get length of an <see cref="Edge"/>.
     /// </summary>
     /// <param name="baseGraph">Graph where the edge resides from.</param>
     /// <param name="edgeID">ID of the edge get its length.</param>
     /// <returns>Length of the edge.</returns>
+    /// <seealso cref="EdgeLengthSquared"/>
     public static float EdgeLength(this IReadOnlyGraph<Node2D> baseGraph, uint edgeID)
     {
         Edge edge = baseGraph.Edges[edgeID];
@@ -83,7 +87,7 @@ public static class SpatialGraph2DOperations
     }
 
     /// <summary>
-    /// Checks if a node is within the radius
+    /// Checks if a <see cref="INode"/> is within the radius
     /// </summary>
     /// <param name="node">Node to check.</param>
     /// <param name="loc">Location of the radius.</param>
@@ -95,7 +99,7 @@ public static class SpatialGraph2DOperations
     }
 
     /// <summary>
-    /// Check if a node is within an axis aligned bounding box.
+    /// Check if a <see cref="INode"/> is within an axis aligned bounding box.
     /// </summary>
     /// <param name="node">Node to check.</param>
     /// <param name="topLeftCorner">Upper left bounds of the AABB.</param>
