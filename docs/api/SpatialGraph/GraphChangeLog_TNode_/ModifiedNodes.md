@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.ModifiedNodes Property
 
-Dictionary for nodes which was/will be modified\. Contains the original and new value of the node\.
+Dictionary for [INode](../INode/index.md 'SpatialGraph\.INode')s which was/will be modified\. Contains the original and new value of the [INode](../INode/index.md 'SpatialGraph\.INode')\.
 
 ```csharp
 public System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ElementModified<TNode>> ModifiedNodes { get; }

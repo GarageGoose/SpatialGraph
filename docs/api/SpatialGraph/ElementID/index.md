@@ -1,6 +1,6 @@
 ## ElementID Struct
 
-Generic element identifier\.
+Generic [IElement](../IElement/index.md 'SpatialGraph\.IElement') identifier\.
 
 ```csharp
 public readonly record struct ElementID : System.IEquatable<SpatialGraph.ElementID>
@@ -10,7 +10,7 @@ Implements [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api
 
 | Constructors | |
 | :--- | :--- |
-| [ElementID(ElementType, uint)](ElementID(ElementType,uint).md 'SpatialGraph\.ElementID\.ElementID(SpatialGraph\.ElementType, uint)') | Generic element identifier\. |
+| [ElementID(ElementType, uint)](ElementID(ElementType,uint).md 'SpatialGraph\.ElementID\.ElementID(SpatialGraph\.ElementType, uint)') | Generic [IElement](../IElement/index.md 'SpatialGraph\.IElement') identifier\. |
 
 | Properties | |
 | :--- | :--- |

@@ -1,7 +1,8 @@
 namespace SpatialGraph;
 
 /// <summary>
-/// Graph which tracks and can modify incoming changes within it.
+/// Graph which can modify incoming changes and track changed within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
+/// Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrackedGraph<TNode> where TNode : struct, INode
@@ -43,18 +44,18 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
         
         foreach(TNode node in log.NodeUpserts())
         {
-            nodes[node.ID] = node;
+            _Nodes[node.ID] = node;
         }
         
         foreach(Edge edge in log.EdgeUpserts())
         {
-            edges[edge.ID] = edge;
+            _Edges[edge.ID] = edge;
         }
 
         foreach(uint nodeID in log.NodeRemovals())
         {
             //Undo log if operation failed
-            if (!nodes.Remove(nodeID))
+            if (!_Nodes.Remove(nodeID))
             {
                 log.UnlogNode(nodeID);
             }
@@ -63,7 +64,7 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
         foreach(uint edgeID in log.EdgeRemovals())
         {
             //Undo log if operation failed
-            if (!edges.Remove(edgeID))
+            if (!_Edges.Remove(edgeID))
             {
                 log.UnlogEdge(edgeID);
             }
@@ -75,21 +76,21 @@ public class InterceptableTrackedGraph<TNode> : Graph<TNode>, IInterceptableTrac
     /// <inheritdoc/>
     public override bool RemoveEdge(uint ID)
     {
-        bool IsEdgeRemoved = edges.ContainsKey(ID);
+        bool IsEdgeRemoved = _Edges.ContainsKey(ID);
         GraphChangeLog<TNode> log = new(this);
         log.EdgeRemoval(ID);
         ApplyChangeSet(log);
-        return IsEdgeRemoved == true ? edges.ContainsKey(ID) ? false : true : false; 
+        return IsEdgeRemoved == true ? _Edges.ContainsKey(ID) ? false : true : false; 
     }
 
     /// <inheritdoc/>
     public override bool RemoveNode(uint ID)
     {
-        bool IsNodeRemoved = edges.ContainsKey(ID);
+        bool IsNodeRemoved = _Edges.ContainsKey(ID);
         GraphChangeLog<TNode> log = new(this);
         log.NodeRemoval(ID);
         ApplyChangeSet(log);
-        return IsNodeRemoved == true ? edges.ContainsKey(ID) ? false : true : false; 
+        return IsNodeRemoved == true ? _Edges.ContainsKey(ID) ? false : true : false; 
     }
 
     /// <inheritdoc/>

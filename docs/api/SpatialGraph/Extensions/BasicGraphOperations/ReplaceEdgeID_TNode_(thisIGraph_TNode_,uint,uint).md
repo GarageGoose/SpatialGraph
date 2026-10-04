@@ -11,22 +11,27 @@ public static void ReplaceEdgeID<TNode>(this SpatialGraph.IGraph<TNode> graph, u
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.IGraph_TNode_,uint,uint).TNode'></a>
 
 `TNode`
+
+Type of node the graph is using\.
 #### Parameters
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.IGraph_TNode_,uint,uint).graph'></a>
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[TNode](ReplaceEdgeID_TNode_(thisIGraph_TNode_,uint,uint).md#SpatialGraph.Extensions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.IGraph_TNode_,uint,uint).TNode 'SpatialGraph\.Extensions\.BasicGraphOperations\.ReplaceEdgeID<TNode>(this SpatialGraph\.IGraph<TNode>, uint, uint)\.TNode')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') where to replace an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') ID\.
+Graph where to replace an edge ID\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.IGraph_TNode_,uint,uint).EdgeID'></a>
 
 `EdgeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-Current ID of the [Edge](../../Edge/index.md 'SpatialGraph\.Edge') to be replaced with a new ID\.
+Current ID of the edge to be replaced with a new ID\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceEdgeID_TNode_(thisSpatialGraph.IGraph_TNode_,uint,uint).NewEdgeID'></a>
 
 `NewEdgeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-New ID of the [Edge](../../Edge/index.md 'SpatialGraph\.Edge')\.
+New ID of the edge\.
+
+### Remarks
+Does an upsert then removes the edge with the old ID\. Anything that references the old edge ID is not updated by this method\.

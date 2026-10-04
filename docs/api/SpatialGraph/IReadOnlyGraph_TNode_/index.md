@@ -1,6 +1,6 @@
 ## IReadOnlyGraph<TNode> Interface
 
-Read only interface of a graph\. A graph stores nodes and edges within it, identified by their IDs\.
+Read only interface of [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\. A graph stores [INode](../INode/index.md 'SpatialGraph\.INode') and [Edge](../Edge/index.md 'SpatialGraph\.Edge') within it, identified by their IDs\.
 
 ```csharp
 public interface IReadOnlyGraph<TNode>

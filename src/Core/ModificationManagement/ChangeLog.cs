@@ -1,7 +1,8 @@
 namespace SpatialGraph;
 
 /// <summary>
-/// Logs incoming changes for a graph. Stores additional data: type of modification of an element (Add, Modify, Delete), old value of an element (if any), and new value of an element (if any).
+/// Logs incoming changes for a <see cref="IGraph{TNode}"/>. Stores additional data: type of modification of an
+/// <see cref="IElement"/> (Add, Modify, Delete), old value of an <see cref="IElement"/> (if any), and new value of an <see cref="IElement"/> (if any).
 /// </summary>
 /// <typeparam name="TNode">Node which the base graph uses.</typeparam>
 public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode : struct, INode
@@ -97,7 +98,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Create a ChangeLog referencing a graph with changes from a ChangeSet.
+    /// Create a ChangeLog referencing a <see cref="IGraph{TNode}"/> with changes from a <see cref="GraphChangeSet{TNode}"/>.
     /// </summary>
     /// <param name="baseGraph">Graph to reference the changes from.</param>
     /// <param name="changeSet">Set of changes to log.</param>
@@ -121,7 +122,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Log changes from a change set.
+    /// Log changes from a <see cref="GraphChangeSet{TNode}"/>.
     /// </summary>
     /// <param name="batchedMods">Contains set of changes for this graph.</param>
     public void LogChangeSet(GraphChangeSet<TNode> batchedMods)
@@ -148,7 +149,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Add a log for a new edge or modify an edge with its corresponding ID. This will not add it to the base graph.
+    /// Add a log for a new <see cref="Edge"/> or modify an <see cref="Edge"/> with its corresponding ID. This will not add it to the base <see cref="IGraph{TNode}"/>.
     /// </summary>
     /// <param name="edge">Edge to upsert, identified by its ID.</param>
     public void EdgeUpsert(Edge edge)
@@ -165,7 +166,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Add a log for new node or modify a node with its corresponding ID. This will not add it to the base graph.
+    /// Add a log for a new <see cref="INode"/> or modify a <see cref="INode"/> with its corresponding ID. This will not add it to the base <see cref="IGraph{TNode}"/>.
     /// </summary>
     /// <param name="node">Node to upsert, identified by its ID.</param>
     public void NodeUpsert(TNode node)
@@ -182,7 +183,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Add a log for the removal of an edge in the graph using its corresponding ID. This will not remove it from the base graph.
+    /// Add a log for the removal of an <see cref="Edge"/> in the <see cref="IGraph{TNode}"/> using its corresponding ID. This will not remove it from the base <see cref="IGraph{TNode}"/>.
     /// </summary>
     /// <param name="ID">ID of the edge to be removed.</param>
     public void EdgeRemoval(uint ID)
@@ -195,7 +196,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Add a log for the removal of a node in the graph using its corresponding ID. This will not remove it from the base graph.
+    /// Add a log for the removal of a <see cref="INode"/> in the <see cref="IGraph{TNode}"/> using its corresponding ID. This will not remove it from the base <see cref="IGraph{TNode}"/>.
     /// </summary>
     /// <param name="ID">ID of the node to be removed.</param>
     public void NodeRemoval(uint ID)
@@ -208,7 +209,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Remove the log of a change in an edge.
+    /// Remove the log of a change in an <see cref="Edge"/>.
     /// </summary>
     /// <param name="ID">ID of the edge for its log to be removed.</param>
     public void UnlogEdge(uint ID)
@@ -233,9 +234,9 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// 
+    /// Remove the log of a change in a <see cref="INode"/>.
     /// </summary>
-    /// <param name="ID"></param>
+    /// <param name="ID">ID of the node for its log to be removed.</param>
     public void UnlogNode(uint ID)
     {
         if(nodeModType.TryGetValue(ID, out ModificationType nodeMod))
@@ -258,7 +259,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Log of nodes to be upserted/has been upserted in the graph.
+    /// Log of <see cref="INode"/>s to be upserted/has been upserted in the graph.
     /// </summary>
     public IEnumerable<TNode> NodeUpserts()
     {
@@ -273,7 +274,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Log of edges to be upserted/has been upserted in the graph.
+    /// Log of <see cref="Edge"/>s to be upserted/has been upserted in the graph.
     /// </summary>
     public IEnumerable<Edge> EdgeUpserts()
     {
@@ -288,7 +289,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Log of nodes to be removed/has been removed in the graph.
+    /// Log of IDs of <see cref="INode"/>s to be removed/has been removed in the graph.
     /// </summary>
     public IEnumerable<uint> NodeRemovals()
     {
@@ -299,7 +300,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Log of edges to be removed/has been removed in the graph.
+    /// Log of IDs of <see cref="Edge"/>s to be removed/has been removed in the graph.
     /// </summary>
     public IEnumerable<uint> EdgeRemovals()
     {
@@ -311,7 +312,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
 }
 
 /// <summary>
-/// Holds type of modification each element has.
+/// Holds type of modification an <see cref="IElement"/> has.
 /// </summary>
 public enum ModificationType
 {
@@ -332,7 +333,8 @@ public enum ModificationType
 }
 
 /// <summary>
-/// Logs incoming changes for a graph. Stores additional data: type of modification of an element (Add, Modify, Delete), old value of an element (if any), and new value of an element (if any).
+/// Read only log for incoming changes for a <see cref="IGraph{TNode}"/>. Stores additional data: type of modification of an
+/// <see cref="IElement"/> (Add, Modify, Delete), old value of an <see cref="IElement"/> (if any), and new value of an <see cref="IElement"/> (if any).
 /// </summary>
 /// <typeparam name="TNode">Type of node used in the graph to log changes from.</typeparam>
 public interface IReadOnlyModificationLog<TNode> : GraphChangeSet<TNode> where TNode : struct, INode
@@ -343,48 +345,48 @@ public interface IReadOnlyModificationLog<TNode> : GraphChangeSet<TNode> where T
     IReadOnlyGraph<TNode> BaseGraph {get;}
 
     /// <summary>
-    /// Dictionary for type of modifications (Add, Remove, Modify) each node have.
+    /// Dictionary for type of modifications (Add, Remove, Modify) each <see cref="INode"/> have.
     /// </summary>
     IReadOnlyDictionary<uint, ModificationType> NodeModType {get;}
 
     /// <summary>
-    /// Dictionary for type of modifications (Add, Remove, Modify) each edge have.
+    /// Dictionary for type of modifications (Add, Remove, Modify) each <see cref="Edge"/> have.
     /// </summary>
     IReadOnlyDictionary<uint, ModificationType> EdgeModType {get;}
 
     /// <summary>
-    /// Dictionary for nodes which was/will be added.
+    /// Dictionary for <see cref="INode"/>s which was/will be added.
     /// </summary>
     IReadOnlyDictionary<uint, ElementAdded<TNode>> NewNodes {get;}
 
     /// <summary>
-    /// Dictionary for edges which was/will be added.
+    /// Dictionary for <see cref="Edge"/>s which was/will be added.
     /// </summary>
     IReadOnlyDictionary<uint, ElementAdded<Edge>> NewEdges {get;}
 
     /// <summary>
-    /// Dictionary for nodes which was/will be modified. Contains the original and new value of the node.
+    /// Dictionary for <see cref="INode"/>s which was/will be modified. Contains the original and new value of the <see cref="INode"/>.
     /// </summary>
     IReadOnlyDictionary<uint, ElementModified<TNode>> ModifiedNodes {get;}
 
     /// <summary>
-    /// Dictionary for edges which was/will be modified. Contains the original and new value of the edge.
+    /// Dictionary for <see cref="Edge"/>s which was/will be modified. Contains the original and new value of the <see cref="Edge"/>.
     /// </summary>
     IReadOnlyDictionary<uint, ElementModified<Edge>> ModifiedEdges {get;}
 
     /// <summary>
-    /// Dictionary for nodes which was/will be removed. Contains its original value.
+    /// Dictionary for <see cref="INode"/>s which was/will be removed. Contains its original value.
     /// </summary>
     IReadOnlyDictionary<uint, ElementRemoved<TNode>> RemovedNodes {get;}
 
     /// <summary>
-    /// Dictionary for edges which was/will be removed. Contains its original value.
+    /// Dictionary for <see cref="Edge"/>s which was/will be removed. Contains its original value.
     /// </summary>
     IReadOnlyDictionary<uint, ElementRemoved<Edge>> RemovedEdges {get;}
 }
 
 /// <summary>
-/// Single log of an element which is modified. Used in a ModificationLog.
+/// Log of an <see cref="IElement"/> which is modified. Used in a <see cref="GraphChangeLog{TNode}"/>.
 /// </summary>
 /// <typeparam name="TElement">Type of an element which is modified. Typically an edge or a type of node.</typeparam>
 /// <param name="NewElement">The new value of the element after it was modified.</param>
@@ -393,7 +395,7 @@ public interface IReadOnlyModificationLog<TNode> : GraphChangeSet<TNode> where T
 public readonly record struct ElementModified<TElement>(TElement NewElement, TElement OldElement, uint ID) where TElement : struct;
 
 /// <summary>
-/// Single log of an element which is removed. Used in a ModificationLog.
+/// Log of an <see cref="IElement"/> which is removed. Used in a <see cref="GraphChangeLog{TNode}"/>.
 /// </summary>
 /// <typeparam name="TElement">Type of an element which is/will be removed. Typically an edge or a type of node.</typeparam>
 /// <param name="Element">Value of an element which is/will be removed.</param>
@@ -401,7 +403,7 @@ public readonly record struct ElementModified<TElement>(TElement NewElement, TEl
 public readonly record struct ElementRemoved<TElement>(TElement Element, uint ID) where TElement : struct;
 
 /// <summary>
-/// Single log of an element which is added. Used in a ModificationLog.
+/// Log of an <see cref="IElement"/> which is added. Used in a <see cref="GraphChangeLog{TNode}"/>.
 /// </summary>
 /// <typeparam name="TElement">Type of an element which is/will be added. Typically an edge or a type of node.</typeparam>
 /// <param name="Element">Value of an element which is/will be added.</param>

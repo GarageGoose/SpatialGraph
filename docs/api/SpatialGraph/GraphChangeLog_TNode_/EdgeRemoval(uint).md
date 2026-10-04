@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.EdgeRemoval(uint) Method
 
-Add a log for the removal of an edge in the graph using its corresponding ID\. This will not remove it from the base graph\.
+Add a log for the removal of an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in the [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') using its corresponding ID\. This will not remove it from the base [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\.
 
 ```csharp
 public void EdgeRemoval(uint ID);

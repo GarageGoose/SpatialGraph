@@ -32,11 +32,11 @@ Implements [SpatialGraph\.IReadOnlyGraphIncomingChanges&lt;](../IReadOnlyGraphIn
 
 | Methods | |
 | :--- | :--- |
-| [EdgeRemovals()](EdgeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeRemovals()') | IDs of the edges to be removed in a graph\. |
-| [EdgeUpserts()](EdgeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeUpserts()') | Edges to be either added or replaced if it has the same ID as a node in a graph\. |
+| [EdgeRemovals()](EdgeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeRemovals()') | IDs of the [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be removed in a graph\. |
+| [EdgeUpserts()](EdgeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeUpserts()') | [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be either added or modified if it has the same ID as an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in a graph\. |
 | [Intersect(GraphIncomingChanges&lt;TNode&gt;)](Intersect(GraphIncomingChanges_TNode_).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.Intersect(SpatialGraph\.GraphIncomingChanges<TNode>)') | Intersect between two GraphIncomingChanges\. |
-| [NodeRemovals()](NodeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeRemovals()') | IDs of the nodes to be removed in a graph\. |
-| [NodeUpserts()](NodeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeUpserts()') | Nodes to be either added or replaced if it has the same ID as a node in a graph\. |
+| [NodeRemovals()](NodeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeRemovals()') | IDs of the [INode](../INode/index.md 'SpatialGraph\.INode')s to be removed in a graph\. |
+| [NodeUpserts()](NodeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeUpserts()') | [INode](../INode/index.md 'SpatialGraph\.INode')s to be either added or modified if it has the same ID as a [INode](../INode/index.md 'SpatialGraph\.INode') in a graph\. |
 | [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveEdge(uint)') | Remove pending changes to a node\. |
 | [RemoveEdgeChange(uint)](RemoveEdgeChange(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveEdgeChange(uint)') | Remove pending changes to an edge\. |
 | [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveNode(uint)') | Remove a node with its ID\. |

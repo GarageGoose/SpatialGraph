@@ -1,6 +1,6 @@
 ## Graph<TNode> Class
 
-Base class for graphs, can be built upon\.
+Base class for graphs, can be built upon\. A graph stores [INode](../INode/index.md 'SpatialGraph\.INode') and [Edge](../Edge/index.md 'SpatialGraph\.Edge') within it, identified by their IDs\.
 
 ```csharp
 public class Graph<TNode> : SpatialGraph.IGraph<TNode>, SpatialGraph.IReadOnlyGraph<TNode>
@@ -30,8 +30,8 @@ Implements [SpatialGraph\.IGraph&lt;](../IGraph_TNode_/index.md 'SpatialGraph\.I
 
 | Fields | |
 | :--- | :--- |
-| [edges](edges.md 'SpatialGraph\.Graph<TNode>\.edges') | Writable dictionary for edges in the graph\. |
-| [nodes](nodes.md 'SpatialGraph\.Graph<TNode>\.nodes') | Writable dictionary for nodes in the graph\. |
+| [\_Edges](_Edges.md 'SpatialGraph\.Graph<TNode>\.\_Edges') | Writable dictionary for edges in the graph\. |
+| [\_Nodes](_Nodes.md 'SpatialGraph\.Graph<TNode>\.\_Nodes') | Writable dictionary for nodes in the graph\. |
 
 | Properties | |
 | :--- | :--- |
@@ -40,9 +40,9 @@ Implements [SpatialGraph\.IGraph&lt;](../IGraph_TNode_/index.md 'SpatialGraph\.I
 
 | Methods | |
 | :--- | :--- |
-| [ApplyChangeSet(GraphChangeSet&lt;TNode&gt;)](ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.Graph<TNode>\.ApplyChangeSet(SpatialGraph\.GraphChangeSet<TNode>)') | Perform multiple operations at once with a GraphChangeSet\. Existing nodes or edges with a corresponding ID in the graph will be replaced\. Nodes and edges can share the same ID\. |
+| [ApplyChangeSet(GraphChangeSet&lt;TNode&gt;)](ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.Graph<TNode>\.ApplyChangeSet(SpatialGraph\.GraphChangeSet<TNode>)') | Perform multiple operations at once with a [GraphChangeSet&lt;TNode&gt;](../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')\. Existing [INode](../INode/index.md 'SpatialGraph\.INode') or [Edge](../Edge/index.md 'SpatialGraph\.Edge')s with a corresponding ID in the graph will be replaced\. Nodes and edges can share the same ID\. |
 | [GenerateID()](GenerateID().md 'SpatialGraph\.Graph<TNode>\.GenerateID()') | Generate unique ID for the elements of the graph\. Nodes and edges can share the same ID\. |
-| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.Graph<TNode>\.RemoveEdge(uint)') | Remove an edge in the graph using its corresponding ID\. Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\. |
-| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.Graph<TNode>\.RemoveNode(uint)') | Remove a node in the graph using its correspinding ID\. Connecting edges referencing this node will not be removed\. Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\. |
-| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.Graph<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new edge or modify an edge with its corresponding ID\. |
-| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.Graph<TNode>\.UpsertNode(TNode)') | Add a new node or modify one with their corresponding ID\. Nodes and edges can share the same ID\. |
+| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.Graph<TNode>\.RemoveEdge(uint)') | Remove an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in the graph using its corresponding ID\. Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\. |
+| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.Graph<TNode>\.RemoveNode(uint)') | Remove a [INode](../INode/index.md 'SpatialGraph\.INode') in the graph using its correspinding ID\. Connecting [Edge](../Edge/index.md 'SpatialGraph\.Edge') referencing this node will not be removed\. Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\. |
+| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.Graph<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new [Edge](../Edge/index.md 'SpatialGraph\.Edge') or modify an [Edge](../Edge/index.md 'SpatialGraph\.Edge') with its corresponding ID\. |
+| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.Graph<TNode>\.UpsertNode(TNode)') | Add a new [INode](../INode/index.md 'SpatialGraph\.INode') or modify one with their corresponding ID\. Nodes and edges can share the same ID\. |

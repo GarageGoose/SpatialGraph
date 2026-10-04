@@ -2,14 +2,14 @@
 
 | Overloads | |
 | :--- | :--- |
-| [WithLoc(this Node2D, Vector2)](WithLoc.md#SpatialGraph.Extensions.BasicElementOperations.WithLoc(thisSpatialGraph.Node2D,System.Numerics.Vector2) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithLoc(this SpatialGraph\.Node2D, System\.Numerics\.Vector2)') | Creates a new copy of a node with a different node location\. |
-| [WithLoc(this Node3D, Vector3)](WithLoc.md#SpatialGraph.Extensions.BasicElementOperations.WithLoc(thisSpatialGraph.Node3D,System.Numerics.Vector3) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithLoc(this SpatialGraph\.Node3D, System\.Numerics\.Vector3)') | Creates a new copy of a node with a different node location\. |
+| [WithLoc(this Node2D, Vector2)](WithLoc.md#SpatialGraph.Extensions.BasicElementOperations.WithLoc(thisSpatialGraph.Node2D,System.Numerics.Vector2) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithLoc(this SpatialGraph\.Node2D, System\.Numerics\.Vector2)') | Creates a new copy of a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') with a different node location\. |
+| [WithLoc(this Node3D, Vector3)](WithLoc.md#SpatialGraph.Extensions.BasicElementOperations.WithLoc(thisSpatialGraph.Node3D,System.Numerics.Vector3) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithLoc(this SpatialGraph\.Node3D, System\.Numerics\.Vector3)') | Creates a new copy of a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') with a different node location\. |
 
 <a name='SpatialGraph.Extensions.BasicElementOperations.WithLoc(thisSpatialGraph.Node2D,System.Numerics.Vector2)'></a>
 
 ## BasicElementOperations\.WithLoc(this Node2D, Vector2) Method
 
-Creates a new copy of a node with a different node location\.
+Creates a new copy of a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') with a different node location\.
 
 ```csharp
 public static SpatialGraph.Node2D WithLoc(this SpatialGraph.Node2D node, System.Numerics.Vector2 newLoc);
@@ -36,7 +36,7 @@ Node with new location\.
 
 ## BasicElementOperations\.WithLoc(this Node3D, Vector3) Method
 
-Creates a new copy of a node with a different node location\.
+Creates a new copy of a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') with a different node location\.
 
 ```csharp
 public static SpatialGraph.Node3D WithLoc(this SpatialGraph.Node3D node, System.Numerics.Vector3 newLoc);

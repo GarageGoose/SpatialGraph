@@ -1,6 +1,6 @@
 ## GraphChangeSet<TNode>\.NodeUpserts() Method
 
-Nodes to be either added or replaced if it has the same ID as a node in a graph\.
+[INode](../INode/index.md 'SpatialGraph\.INode')s to be either added or modified if it has the same ID as a [INode](../INode/index.md 'SpatialGraph\.INode') in a graph\.
 
 ```csharp
 System.Collections.Generic.IEnumerable<TNode> NodeUpserts();

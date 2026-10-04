@@ -20,19 +20,22 @@ public static void ReplaceNodeID(this SpatialGraph.IGraph<SpatialGraph.Node2D> g
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') where to replace a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') ID\.
+Graph where to replace a node ID\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,uint).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-Current ID of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to be replaced with a new ID\.
+Current ID of the node to be replaced with a new ID\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,uint).NewNodeID'></a>
 
 `NewNodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-New ID of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+New ID of the node\.
+
+### Remarks
+Does an upsert then removes the node with the old ID\. Anything that references the old node ID is not updated by this method\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,uint)'></a>
 
@@ -49,16 +52,19 @@ public static void ReplaceNodeID(this SpatialGraph.IGraph<SpatialGraph.Node3D> g
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') where to replace a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') ID\.
+Graph where to replace a node ID\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,uint).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-Current ID of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to be replaced with a new ID\.
+Current ID of the node to be replaced with a new ID\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceNodeID(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,uint).NewNodeID'></a>
 
 `NewNodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-New ID of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+New ID of the node\.
+
+### Remarks
+Does an upsert then removes the node with the old ID\. Anything that references the old node ID is not updated by this method\.

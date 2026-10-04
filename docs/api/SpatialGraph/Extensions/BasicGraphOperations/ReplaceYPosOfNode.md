@@ -20,19 +20,19 @@ public static void ReplaceYPosOfNode(this SpatialGraph.IGraph<SpatialGraph.Node2
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to replace its Y location\.
+Graph with the node to replace its Y location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,float).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to replace its Y location\.
+ID of the node to replace its Y location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,float).NewYPos'></a>
 
 `NewYPos` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-New Y location of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+New Y location of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float)'></a>
 
@@ -49,16 +49,16 @@ public static void ReplaceYPosOfNode(this SpatialGraph.IGraph<SpatialGraph.Node3
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its Y location\.
+Graph with the node to replace its Y location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its Y location\.
+ID of the node to replace its Y location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceYPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float).NewYPos'></a>
 
 `NewYPos` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-New Y location of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+New Y location of the node\.

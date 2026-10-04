@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.LogChangeSet(GraphChangeSet<TNode>) Method
 
-Log changes from a change set\.
+Log changes from a [GraphChangeSet&lt;TNode&gt;](../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')\.
 
 ```csharp
 public void LogChangeSet(SpatialGraph.GraphChangeSet<TNode> batchedMods);

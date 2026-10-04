@@ -1,6 +1,6 @@
 ## BasicElementOperations\.GetSecondNodeOfEdge<TNode>(this IReadOnlyGraph<TNode>, uint) Method
 
-Get the second connecting node of an edge\.
+Get the [INode](../../INode/index.md 'SpatialGraph\.INode') that is referenced from [NodeID2](../../Edge/NodeID2.md 'SpatialGraph\.Edge\.NodeID2') of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge')\.
 
 ```csharp
 public static TNode GetSecondNodeOfEdge<TNode>(this SpatialGraph.IReadOnlyGraph<TNode> graph, uint edgeID)

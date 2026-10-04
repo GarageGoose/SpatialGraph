@@ -1,6 +1,7 @@
 ## InterceptableTrackedGraph<TNode> Class
 
-Graph which tracks and can modify incoming changes within it\.
+Graph which can modify incoming changes and track changed within it\. A graph stores [INode](../INode/index.md 'SpatialGraph\.INode') and [Edge](../Edge/index.md 'SpatialGraph\.Edge') within it, identified by their IDs\.
+Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\.
 
 ```csharp
 public class InterceptableTrackedGraph<TNode> : SpatialGraph.Graph<TNode>, SpatialGraph.IInterceptableTrackedGraph<TNode>, SpatialGraph.ITrackedGraph<TNode>, SpatialGraph.IReadOnlyTrackedGraph<TNode>, SpatialGraph.IReadOnlyGraph<TNode>, SpatialGraph.IGraph<TNode>
@@ -26,11 +27,11 @@ Implements [SpatialGraph\.IInterceptableTrackedGraph&lt;](../IInterceptableTrack
 
 | Methods | |
 | :--- | :--- |
-| [ApplyChangeSet(GraphChangeSet&lt;TNode&gt;)](ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.ApplyChangeSet(SpatialGraph\.GraphChangeSet<TNode>)') | Perform multiple operations at once with a GraphChangeSet\. Existing nodes or edges with a corresponding ID in the graph will be replaced\. Nodes and edges can share the same ID\. |
-| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.RemoveEdge(uint)') | Remove an edge in the graph using its corresponding ID\. Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\. |
-| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.RemoveNode(uint)') | Remove a node in the graph using its correspinding ID\. Connecting edges referencing this node will not be removed\. Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\. |
-| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new edge or modify an edge with its corresponding ID\. |
-| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.UpsertNode(TNode)') | Add a new node or modify one with their corresponding ID\. Nodes and edges can share the same ID\. |
+| [ApplyChangeSet(GraphChangeSet&lt;TNode&gt;)](ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.ApplyChangeSet(SpatialGraph\.GraphChangeSet<TNode>)') | Perform multiple operations at once with a [GraphChangeSet&lt;TNode&gt;](../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')\. Existing [INode](../INode/index.md 'SpatialGraph\.INode') or [Edge](../Edge/index.md 'SpatialGraph\.Edge')s with a corresponding ID in the graph will be replaced\. Nodes and edges can share the same ID\. |
+| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.RemoveEdge(uint)') | Remove an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in the graph using its corresponding ID\. Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\. |
+| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.RemoveNode(uint)') | Remove a [INode](../INode/index.md 'SpatialGraph\.INode') in the graph using its correspinding ID\. Connecting [Edge](../Edge/index.md 'SpatialGraph\.Edge') referencing this node will not be removed\. Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\. |
+| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new [Edge](../Edge/index.md 'SpatialGraph\.Edge') or modify an [Edge](../Edge/index.md 'SpatialGraph\.Edge') with its corresponding ID\. |
+| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.InterceptableTrackedGraph<TNode>\.UpsertNode(TNode)') | Add a new [INode](../INode/index.md 'SpatialGraph\.INode') or modify one with their corresponding ID\. Nodes and edges can share the same ID\. |
 
 | Events | |
 | :--- | :--- |

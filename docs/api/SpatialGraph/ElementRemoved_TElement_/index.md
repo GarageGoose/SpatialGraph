@@ -1,6 +1,6 @@
 ## ElementRemoved<TElement> Struct
 
-Single log of an element which is removed\. Used in a ModificationLog\.
+Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is removed\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\.
 
 ```csharp
 public readonly record struct ElementRemoved<TElement> : System.IEquatable<SpatialGraph.ElementRemoved<TElement>>
@@ -18,7 +18,7 @@ Implements [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api
 
 | Constructors | |
 | :--- | :--- |
-| [ElementRemoved(TElement, uint)](ElementRemoved(TElement,uint).md 'SpatialGraph\.ElementRemoved<TElement>\.ElementRemoved(TElement, uint)') | Single log of an element which is removed\. Used in a ModificationLog\. |
+| [ElementRemoved(TElement, uint)](ElementRemoved(TElement,uint).md 'SpatialGraph\.ElementRemoved<TElement>\.ElementRemoved(TElement, uint)') | Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is removed\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\. |
 
 | Properties | |
 | :--- | :--- |

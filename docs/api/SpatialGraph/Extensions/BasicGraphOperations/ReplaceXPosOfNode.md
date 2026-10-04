@@ -20,19 +20,19 @@ public static void ReplaceXPosOfNode(this SpatialGraph.IGraph<SpatialGraph.Node2
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to replace its X location\.
+Graph with the node to replace its X location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,float).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to replace its X location\.
+ID of the node to replace its X location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,float).NewXPos'></a>
 
 `NewXPos` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-New X location of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+New X location of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float)'></a>
 
@@ -49,16 +49,16 @@ public static void ReplaceXPosOfNode(this SpatialGraph.IGraph<SpatialGraph.Node3
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its X location\.
+Graph with the node to replace its X location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its X location\.
+ID of the node to replace its X location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceXPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float).NewXPos'></a>
 
 `NewXPos` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-New X location of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+New X location of the node\.

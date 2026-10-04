@@ -3,12 +3,12 @@ using SpatialGraph.Metadata;
 namespace SpatialGraph.Extensions;
 
 /// <summary>
-/// Basic modification for 2D graphs.
+/// Operations for basic modifications of <see cref="IGraph{Node2D}"/>s.
 /// </summary>
 public static class Graph2DOperations
 {
     /// <summary>
-    /// Copy specified elements from one graph to another.
+    /// Copy specified elements from one <see cref="IGraph{Node2D}"/> to another.
     /// </summary>
     /// <param name="copyFrom">Source graph to copy from.</param>
     /// <param name="elementsToCopy">Elements to copy.</param>
@@ -72,7 +72,7 @@ public static class Graph2DOperations
     }
 
     /// <summary>
-    /// Copy entire graph to another graph.
+    /// Copy entire <see cref="IGraph{Node2D}"/> to another <see cref="IGraph{Node2D}"/>.
     /// </summary>
     /// <param name="copyFrom">Source graph to copy.</param>
     /// <param name="pasteTo">Target graph to paste the source graph to.</param>
@@ -115,7 +115,7 @@ public static class Graph2DOperations
     }
 
     /// <summary>
-    /// Insert a new node in between an edge.
+    /// Insert a new <see cref="Node2D"/> in between an <see cref="Edge"/>.
     /// </summary>
     /// <param name="baseGraph">Graph to perform the operation.</param>
     /// <param name="edgeID">ID of target edge.</param>
@@ -136,7 +136,7 @@ public static class Graph2DOperations
     }
 
     /// <summary>
-    /// Combine multiple nodes into a single one.
+    /// Combine multiple <see cref="Node2D"/>s into a single one.
     /// </summary>
     /// <param name="baseGraph">Graph to perform the operation.</param>
     /// <param name="adjacency">Elements adjacency plugin for baseGraph.</param>

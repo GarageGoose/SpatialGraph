@@ -1,6 +1,6 @@
 ## ElementModified(TElement, TElement, uint) Constructor
 
-Single log of an element which is modified\. Used in a ModificationLog\.
+Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is modified\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\.
 
 ```csharp
 public ElementModified(TElement NewElement, TElement OldElement, uint ID);

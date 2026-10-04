@@ -1,14 +1,14 @@
 namespace SpatialGraph
 {
     /// <summary>
-    /// Main interface for the library. Contains all the essentials for building <see cref="IGraph{TNode}"/>s.
+    /// Main namespace for the library. Contains all the essentials for building and interacting with <see cref="IGraph{TNode}"/>s.
     /// </summary>
     internal class NamespaceDoc{}
 }
 namespace SpatialGraph.Extensions
 {
     /// <summary>
-    /// Extention methods for <see cref="IGraph{TNode}"/> and <see cref="IElement"/>.
+    /// Extension methods for graph/element manipulation, extending the functionality of <see cref="IGraph{TNode}"/> and <see cref="IElement"/>.
     /// </summary>
     internal class NamespaceDoc{}
 }
@@ -16,7 +16,7 @@ namespace SpatialGraph.Extensions
 namespace SpatialGraph.Metadata
 {
     /// <summary>
-    /// Plugins for documenting additional information in <see cref="IGraph{TNode}"/>s.
+    /// Provides plugins for storing and managing additional metadatas in <see cref="IGraph{TNode}"/>s.
     /// </summary>
     internal class NamespaceDoc{}
 }
@@ -24,7 +24,8 @@ namespace SpatialGraph.Metadata
 namespace SpatialGraph.Traversal
 {
     /// <summary>
-    /// Traversal algorithms for <see cref="IGraph{TNode}"/>s including operations like floodfill.
+    /// Traversal algorithms for <see cref="IGraph{TNode}"/>s including operations such as floodfill
+    /// and other methods for exploring <see cref="IGraph{TNode}"/>s.
     /// </summary>
     internal class NamespaceDoc{}
 }

@@ -1,6 +1,6 @@
 ## ElementRemoved(TElement, uint) Constructor
 
-Single log of an element which is removed\. Used in a ModificationLog\.
+Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is removed\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\.
 
 ```csharp
 public ElementRemoved(TElement Element, uint ID);

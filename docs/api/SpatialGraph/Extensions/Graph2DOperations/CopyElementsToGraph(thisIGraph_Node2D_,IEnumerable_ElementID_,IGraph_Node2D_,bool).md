@@ -1,6 +1,6 @@
 ## Graph2DOperations\.CopyElementsToGraph(this IGraph<Node2D>, IEnumerable<ElementID>, IGraph<Node2D>, bool) Method
 
-Copy specified elements from one graph to another\.
+Copy specified elements from one [IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to another\.
 
 ```csharp
 public static void CopyElementsToGraph(this SpatialGraph.IGraph<SpatialGraph.Node2D> copyFrom, System.Collections.Generic.IEnumerable<SpatialGraph.ElementID> elementsToCopy, SpatialGraph.IGraph<SpatialGraph.Node2D> pasteTo, bool preserveID);

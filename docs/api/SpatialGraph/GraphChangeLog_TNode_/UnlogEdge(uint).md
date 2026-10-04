@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.UnlogEdge(uint) Method
 
-Remove the log of a change in an edge\.
+Remove the log of a change in an [Edge](../Edge/index.md 'SpatialGraph\.Edge')\.
 
 ```csharp
 public void UnlogEdge(uint ID);

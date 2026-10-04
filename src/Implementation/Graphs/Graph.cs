@@ -1,7 +1,7 @@
 namespace SpatialGraph;
 
 /// <summary>
-/// Base class for graphs, can be built upon.
+/// Base class for graphs, can be built upon. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
@@ -19,8 +19,8 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <param name="graph">Graph to replicate from.</param>
     public Graph(IReadOnlyGraph<TNode> graph)
     {
-        nodes = new(graph.Nodes);
-        edges = new(graph.Edges);
+        _Nodes = new(graph.Nodes);
+        _Edges = new(graph.Edges);
     }
 
     /// <summary>
@@ -28,60 +28,60 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// </summary>
     public Graph(Dictionary<uint, TNode> nodes, Dictionary<uint, Edge> edges)
     {
-        this.nodes = new(nodes);
-        this.edges = new(edges);
+        _Nodes = new(nodes);
+        _Edges = new(edges);
     }
 
     /// <summary>
     /// Writable dictionary for nodes in the graph.
     /// </summary>
-    protected Dictionary<uint, TNode> nodes = new();
+    protected Dictionary<uint, TNode> _Nodes = new();
 
     /// <inheritdoc/>
-    public IReadOnlyDictionary<uint, TNode> Nodes => nodes;
+    public IReadOnlyDictionary<uint, TNode> Nodes => _Nodes;
 
 
     /// <summary>
     /// Writable dictionary for edges in the graph.
     /// </summary>
-    protected Dictionary<uint, Edge> edges = new();
+    protected Dictionary<uint, Edge> _Edges = new();
 
     /// <inheritdoc/>
-    public IReadOnlyDictionary<uint, Edge> Edges => edges;
+    public IReadOnlyDictionary<uint, Edge> Edges => _Edges;
 
     /// <inheritdoc/>
-    public virtual void UpsertNode(TNode Node) => nodes[Node.ID] = Node;
+    public virtual void UpsertNode(TNode Node) => _Nodes[Node.ID] = Node;
     
     /// <inheritdoc/>
-    public virtual bool RemoveNode(uint ID) => nodes.Remove(ID);
+    public virtual bool RemoveNode(uint ID) => _Nodes.Remove(ID);
 
     /// <inheritdoc/>
-    public virtual void UpsertEdge(Edge Edge) => edges[Edge.ID] = Edge;
+    public virtual void UpsertEdge(Edge Edge) => _Edges[Edge.ID] = Edge;
 
     /// <inheritdoc/>
-    public virtual bool RemoveEdge(uint ID) => edges.Remove(ID);
+    public virtual bool RemoveEdge(uint ID) => _Edges.Remove(ID);
 
     /// <inheritdoc/>
     public virtual void ApplyChangeSet(GraphChangeSet<TNode> mods)
     {
         foreach(TNode node in mods.NodeUpserts())
         {
-            nodes[node.ID] = node;
+            _Nodes[node.ID] = node;
         }
         
         foreach(Edge edge in mods.EdgeUpserts())
         {
-            edges[edge.ID] = edge;
+            _Edges[edge.ID] = edge;
         }
 
         foreach(uint nodeID in mods.NodeRemovals())
         {
-            nodes.Remove(nodeID);
+            _Nodes.Remove(nodeID);
         }
 
         foreach(uint edgeID in mods.EdgeRemovals())
         {
-            edges.Remove(edgeID);
+            _Edges.Remove(edgeID);
         }
     }
 

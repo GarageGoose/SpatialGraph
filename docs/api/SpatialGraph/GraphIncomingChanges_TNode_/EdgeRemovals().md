@@ -1,6 +1,6 @@
 ## GraphIncomingChanges<TNode>\.EdgeRemovals() Method
 
-IDs of the edges to be removed in a graph\.
+IDs of the [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be removed in a graph\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<uint> EdgeRemovals();

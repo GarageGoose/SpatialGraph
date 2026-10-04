@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.RemovedNodes Property
 
-Dictionary for nodes which was/will be removed\. Contains its original value\.
+Dictionary for [INode](../INode/index.md 'SpatialGraph\.INode')s which was/will be removed\. Contains its original value\.
 
 ```csharp
 public System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ElementRemoved<TNode>> RemovedNodes { get; }

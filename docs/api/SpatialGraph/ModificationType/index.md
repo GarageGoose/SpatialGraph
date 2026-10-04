@@ -1,6 +1,6 @@
 ## ModificationType Enum
 
-Holds type of modification each element has\.
+Holds type of modification an [IElement](../IElement/index.md 'SpatialGraph\.IElement') has\.
 
 ```csharp
 public enum ModificationType

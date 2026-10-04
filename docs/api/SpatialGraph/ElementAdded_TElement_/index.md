@@ -1,6 +1,6 @@
 ## ElementAdded<TElement> Struct
 
-Single log of an element which is added\. Used in a ModificationLog\.
+Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is added\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\.
 
 ```csharp
 public readonly record struct ElementAdded<TElement> : System.IEquatable<SpatialGraph.ElementAdded<TElement>>
@@ -18,7 +18,7 @@ Implements [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api
 
 | Constructors | |
 | :--- | :--- |
-| [ElementAdded(TElement, uint)](ElementAdded(TElement,uint).md 'SpatialGraph\.ElementAdded<TElement>\.ElementAdded(TElement, uint)') | Single log of an element which is added\. Used in a ModificationLog\. |
+| [ElementAdded(TElement, uint)](ElementAdded(TElement,uint).md 'SpatialGraph\.ElementAdded<TElement>\.ElementAdded(TElement, uint)') | Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is added\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\. |
 
 | Properties | |
 | :--- | :--- |

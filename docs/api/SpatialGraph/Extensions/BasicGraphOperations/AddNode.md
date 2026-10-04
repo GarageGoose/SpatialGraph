@@ -22,19 +22,19 @@ public static uint AddNode(this SpatialGraph.IGraph<SpatialGraph.Node2D> graph, 
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to add a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Graph to add a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,float,float).X'></a>
 
 `X` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-X position of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+X position of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,float,float).Y'></a>
 
 `Y` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-Y position of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Y position of the node\.
 
 #### Returns
 [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')  
@@ -55,17 +55,17 @@ public static uint AddNode(this SpatialGraph.IGraph<SpatialGraph.Node2D> graph, 
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to add a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Graph to add a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,System.Numerics.Vector2).Loc'></a>
 
 `Loc` [System\.Numerics\.Vector2](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector2 'System\.Numerics\.Vector2')
 
-Location of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Location of the node\.
 
 #### Returns
 [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')  
-ID of the new [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+ID of the new node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,float,float,float)'></a>
 
@@ -82,29 +82,29 @@ public static uint AddNode(this SpatialGraph.IGraph<SpatialGraph.Node3D> graph, 
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to add a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Graph to add a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,float,float,float).X'></a>
 
 `X` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-X position of the new [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+X position of the new node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,float,float,float).Y'></a>
 
 `Y` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-Y position of the new [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Y position of the new node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,float,float,float).Z'></a>
 
 `Z` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-Z position of the new [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Z position of the new node\.
 
 #### Returns
 [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')  
-ID of the new [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+ID of the new node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,System.Numerics.Vector3)'></a>
 
@@ -121,14 +121,14 @@ public static uint AddNode(this SpatialGraph.IGraph<SpatialGraph.Node3D> graph, 
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to add a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Graph to add a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,System.Numerics.Vector3).Loc'></a>
 
 `Loc` [System\.Numerics\.Vector3](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3 'System\.Numerics\.Vector3')
 
-Location of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Location of the node\.
 
 #### Returns
 [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')  
-ID of the new [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+ID of the new node\.

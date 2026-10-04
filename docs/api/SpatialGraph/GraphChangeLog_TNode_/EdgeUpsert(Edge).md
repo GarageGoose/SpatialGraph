@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.EdgeUpsert(Edge) Method
 
-Add a log for a new edge or modify an edge with its corresponding ID\. This will not add it to the base graph\.
+Add a log for a new [Edge](../Edge/index.md 'SpatialGraph\.Edge') or modify an [Edge](../Edge/index.md 'SpatialGraph\.Edge') with its corresponding ID\. This will not add it to the base [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\.
 
 ```csharp
 public void EdgeUpsert(SpatialGraph.Edge edge);

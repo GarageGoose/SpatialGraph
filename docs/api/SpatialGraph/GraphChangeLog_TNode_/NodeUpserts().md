@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.NodeUpserts() Method
 
-Log of nodes to be upserted/has been upserted in the graph\.
+Log of [INode](../INode/index.md 'SpatialGraph\.INode')s to be upserted/has been upserted in the graph\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<TNode> NodeUpserts();

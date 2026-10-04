@@ -1,6 +1,6 @@
 ## GraphIncomingChanges<TNode>\.EdgeUpserts() Method
 
-Edges to be either added or replaced if it has the same ID as a node in a graph\.
+[Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be either added or modified if it has the same ID as an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in a graph\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<SpatialGraph.Edge> EdgeUpserts();

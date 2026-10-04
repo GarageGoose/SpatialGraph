@@ -2,14 +2,14 @@
 
 | Overloads | |
 | :--- | :--- |
-| [WithY(this Node2D, float)](WithY.md#SpatialGraph.Extensions.BasicElementOperations.WithY(thisSpatialGraph.Node2D,float) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithY(this SpatialGraph\.Node2D, float)') | Creates a new copy of a node with a different Y location\. |
-| [WithY(this Node3D, float)](WithY.md#SpatialGraph.Extensions.BasicElementOperations.WithY(thisSpatialGraph.Node3D,float) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithY(this SpatialGraph\.Node3D, float)') | Creates a new copy of a node with a different Y location\. |
+| [WithY(this Node2D, float)](WithY.md#SpatialGraph.Extensions.BasicElementOperations.WithY(thisSpatialGraph.Node2D,float) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithY(this SpatialGraph\.Node2D, float)') | Creates a new copy of a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') with a different Y location\. |
+| [WithY(this Node3D, float)](WithY.md#SpatialGraph.Extensions.BasicElementOperations.WithY(thisSpatialGraph.Node3D,float) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithY(this SpatialGraph\.Node3D, float)') | Creates a new copy of a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') with a different Y location\. |
 
 <a name='SpatialGraph.Extensions.BasicElementOperations.WithY(thisSpatialGraph.Node2D,float)'></a>
 
 ## BasicElementOperations\.WithY(this Node2D, float) Method
 
-Creates a new copy of a node with a different Y location\.
+Creates a new copy of a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') with a different Y location\.
 
 ```csharp
 public static SpatialGraph.Node2D WithY(this SpatialGraph.Node2D node, float newY);
@@ -36,7 +36,7 @@ Node with new Y location\.
 
 ## BasicElementOperations\.WithY(this Node3D, float) Method
 
-Creates a new copy of a node with a different Y location\.
+Creates a new copy of a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') with a different Y location\.
 
 ```csharp
 public static SpatialGraph.Node3D WithY(this SpatialGraph.Node3D node, float newY);

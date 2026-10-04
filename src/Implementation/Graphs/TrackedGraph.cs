@@ -1,7 +1,8 @@
 namespace SpatialGraph;
 
 /// <summary>
-/// Graph which tracks changes within it.
+/// Graph which track changes within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
+/// Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNode : struct, INode
@@ -39,13 +40,13 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
         foreach(TNode node in mods.NodeUpserts())
         {
             log.NodeUpsert(node);
-            nodes[node.ID] = node;
+            _Nodes[node.ID] = node;
         }
         
         foreach(Edge edge in mods.EdgeUpserts())
         {
             log.EdgeUpsert(edge);
-            edges[edge.ID] = edge;
+            _Edges[edge.ID] = edge;
         }
 
         foreach(uint nodeID in mods.NodeRemovals())
@@ -53,7 +54,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
             log.NodeRemoval(nodeID);
 
             //Undo log if operation failed
-            if (!nodes.Remove(nodeID))
+            if (!_Nodes.Remove(nodeID))
             {
                 log.UnlogNode(nodeID);
             }
@@ -64,7 +65,7 @@ public class TrackedGraph<TNode> : Graph<TNode>, ITrackedGraph<TNode> where TNod
             log.EdgeRemoval(edgeID);
 
             //Undo log if operation failed
-            if (!edges.Remove(edgeID))
+            if (!_Edges.Remove(edgeID))
             {
                 log.UnlogEdge(edgeID);
             }

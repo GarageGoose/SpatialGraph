@@ -1,6 +1,6 @@
 ## ElementModified<TElement> Struct
 
-Single log of an element which is modified\. Used in a ModificationLog\.
+Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is modified\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\.
 
 ```csharp
 public readonly record struct ElementModified<TElement> : System.IEquatable<SpatialGraph.ElementModified<TElement>>
@@ -18,7 +18,7 @@ Implements [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api
 
 | Constructors | |
 | :--- | :--- |
-| [ElementModified(TElement, TElement, uint)](ElementModified(TElement,TElement,uint).md 'SpatialGraph\.ElementModified<TElement>\.ElementModified(TElement, TElement, uint)') | Single log of an element which is modified\. Used in a ModificationLog\. |
+| [ElementModified(TElement, TElement, uint)](ElementModified(TElement,TElement,uint).md 'SpatialGraph\.ElementModified<TElement>\.ElementModified(TElement, TElement, uint)') | Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is modified\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\. |
 
 | Properties | |
 | :--- | :--- |

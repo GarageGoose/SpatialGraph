@@ -22,25 +22,25 @@ public static void UpsertNode(this SpatialGraph.IGraph<SpatialGraph.Node2D> grap
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to upsert a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Graph to upsert a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,float,float).ID'></a>
 
 `ID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to add/replace\.
+ID of the node to add/replace\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,float,float).X'></a>
 
 `X` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-X position of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+X position of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,float,float).Y'></a>
 
 `Y` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-Y position of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Y position of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2)'></a>
 
@@ -57,19 +57,19 @@ public static void UpsertNode(this SpatialGraph.IGraph<SpatialGraph.Node2D> grap
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to upsert a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Graph to upsert a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2).ID'></a>
 
 `ID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to add/replace\.
+ID of the node to add/replace\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2).Loc'></a>
 
 `Loc` [System\.Numerics\.Vector2](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector2 'System\.Numerics\.Vector2')
 
-Location of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+Location of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float,float,float)'></a>
 
@@ -86,7 +86,7 @@ public static void UpsertNode(this SpatialGraph.IGraph<SpatialGraph.Node3D> grap
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to add a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Graph to upsert a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float,float,float).ID'></a>
 
@@ -98,19 +98,19 @@ ID of the node to add/replace\.
 
 `X` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-X position of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+X position of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float,float,float).Y'></a>
 
 `Y` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-Y position of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Y position of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float,float,float).Z'></a>
 
 `Z` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-Z position of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Z position of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3)'></a>
 
@@ -127,16 +127,16 @@ public static void UpsertNode(this SpatialGraph.IGraph<SpatialGraph.Node3D> grap
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to add a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Graph to upsert a node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3).ID'></a>
 
 `ID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to add/replace\.
+ID of the node to add/replace\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.UpsertNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3).Loc'></a>
 
 `Loc` [System\.Numerics\.Vector3](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3 'System\.Numerics\.Vector3')
 
-Location of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+Location of the node\.

@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.NewEdges Property
 
-Dictionary for edges which was/will be added\.
+Dictionary for [Edge](../Edge/index.md 'SpatialGraph\.Edge')s which was/will be added\.
 
 ```csharp
 public System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ElementAdded<SpatialGraph.Edge>> NewEdges { get; }

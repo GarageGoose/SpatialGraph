@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.NodeRemovals() Method
 
-Log of nodes to be removed/has been removed in the graph\.
+Log of IDs of [INode](../INode/index.md 'SpatialGraph\.INode')s to be removed/has been removed in the graph\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<uint> NodeRemovals();

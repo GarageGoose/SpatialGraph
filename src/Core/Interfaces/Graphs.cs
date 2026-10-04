@@ -1,7 +1,7 @@
 namespace SpatialGraph;
 
 /// <summary>
-/// Read only interface of a graph. A graph stores nodes and edges within it, identified by their IDs.
+/// Read only interface of <see cref="IGraph{TNode}"/>. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IReadOnlyGraph<TNode> where TNode : struct, INode
@@ -26,33 +26,35 @@ public interface IReadOnlyGraph<TNode> where TNode : struct, INode
 }
 
 /// <summary>
-/// Read only interface of a tracked graph. Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
+/// Read only interface of <see cref="ITrackedGraph{TNode}"/>. Tracked graphs returns read only
+/// modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IReadOnlyTrackedGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
-    /// Event for changes applied. Invokes with an IReadOnlyModificationLog, which contains the changes in the graph after it is modified.
+    /// Event for changes applied. Invokes with an IReadOnlyModificationLog,
+    /// which contains the changes in the graph after it is modified.
     /// </summary>
     event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;
 }
 
 /// <summary>
-/// Base interface for all graphs. A graph stores nodes and edges within it, identified by their IDs.
+/// Base interface for all graphs. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
 /// Nodes and edges can share the same ID.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
-    /// Add a new node or modify one with their corresponding ID.
+    /// Add a new <see cref="INode"/> or modify one with their corresponding ID.
     /// Nodes and edges can share the same ID.
     /// </summary>
     /// <param name="Node">Node to upsert, identified by its ID.</param>
     void UpsertNode(TNode Node);
 
     /// <summary>
-    /// Remove a node in the graph using its correspinding ID. Connecting edges referencing this node will not be removed.
+    /// Remove a <see cref="INode"/> in the graph using its correspinding ID. Connecting <see cref="Edge"/> referencing this node will not be removed.
     /// Nodes and edges can share the same ID, this will remove only the node with the corresponding ID.
     /// </summary>
     /// <param name="ID">ID of the node to be removed.</param>
@@ -60,13 +62,13 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     bool RemoveNode(uint ID);
 
     /// <summary>
-    /// Add a new edge or modify an edge with its corresponding ID.
+    /// Add a new <see cref="Edge"/> or modify an <see cref="Edge"/> with its corresponding ID.
     /// </summary>
     /// <param name="edge">Edge to upsert, identified by its ID.</param>
     void UpsertEdge(Edge edge);
 
     /// <summary>
-    /// Remove an edge in the graph using its corresponding ID.
+    /// Remove an <see cref="Edge"/> in the graph using its corresponding ID.
     /// Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID.
     /// </summary>
     /// <param name="ID">ID of the edge to be removed.</param>
@@ -74,7 +76,7 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
     bool RemoveEdge(uint ID);
 
     /// <summary>
-    /// Perform multiple operations at once with a GraphChangeSet. Existing nodes or edges with
+    /// Perform multiple operations at once with a <see cref="GraphChangeSet{TNode}"/>. Existing <see cref="INode"/> or <see cref="Edge"/>s with
     /// a corresponding ID in the graph will be replaced.
     /// Nodes and edges can share the same ID.
     /// </summary>
@@ -83,14 +85,14 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
 }
 
 /// <summary>
-/// Base interface for all tracked graphs. A graph stores nodes and edges within it, identified by their IDs.
+/// Base interface for all tracked graphs which track changes within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
 /// Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
 public interface ITrackedGraph<TNode> : IReadOnlyTrackedGraph<TNode>, IGraph<TNode> where TNode : struct, INode;
 
 /// <summary>
-/// Base interface for all tracked graphs which can modify incoming changes. A graph stores nodes and edges within it, identified by their IDs.
+/// Base interface for all tracked graphs which can modify incoming changes and track changed within it. A graph stores <see cref="INode"/> and <see cref="Edge"/> within it, identified by their IDs.
 /// Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>

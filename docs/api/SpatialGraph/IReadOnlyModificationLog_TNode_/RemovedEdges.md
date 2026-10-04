@@ -1,6 +1,6 @@
 ## IReadOnlyModificationLog<TNode>\.RemovedEdges Property
 
-Dictionary for edges which was/will be removed\. Contains its original value\.
+Dictionary for [Edge](../Edge/index.md 'SpatialGraph\.Edge')s which was/will be removed\. Contains its original value\.
 
 ```csharp
 System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ElementRemoved<SpatialGraph.Edge>> RemovedEdges { get; }

@@ -1,6 +1,7 @@
 ## IReadOnlyTrackedGraph<TNode>\.OnGraphModified Event
 
-Event for changes applied\. Invokes with an IReadOnlyModificationLog, which contains the changes in the graph after it is modified\.
+Event for changes applied\. Invokes with an IReadOnlyModificationLog,
+which contains the changes in the graph after it is modified\.
 
 ```csharp
 event EventHandler<IReadOnlyModificationLog<TNode>>? OnGraphModified;

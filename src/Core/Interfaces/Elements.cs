@@ -7,33 +7,39 @@ namespace SpatialGraph;
 public interface IElement
 {
     /// <summary>
-    /// Unique identifier for an element.
+    /// Identifier for an element.
     /// </summary>
+    /// <remarks>
+    /// Used within <see cref="IGraph{TNode}"/>s.
+    /// </remarks>
     uint ID {get;}
 }
 
 /// <summary>
-/// Base interface for all nodes.
+/// Represents a node in a <see cref="IGraph{TNode}"/>. Base interface for all nodes.
 /// </summary>
 public interface INode : IElement;
 
 /// <summary>
-/// A line segment which is formed from 2 nodes.
+/// A line segment which is formed from 2 <see cref="INode"/>.
 /// </summary>
+/// <param name="ID">Unique identifier for an element.</param>
+/// <param name="NodeID1">ID of the node for the first endpoint of the edge.</param>
+/// <param name="NodeID2">ID of the node for the second endpoint of the edge.</param>
 public readonly record struct Edge(uint ID, uint NodeID1, uint NodeID2) : IElement;
 
 /// <summary>
-/// An enum for identifying the first or second node in a Edge.
+/// An enum for identifying the <see cref="INode"/> in the first or second endpoint of an <see cref="Edge"/>.
 /// </summary>
 public enum NodeInEdge
 {
     /// <summary>
-    /// Refers to the first node (NodeID1) in an edge.
+    /// Refers to the <see cref="INode"/> in the first endpoint (<see cref="Edge.NodeID1"/>) of an edge.
     /// </summary>
     First,
     
     /// <summary>
-    /// Refers to the second node (NodeID1) in an edge.
+    /// Refers to the <see cref="INode"/> in the second endpoint (<see cref="Edge.NodeID2"/>) of an edge.
     /// </summary>
     Second,
     
@@ -54,23 +60,23 @@ public readonly record struct Node2D(uint ID, Vector2 Loc) : INode;
 public readonly record struct Node3D(uint ID, Vector3 Loc) : INode;
 
 /// <summary>
-/// Enum for classifying elements.
+/// Enum for classifying <see cref="IElement"/>.
 /// </summary>
 public enum ElementType
 {
     /// <summary>
-    /// Element is a node.
+    /// <see cref="IElement"/> is a node.
     /// </summary>
     Node,
     
     /// <summary>
-    /// Element is an edge.
+    /// <see cref="IElement"/> is an edge.
     /// </summary>
     Edge
 }
 
 /// <summary>
-/// Generic element identifier.
+/// Generic <see cref="IElement"/> identifier.
 /// </summary>
 /// <param name="Type">Type of element, either Node or Edge.</param>
 /// <param name="ID">ID of the element.</param>

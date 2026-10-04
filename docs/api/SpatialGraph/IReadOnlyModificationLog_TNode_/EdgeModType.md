@@ -1,6 +1,6 @@
 ## IReadOnlyModificationLog<TNode>\.EdgeModType Property
 
-Dictionary for type of modifications (Add, Remove, Modify) each edge have\.
+Dictionary for type of modifications (Add, Remove, Modify) each [Edge](../Edge/index.md 'SpatialGraph\.Edge') have\.
 
 ```csharp
 System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ModificationType> EdgeModType { get; }

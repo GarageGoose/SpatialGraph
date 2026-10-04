@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.ModifiedEdges Property
 
-Dictionary for edges which was/will be modified\. Contains the original and new value of the edge\.
+Dictionary for [Edge](../Edge/index.md 'SpatialGraph\.Edge')s which was/will be modified\. Contains the original and new value of the [Edge](../Edge/index.md 'SpatialGraph\.Edge')\.
 
 ```csharp
 public System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ElementModified<SpatialGraph.Edge>> ModifiedEdges { get; }

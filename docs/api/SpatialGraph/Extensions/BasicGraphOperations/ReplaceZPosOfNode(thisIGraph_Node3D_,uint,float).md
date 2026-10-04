@@ -11,16 +11,16 @@ public static void ReplaceZPosOfNode(this SpatialGraph.IGraph<SpatialGraph.Node3
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its Z location\.
+Graph with the node to replace its Z location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceZPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its Z location\.
+ID of the node to replace its Z location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceZPosOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,float).NewZPos'></a>
 
 `NewZPos` [System\.Single](https://learn.microsoft.com/en-us/dotnet/api/system.single 'System\.Single')
 
-New Z location of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+New Z location of the node\.

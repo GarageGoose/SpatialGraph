@@ -1,6 +1,6 @@
 ## BasicElementOperations\.WithZ(this Node3D, float) Method
 
-Creates a new copy of a node with a different Y location\.
+Creates a new copy of a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') with a different Z location\.
 
 ```csharp
 public static SpatialGraph.Node3D WithZ(this SpatialGraph.Node3D node, float newZ);

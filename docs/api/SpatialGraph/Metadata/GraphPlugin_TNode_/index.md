@@ -30,13 +30,13 @@ Implements [SpatialGraph\.IInterceptableTrackedGraph&lt;](../../IInterceptableTr
 
 | Methods | |
 | :--- | :--- |
-| [ApplyChangeSet(GraphChangeSet&lt;TNode&gt;)](ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.ApplyChangeSet(SpatialGraph\.GraphChangeSet<TNode>)') | Perform multiple operations at once with a GraphChangeSet\. Existing nodes or edges with a corresponding ID in the graph will be replaced\. Nodes and edges can share the same ID\. |
+| [ApplyChangeSet(GraphChangeSet&lt;TNode&gt;)](ApplyChangeSet(GraphChangeSet_TNode_).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.ApplyChangeSet(SpatialGraph\.GraphChangeSet<TNode>)') | Perform multiple operations at once with a [GraphChangeSet&lt;TNode&gt;](../../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')\. Existing [INode](../../INode/index.md 'SpatialGraph\.INode') or [Edge](../../Edge/index.md 'SpatialGraph\.Edge')s with a corresponding ID in the graph will be replaced\. Nodes and edges can share the same ID\. |
 | [GenerateID()](GenerateID().md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.GenerateID()') | Generate unique ID for the elements of the graph\. Nodes and edges can share the same ID\. |
 | [OnGraphUpdate(object, GraphChangeLog&lt;TNode&gt;)](OnGraphUpdate(object,GraphChangeLog_TNode_).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.OnGraphUpdate(object, SpatialGraph\.GraphChangeLog<TNode>)') | Emits when a modification occurs in the base graph\. |
-| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.RemoveEdge(uint)') | Remove an edge in the graph using its corresponding ID\. Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\. |
-| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.RemoveNode(uint)') | Remove a node in the graph using its correspinding ID\. Connecting edges referencing this node will not be removed\. Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\. |
-| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new edge or modify an edge with its corresponding ID\. |
-| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.UpsertNode(TNode)') | Add a new node or modify one with their corresponding ID\. Nodes and edges can share the same ID\. |
+| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.RemoveEdge(uint)') | Remove an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') in the graph using its corresponding ID\. Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\. |
+| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.RemoveNode(uint)') | Remove a [INode](../../INode/index.md 'SpatialGraph\.INode') in the graph using its correspinding ID\. Connecting [Edge](../../Edge/index.md 'SpatialGraph\.Edge') referencing this node will not be removed\. Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\. |
+| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new [Edge](../../Edge/index.md 'SpatialGraph\.Edge') or modify an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') with its corresponding ID\. |
+| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.Metadata\.GraphPlugin<TNode>\.UpsertNode(TNode)') | Add a new [INode](../../INode/index.md 'SpatialGraph\.INode') or modify one with their corresponding ID\. Nodes and edges can share the same ID\. |
 
 | Events | |
 | :--- | :--- |

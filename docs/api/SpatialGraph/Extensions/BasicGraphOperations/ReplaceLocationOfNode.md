@@ -20,19 +20,19 @@ public static void ReplaceLocationOfNode(this SpatialGraph.IGraph<SpatialGraph.N
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to replace its location\.
+Graph with the node to replace its location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') to replace its location\.
+ID of the node to replace its location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node2D_,uint,System.Numerics.Vector2).NewLoc'></a>
 
 `NewLoc` [System\.Numerics\.Vector2](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector2 'System\.Numerics\.Vector2')
 
-New location of the [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')\.
+New location of the node\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3)'></a>
 
@@ -49,16 +49,16 @@ public static void ReplaceLocationOfNode(this SpatialGraph.IGraph<SpatialGraph.N
 
 `graph` [SpatialGraph\.IGraph&lt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')[&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
-[IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its location\.
+Graph with the node to replace its location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3).NodeID'></a>
 
 `NodeID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-ID of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') to replace its location\.
+ID of the node to replace its location\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.ReplaceLocationOfNode(thisSpatialGraph.IGraph_SpatialGraph.Node3D_,uint,System.Numerics.Vector3).NewLoc'></a>
 
 `NewLoc` [System\.Numerics\.Vector3](https://learn.microsoft.com/en-us/dotnet/api/system.numerics.vector3 'System\.Numerics\.Vector3')
 
-New location of the [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D')\.
+New location of the node\.

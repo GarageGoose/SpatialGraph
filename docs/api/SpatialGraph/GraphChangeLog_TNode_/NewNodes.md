@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.NewNodes Property
 
-Dictionary for nodes which was/will be added\.
+Dictionary for [INode](../INode/index.md 'SpatialGraph\.INode')s which was/will be added\.
 
 ```csharp
 public System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ElementAdded<TNode>> NewNodes { get; }

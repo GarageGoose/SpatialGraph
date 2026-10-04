@@ -14,4 +14,4 @@ Derived
 
 | Properties | |
 | :--- | :--- |
-| [ID](ID.md 'SpatialGraph\.IElement\.ID') | Unique identifier for an element\. |
+| [ID](ID.md 'SpatialGraph\.IElement\.ID') | Identifier for an element\. |

@@ -1,6 +1,6 @@
 ## BasicElementOperations\.EdgeHasNodeID(this Edge, uint) Method
 
-Check if an Edge connect to a node with a specific ID\.
+Check if an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') connect to a [INode](../../INode/index.md 'SpatialGraph\.INode') with a specific ID\.
 
 ```csharp
 public static bool EdgeHasNodeID(this SpatialGraph.Edge edge, uint nodeID);

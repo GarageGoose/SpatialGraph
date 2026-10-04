@@ -1,6 +1,7 @@
 ## IReadOnlyTrackedGraph<TNode> Interface
 
-Read only interface of a tracked graph\. Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\.
+Read only interface of [ITrackedGraph&lt;TNode&gt;](../ITrackedGraph_TNode_/index.md 'SpatialGraph\.ITrackedGraph<TNode>')\. Tracked graphs returns read only
+modification logs when it is modified by adding, modifying, and removing any of its elements\.
 
 ```csharp
 public interface IReadOnlyTrackedGraph<TNode> : SpatialGraph.IReadOnlyGraph<TNode>

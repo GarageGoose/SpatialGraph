@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.EdgeRemovals() Method
 
-Log of edges to be removed/has been removed in the graph\.
+Log of IDs of [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be removed/has been removed in the graph\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<uint> EdgeRemovals();

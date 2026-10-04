@@ -4,6 +4,7 @@ icon: lucide/key-round
 # Licenses
 ## SpatialGraph
 ---
+SpatialGraph is licensed under the MIT License.
 ```
 MIT License
 
@@ -28,9 +29,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## 3rd Party Softwares 
+## Third-Party Software 
 ---
- This project uses several 3rd party software for documentation. See below:
+This project uses the following third-party software for documentation. See below:
 
   Zensical — [MIT License](https://github.com/zensical/zensical/blob/master/LICENSE.md) <br>
   https://github.com/zensical/zensical 
@@ -40,3 +41,5 @@ SOFTWARE.
   
   Lucide Icons — [ISC License](https://lucide.dev/license) <br>
   https://lucide.dev/
+
+Not covered by SpatialGraph MIT License.

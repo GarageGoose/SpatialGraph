@@ -1,6 +1,6 @@
 ## Graph2DOperations\.InsertNode(this IGraph<Node2D>, uint, Node2D) Method
 
-Insert a new node in between an edge\.
+Insert a new [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') in between an [Edge](../../Edge/index.md 'SpatialGraph\.Edge')\.
 
 ```csharp
 public static void InsertNode(this SpatialGraph.IGraph<SpatialGraph.Node2D> baseGraph, uint edgeID, SpatialGraph.Node2D newNode);

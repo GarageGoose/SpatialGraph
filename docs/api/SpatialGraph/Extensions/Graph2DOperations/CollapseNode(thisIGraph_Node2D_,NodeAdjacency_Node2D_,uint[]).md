@@ -1,6 +1,6 @@
 ## Graph2DOperations\.CollapseNode(this IGraph<Node2D>, NodeAdjacency<Node2D>, uint\[\]) Method
 
-Combine multiple nodes into a single one\.
+Combine multiple [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D')s into a single one\.
 
 ```csharp
 public static void CollapseNode(this SpatialGraph.IGraph<SpatialGraph.Node2D> baseGraph, SpatialGraph.Metadata.NodeAdjacency<SpatialGraph.Node2D> adjacency, params uint[] nodeIDsToCollapse);

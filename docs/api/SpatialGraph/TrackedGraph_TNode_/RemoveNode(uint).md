@@ -1,6 +1,6 @@
 ## TrackedGraph<TNode>\.RemoveNode(uint) Method
 
-Remove a node in the graph using its correspinding ID\. Connecting edges referencing this node will not be removed\.
+Remove a [INode](../INode/index.md 'SpatialGraph\.INode') in the graph using its correspinding ID\. Connecting [Edge](../Edge/index.md 'SpatialGraph\.Edge') referencing this node will not be removed\.
 Nodes and edges can share the same ID, this will remove only the node with the corresponding ID\.
 
 ```csharp

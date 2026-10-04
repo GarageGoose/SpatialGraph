@@ -1,6 +1,6 @@
 ## ElementID(ElementType, uint) Constructor
 
-Generic element identifier\.
+Generic [IElement](../IElement/index.md 'SpatialGraph\.IElement') identifier\.
 
 ```csharp
 public ElementID(SpatialGraph.ElementType Type, uint ID);

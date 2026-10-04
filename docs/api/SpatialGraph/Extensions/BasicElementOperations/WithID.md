@@ -2,15 +2,15 @@
 
 | Overloads | |
 | :--- | :--- |
-| [WithID(this Edge, uint)](WithID.md#SpatialGraph.Extensions.BasicElementOperations.WithID(thisSpatialGraph.Edge,uint) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithID(this SpatialGraph\.Edge, uint)') | Create a new copy of an edge with a different ID\. |
-| [WithID(this Node2D, uint)](WithID.md#SpatialGraph.Extensions.BasicElementOperations.WithID(thisSpatialGraph.Node2D,uint) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithID(this SpatialGraph\.Node2D, uint)') | Creates a new copy of a node with a different ID\. |
-| [WithID(this Node3D, uint)](WithID.md#SpatialGraph.Extensions.BasicElementOperations.WithID(thisSpatialGraph.Node3D,uint) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithID(this SpatialGraph\.Node3D, uint)') | Creates a new copy of a node with a different ID\. |
+| [WithID(this Edge, uint)](WithID.md#SpatialGraph.Extensions.BasicElementOperations.WithID(thisSpatialGraph.Edge,uint) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithID(this SpatialGraph\.Edge, uint)') | Create a new copy of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') with a different ID\. |
+| [WithID(this Node2D, uint)](WithID.md#SpatialGraph.Extensions.BasicElementOperations.WithID(thisSpatialGraph.Node2D,uint) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithID(this SpatialGraph\.Node2D, uint)') | Creates a new copy of a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') with a different ID\. |
+| [WithID(this Node3D, uint)](WithID.md#SpatialGraph.Extensions.BasicElementOperations.WithID(thisSpatialGraph.Node3D,uint) 'SpatialGraph\.Extensions\.BasicElementOperations\.WithID(this SpatialGraph\.Node3D, uint)') | Creates a new copy of a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') with a different ID\. |
 
 <a name='SpatialGraph.Extensions.BasicElementOperations.WithID(thisSpatialGraph.Edge,uint)'></a>
 
 ## BasicElementOperations\.WithID(this Edge, uint) Method
 
-Create a new copy of an edge with a different ID\.
+Create a new copy of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') with a different ID\.
 
 ```csharp
 public static SpatialGraph.Edge WithID(this SpatialGraph.Edge edge, uint newID);
@@ -37,7 +37,7 @@ Edge with new ID\.
 
 ## BasicElementOperations\.WithID(this Node2D, uint) Method
 
-Creates a new copy of a node with a different ID\.
+Creates a new copy of a [Node2D](../../Node2D/index.md 'SpatialGraph\.Node2D') with a different ID\.
 
 ```csharp
 public static SpatialGraph.Node2D WithID(this SpatialGraph.Node2D node, uint newID);
@@ -64,7 +64,7 @@ Node with new ID\.
 
 ## BasicElementOperations\.WithID(this Node3D, uint) Method
 
-Creates a new copy of a node with a different ID\.
+Creates a new copy of a [Node3D](../../Node3D/index.md 'SpatialGraph\.Node3D') with a different ID\.
 
 ```csharp
 public static SpatialGraph.Node3D WithID(this SpatialGraph.Node3D node, uint newID);

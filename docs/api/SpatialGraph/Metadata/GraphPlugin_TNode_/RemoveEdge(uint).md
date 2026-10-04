@@ -1,6 +1,6 @@
 ## GraphPlugin<TNode>\.RemoveEdge(uint) Method
 
-Remove an edge in the graph using its corresponding ID\.
+Remove an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') in the graph using its corresponding ID\.
 Nodes and edges can share the same ID, this will remove only the edge with the corresponding ID\.
 
 ```csharp

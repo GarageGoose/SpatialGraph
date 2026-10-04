@@ -1,6 +1,6 @@
 ## ElementAdded(TElement, uint) Constructor
 
-Single log of an element which is added\. Used in a ModificationLog\.
+Log of an [IElement](../IElement/index.md 'SpatialGraph\.IElement') which is added\. Used in a [GraphChangeLog&lt;TNode&gt;](../GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\.
 
 ```csharp
 public ElementAdded(TElement Element, uint ID);

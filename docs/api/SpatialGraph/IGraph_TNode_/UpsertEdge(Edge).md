@@ -1,6 +1,6 @@
 ## IGraph<TNode>\.UpsertEdge(Edge) Method
 
-Add a new edge or modify an edge with its corresponding ID\.
+Add a new [Edge](../Edge/index.md 'SpatialGraph\.Edge') or modify an [Edge](../Edge/index.md 'SpatialGraph\.Edge') with its corresponding ID\.
 
 ```csharp
 void UpsertEdge(SpatialGraph.Edge edge);

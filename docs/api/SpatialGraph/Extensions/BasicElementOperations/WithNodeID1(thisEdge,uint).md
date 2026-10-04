@@ -1,6 +1,6 @@
 ## BasicElementOperations\.WithNodeID1(this Edge, uint) Method
 
-Creates a new copy of an edge with different ID of the first connecting node\.
+Creates a new copy of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge') with different [NodeID1](../../Edge/NodeID1.md 'SpatialGraph\.Edge\.NodeID1')\.
 
 ```csharp
 public static SpatialGraph.Edge WithNodeID1(this SpatialGraph.Edge edge, uint newNodeID1);
@@ -17,7 +17,7 @@ Edge to copy\.
 
 `newNodeID1` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-New node ID for the first edge\.
+New node ID for the first endpoint\.
 
 #### Returns
 [Edge](../../Edge/index.md 'SpatialGraph\.Edge')  

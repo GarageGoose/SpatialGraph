@@ -1,6 +1,6 @@
 ## ElementType Enum
 
-Enum for classifying elements\.
+Enum for classifying [IElement](../IElement/index.md 'SpatialGraph\.IElement')\.
 
 ```csharp
 public enum ElementType
@@ -11,10 +11,10 @@ public enum ElementType
 
 `Node` 0
 
-Element is a node\.
+[IElement](../IElement/index.md 'SpatialGraph\.IElement') is a node\.
 
 <a name='SpatialGraph.ElementType.Edge'></a>
 
 `Edge` 1
 
-Element is an edge\.
+[IElement](../IElement/index.md 'SpatialGraph\.IElement') is an edge\.

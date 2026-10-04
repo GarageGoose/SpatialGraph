@@ -12,7 +12,7 @@ public static uint AddEdge<TNode>(this SpatialGraph.IGraph<TNode> graph, uint No
 
 `TNode`
 
-Type of [INode](../../INode/index.md 'SpatialGraph\.INode') the [IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') have\.
+Type of node the graph has\.
 #### Parameters
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddEdge_TNode_(thisSpatialGraph.IGraph_TNode_,uint,uint).graph'></a>
@@ -25,14 +25,14 @@ Graph to add an edge\.
 
 `NodeID1` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-The first [INode](../../INode/index.md 'SpatialGraph\.INode') in an edge\.
+The first node in an edge\.
 
 <a name='SpatialGraph.Extensions.BasicGraphOperations.AddEdge_TNode_(thisSpatialGraph.IGraph_TNode_,uint,uint).NodeID2'></a>
 
 `NodeID2` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-The second [INode](../../INode/index.md 'SpatialGraph\.INode') in an edge\.
+The second node in an edge\.
 
 #### Returns
 [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')  
-ID of the new [Edge](../../Edge/index.md 'SpatialGraph\.Edge')\.
+ID of the new edge\.

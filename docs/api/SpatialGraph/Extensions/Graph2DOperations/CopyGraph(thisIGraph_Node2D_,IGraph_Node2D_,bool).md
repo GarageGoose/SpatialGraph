@@ -1,6 +1,6 @@
 ## Graph2DOperations\.CopyGraph(this IGraph<Node2D>, IGraph<Node2D>, bool) Method
 
-Copy entire graph to another graph\.
+Copy entire [IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') to another [IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\.
 
 ```csharp
 public static void CopyGraph(this SpatialGraph.IGraph<SpatialGraph.Node2D> copyFrom, SpatialGraph.IGraph<SpatialGraph.Node2D> pasteTo, bool preserveID);

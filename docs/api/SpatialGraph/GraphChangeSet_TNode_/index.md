@@ -1,6 +1,6 @@
 ## GraphChangeSet<TNode> Interface
 
-Set of changes in a graph\.
+Set of changes in a [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\.
 
 ```csharp
 public interface GraphChangeSet<TNode>
@@ -22,7 +22,7 @@ Derived
 
 | Methods | |
 | :--- | :--- |
-| [EdgeRemovals()](EdgeRemovals().md 'SpatialGraph\.GraphChangeSet<TNode>\.EdgeRemovals()') | IDs of the edges to be removed in a graph\. |
-| [EdgeUpserts()](EdgeUpserts().md 'SpatialGraph\.GraphChangeSet<TNode>\.EdgeUpserts()') | Edges to be either added or replaced if it has the same ID as a node in a graph\. |
-| [NodeRemovals()](NodeRemovals().md 'SpatialGraph\.GraphChangeSet<TNode>\.NodeRemovals()') | IDs of the nodes to be removed in a graph\. |
-| [NodeUpserts()](NodeUpserts().md 'SpatialGraph\.GraphChangeSet<TNode>\.NodeUpserts()') | Nodes to be either added or replaced if it has the same ID as a node in a graph\. |
+| [EdgeRemovals()](EdgeRemovals().md 'SpatialGraph\.GraphChangeSet<TNode>\.EdgeRemovals()') | IDs of the [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be removed in a graph\. |
+| [EdgeUpserts()](EdgeUpserts().md 'SpatialGraph\.GraphChangeSet<TNode>\.EdgeUpserts()') | [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be either added or modified if it has the same ID as an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in a graph\. |
+| [NodeRemovals()](NodeRemovals().md 'SpatialGraph\.GraphChangeSet<TNode>\.NodeRemovals()') | IDs of the [INode](../INode/index.md 'SpatialGraph\.INode')s to be removed in a graph\. |
+| [NodeUpserts()](NodeUpserts().md 'SpatialGraph\.GraphChangeSet<TNode>\.NodeUpserts()') | [INode](../INode/index.md 'SpatialGraph\.INode')s to be either added or modified if it has the same ID as a [INode](../INode/index.md 'SpatialGraph\.INode') in a graph\. |

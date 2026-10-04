@@ -1,6 +1,6 @@
 ## SpatialGraph2DOperations Class
 
-Get spatial information in 2D graphs\.
+Get spatial information in [IGraph&lt;TNode&gt;](../../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')s\.
 
 ```csharp
 public static class SpatialGraph2DOperations

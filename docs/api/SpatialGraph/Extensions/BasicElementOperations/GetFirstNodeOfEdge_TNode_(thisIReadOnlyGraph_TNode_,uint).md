@@ -1,6 +1,6 @@
 ## BasicElementOperations\.GetFirstNodeOfEdge<TNode>(this IReadOnlyGraph<TNode>, uint) Method
 
-Get the first connecting node of an edge\.
+Get the [INode](../../INode/index.md 'SpatialGraph\.INode') that is referenced from [NodeID1](../../Edge/NodeID1.md 'SpatialGraph\.Edge\.NodeID1') of an [Edge](../../Edge/index.md 'SpatialGraph\.Edge')\.
 
 ```csharp
 public static TNode GetFirstNodeOfEdge<TNode>(this SpatialGraph.IReadOnlyGraph<TNode> graph, uint edgeID)

@@ -1,6 +1,6 @@
 ## ITrackedGraph<TNode> Interface
 
-Base interface for all tracked graphs\. A graph stores nodes and edges within it, identified by their IDs\.
+Base interface for all tracked graphs which track changes within it\. A graph stores [INode](../INode/index.md 'SpatialGraph\.INode') and [Edge](../Edge/index.md 'SpatialGraph\.Edge') within it, identified by their IDs\.
 Tracked graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements\.
 
 ```csharp

@@ -1,6 +1,6 @@
 ## IReadOnlyModificationLog<TNode>\.NodeModType Property
 
-Dictionary for type of modifications (Add, Remove, Modify) each node have\.
+Dictionary for type of modifications (Add, Remove, Modify) each [INode](../INode/index.md 'SpatialGraph\.INode') have\.
 
 ```csharp
 System.Collections.Generic.IReadOnlyDictionary<uint,SpatialGraph.ModificationType> NodeModType { get; }

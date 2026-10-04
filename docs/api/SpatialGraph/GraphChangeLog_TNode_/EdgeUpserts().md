@@ -1,6 +1,6 @@
 ## GraphChangeLog<TNode>\.EdgeUpserts() Method
 
-Log of edges to be upserted/has been upserted in the graph\.
+Log of [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be upserted/has been upserted in the graph\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<SpatialGraph.Edge> EdgeUpserts();

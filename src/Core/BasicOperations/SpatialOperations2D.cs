@@ -2,7 +2,7 @@ using System.Numerics;
 namespace SpatialGraph.Extensions;
 
 /// <summary>
-/// Get spatial information in 2D graphs.
+/// Get spatial information in <see cref="IGraph{Node2D}"/>s.
 /// </summary>
 public static class SpatialGraph2DOperations
 {
