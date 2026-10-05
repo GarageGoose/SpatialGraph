@@ -40,4 +40,4 @@ This project uses the following third-party software for documentation. See belo
   &nbsp;&nbsp; Lucide Icons — [ISC License](https://lucide.dev/license) <br>
   &nbsp;&nbsp; https://lucide.dev/
 
-Not covered by SpatialGraph MIT License.
+Third-party software listed above is distributed under its respective license.

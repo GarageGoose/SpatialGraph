@@ -1,6 +1,6 @@
 ## Edge(uint, uint, uint) Constructor
 
-A line segment which is formed from 2 [INode](../INode/index.md 'SpatialGraph\.INode')\.
+Represents a connection between 2 [INode](../INode/index.md 'SpatialGraph\.INode') endpoints\.
 
 ```csharp
 public Edge(uint ID, uint NodeID1, uint NodeID2);
@@ -11,7 +11,7 @@ public Edge(uint ID, uint NodeID1, uint NodeID2);
 
 `ID` [System\.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32 'System\.UInt32')
 
-Unique identifier for an element\.
+Identifier for the element\.
 
 <a name='SpatialGraph.Edge.Edge(uint,uint,uint).NodeID1'></a>
 

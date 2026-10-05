@@ -1,4 +1,4 @@
-## Edge\.ID Property
+## Node3D\.ID Property
 
 Identifier for the element\.
 

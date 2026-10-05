@@ -1,7 +1,6 @@
 ## ObservableGraph<TNode>\.UpsertNode(TNode) Method
 
 Add a new [INode](../INode/index.md 'SpatialGraph\.INode') or modify one with their corresponding ID\.
-Nodes and edges can share the same ID\.
 
 ```csharp
 public override void UpsertNode(TNode Node);

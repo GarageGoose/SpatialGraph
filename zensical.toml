@@ -11,8 +11,8 @@ repo_name = "GarageGoose/SpatialGraph"
 # edit_uri = "edit/main/docs/"
 
 nav = [
-  { "Getting Started" = "index.md" },
-  { "Examples" = "examples.md" },
+  { "Introduction" = "index.md" },
+  { "Getting Started" = "getstarted.md" },
   { "API Guide" = "apiguide.md" },
   { "Licenses" = "licenses.md" },
   { "API Reference" = [

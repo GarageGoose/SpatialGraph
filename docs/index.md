@@ -1,9 +1,11 @@
 ---
-icon: lucide/graduation-cap
+icon: lucide/rocket
 ---
 
-# Hellow! Docs under construction.
+# Introduction
 
-The docs are sloppily made (for now). Ive never handled kind of stuff before.
+SpatialGraph is a C# library for graphs with spatial data in 2D and 3D space extensible through its plugin system, with first-class support for spatial tasks like pathfinding and spatial indexing.
+
+At its core, a graph is a lightweight collection of nodes connected by edges. Additional graph metadatas and fuctionality, such as a QuadTree and additional spatial information, can be added through its plugin system.
 
 [Click here for the API reference](api/index.md) or the sidebar.

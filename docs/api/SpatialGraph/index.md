@@ -12,7 +12,7 @@ Main namespace for the library\. Contains all the essentials for building and in
 
 | Structs | |
 | :--- | :--- |
-| [Edge](Edge/index.md 'SpatialGraph\.Edge') | A line segment which is formed from 2 [INode](INode/index.md 'SpatialGraph\.INode')\. |
+| [Edge](Edge/index.md 'SpatialGraph\.Edge') | Represents a connection between 2 [INode](INode/index.md 'SpatialGraph\.INode') endpoints\. |
 | [ElementAdded&lt;TElement&gt;](ElementAdded_TElement_/index.md 'SpatialGraph\.ElementAdded<TElement>') | Log of an [IElement](IElement/index.md 'SpatialGraph\.IElement') which is added\. Used in a [GraphChangeLog&lt;TNode&gt;](GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\. |
 | [ElementID](ElementID/index.md 'SpatialGraph\.ElementID') | Generic [IElement](IElement/index.md 'SpatialGraph\.IElement') identifier\. |
 | [ElementModified&lt;TElement&gt;](ElementModified_TElement_/index.md 'SpatialGraph\.ElementModified<TElement>') | Log of an [IElement](IElement/index.md 'SpatialGraph\.IElement') which is modified\. Used in a [GraphChangeLog&lt;TNode&gt;](GraphChangeLog_TNode_/index.md 'SpatialGraph\.GraphChangeLog<TNode>')\. |
