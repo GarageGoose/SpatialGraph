@@ -1,7 +1,7 @@
 namespace SpatialGraph;
 
 /// <summary>
-/// Stores incoming changes for a graph.
+/// Stores incoming changes for <see cref="IGraph{TNode}"/>.
 /// </summary>
 /// <typeparam name="TNode">Type of node used in the graph.</typeparam>
 public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> where TNode : struct, INode
@@ -39,9 +39,9 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     }
 
     /// <summary>
-    /// 
+    /// Create a new instance from another instance of <see cref="GraphIncomingChanges{TNode}"/>
     /// </summary>
-    /// <param name="batchedMods"></param>
+    /// <param name="batchedMods">Instance of GraphIncomingChanges.</param>
     public GraphIncomingChanges(IReadOnlyGraphIncomingChanges<TNode> batchedMods)
     {
         edgesForUpsert = new(batchedMods.EdgesForUpsert);
@@ -55,7 +55,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     }
     
     /// <summary>
-    /// Add a new node or modify one with their corresponding ID.
+    /// Add a new <see cref="INode"/> or modify one with their corresponding ID.
     /// </summary>
     /// <param name="node">Node to upsert.</param>
     public void UpsertNode(TNode node)
@@ -65,7 +65,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     }
 
     /// <summary>
-    /// Remove a node with its ID.
+    /// Remove a <see cref="INode"/> with its ID.
     /// </summary>
     /// <param name="nodeID">ID of the node to remove.</param>
     public void RemoveNode(uint nodeID)
@@ -75,7 +75,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     }
 
     /// <summary>
-    /// Remove pending changes to a node.
+    /// Remove pending changes to a <see cref="INode"/>.
     /// </summary>
     /// <param name="nodeID">ID of the node.</param>
     public void RemoveNodeChange(uint nodeID)
@@ -85,7 +85,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     }
 
     /// <summary>
-    /// Add a new edge or modify one with their corresponding ID.
+    /// Add a new <see cref="Edge"/> or modify one with their corresponding ID.
     /// </summary>
     /// <param name="edge">Edge to upsert.</param>
     public void UpsertEdge(Edge edge)
@@ -95,7 +95,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     }
 
     /// <summary>
-    /// Remove pending changes to a node.
+    /// Remove pending changes to a <see cref="INode"/>.
     /// </summary>
     /// <param name="edgeID">ID of the node.</param>
     public void RemoveEdge(uint edgeID)
@@ -105,7 +105,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
     }
 
     /// <summary>
-    /// Remove pending changes to an edge.
+    /// Remove pending changes to an <see cref="Edge"/>.
     /// </summary>
     /// <param name="edgeID">ID of the node.</param>
     public void RemoveEdgeChange(uint edgeID)
@@ -154,7 +154,7 @@ public class GraphIncomingChanges<TNode> : IReadOnlyGraphIncomingChanges<TNode> 
 }
 
 /// <summary>
-/// Interface for objects which stores incoming changes for a graph.
+/// Read only interface for <see cref="GraphIncomingChanges{TNode}"/>.
 /// </summary>
 /// <typeparam name="TNode">Type of node used in the graph.</typeparam>
 public interface IReadOnlyGraphIncomingChanges<TNode> : GraphChangeSet<TNode> where TNode : struct, INode

@@ -48,7 +48,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     public IReadOnlyDictionary<uint, ElementRemoved<Edge>> RemovedEdges {get;}
 
     /// <summary>
-    /// Create a ChangeLog referencing a graph.
+    /// Create a <see cref="GraphChangeLog{TNode}"/> referencing a graph.
     /// </summary>
     /// <param name="baseGraph">Graph to reference the changes from.</param>
     public GraphChangeLog(IReadOnlyGraph<TNode> baseGraph)
@@ -69,7 +69,7 @@ public class GraphChangeLog<TNode> : IReadOnlyModificationLog<TNode> where TNode
     }
 
     /// <summary>
-    /// Duplicate a ChangeLog from another ChangeLog.
+    /// Duplicate a <see cref="GraphChangeLog{TNode}"/> from another <see cref="GraphChangeLog{TNode}"/>.
     /// </summary>
     /// <param name="baseGraph">ChangeLog to duplicate from.</param>
     public GraphChangeLog(IReadOnlyModificationLog<TNode> baseGraph)
