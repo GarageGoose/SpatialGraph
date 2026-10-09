@@ -1,6 +1,6 @@
 ## GraphIncomingChanges<TNode>\.RemoveEdge(uint) Method
 
-Remove pending changes to a node\.
+Remove pending changes to a [INode](../INode/index.md 'SpatialGraph\.INode')\.
 
 ```csharp
 public void RemoveEdge(uint edgeID);

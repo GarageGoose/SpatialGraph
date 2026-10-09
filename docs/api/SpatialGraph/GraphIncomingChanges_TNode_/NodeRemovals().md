@@ -1,6 +1,6 @@
 ## GraphIncomingChanges<TNode>\.NodeRemovals() Method
 
-IDs of the [INode](../INode/index.md 'SpatialGraph\.INode')s to be removed in a graph\.
+IDs of the [INode](../INode/index.md 'SpatialGraph\.INode')s to be removed in [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<uint> NodeRemovals();

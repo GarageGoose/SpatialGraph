@@ -1,6 +1,6 @@
 ## GraphIncomingChanges<TNode> Class
 
-Stores incoming changes for a graph\.
+Stores incoming changes for [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\.
 
 ```csharp
 public class GraphIncomingChanges<TNode> : SpatialGraph.IReadOnlyGraphIncomingChanges<TNode>, SpatialGraph.GraphChangeSet<TNode>
@@ -21,7 +21,7 @@ Implements [SpatialGraph\.IReadOnlyGraphIncomingChanges&lt;](../IReadOnlyGraphIn
 | Constructors | |
 | :--- | :--- |
 | [GraphIncomingChanges()](GraphIncomingChanges_TNode_.md#SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges() 'SpatialGraph\.GraphIncomingChanges<TNode>\.GraphIncomingChanges()') | Create a new empty instance\. |
-| [GraphIncomingChanges(IReadOnlyGraphIncomingChanges&lt;TNode&gt;)](GraphIncomingChanges_TNode_.md#SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges_TNode_) 'SpatialGraph\.GraphIncomingChanges<TNode>\.GraphIncomingChanges(SpatialGraph\.IReadOnlyGraphIncomingChanges<TNode>)') | |
+| [GraphIncomingChanges(IReadOnlyGraphIncomingChanges&lt;TNode&gt;)](GraphIncomingChanges_TNode_.md#SpatialGraph.GraphIncomingChanges_TNode_.GraphIncomingChanges(SpatialGraph.IReadOnlyGraphIncomingChanges_TNode_) 'SpatialGraph\.GraphIncomingChanges<TNode>\.GraphIncomingChanges(SpatialGraph\.IReadOnlyGraphIncomingChanges<TNode>)') | Create a new instance from another instance of [GraphIncomingChanges&lt;TNode&gt;](index.md 'SpatialGraph\.GraphIncomingChanges<TNode>') |
 
 | Properties | |
 | :--- | :--- |
@@ -32,15 +32,15 @@ Implements [SpatialGraph\.IReadOnlyGraphIncomingChanges&lt;](../IReadOnlyGraphIn
 
 | Methods | |
 | :--- | :--- |
-| [EdgeRemovals()](EdgeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeRemovals()') | IDs of the [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be removed in a graph\. |
-| [EdgeUpserts()](EdgeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeUpserts()') | [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be either added or modified if it has the same ID as an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in a graph\. |
+| [EdgeRemovals()](EdgeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeRemovals()') | IDs of the [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be removed in [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\. |
+| [EdgeUpserts()](EdgeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.EdgeUpserts()') | [Edge](../Edge/index.md 'SpatialGraph\.Edge')s to be either added or modified if it has the same ID as an [Edge](../Edge/index.md 'SpatialGraph\.Edge') in [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\. |
 | [Intersect(GraphIncomingChanges&lt;TNode&gt;)](Intersect(GraphIncomingChanges_TNode_).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.Intersect(SpatialGraph\.GraphIncomingChanges<TNode>)') | Intersect between two GraphIncomingChanges\. |
-| [NodeRemovals()](NodeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeRemovals()') | IDs of the [INode](../INode/index.md 'SpatialGraph\.INode')s to be removed in a graph\. |
-| [NodeUpserts()](NodeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeUpserts()') | [INode](../INode/index.md 'SpatialGraph\.INode')s to be either added or modified if it has the same ID as a [INode](../INode/index.md 'SpatialGraph\.INode') in a graph\. |
-| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveEdge(uint)') | Remove pending changes to a node\. |
-| [RemoveEdgeChange(uint)](RemoveEdgeChange(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveEdgeChange(uint)') | Remove pending changes to an edge\. |
-| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveNode(uint)') | Remove a node with its ID\. |
-| [RemoveNodeChange(uint)](RemoveNodeChange(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveNodeChange(uint)') | Remove pending changes to a node\. |
+| [NodeRemovals()](NodeRemovals().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeRemovals()') | IDs of the [INode](../INode/index.md 'SpatialGraph\.INode')s to be removed in [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\. |
+| [NodeUpserts()](NodeUpserts().md 'SpatialGraph\.GraphIncomingChanges<TNode>\.NodeUpserts()') | [INode](../INode/index.md 'SpatialGraph\.INode')s to be either added or modified if it has the same ID as a [INode](../INode/index.md 'SpatialGraph\.INode') in [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\. |
+| [RemoveEdge(uint)](RemoveEdge(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveEdge(uint)') | Remove pending changes to a [INode](../INode/index.md 'SpatialGraph\.INode')\. |
+| [RemoveEdgeChange(uint)](RemoveEdgeChange(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveEdgeChange(uint)') | Remove pending changes to an [Edge](../Edge/index.md 'SpatialGraph\.Edge')\. |
+| [RemoveNode(uint)](RemoveNode(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveNode(uint)') | Remove a [INode](../INode/index.md 'SpatialGraph\.INode') with its ID\. |
+| [RemoveNodeChange(uint)](RemoveNodeChange(uint).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.RemoveNodeChange(uint)') | Remove pending changes to a [INode](../INode/index.md 'SpatialGraph\.INode')\. |
 | [Union(GraphIncomingChanges&lt;TNode&gt;)](Union(GraphIncomingChanges_TNode_).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.Union(SpatialGraph\.GraphIncomingChanges<TNode>)') | Union between two GraphIncomingChanges\. |
-| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new edge or modify one with their corresponding ID\. |
-| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.UpsertNode(TNode)') | Add a new node or modify one with their corresponding ID\. |
+| [UpsertEdge(Edge)](UpsertEdge(Edge).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.UpsertEdge(SpatialGraph\.Edge)') | Add a new [Edge](../Edge/index.md 'SpatialGraph\.Edge') or modify one with their corresponding ID\. |
+| [UpsertNode(TNode)](UpsertNode(TNode).md 'SpatialGraph\.GraphIncomingChanges<TNode>\.UpsertNode(TNode)') | Add a new [INode](../INode/index.md 'SpatialGraph\.INode') or modify one with their corresponding ID\. |

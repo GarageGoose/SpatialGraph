@@ -1,6 +1,6 @@
 ## IReadOnlyGraphIncomingChanges<TNode> Interface
 
-Interface for objects which stores incoming changes for a graph\.
+Read only interface for [GraphIncomingChanges&lt;TNode&gt;](../GraphIncomingChanges_TNode_/index.md 'SpatialGraph\.GraphIncomingChanges<TNode>')\.
 
 ```csharp
 public interface IReadOnlyGraphIncomingChanges<TNode> : SpatialGraph.GraphChangeSet<TNode>

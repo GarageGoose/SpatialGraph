@@ -16,6 +16,9 @@ Type of node used in the graph\.
 
 Implements [System\.IEquatable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1 'System\.IEquatable\`1')[SpatialGraph\.Metadata\.GraphSnapshot&lt;](index.md 'SpatialGraph\.Metadata\.GraphSnapshot<TNode>')[TNode](index.md#SpatialGraph.Metadata.GraphSnapshot_TNode_.TNode 'SpatialGraph\.Metadata\.GraphSnapshot<TNode>\.TNode')[&gt;](index.md 'SpatialGraph\.Metadata\.GraphSnapshot<TNode>')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1 'System\.IEquatable\`1')
 
+### See Also
+- [GraphHistory&lt;TNode&gt;](../GraphHistory_TNode_/index.md 'SpatialGraph\.Metadata\.GraphHistory<TNode>')
+
 | Constructors | |
 | :--- | :--- |
 | [GraphSnapshot(int, Graph&lt;TNode&gt;)](GraphSnapshot(int,Graph_TNode_).md 'SpatialGraph\.Metadata\.GraphSnapshot<TNode>\.GraphSnapshot(int, SpatialGraph\.Graph<TNode>)') | Reconstructed graph from a specific modification step\. Used in GraphHistory\. |

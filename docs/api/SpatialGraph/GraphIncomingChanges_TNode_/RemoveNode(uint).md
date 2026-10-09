@@ -1,6 +1,6 @@
 ## GraphIncomingChanges<TNode>\.RemoveNode(uint) Method
 
-Remove a node with its ID\.
+Remove a [INode](../INode/index.md 'SpatialGraph\.INode') with its ID\.
 
 ```csharp
 public void RemoveNode(uint nodeID);

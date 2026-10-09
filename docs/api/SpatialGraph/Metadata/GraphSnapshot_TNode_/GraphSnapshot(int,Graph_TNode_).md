@@ -18,3 +18,6 @@ Modification step which this graph is recreated from\.
 `Snapshot` [SpatialGraph\.Graph&lt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')[TNode](index.md#SpatialGraph.Metadata.GraphSnapshot_TNode_.TNode 'SpatialGraph\.Metadata\.GraphSnapshot<TNode>\.TNode')[&gt;](../../Graph_TNode_/index.md 'SpatialGraph\.Graph<TNode>')
 
 Reconstructed graph\.
+
+### See Also
+- [GraphHistory&lt;TNode&gt;](../GraphHistory_TNode_/index.md 'SpatialGraph\.Metadata\.GraphHistory<TNode>')

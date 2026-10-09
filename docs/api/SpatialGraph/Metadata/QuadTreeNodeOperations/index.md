@@ -8,6 +8,9 @@ public static class QuadTreeNodeOperations
 
 Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → QuadTreeNodeOperations
 
+### See Also
+- [QuadTreeNode](../QuadTreeNode/index.md 'SpatialGraph\.Metadata\.QuadTreeNode')
+
 | Methods | |
 | :--- | :--- |
 | [FindKNearest(this QuadTreeNode, uint, uint)](FindKNearest(thisQuadTreeNode,uint,uint).md 'SpatialGraph\.Metadata\.QuadTreeNodeOperations\.FindKNearest(this SpatialGraph\.Metadata\.QuadTreeNode, uint, uint)') | Find K nearest node from a node\. |

@@ -21,9 +21,9 @@ Implements [SpatialGraph\.IReadOnlyModificationLog&lt;](../IReadOnlyModification
 
 | Constructors | |
 | :--- | :--- |
-| [GraphChangeLog(IReadOnlyGraph&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyGraph<TNode>)') | Create a ChangeLog referencing a graph\. |
+| [GraphChangeLog(IReadOnlyGraph&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyGraph<TNode>)') | Create a [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>') referencing a graph\. |
 | [GraphChangeLog(IReadOnlyGraph&lt;TNode&gt;, GraphChangeSet&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyGraph_TNode_,SpatialGraph.GraphChangeSet_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyGraph<TNode>, SpatialGraph\.GraphChangeSet<TNode>)') | Create a ChangeLog referencing a [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with changes from a [GraphChangeSet&lt;TNode&gt;](../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')\. |
-| [GraphChangeLog(IReadOnlyModificationLog&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyModificationLog_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyModificationLog<TNode>)') | Duplicate a ChangeLog from another ChangeLog\. |
+| [GraphChangeLog(IReadOnlyModificationLog&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyModificationLog_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyModificationLog<TNode>)') | Duplicate a [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>') from another [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>')\. |
 
 | Properties | |
 | :--- | :--- |

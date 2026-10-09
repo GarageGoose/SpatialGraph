@@ -2,15 +2,15 @@
 
 | Overloads | |
 | :--- | :--- |
-| [GraphChangeLog(IReadOnlyGraph&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyGraph<TNode>)') | Create a ChangeLog referencing a graph\. |
+| [GraphChangeLog(IReadOnlyGraph&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyGraph_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyGraph<TNode>)') | Create a [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>') referencing a graph\. |
 | [GraphChangeLog(IReadOnlyGraph&lt;TNode&gt;, GraphChangeSet&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyGraph_TNode_,SpatialGraph.GraphChangeSet_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyGraph<TNode>, SpatialGraph\.GraphChangeSet<TNode>)') | Create a ChangeLog referencing a [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>') with changes from a [GraphChangeSet&lt;TNode&gt;](../GraphChangeSet_TNode_/index.md 'SpatialGraph\.GraphChangeSet<TNode>')\. |
-| [GraphChangeLog(IReadOnlyModificationLog&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyModificationLog_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyModificationLog<TNode>)') | Duplicate a ChangeLog from another ChangeLog\. |
+| [GraphChangeLog(IReadOnlyModificationLog&lt;TNode&gt;)](GraphChangeLog_TNode_.md#SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyModificationLog_TNode_) 'SpatialGraph\.GraphChangeLog<TNode>\.GraphChangeLog(SpatialGraph\.IReadOnlyModificationLog<TNode>)') | Duplicate a [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>') from another [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>')\. |
 
 <a name='SpatialGraph.GraphChangeLog_TNode_.GraphChangeLog(SpatialGraph.IReadOnlyGraph_TNode_)'></a>
 
 ## GraphChangeLog(IReadOnlyGraph<TNode>) Constructor
 
-Create a ChangeLog referencing a graph\.
+Create a [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>') referencing a graph\.
 
 ```csharp
 public GraphChangeLog(SpatialGraph.IReadOnlyGraph<TNode> baseGraph);
@@ -50,7 +50,7 @@ Set of changes to log\.
 
 ## GraphChangeLog(IReadOnlyModificationLog<TNode>) Constructor
 
-Duplicate a ChangeLog from another ChangeLog\.
+Duplicate a [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>') from another [GraphChangeLog&lt;TNode&gt;](index.md 'SpatialGraph\.GraphChangeLog<TNode>')\.
 
 ```csharp
 public GraphChangeLog(SpatialGraph.IReadOnlyModificationLog<TNode> baseGraph);

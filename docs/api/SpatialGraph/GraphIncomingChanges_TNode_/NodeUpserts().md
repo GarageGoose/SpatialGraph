@@ -1,6 +1,6 @@
 ## GraphIncomingChanges<TNode>\.NodeUpserts() Method
 
-[INode](../INode/index.md 'SpatialGraph\.INode')s to be either added or modified if it has the same ID as a [INode](../INode/index.md 'SpatialGraph\.INode') in a graph\.
+[INode](../INode/index.md 'SpatialGraph\.INode')s to be either added or modified if it has the same ID as a [INode](../INode/index.md 'SpatialGraph\.INode') in [IGraph&lt;TNode&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')\.
 
 ```csharp
 public System.Collections.Generic.IEnumerable<TNode> NodeUpserts();
