@@ -1,17 +1,16 @@
-using System.Drawing;
 using System.Numerics;
-using SpatialGraph.Extensions;
 namespace SpatialGraph.Metadata;
 
 internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 {
-    public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, Vector2 originTopLeft, float width, float height, QuadTreeNodeCell? parentCell = null)
+    public QuadTreeNodeCell(QuadTreeNode parent, int cellCapacity, Vector2 originTopLeft, float width, float height, int depth, QuadTreeNodeCell? parentCell = null)
     {
         Parent = parent;
         _ParentCell = parentCell;
         CellCapacity = cellCapacity;
         _Nodes = new(cellCapacity);
         Nodes = _Nodes;
+        Depth = depth;
 
         //Setup cell bounds
         North = originTopLeft.Y;
@@ -31,6 +30,7 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     //Cell state
     public bool Subdivided {get; private set;} = false;
     public int CellCapacity {get;}
+    public int Depth {get;}
 
     //Cell contents
     internal QuadTreeNodeCell? _UpperLeft;
@@ -58,27 +58,27 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     float _HalfWidth;
     float _HalfHeight;
 
-    internal bool AddPoint(Node2D point, bool ForceAdd = false)
+    internal bool AddPoint(Node2D point)
     {
-        //Written this way to avoid executing the second function
-        if(!(ForceAdd || !point.IsNodeWithinAABB(new(East, North), Width, Height)))
-        {
-            return false;
-        }
         if (Subdivided)
         {
-            return TransferNodeToSubCell(point);
+            TransferNodeToSubCell(point);
+            return true;
         }
-        else if (_Nodes.Count >= CellCapacity)
+        else if (_Nodes.Count >= CellCapacity && Depth < Parent.MaxDepth)
         {
             Subdivide();
-            return TransferNodeToSubCell(point);
+            TransferNodeToSubCell(point);
+            return true;
         }
+
         _Nodes[point.ID] = point;
-        Parent.nodeCurrCell.Add(point.ID, this);
+        Parent.nodeCurrCell[point.ID] = this;
+
         return true;
     }
 
+    //Assumes the point exists
     internal void RemovePoint(uint iD)
     {
         _Nodes.Remove(iD);
@@ -86,7 +86,7 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         return;
     }
 
-    internal void Subdivide()
+    void Subdivide()
     {
         Subdivided = true;
         foreach(Node2D node in _Nodes.Values)
@@ -96,32 +96,32 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
         _Nodes.Clear();
     }
 
-    bool TransferNodeToSubCell(Node2D point)
+    void TransferNodeToSubCell(Node2D point)
     {
         if(point.Loc.X < Center.X)
         {
             if(point.Loc.Y > Center.Y)
             {
-                _UpperLeft ??= new(Parent, CellCapacity, new(West, North), _HalfWidth, _HalfHeight, this);
-                return _UpperLeft.AddPoint(point, true); 
+                _UpperLeft ??= new(Parent, CellCapacity, new(West, North), _HalfWidth, _HalfHeight, Depth + 1, this);
+                _UpperLeft.AddPoint(point); 
             }
             else
             {
-                _LowerLeft ??= new(Parent, CellCapacity, new(West, Center.Y), _HalfWidth, _HalfHeight, this);
-                return _LowerLeft.AddPoint(point, true);
+                _LowerLeft ??= new(Parent, CellCapacity, new(West, Center.Y), _HalfWidth, _HalfHeight, Depth + 1, this);
+                _LowerLeft.AddPoint(point);
             }
         }
         else
         {
             if(point.Loc.Y > Center.Y)
             {
-                _UpperRight ??= new(Parent, CellCapacity, new(Center.X, North), _HalfWidth, _HalfHeight, this);
-                return _UpperRight.AddPoint(point, true);
+                _UpperRight ??= new(Parent, CellCapacity, new(Center.X, North), _HalfWidth, _HalfHeight, Depth + 1, this);
+                _UpperRight.AddPoint(point);
             }
             else
             {
-                _LowerRight ??= new(Parent, CellCapacity, Center, _HalfWidth, _HalfHeight, this);
-                return _LowerRight.AddPoint(point, true);
+                _LowerRight ??= new(Parent, CellCapacity, Center, _HalfWidth, _HalfHeight, Depth + 1, this);
+                _LowerRight.AddPoint(point);
             }
         }
     }
@@ -145,6 +145,11 @@ public interface IReadOnlyQuadTreeNodeCell
     /// Maximum amount of nodes allowed in this cell before being subdivied.
     /// </summary>
     int CellCapacity {get;}
+
+    /// <summary>
+    /// Depth of the cell, relative to the depth of the original parent cell (0). Subdivision increases depth.
+    /// </summary>
+    int Depth {get;}
 
     /// <summary>
     /// Upper left (Northwest) quadrant of the cell.
@@ -171,9 +176,9 @@ public interface IReadOnlyQuadTreeNodeCell
     IReadOnlyQuadTreeNodeCell? LowerRight();
 
     /// <summary>
-    /// Upper left (Northwest) quadrant of the cell.
+    /// Parent of the cell.
     /// </summary>
-    /// <returns>Quad tree cell, null if the current cell is the parent cell.</returns>
+    /// <returns>Quad tree cell, null if the current cell is the root parent cell.</returns>
     IReadOnlyQuadTreeNodeCell? ParentCell();
 
     /// <summary>

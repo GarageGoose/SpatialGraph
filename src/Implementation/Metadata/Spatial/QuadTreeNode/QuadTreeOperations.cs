@@ -5,6 +5,7 @@ namespace SpatialGraph.Metadata;
 /// <summary>
 /// Spatial indexing operations for a 2D node quadtree.
 /// </summary>
+/// <seealso cref="QuadTreeNode"/>
 public static class QuadTreeNodeOperations
 {
     /// <summary>

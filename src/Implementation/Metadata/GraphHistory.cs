@@ -134,4 +134,5 @@ public class GraphHistory<TNode> : GraphReadOnlyPlugin<TNode> where TNode : stru
 /// <typeparam name="TNode">Type of node used in the graph.</typeparam>
 /// <param name="ModStep">Modification step which this graph is recreated from.</param>
 /// <param name="Snapshot">Reconstructed graph.</param>
+/// <seealso cref="GraphHistory{TNode}"/>
 public readonly record struct GraphSnapshot<TNode>(int ModStep, Graph<TNode> Snapshot) where TNode : struct, INode;
