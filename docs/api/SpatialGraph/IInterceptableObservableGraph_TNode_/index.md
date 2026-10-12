@@ -21,6 +21,9 @@ Derived
 
 Implements [SpatialGraph\.IObservableGraph&lt;](../IObservableGraph_TNode_/index.md 'SpatialGraph\.IObservableGraph<TNode>')[TNode](index.md#SpatialGraph.IInterceptableObservableGraph_TNode_.TNode 'SpatialGraph\.IInterceptableObservableGraph<TNode>\.TNode')[&gt;](../IObservableGraph_TNode_/index.md 'SpatialGraph\.IObservableGraph<TNode>'), [SpatialGraph\.IReadOnlyObservableGraph&lt;](../IReadOnlyObservableGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyObservableGraph<TNode>')[TNode](index.md#SpatialGraph.IInterceptableObservableGraph_TNode_.TNode 'SpatialGraph\.IInterceptableObservableGraph<TNode>\.TNode')[&gt;](../IReadOnlyObservableGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyObservableGraph<TNode>'), [SpatialGraph\.IReadOnlyGraph&lt;](../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph<TNode>')[TNode](index.md#SpatialGraph.IInterceptableObservableGraph_TNode_.TNode 'SpatialGraph\.IInterceptableObservableGraph<TNode>\.TNode')[&gt;](../IReadOnlyGraph_TNode_/index.md 'SpatialGraph\.IReadOnlyGraph<TNode>'), [SpatialGraph\.IGraph&lt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')[TNode](index.md#SpatialGraph.IInterceptableObservableGraph_TNode_.TNode 'SpatialGraph\.IInterceptableObservableGraph<TNode>\.TNode')[&gt;](../IGraph_TNode_/index.md 'SpatialGraph\.IGraph<TNode>')
 
+### See Also
+- [InterceptableObservableGraph&lt;TNode&gt;](../InterceptableObservableGraph_TNode_/index.md 'SpatialGraph\.InterceptableObservableGraph<TNode>')
+
 | Events | |
 | :--- | :--- |
 | [OnGraphModificationInit](OnGraphModificationInit.md 'SpatialGraph\.IInterceptableObservableGraph<TNode>\.OnGraphModificationInit') | Event for incoming changes\. Invokes with a GraphChangeLog which contains the modifications being performed\. Modifications can be changed via the GraphChangeLog before being applied to the graph\. |

@@ -36,9 +36,9 @@ public class InterceptableObservableGraph<TNode> : Graph<TNode>, IInterceptableO
     }
 
     /// <inheritdoc/>
-    public override void ApplyChangeSet(GraphChangeSet<TNode> mods) => applyBatchedModifications(new(this, mods));
+    public override void ApplyChangeSet(GraphChangeSet<TNode> mods) => ApplyBatchedModifications(new(this, mods));
 
-    private void applyBatchedModifications(GraphChangeLog<TNode> log)
+    private void ApplyBatchedModifications(GraphChangeLog<TNode> log)
     {
         OnGraphModificationInit?.Invoke(this, log);
         

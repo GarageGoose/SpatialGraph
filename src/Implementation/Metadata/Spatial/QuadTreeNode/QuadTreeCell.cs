@@ -58,24 +58,22 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
     float _HalfWidth;
     float _HalfHeight;
 
-    internal bool AddPoint(Node2D point)
+    internal void AddPoint(Node2D point)
     {
         if (Subdivided)
         {
             TransferNodeToSubCell(point);
-            return true;
+            return;
         }
         else if (_Nodes.Count >= CellCapacity && Depth < Parent.MaxDepth)
         {
             Subdivide();
             TransferNodeToSubCell(point);
-            return true;
+            return;
         }
 
         _Nodes[point.ID] = point;
         Parent.nodeCurrCell[point.ID] = this;
-
-        return true;
     }
 
     //Assumes the point exists
@@ -131,6 +129,7 @@ internal class QuadTreeNodeCell : IReadOnlyQuadTreeNodeCell
 /// A specific region in a quadtree which holds nodes or if subdivided,
 /// four sub quad trees each on the of the quadrant of the quadtree.
 /// </summary>
+/// <seealso cref="QuadTreeNode"/>
 public interface IReadOnlyQuadTreeNodeCell
 {
     /// <summary>

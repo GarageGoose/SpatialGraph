@@ -16,6 +16,17 @@ public static class QuadTreeNodeOperations
     /// <returns>ID of the nearest neighbor of a node. Returns the ID of the current node if the quadtree only has one node.</returns>
     public static uint FindNearest(this QuadTreeNode Quadtree, uint SourceNodeID)
     {
+        Node2D? _NearestNode = null;
+        float? _DistanceSquared = null;
+        IReadOnlyQuadTreeNodeCell CurrCell = Quadtree.nodeCurrCell[SourceNodeID];
+        HashSet<IReadOnlyQuadTreeNodeCell> VisitedCells = new();
+
+        //foreach(Node2D node in )
+
+        while(CurrCell.ParentCell() != null)
+        {
+            
+        }
         return 0;
     }
 

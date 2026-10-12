@@ -7,6 +7,9 @@ four sub quad trees each on the of the quadrant of the quadtree\.
 public interface IReadOnlyQuadTreeNodeCell
 ```
 
+### See Also
+- [QuadTreeNode](../QuadTreeNode/index.md 'SpatialGraph\.Metadata\.QuadTreeNode')
+
 | Properties | |
 | :--- | :--- |
 | [CellCapacity](CellCapacity.md 'SpatialGraph\.Metadata\.IReadOnlyQuadTreeNodeCell\.CellCapacity') | Maximum amount of nodes allowed in this cell before being subdivied\. |

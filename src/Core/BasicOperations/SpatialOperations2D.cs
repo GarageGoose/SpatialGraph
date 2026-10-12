@@ -108,6 +108,8 @@ public static class SpatialGraph2DOperations
     /// <returns>True if the node is within AABB, else false.</returns>
     public static bool IsNodeWithinAABB(this Node2D node, Vector2 topLeftCorner, float width, float height)
     {
-        return false;
+        bool WithinInXAxis = node.Loc.X > topLeftCorner.X && node.Loc.X < topLeftCorner.X + width;
+        bool WithinInYAxis = node.Loc.Y < topLeftCorner.Y && node.Loc.Y > topLeftCorner.Y - height;
+        return WithinInXAxis && WithinInYAxis;
     }
 }

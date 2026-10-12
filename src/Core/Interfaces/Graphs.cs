@@ -44,6 +44,7 @@ public interface IReadOnlyObservableGraph<TNode> : IReadOnlyGraph<TNode> where T
 /// Nodes and edges can share the same ID.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
+/// <seealso cref="Graph{TNode}"/>
 public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INode
 {
     /// <summary>
@@ -87,6 +88,7 @@ public interface IGraph<TNode> : IReadOnlyGraph<TNode> where TNode : struct, INo
 /// Observable graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
+/// <seealso cref="ObservableGraph{TNode}"/>
 public interface IObservableGraph<TNode> : IReadOnlyObservableGraph<TNode>, IGraph<TNode> where TNode : struct, INode;
 
 /// <summary>
@@ -94,6 +96,7 @@ public interface IObservableGraph<TNode> : IReadOnlyObservableGraph<TNode>, IGra
 /// Observable graphs returns read only modification logs when it is modified by adding, modifying, and removing any of its elements.
 /// </summary>
 /// <typeparam name="TNode">Type of node to be used in the graph.</typeparam>
+/// <seealso cref="InterceptableObservableGraph{TNode}"/>
 public interface IInterceptableObservableGraph<TNode> : IObservableGraph<TNode>, IGraph<TNode> where TNode : struct, INode
 {
     /// <summary>

@@ -40,7 +40,6 @@ public class Graph<TNode> : IGraph<TNode> where TNode : struct, INode
     /// <inheritdoc/>
     public IReadOnlyDictionary<uint, TNode> Nodes => _Nodes;
 
-
     /// <summary>
     /// Writable dictionary for edges in the graph.
     /// </summary>
